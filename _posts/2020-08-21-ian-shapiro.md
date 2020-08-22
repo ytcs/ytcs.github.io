@@ -1,5 +1,6 @@
 ---
-published: true
+layout: post
+title:  "Power and Politics in Today’s World"
 ---
 ## Power and Politics in Today’s World
 
