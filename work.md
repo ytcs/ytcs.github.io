@@ -10,10 +10,10 @@ items:
     description: <a href="https://arxiv.org/abs/1910.14261">PCA filter</a>
   
   - title: Notes on QFT
-    description: <a href="https://ytcs.github.io/peskin.pdf">Peskin & Schroeder</a> <a href="https://ytcs.github.io/schwartz.pdf">Schwartz</a>
+    description: <a href="https://obeliskalpha.com/peskin.pdf">Peskin & Schroeder</a> <a href="https://obeliskalpha.com/schwartz.pdf">Schwartz</a>
     
   - title: Notes on Condensed Matter Physics
-    description: <a href="https://ytcs.github.io/flt.pdf">Fermi-liquid Theory</a> <a href="https://ytcs.github.io/brezin.pdf">Brezin</a>
+    description: <a href="https://obeliskalpha.com/flt.pdf">Fermi-liquid Theory</a> <a href="https://obeliskalpha.com/brezin.pdf">Brezin</a>
 
 ---
 
