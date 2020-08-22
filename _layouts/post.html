@@ -31,6 +31,9 @@
           <article class="post-content">
             {{ content }}
           </article>
+          {% if site.disqus.shortname %}
+          {% include disqus_comments.html %}
+          {% endif %}
 
           {% if page.draft %}
               {% include draft-banner.html %}
