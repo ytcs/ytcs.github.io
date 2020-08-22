@@ -17,6 +17,6 @@ items:
 
 ---
 
-I am mostly interested in various topics related to detection of dark matter using solid-state detectors. Here are a selection of my papers & notes.
+I am mostly working on various topics related to detection of dark matter using solid-state detectors. Here are a selection of my papers & notes.
 <br />
 <br />
