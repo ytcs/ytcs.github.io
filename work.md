@@ -1,6 +1,6 @@
 ---
 layout: work
-title: Work
+title: 
 slug: /work
 items:
   - title: Carbon detectors 
