@@ -3,8 +3,8 @@
 
 title: Obelisk Alpha
 description: >- # this means to ignore newlines until "baseurl:"
-  -
-baseurl: "/" # the subpath of the site
+  obeliskalpha
+#baseurl: "/" # the subpath of the site
 url: "https://obeliskalpha.com" # the base hostname & protocol for the site
 #og_image: /assets/img/profile-pic.jpg
 #google_analytics: "UA-121636368-3"
