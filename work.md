@@ -4,10 +4,10 @@ title: Work
 slug: /work
 items:
   - title: Carbon detectors 
-    description: <a href="https://arxiv.org/abs/1901.07569">Diamond</a> <a href="https://arxiv.org/abs/2008.08560>SiC</a>
+    description: <a href="https://arxiv.org/abs/1901.07569">Diamond</a> <a href="https://arxiv.org/abs/2008.08560">SiC</a>
   
   - title: Signal Processing
-    description: <a href="https://arxiv.org/abs/1910.14261>PCA filter</a>
+    description: <a href="https://arxiv.org/abs/1910.14261">PCA filter</a>
   
   - title: Notes on QFT
     description: <a href="https://ytcs.github.io/peskin.pdf">Peskin & Schroeder</a> <a href="https://ytcs.github.io/schwartz.pdf">Schwartz</a>
