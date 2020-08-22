@@ -5,7 +5,7 @@ slug: /work
 items:
   - title: Notes on QFT
 
-    description: test
+    description: <a href="https://ytcs.github.io/peskin.pdf">Peskin & Schroeder</a>
 
 ---
 
