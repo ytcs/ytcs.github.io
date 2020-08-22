@@ -40,7 +40,7 @@ sass:
     style: :compressed
 plugins:
   - jekyll-feed
-  - jekyll-katex
+  - jekyll-spaceship
 
 disqus:
   shortname:  obeliskalpha
