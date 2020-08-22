@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 ---
 ## Power and Politics in Today’s World
 
