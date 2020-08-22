@@ -41,6 +41,9 @@ sass:
 plugins:
   - jekyll-feed
 
+disqus:
+  shortname:  obeliskalpha
+
 # Excluded items
 exclude:
   - .sass-cache/
