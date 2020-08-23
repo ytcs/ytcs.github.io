@@ -1,7 +1,9 @@
 ---
 layout: home
 
-published: true
+profile_picture:
+  src: /assets/img/profile-pic.jpg
+  alt: Profile picture
 ---
 
 <p>
