@@ -9,7 +9,7 @@ It turns out that any particle detector can be turned into a battery when combin
 
 Reference:
 
-1. https://www.wired.com/story/are-radioactive-diamond-batteries-a-cure-for-nuclear-waste/
-2. https://www.sciencedirect.com/science/article/pii/S0925963520305793
+1. [Are Radioactive Diamond Batteries a Cure for Nuclear Waste?](https://www.wired.com/story/are-radioactive-diamond-batteries-a-cure-for-nuclear-waste/)
+2. [Enhanced performance of diamond Schottky nuclear batteries by using ZnO as electron transport layer](https://www.sciencedirect.com/science/article/pii/S0925963520305793)
 
 
