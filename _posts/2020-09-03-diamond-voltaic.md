@@ -1,5 +1,6 @@
 ---
-published: false
+layout: post
+title:  "Diamond Nuclear Battery"
 ---
 It turns out that any particle detector can be turned into a battery when combined with a radioactive source. In particular, people have started working on diamond nuclear voltaics. Currently the efficiency is still pretty low (7%) and power output is at the micro-Watt level. Nonetheless it is a very interesting idea and will potentially also drive advancement in CVD technology.
 
@@ -8,7 +9,7 @@ It turns out that any particle detector can be turned into a battery when combin
 
 Reference:
 
-[1] https://www.wired.com/story/are-radioactive-diamond-batteries-a-cure-for-nuclear-waste/
-[2] https://www.sciencedirect.com/science/article/pii/S0925963520305793
+1. https://www.wired.com/story/are-radioactive-diamond-batteries-a-cure-for-nuclear-waste/
+2. https://www.sciencedirect.com/science/article/pii/S0925963520305793
 
 
