@@ -2,7 +2,7 @@
 layout: home
 
 profile_picture:
-  src: /assets/img/profile-pic.png
+  src: https://graph.facebook.com/10156285049399678/picture?type=large
   alt: Profile picture
 ---
 
