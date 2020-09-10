@@ -18,4 +18,4 @@ From this we can see that the maximum growth rate of an organism is bounded by t
 <iframe width="560" height="315" src="https://www.youtube.com/embed/10cVVHKCRWw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 References
-1. http://www.englandlab.com/uploads/7/8/0/3/7803054/2013jcpsrep.pdf
+1. [Statistical physics of self-replication](http://www.englandlab.com/uploads/7/8/0/3/7803054/2013jcpsrep.pdf)
