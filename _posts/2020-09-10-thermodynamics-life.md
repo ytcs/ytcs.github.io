@@ -1,5 +1,6 @@
 ---
-published: false
+layout: post
+title:  "Thermodynamics of Self-replicating Systems"
 ---
 In 2013 Jeremy England published an interesting inequality which is essentially the equivalent of Landauer's bound for biology.
 
