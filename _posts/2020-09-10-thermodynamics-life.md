@@ -6,7 +6,7 @@ In 2013 Jeremy England published an interesting inequality which is essentially 
 
 He derived a non-equilibrium generalization of the second law:
 
-$$ \beta \Delta Q_{I\to II} + \ln \Big( \frac{\pi(II\to I)}{\pi(I\to II}\Big) + \Delta S_{int} \geq 0 $$
+$$ \beta \Delta Q_{I\to II} + \ln \Big( \frac{\pi(II\to I)}{\pi(I\to II)}\Big) + \Delta S_{int} \geq 0 $$
 
 where $ I $ represents the macrostate of having a single organism and $ II $ represents the macrostate where the organism replicated into two. Using a simple exponential model with growth rate $ g $ and decay rate $ \delta $, we can express the tranistion probabilities in terms of these rates:
 
