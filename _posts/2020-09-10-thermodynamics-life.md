@@ -12,7 +12,7 @@ where $ I $ represents the macrostate of having a single organism and $ II $ rep
 
 $$ \beta \Delta Q_{I\to II} + \Delta S_{int} \geq \ln(g/\delta) $$
 
-From this we can see that the maximum growth rate of an organism is bounded by the heat dissipated and its internal entropy. In other words organisms that are simpler/less-organised (high $ S_{int} $) and produces more heat (high $ Q $) would have a reproductive advantage.
+From this we can see that the maximum growth rate of an organism is bounded by the heat dissipated and its internal entropy. In other words organisms that are simpler/less-organised (high $ S_{int} $) and produces more heat (high $ Q $) would have a reproductive advantage. It can also be interpreted as a bound on the minimum heat produced by self-replication (analogous to Landauer's bound).
 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/10cVVHKCRWw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
