@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How Wombats produce square feces"
+title:  "How Wombats Produce Square Feces"
 ---
 
 Did you know that wombat feces are cubic in shape? This has been a long-standing mystery in biology (no they don't have square buttholes) until now. A new research has shown how it is possible to produce sharp edges and corners with alternating high and low stiffness zones in the intestine. This can have applications in manufacturing as it shows how we can form soft matter into geometrical forms without any cutting. It can also be useful for diagnosting any pathological stiffness variation in human intestines by studying the fecal shape. Ig Nobel 2021?
