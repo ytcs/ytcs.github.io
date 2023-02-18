@@ -3,21 +3,13 @@ layout: work
 title: 
 slug: /work
 items:
-  
-  - title: Signal Processing
-    description: <a href="https://github.com/ytcs/empca">PCA filter</a>
-  
-  - title: Notes on QFT
-    description: <a href="https://obeliskalpha.com/peskin.pdf">Peskin & Schroeder</a> <a href="https://obeliskalpha.com/schwartz.pdf">Schwartz</a>
-    
-  - title: Notes on Condensed Matter Physics
-    description: <a href="https://obeliskalpha.com/flt.pdf">Fermi-liquid Theory</a> <a href="https://obeliskalpha.com/brezin.pdf">Brezin</a>
 
 ---
 
-I am mostly working on various topics related to detection of dark matter using solid-state detectors. Here are a selection of my papers & notes.
+Here are a selection of my papers & notes.
 <br />
 <h2>Selected Publications:</h2>
+<h4>Dark Matter Detection</h4>
 <p>
 <a href="https://arxiv.org/abs/1901.07569">Diamond detectors for direct detection of sub-GeV dark matter</a><br />
 N Kurinsky, TC Yu, Y Hochberg, B Cabrera<br />
@@ -29,7 +21,26 @@ SM Griffin, Y Hochberg, K Inzani, N Kurinsky, T Lin, TC Yu<br />
 Physical Review D 103 (7), 075002<br />
 </p>
 <p>
-Determining Dark-Matter–Electron Scattering Rates from the Dielectric Function<br />
+<a href="https://arxiv.org/abs/2101.08263">Determining Dark-Matter–Electron Scattering Rates from the Dielectric Function</a><br />
 Y Hochberg, Y Kahn, N Kurinsky, BV Lehmann, TC Yu, KK Berggren<br />
 Physical review letters 127 (15), 151802<br />
 </p>
+<p>
+<a href="https://arxiv.org/abs/2109.08168">Impact of Dark Compton Scattering on Direct Dark Matter Absorption Searches</a><br />
+Y Hochberg, B von Krosigk, E Kuflik, TC Yu<br />
+Physical Review Letters 128 (19), 191801<br />
+</p>
+<h4>Signal Processing</h4>
+<p>
+<a href="https://arxiv.org/abs/1910.14261">Template-free pulse height estimation of microcalorimeter responses with PCA</a><br />
+TC Yu<br />
+arXiv preprint arXiv:1910.14261<br />
+</p>
+<h2>Written Notes:</h2>
+<h4>QFT</h4>
+<a href="https://obeliskalpha.com/peskin.pdf">Solutions to Peskin & Schroeder</a><br />
+<a href="https://obeliskalpha.com/schwartz.pdf">Solutions to Schwartz</a><br />
+<a href="https://obeliskalpha.com/LQMNovice.pdf">Lattice Quantum Mechanics for Novices</a><br />
+<h4>Condensed Matter Physics</h4>
+<a href="https://obeliskalpha.com/brezin.pdf">Solutions to Brezin</a><br />
+<a href="https://obeliskalpha.com/flt.pdf">Fermi-liquid Theory</a>
