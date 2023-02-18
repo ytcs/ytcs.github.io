@@ -9,7 +9,7 @@ items:
 Here are a selection of my papers & notes.
 <br />
 <h2>Selected Publications:</h2>
-<h4>Dark Matter Detection</h4>
+<h3>Dark Matter Detection</h3>
 <p>
 <a href="https://arxiv.org/abs/1901.07569">Diamond detectors for direct detection of sub-GeV dark matter</a><br />
 N Kurinsky, TC Yu, Y Hochberg, B Cabrera<br />
@@ -30,17 +30,17 @@ Physical review letters 127 (15), 151802<br />
 Y Hochberg, B von Krosigk, E Kuflik, TC Yu<br />
 Physical Review Letters 128 (19), 191801<br />
 </p>
-<h4>Signal Processing</h4>
+<h3>Signal Processing</h3>
 <p>
 <a href="https://arxiv.org/abs/1910.14261">Template-free pulse height estimation of microcalorimeter responses with PCA</a><br />
 TC Yu<br />
 arXiv preprint arXiv:1910.14261<br />
 </p>
 <h2>Written Notes:</h2>
-<h4>QFT</h4>
+<h3>QFT</h3>
 <a href="https://obeliskalpha.com/peskin.pdf">Solutions to Peskin & Schroeder</a><br />
 <a href="https://obeliskalpha.com/schwartz.pdf">Solutions to Schwartz</a><br />
 <a href="https://obeliskalpha.com/LQMNovice.pdf">Lattice Quantum Mechanics for Novices</a><br />
-<h4>Condensed Matter Physics</h4>
+<h3>Condensed Matter Physics</h3>
 <a href="https://obeliskalpha.com/brezin.pdf">Solutions to Brezin</a><br />
 <a href="https://obeliskalpha.com/flt.pdf">Fermi-liquid Theory</a>
