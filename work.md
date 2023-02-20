@@ -6,7 +6,7 @@ items:
 
 ---
 
-Here are a selection of my papers & notes.
+Here is a selection of my papers & notes.
 <br />
 <h2>Selected Publications:</h2>
 <h3>Dark Matter Detection</h3>
