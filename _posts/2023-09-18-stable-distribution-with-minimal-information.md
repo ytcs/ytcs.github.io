@@ -12,9 +12,9 @@ Fundamentally the financial market is a game of information. Any consistently pr
 
 In a highly competitive market it is important to minimize this informational leakage. If all market participants do their best to hide their information then the distribution of any tradeable quantity would satisfy some minimal information criteria. Tradeable quantities are not limited to prices, but essentially anything that a trading strategy can react to, and by reacting to it would also affect its value. 
 
-So how do we formulate such a minimal information criteria? We need to answer two questions - what do we consider to be the search space of allowable distribution, and how do we measure the information content of a distribution. For the first question we shall limit ourselves to (Lévy-)stable because the collective effect of a large number of market participates should lead to some form of large-number effect (Generalized Central-Limit Theorem). For the second question we use the notion of Fisher information (physicist's information).
+So how do we formulate such a minimal information criteria? We need to answer two questions - what do we consider to be the search space of allowable distribution, and how do we measure the information content of a distribution. For the first question we shall limit ourselves to (Lévy-)stable distributions because the collective effect of a large number of market participates should lead to some form of large-number effect (Generalized Central-Limit Theorem). For the second question we use the notion of Fisher information (physicist's information).
 
-Below are plots of stable distributions with the scale parameter all centered around zero. The parameter \\(\alpha\\) controls the shape of the distribution with the normal distribution having \\(\alpha=2\\) and the Cauchy distribution having \\(\alpha=1\\):
+Below are plots of stable distributions with the same scale parameter of one and all centered around zero. The parameter \\(\alpha\\) controls the shape of the distribution with the normal distribution having \\(\alpha=2\\) and the Cauchy distribution having \\(\alpha=1\\):
 ![levy-stable-distributions.png]({{site.baseurl}}/levy-stable-distributions.png)
 
 For each \\(\alpha\\) we can calculate the Fisher information of the distribution. We can see that the minimum occurs somewhere around 1.4-1.5:
