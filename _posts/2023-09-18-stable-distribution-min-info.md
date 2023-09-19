@@ -1,4 +1,8 @@
-## Stable Distribution with Minimal Information
+---
+published: true
+layout: post
+title: Stable Distribution with Minimal Information
+---
 
 Despite the abundance of normal distributions in the finance literature (e.g. Geometric Brownian motion) during my time doing finance research I have come to the realization that 9 out of 10 of the various quantities that I study follow a fat-tailed distribution that lies somewhere between Cauchy and Laplace, rather than a Gaussian.
 
