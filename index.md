@@ -11,7 +11,7 @@ profile_picture:
 </p>
 
 <p>
-I'm currently open for work/ventures/collabs. Hit me up if for opportunities. I also invest.
+I'm currently open for work/ventures/collabs. Hit me up for opportunities. I also invest.
 </p>
 
 <h3>Education</h3>
