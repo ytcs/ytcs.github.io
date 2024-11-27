@@ -17,7 +17,7 @@ We can use the (absolute value of) daily return as a measure for trend strength 
 
 ![assets/img/MR_TR_phase_diagram.png]({{site.baseurl}}/assets/img/MR_TR_phase_diagram.png)
 
-The horizontal and vertical lines indicate the median values of the two axes and divide the graph into 4 quadrants. We can see that the upper-left quadrant is the brightest while the lower-right quadrant is almost completely dark. The SPY market also appears to be more TR-heavy (upper-right) than MR-heavy (lower-left). Meaning more traders react to the trend of SPY rather than the price level. 
+The horizontal and vertical lines indicate the median values of the two axes and divide the graph into 4 quadrants. We can see that the upper-left quadrant is the brightest while the lower-right quadrant is almost completely dark. The SPY market also appears to be more TR-heavy (upper-right) than MR-heavy (lower-left), meaning more traders react to the trend of SPY rather than the price level. 
 
 In fact this graph can be used to understand which phase (trending or mean-reverting) the market is currently in. Since a MR-dominated market is a mean-reverting market, if the market is in the lower-left quadrant it is likely to be in the mean-reverting or consolidation phase. Similarly if the market is in the upper-right quadrant, then it is TR-dominated and likely to be in a trending phase. As a trader we can pick our strategy accordingly given this information.
 
