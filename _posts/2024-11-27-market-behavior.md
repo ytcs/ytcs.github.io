@@ -1,3 +1,9 @@
+---
+published: true
+layout: post
+title: Market Behavior based on Two Types of Trader Behavior
+---
+
 Some qualitative aspects of market behavior can be understood via trader behavior. Broadly speaking there are two types of traders - those that react to asset price, and those that react to trend (first derivative of asset price). We shall call the first type mean-reversal traders (**MR**) since they tend to buy low and sell high which creates a stabilizing (mean-reversal) effect on the asset price. The second type of traders are trend-followers (**TR**) since they tend to follow the current price trend, i.e. buy when price is rising and sell when price is falling, which tends to create a positive-feedback effect that solidifies or at times boosts the current market trend.
 
 Three scenarios:
