@@ -1,4 +1,8 @@
-## Avoiding the "Just-One-More" Paradox
+---
+published: true
+layout: post
+title: Avoiding the "Just-One-More" Paradox
+---
 
 When managing our portfolio we need to be mindful about avoiding the Just-One-More paradox (explained [here](https://www.youtube.com/watch?v=_FuuYSM7yOo)) which could lead to ruin even when each trade we take has positve EV.
 
