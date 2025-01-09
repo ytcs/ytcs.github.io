@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: Avoiding the "Just-One-More" Paradox
+title: Avoiding the Just-One-More Paradox
 ---
 
 When managing our portfolio we need to be mindful about avoiding the Just-One-More paradox (explained [here](https://www.youtube.com/watch?v=_FuuYSM7yOo)) which could lead to ruin even when each trade we take has positve EV.
@@ -19,5 +19,3 @@ We can use this condition to set price levels when trading. As an example, let's
 $$ \frac{p_H}{p_0} \times \frac{p_L}{p_0} > 1 \implies p_0 < \sqrt{p_H p_L}$$
 
 In other words we want our entry to be lower than the the **geometric mean** of the high and low prices. This is a safer way than simply assuming some risk-reward ratio which most traders do.
-
-
