@@ -10,6 +10,10 @@ The more times we repeat this trade, the higher the probability we have to drive
 
 $$ r_{win}^{p_{win}} \times (r_{lose})^{p_{lose}} > 1 $$
 
+We can use this condition to set price levels when trading. As an example, let's assume that we think the price a stock that will either rise to \\(p_H\\) or fall to \\(p_L\\) with equal probability. We can rewrite our condition in terms of the entry price \\(p_0\\):
 
+$$ \frac{p_H}{p_0} \times \frac{p_L}{p_0} > 1 \implies p_0 < \sqrt{p_H p_L}$$
+
+In other words we want our entry to be lower than the the geometric mean of the high and low prices. This is a safer way than simply assuming some risk-reward ratio as most traders do.
 
 
