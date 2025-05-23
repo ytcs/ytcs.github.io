@@ -190,6 +190,12 @@ a:hover {
   color: var(--accent-color);
 }
 
+/* Tighter post list titles */
+.post-list h3 {
+  margin-top: 0.1rem; 
+  margin-bottom: 0.1rem; 
+}
+
 /* Post content */
 .post-header {
   margin-bottom: 3rem;
