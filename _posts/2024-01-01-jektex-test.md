@@ -9,7 +9,7 @@ This post tests various LaTeX syntaxes with Jektex.
 
 ## Kramdown Notation
 
-Inline Kramdown: $$\mathbb{E}_{K}[X]$$ should render.
+Inline Kramdown: $$ \mathbb{E}_{K}[X] $$ should render.
 
 Display Kramdown:
 
