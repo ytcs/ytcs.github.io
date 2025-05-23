@@ -143,12 +143,13 @@ a:hover {
 }
 
 .post-list > li {
-  padding: 0.4rem 0;
+  padding: 0.15rem 0;
+  margin-bottom: 0;
   border-bottom: 1px solid var(--border-light);
   transition: var(--transition);
   display: flex;
   align-items: baseline;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .post-list > li:last-child {
@@ -160,8 +161,8 @@ a:hover {
   margin: 0 -16px;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 0.4rem;
-  padding-bottom: 0.4rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
 }
 
 .post-meta {
@@ -180,7 +181,7 @@ a:hover {
   font-family: 'Crimson Text', Georgia, serif;
   font-weight: 600;
   font-size: 1.1rem;
-  line-height: 1.3;
+  line-height: 1.2;
   transition: var(--transition);
   flex-grow: 1;
 }
