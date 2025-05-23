@@ -39,11 +39,10 @@ author:
 footer:
   show_powered_by: false
   contact:
-    - name: Email
-      value: public@tochinyu.com
-      link: mailto:public@tochinyu.com
 
   follow:
+    - name: Email
+      link: mailto:public@tochinyu.com
     - name: LinkedIn
       link: http://linkedin.com/in/to-chin-yu-281a05136
     - name: GitHub
