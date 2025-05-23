@@ -14,11 +14,36 @@
             {%- if page.title -%}
               <h1 class="page-heading">{{ page.title }}</h1>
             {%- endif -%}
+
+            {%- assign categories = "" | split: "," -%}
+            {%- for post in site.posts -%}
+              {%- for category in post.categories -%}
+                {%- unless categories contains category -%}
+                  {%- assign categories = categories | push: category -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            {%- endfor -%}
+            {%- assign categories = categories | sort -%}
+
+            {%- if categories.size > 0 -%}
+            <div class="category-filter" style="margin-bottom: 20px;">
+              <span style="font-size: 0.9em; font-weight: bold;">Filter by category:</span>
+              <a href="javascript:void(0);" class="category-link active" onclick="filterPosts('all')" style="font-size: 0.8em; margin-left: 5px;">All</a>
+              {%- for category in categories -%}
+                <a href="javascript:void(0);" class="category-link" onclick="filterPosts('{{ category | slugify }}')" style="font-size: 0.8em; margin-left: 5px;">{{ category }}</a>
+              {%- endfor -%}
+            </div>
+            {%- endif -%}
+
             {% if site.posts.size > 0 %}
               <ul class="post-list">
                 {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
                 {% for post in site.posts %}
-                  <li>
+                  {%- assign post_categories_slugified = "" | split: "," -%}
+                  {%- for category in post.categories -%}
+                    {%- assign post_categories_slugified = post_categories_slugified | push: (category | slugify) -%}
+                  {%- endfor -%}
+                  <li data-categories="{{ post_categories_slugified | join: ' ' }}">
                     <span class="post-meta">{{ post.date | date: date_format }}</span>
                     <h3>
                       <a class="post-link" href="{{ post.url | relative_url }}">
@@ -41,6 +66,34 @@
 
     {%- include footer.html -%}
 
+    <script>
+      function filterPosts(category) {
+        const posts = document.querySelectorAll('.post-list li');
+        const links = document.querySelectorAll('.category-link');
+        
+        links.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('onclick') === `filterPosts('${category}')`) {
+            link.classList.add('active');
+          }
+        });
+
+        posts.forEach(post => {
+          const postCategories = post.getAttribute('data-categories').split(' ');
+          if (category === 'all' || postCategories.includes(category)) {
+            post.style.display = 'list-item';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+      }
+    </script>
+    <style>
+      .category-link.active {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    </style>
   </body>
 
 </html> 

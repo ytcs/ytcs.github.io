@@ -2,6 +2,7 @@
 published: true
 layout: post
 title: Preserving Curvature while Smoothing via Anisotropic Diffusion
+categories: signal-processing
 ---
 
 When handling noisy data we often apply some form of rolling averages or kernel smoothing techniques to remove the high-frequency noise from the data. These simple techniques are easy to use and often produce good enough results. However one big draw-back of this kind of simple local-averaging techniques is that they also dampen the curvature that is contained in the original data:
