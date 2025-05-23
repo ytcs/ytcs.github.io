@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.body.appendChild(modal);
 
   const modalImg = modal.querySelector('.image-modal-content');
+  modalImg.style.backgroundColor = 'white';
   const closeBtn = modal.querySelector('.image-modal-close');
 
   // Function to open modal
