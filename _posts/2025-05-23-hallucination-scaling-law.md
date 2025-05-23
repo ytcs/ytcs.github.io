@@ -204,6 +204,4 @@ This derivation provides a theoretical lower bound on the average hallucination 
 -   **Generation Temperature ($$T$$):** Higher temperatures tend to increase the bound (decrease $$k$$).
 -   **Model/Kernel Properties ($$C$$):** Factors like effective semantic similarity spread also play a role.
 
-
-It is important to remember that this model, while illustrative, is a significant simplification of the complex mechanisms underlying LLM behavior, and does not encompass more intricate forms of hallucination. Note that the exact form of the scaling we derived here is predicated on the softmax function. A natural follow-up question is whether there is an alternative to softmax that would result in qualitatively better scaling behavior.
 It is important to remember that this model, while illustrative, is a significant simplification of the complex mechanisms underlying LLM behavior, and does not encompass more intricate forms of hallucination. Note that the exact form of the scaling we derived here is predicated on the softmax function. A natural follow-up question is whether there is an alternative to softmax that would result in qualitatively better scaling behavior.
