@@ -15,10 +15,10 @@ In a highly competitive market it is important to minimize this informational le
 So how do we formulate such a minimal information criteria? We need to answer two questions - what do we consider to be the search space of allowable distribution, and how do we measure the information content of a distribution. For the first question we shall limit ourselves to (Lévy-)stable distributions because the collective effect of a large number of market participates should lead to some form of large-number effect (Generalized Central-Limit Theorem). For the second question we use the notion of Fisher information (physicist's information).
 
 Below are plots of stable distributions with the same scale parameter of one and all centered around zero. The parameter \\(\alpha\\) controls the shape of the distribution with the normal distribution having \\(\alpha=2\\) and the Cauchy distribution having \\(\alpha=1\\):
-![levy-stable-distributions.png]({{site.baseurl}}/levy-stable-distributions.png)
+![levy-stable-distributions.png](/assets/img/levy-stable-distributions.png)
 
 For each \\(\alpha\\) we can calculate the Fisher information of the distribution. We can see that the minimum occurs somewhere around 1.4-1.5:
-![fisher-info-stable-dist.png]({{site.baseurl}}/fisher-info-stable-dist.png)
+![fisher-info-stable-dist.png](/assets/img/fisher-info-stable-dist.png)
 
 The difference between scaled and unscaled is the distributions in the scaled family are scaled to all have the same median absolute deviation of 1 while the unscaled family simply all have the same scale parameter of 1.
 

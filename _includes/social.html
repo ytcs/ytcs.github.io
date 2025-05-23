@@ -1,0 +1,9 @@
+{%- if site.footer.follow -%}
+<ul class="social-media-list">
+  {%- for link in site.footer.follow -%}
+    <li>
+      <a href="{{ link.link }}" title="{{ link.name }}">{{ link.name }}</a>
+    </li>
+  {%- endfor -%}
+</ul>
+{%- endif -%} 

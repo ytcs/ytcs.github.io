@@ -2,19 +2,43 @@
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
 title: To Chin Yu | Physicist
-description: >- # this means to ignore newlines until "baseurl:"
-  Personal site of To Chin Yu
-#baseurl: "/" # the subpath of the site
-url: "https://ytcs.github.io/" # the base hostname & protocol for the site
-#og_image: /assets/img/profile-pic.jpg
-#google_analytics: "UA-121636368-3"
+description: Personal site of To Chin Yu
+url: "https://ytcs.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Kramdown settings for better math support
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+# MathJax settings
+mathjax: true
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+
+# Author information
+author:
+  name: To Chin Yu
+  email: public@tochinyu.com
 
 header:
   pages:
-    - name: Home
-      slug: /
-    - name: Work
     - name: Blog
+      slug: /
 
 footer:
   show_powered_by: false
@@ -30,30 +54,6 @@ footer:
       link: http://github.com/ytcs
     - name: RSS
       link: /feed.xml
-
-# Build settings
-markdown: kramdown
-sass:
-    style: :compressed
-plugins:
-  - jekyll-feed
-  - jekyll-spaceship
-
-disqus:
-  shortname:  obeliskalpha
-
-# Excluded items
-exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - feed.xml
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
 
 # Used for defeating caching
 version: 1
