@@ -9,7 +9,7 @@
     {%- include google-analytics.html -%}
   {%- endif -%}
 
-  {%- if site.mathjax -%}
+  {%- if site.mathjax or page.math -%}
     {%- include mathjax.html -%}
   {%- endif -%}
 

@@ -1,7 +1,8 @@
 ---
 published: true
 layout: post
-title: MathJax Test Post  
+title: MathJax Test Post
+math: true
 ---
 
 This is a simple test for MathJax rendering.
