@@ -230,6 +230,27 @@ a:hover {
   transform: scale(1.02);
 }
 
+/* For bullet lists */
+.post-content ul,
+.post-content ol {
+  margin-left: 2em; /* Adds indentation to the list itself */
+  margin-bottom: 1.4rem; /* Matches paragraph bottom margin */
+}
+
+.post-content ul li,
+.post-content ol li {
+  margin-bottom: 0.5rem; /* Adds some space between list items */
+}
+
+/* For nested lists, ensure proper further indentation */
+.post-content ul ul,
+.post-content ol ol,
+.post-content ul ol,
+.post-content ol ul {
+  margin-left: 1.5em;
+  margin-bottom: 0; /* No extra bottom margin for nested lists */
+}
+
 /* Image modal for click-to-enlarge */
 .image-modal {
   display: none;
