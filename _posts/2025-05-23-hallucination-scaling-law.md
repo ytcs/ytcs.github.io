@@ -185,10 +185,10 @@ The behavior of this optimized bound in limiting cases of the parameter $$k$$ is
 ## Conclusion
 
 This derivation provides a theoretical lower bound on the average hallucination probability in LLMs, starting from a model of how corpus evidence translates to logits. It formally demonstrates how this hallucination floor scales with fundamental parameters, encapsulated in the parameter $$k = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T}$$:
-
 -   **Corpus Size ($$\vert\mathcal{D}\vert$$):** Larger datasets tend to decrease the bound (increase $$k$$).
 -   **Context Space Complexity ($$N_V^{L_X-1}$$):** Larger vocabularies or longer contexts increase complexity and tend to increase the bound (decrease $$k$$).
 -   **Generation Temperature ($$T$$):** Higher temperatures tend to increase the bound (decrease $$k$$).
 -   **Model/Kernel Properties ($$C$$):** Factors like effective semantic similarity spread also play a role.
+
 
 It is important to remember that this model, while illustrative, is a significant simplification of the complex mechanisms underlying LLM behavior, and does not encompass more intricate forms of hallucination. Note that the exact form of the scaling we derived here is predicated on the softmax function. A natural follow-up question is whether there is an alternative to softmax that would result in qualitatively better scaling behavior.
