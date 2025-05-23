@@ -65,7 +65,7 @@ In this model:
     $$
     E(y_i \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_i} K(X, X_j)
     $$
-    
+
     Intuitively, the more 'support' (high-similarity training examples) the model has seen for $$y_i$$ following a context like $$X$$, the higher its evidence density $$E(y_i \mid X)$$ will be. This quantity is bounded by $$0 \le E(y_i \mid X) \le N_{y_i}(\mathcal{D})$$, where $$N_{y_i}(\mathcal{D})$$ is the total count of token $$y_i$$ in the training corpus.
 
 -   $$\mathcal{E}_X$$ represents the total support for *any* token in the context $$X$$. It is the sum of the individual evidence densities $$E(y_k \mid X)$$ for all possible tokens $$y_k$$ in the vocabulary $$V$$:
@@ -141,18 +141,20 @@ f(\epsilon_0) \ge 1 - \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)
 $$
 
 **3. Lower Bound on Average Hallucination:**
-The average hallucination probability $$\bar{P}_{h} = \mathbb{E}_{X} [P_{h}(X, \theta, T)]$$ can be lower-bounded because, for the fraction $$f(\epsilon_0)$$ of contexts, $$P_{h} > \epsilon_0$$. Thus:
-$$\bar{P}_{h} > \epsilon_0 \cdot f(\epsilon_0)$$
-Substituting the bound for $$f(\epsilon_0)$$:
+The average hallucination probability $$\bar{P}_{h} = \mathbb{E}_{X} [P_{h}(X, \theta, T)]$$ can be lower-bounded because, for the fraction $$f(\epsilon_0)$$ of contexts, $$P_{h} > \epsilon_0$$ and thus $$\bar{P}_{h} > \epsilon_0 \cdot f(\epsilon_0)$$.
+
+Substituting the bound for $$f(\epsilon_0)$$ gives
 
 $$
 \bar{P}_{h} > \epsilon_0 \left(1 - \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)}\right)
 $$
 
-This inequality gives us a lower bound on the average hallucination probability. Let's break down the term $$k_0(\epsilon_0) = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)}$$:
+This inequality is a lower bound on the average hallucination probability. Let's break down the term $$k_0(\epsilon_0) = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)}$$:
+
 - $$C \vert\mathcal{D}\vert$$ represents the 'total effective evidence' in the corpus, scaled by model and kernel parameters.
 - $$N_V^{L_X-1}$$ is the vastness of the potential context space.
 - $$T L(\epsilon_0)$$ represents the 'difficulty' of distinguishing the correct token, influenced by temperature and our chosen hallucination threshold $$\epsilon_0$$.
+
 If this ratio $$k_0(\epsilon_0)$$ (representing data richness relative to task difficulty for a given $$\epsilon_0$$) is small (i.e., $$k_0(\epsilon_0) \ll 1$$), the term in the parenthesis approaches 1, and the bound approaches $$\epsilon_0$$. If $$k_0(\epsilon_0)$$ is large, the bound can become smaller. This expression already hints at the scaling relationships we're looking for, but it still depends on our arbitrary choice of $$\epsilon_0$$.
 
 ## Optimizing the Lower Bound
