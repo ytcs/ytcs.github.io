@@ -44,7 +44,7 @@ body {
 }
 
 .page-content {
-  padding: 4rem 0;
+  padding: 2rem 0;
   min-height: calc(100vh - 200px);
 }
 
@@ -94,8 +94,8 @@ a:hover {
 .site-header {
   background-color: var(--background-color);
   border-bottom: 1px solid var(--border-light);
-  padding: 2rem 0;
-  margin-bottom: 1rem;
+  padding: 1.5rem 0;
+  margin-bottom: 0.5rem;
 }
 
 .site-header .wrapper {
@@ -137,7 +137,7 @@ a:hover {
 .post-list {
   list-style: none;
   padding: 0;
-  margin: 1.5rem 0;
+  margin: 0.5rem 0;
 }
 
 .post-list > li {
@@ -368,7 +368,7 @@ blockquote {
   font-size: 1.1rem;
   color: var(--secondary-color);
   text-align: center;
-  margin: 2rem 0 3rem;
+  margin: 1rem 0 1.5rem;
   font-style: italic;
   line-height: 1.6;
 }
@@ -380,7 +380,7 @@ blockquote {
   }
   
   .page-content {
-    padding: 3rem 0;
+    padding: 1.5rem 0;
   }
   
   .post-list > li:hover {
