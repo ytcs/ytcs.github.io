@@ -123,6 +123,7 @@ This proves the convergence: \(H(X \mid K) \xrightarrow{P} \log_2(N/M)\). This p
 
 **Implications of Proposition 2.1:**
 For large microstate spaces (\(N\)) and a fixed, much smaller number of macrostates (\(M\)), a typical (randomly chosen) coarse-graining map inevitably discards an amount of information \(H(X \mid K)\) that approaches \(\log_2(N/M)\). This lost information grows logarithmically with \(N\). Since the total information is \(H(X) = \log_2 N\), the fraction of information lost, \(H(X \mid K)/H(X)\), approaches \((\log_2 N - \log_2 M) / (\log_2 N) = 1 - (\log_2 M) / (\log_2 N)\). As \(N \to \infty\) for fixed \(M\), this fraction approaches 1.
+
 *Example (Coin Flips): With \(N=2^{100}\) microstates (sequences) and \(M=101\) macrostates (number of heads), the retained information \(H(K) \approx \log_2 101 \approx 6.66\) bits. The lost information \(H(X \mid K) \approx \log_2(2^{100}/101) \approx 100 - 6.66 = 93.34\) bits. Over \(93\%\) of the original information is lost.*
 
 ## 3. Inherent Bias from Information Loss
