@@ -129,92 +129,94 @@ For large microstate spaces (\(N\)) and a fixed, much smaller number of macrosta
 
 Now we connect this information loss to the limits of accuracy when making judgments based on simplified macrostates.
 
-Let \(q_{correct}(x)\) represent the true value or normatively correct judgment associated with microstate \(x\). A cognitive system or model using a heuristic \(\mathcal{J}\) based on the observed macrostate \(K=f(X)\) produces a judgment \(q_{subj}(K) = \mathcal{J}(K)\).
+Let \(q_{\text{correct}}(x)\) represent the true value or normatively correct judgment associated with microstate \(x\). A cognitive system or model using a heuristic \(\mathcal{J}\) based on the observed macrostate \(K=f(X)\) produces a judgment \(q_{subj}(K) = \mathcal{J}(K)\).
 
 **Definition 3.1 (Judgment Error and Bias):**
-The error for a given microstate \(x\) is \(e(x) = q_{correct}(x) - q_{subj}(f(x))\). The overall magnitude of error is often measured using the Root Mean Square Error (RMSE):
-\[ \operatorname{RMSE}(f, \mathcal{J}) := \sqrt{ \mathbb{E}_{X} [ (q_{correct}(X) - q_{subj}(f(X)))^2 ] } \]
+The error for a given microstate \(x\) is \(e(x) = q_{\text{correct}}(x) - q_{subj}(f(x))\). The overall magnitude of error is often measured using the Root Mean Square Error (RMSE):
+\[ \operatorname{RMSE}(f, \mathcal{J}) := \sqrt{ \mathbb{E}_{X} [ (q_{\text{correct}}(X) - q_{subj}(f(X)))^2 ] } \]
 where the expectation \(\mathbb{E}_{X}\) is over the microstate distribution \(p(x)\).
 
 **Definition 3.2 (Optimal Heuristic and Inherent Bias):**
 For a given map \(f\), the heuristic \(\mathcal{J}^*\) that minimizes the RMSE is the conditional expectation:
-\[ q^*_{subj}(k) := \mathcal{J}^*(k) = \mathbb{E}[q_{correct}(X) \mid K=k] = \sum_{x \in \Omega_k} p(x \mid k) q_{correct}(x) \]
-(Assuming \(p(x)\) is uniform, \(p(x \mid k) = 1/W_k\) for \(x \in \Omega_k\), so \(q^*_{subj}(k) = \frac{1}{W_k} \sum_{x \in \Omega_k} q_{correct}(x)\).)
+\[ q^*_{subj}(k) := \mathcal{J}^*(k) = \mathbb{E}[q_{\text{correct}}(X) \mid K=k] = \sum_{x \in \Omega_k} p(x \mid k) q_{\text{correct}}(x) \]
+(Assuming \(p(x)\) is uniform, \(p(x \mid k) = 1/W_k\) for \(x \in \Omega_k\), so \(q^*_{subj}(k) = \frac{1}{W_k} \sum_{x \in \Omega_k} q_{\text{correct}}(x)\).)
 The minimum achievable RMSE for map \(f\), obtained using \(\mathcal{J}^*\), represents the **inherent bias** (or inherent error) imposed by the coarse-graining itself:
-\[ B^*(f) := \operatorname{RMSE}(f, \mathcal{J}^*) = \sqrt{ \mathbb{E}_{X} [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=f(X)])^2 ] } \]
+\[ B^*(f) := \operatorname{RMSE}(f, \mathcal{J}^*) = \sqrt{ \mathbb{E}_{X} [ (q_{\text{correct}}(X) - \mathbb{E}[q_{\text{correct}}(X') \mid K'=f(X)])^2 ] } \]
 
 **Lemma 3.1 (Inherent Bias and Conditional Variance):**
 The square of the inherent bias for a map \(f\) is the expected conditional variance of the normative judgment given the macrostate:
-\[ (B^*(f))^2 = \mathbb{E}_{K} [ \operatorname{Var}(q_{correct}(X) \mid K=k) ] \]
+\[ (B^*(f))^2 = \mathbb{E}_{K} [ \operatorname{Var}(q_{\text{correct}}(X) \mid K=k) ] \]
 
 **Proof of Lemma 3.1:**
 By definition of conditional variance:
 \[
-\mathbb{E}_{K} [ \operatorname{Var}(q_{correct}(X) \mid K=k) ] &= \sum_{j \in \mathcal{K}} p(j) \operatorname{Var}(q_{correct}(X) \mid K=j) \\
-&= \sum_{j \in \mathcal{K}} p(j) \mathbb{E} [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=j])^2 \mid K=j ] \\
-&= \sum_{j \in \mathcal{K}} p(j) \sum_{x \in \Omega_j} p(x \mid j) (q_{correct}(x) - \mathbb{E}[q_{correct}(X') \mid K'=j])^2 \\
-&= \sum_{x \in \mathcal{X}} p(x) (q_{correct}(x) - \mathbb{E}[q_{correct}(X') \mid K'=f(x)])^2 \quad (\text{since } p(x) = p(f(x))p(x \mid f(x)) ) \\
-&= \mathbb{E}_{X} [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=f(X)])^2 ] \\
+\begin{aligned}
+\mathbb{E}_{K} [ \operatorname{Var}(q_{\text{correct}}(X) \mid K=k) ] &= \sum_{j \in \mathcal{K}} p(j) \operatorname{Var}(q_{\text{correct}}(X) \mid K=j) \\
+&= \sum_{j \in \mathcal{K}} p(j) \mathbb{E} [ (q_{\text{correct}}(X) - \mathbb{E}[q_{\text{correct}}(X') \mid K'=j])^2 \mid K=j ] \\
+&= \sum_{j \in \mathcal{K}} p(j) \sum_{x \in \Omega_j} p(x \mid j) (q_{\text{correct}}(X) - \mathbb{E}[q_{\text{correct}}(X') \mid K'=j])^2 \\
+&= \sum_{x \in \mathcal{X}} p(x) (q_{\text{correct}}(X) - \mathbb{E}[q_{\text{correct}}(X') \mid K'=f(x)])^2 \quad (\text{since } p(x) = p(f(x))p(x \mid f(x)) ) \\
+&= \mathbb{E}_{X} [ (q_{\text{correct}}(X) - \mathbb{E}[q_{\text{correct}}(X') \mid K'=f(X)])^2 ] \\
 &= (B^*(f))^2
+\end{aligned}
 \]
 
 The first line is the definition of expected conditional variance.
 The second line expands the conditional variance.
 The third line expands the conditional expectation definition.
 The fourth line rewrites the sum over macrostates \(j\) and microstates \(x \in \Omega_j\) as a single sum over all microstates \(x \in \mathcal{X}\), using the fact that \(p(j)p(x \mid j) = p(x,j) = p(x)\) if \(x \in \Omega_j\) (i.e., \(f(x)=j\)), and \(p(x \mid j)=0\) otherwise.
-The fifth line recognizes this sum as the definition of \(\mathbb{E}_{X} [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=f(X)])^2 ]\).
+The fifth line recognizes this sum as the definition of \(\mathbb{E}_{X} [ (q_{\text{correct}}(X) - \mathbb{E}[q_{\text{correct}}(X') \mid K'=f(X)])^2 ]\).
 The final line is from the definition of \(B^*(f)\).
 
 **Proposition 3.1 (Bias as Residual Variance):**
-For any coarse-graining map \(f: \mathcal{X} \to \mathcal{K}\) and any function \(q_{correct}: \mathcal{X} \to \mathbb{R}\), the squared inherent bias \((B^*(f))^2\) is equal to the total variance of \(q_{correct}(X)\) minus the variance of the conditional expectation of \(q_{correct}(X)\) given the macrostate \(K=f(X)\).
-\[ (B^*(f))^2 = \operatorname{Var}(q_{correct}(X)) - \operatorname{Var}_K ( \mathbb{E}[q_{correct}(X) \mid K=k] ) \]
+For any coarse-graining map \(f: \mathcal{X} \to \mathcal{K}\) and any function \(q_{\text{correct}}: \mathcal{X} \to \mathbb{R}\), the squared inherent bias \((B^*(f))^2\) is equal to the total variance of \(q_{\text{correct}}(X)\) minus the variance of the conditional expectation of \(q_{\text{correct}}(X)\) given the macrostate \(K=f(X)\).
+\[ (B^*(f))^2 = \operatorname{Var}(q_{\text{correct}}(X)) - \operatorname{Var}_K ( \mathbb{E}[q_{\text{correct}}(X) \mid K=k] ) \]
 where \(\operatorname{Var}_K(\cdot)\) denotes the variance taken over the distribution \(p(k)\) of the macrostates.
 
 **Proof of Proposition 3.1:**
 This follows directly from the Law of Total Variance, which states:
 \(\operatorname{Var}(Y) = \mathbb{E}[\operatorname{Var}(Y \mid Z)] + \operatorname{Var}(\mathbb{E}[Y \mid Z])\).
 
-Let \(Y = q_{correct}(X)\) and \(Z = K = f(X)\).
-Let \(\sigma^2_{total} = \operatorname{Var}(q_{correct}(X))\) be the total variance of the normative judgment.
+Let \(Y = q_{\text{correct}}(X)\) and \(Z = K = f(X)\).
+Let \(\sigma^2_{total} = \operatorname{Var}(q_{\text{correct}}(X))\) be the total variance of the normative judgment.
 
 Substituting into the Law of Total Variance, we get:
-\(\sigma^2_{total} = \mathbb{E}_{K}[\operatorname{Var}(q_{correct}(X) \mid K=k)] + \operatorname{Var}_K(\mathbb{E}[q_{correct}(X) \mid K=k])\).
+\(\sigma^2_{total} = \mathbb{E}_{K}[\operatorname{Var}(q_{\text{correct}}(X) \mid K=k)] + \operatorname{Var}_K(\mathbb{E}[q_{\text{correct}}(X) \mid K=k])\).
 
-By Lemma 3.1, we know that \(\mathbb{E}_{K}[\operatorname{Var}(q_{correct}(X) \mid K=k)] = (B^*(f))^2\).
+By Lemma 3.1, we know that \(\mathbb{E}_{K}[\operatorname{Var}(q_{\text{correct}}(X) \mid K=k)] = (B^*(f))^2\).
 
 Substituting this into the equation gives:
-\(\sigma^2_{total} = (B^*(f))^2 + \operatorname{Var}_K(\mathbb{E}[q_{correct}(X) \mid K=k])\).
+\(\sigma^2_{total} = (B^*(f))^2 + \operatorname{Var}_K(\mathbb{E}[q_{\text{correct}}(X) \mid K=k])\).
 
 Rearranging this equation to solve for \((B^*(f))^2\) yields:
-\((B^*(f))^2 = \sigma^2_{total} - \operatorname{Var}_K(\mathbb{E}[q_{correct}(X) \mid K=k])\).
+\((B^*(f))^2 = \sigma^2_{total} - \operatorname{Var}_K(\mathbb{E}[q_{\text{correct}}(X) \mid K=k])\).
 This completes the proof.
 
 **Proposition 3.2 (Necessary Bias under Random Coarse-Graining):**
-Let \(p(x)\) be the uniform distribution over \(\mathcal{X}\) (\(\lvert\mathcal{X}\rvert=N\)). Let \(q_{correct}(x)\) be a function on \(\mathcal{X}\) representing the true value, with finite total variance \(\operatorname{Var}(q_{correct}(X)) = \sigma^2 > 0\). Consider the set \(\mathcal{F}_{N,M}\) of all surjective maps \(f: \mathcal{X} \to \mathcal{K}\) (\(\lvert\mathcal{K}\rvert=M\), \(M \le N\)). If a map \(f\) is chosen uniformly at random from \(\mathcal{F}_{N,M}\), then in the asymptotic limit \(N \to \infty\) with \(M\) fixed, the inherent bias converges in probability to the total standard deviation of \(q_{correct}\):
-\[ B^*(f) \xrightarrow{P} \sigma = \sqrt{\operatorname{Var}(q_{correct}(X))} \]
+Let \(p(x)\) be the uniform distribution over \(\mathcal{X}\) (\(\lvert\mathcal{X}\rvert=N\)). Let \(q_{\text{correct}}(x)\) be a function on \(\mathcal{X}\) representing the true value, with finite total variance \(\operatorname{Var}(q_{\text{correct}}(X)) = \sigma^2 > 0\). Consider the set \(\mathcal{F}_{N,M}\) of all surjective maps \(f: \mathcal{X} \to \mathcal{K}\) (\(\lvert\mathcal{K}\rvert=M\), \(M \le N\)). If a map \(f\) is chosen uniformly at random from \(\mathcal{F}_{N,M}\), then in the asymptotic limit \(N \to \infty\) with \(M\) fixed, the inherent bias converges in probability to the total standard deviation of \(q_{\text{correct}\):
+\[ B^*(f) \xrightarrow{P} \sigma = \sqrt{\operatorname{Var}(q_{\text{correct}}(X))} \]
 
 **Proof of Proposition 3.2:**
 From Proposition 3.1, we have the relationship:
 \(\sigma^2 = (B^*(f))^2 + \sigma^2_{between}(f)\),
-where \(\sigma^2 = \operatorname{Var}(q_{correct}(X))\) is the total variance of the normative judgment, and \(\sigma^2_{between}(f) = \operatorname{Var}_K ( \mathbb{E}[q_{correct}(X) \mid K=k] )\) is the variance of the conditional expectations (the "between-category" variance).
+where \(\sigma^2 = \operatorname{Var}(q_{\text{correct}}(X))\) is the total variance of the normative judgment, and \(\sigma^2_{between}(f) = \operatorname{Var}_K ( \mathbb{E}[q_{\text{correct}}(X) \mid K=k] )\) is the variance of the conditional expectations (the "between-category" variance).
 
 Our goal is to show that for a map \(f\) chosen uniformly at random from \(\mathcal{F}_{N,M}\), the term \(\sigma^2_{between}(f) \xrightarrow{P} 0\) as \(N \to \infty\) with \(M\) fixed.
 
-Let \(\mu_k = \mathbb{E}[q_{correct}(X) \mid K=k]\). Since \(p(x)\) is uniform, \(p(x \mid k) = 1/W_k\) for \(x \in \Omega_k\).
-Thus, \(\mu_k\) is the sample mean of \(q_{correct}(x)\) over the microstates in partition cell \(\Omega_k\):
-\[ \mu_k = \frac{1}{W_k} \sum_{x \in \Omega_k} q_{correct}(x) \]
+Let \(\mu_k = \mathbb{E}[q_{\text{correct}}(X) \mid K=k]\). Since \(p(x)\) is uniform, \(p(x \mid k) = 1/W_k\) for \(x \in \Omega_k\).
+Thus, \(\mu_k\) is the sample mean of \(q_{\text{correct}}(x)\) over the microstates in partition cell \(\Omega_k\):
+\[ \mu_k = \frac{1}{W_k} \sum_{x \in \Omega_k} q_{\text{correct}}(x) \]
 
 From the analysis of random maps (as used in Proposition 2.1), in the limit \(N \to \infty\) with \(M\) fixed, the partition sizes \(W_k\) concentrate around \(N/M\). Thus, \(W_k \to \infty\) almost surely for each \(k\).
 Furthermore, for a randomly chosen map \(f\), the set of microstates \(\Omega_k\) effectively behaves like a large random sample drawn from the total set of microstates \(\mathcal{X}\). (More formally, this can be analyzed as sampling without replacement from a large finite population, or sampling with replacement if \(N\) is considered effectively infinite relative to the typical size of \(W_k\)).
 
-Let \(\mu_{global} = \mathbb{E}[q_{correct}(X)]\) be the global mean of the true value over all microstates.
+Let \(\mu_{global} = \mathbb{E}[q_{\text{correct}}(X)]\) be the global mean of the true value over all microstates.
 By the Law of Large Numbers (or related concentration inequalities for sampling from finite populations), the sample mean \(\mu_k\) calculated over a large random subset \(\Omega_k\) (of size \(W_k \to \infty\)) converges in probability to the global mean \(\mu_{global}\).
 That is, for any fixed \(k \in \mathcal{K}\), \(\mu_k \xrightarrow{P} \mu_{global}\) as \(W_k \to \infty\) (which occurs as \(N \to \infty\)).
 
 Since this convergence \(\mu_k \xrightarrow{P} \mu_{global}\) holds for all \(k\) in the finite set \(\mathcal{K}\) (as \(N \to \infty\), all \(W_k\) tend to infinity if \(M\) is fixed), the distribution of these conditional means \(\mu_k\) (each weighted by \(p(k)\), which for random maps tends towards \(1/M\) for each \(k\)) collapses towards a point mass at \(\mu_{global}\).
 
 The overall mean of these conditional means is given by the law of total expectation:
-\(\mathbb{E}_{K}[\mu_K] = \sum_j p(j) \mu_j = \sum_j p(j) \mathbb{E}[q_{correct}(X) \mid K=j] = \mathbb{E}[q_{correct}(X)] = \mu_{global}\).
+\(\mathbb{E}_{K}[\mu_K] = \sum_j p(j) \mu_j = \sum_j p(j) \mathbb{E}[q_{\text{correct}}(X) \mid K=j] = \mathbb{E}[q_{\text{correct}}(X)] = \mu_{global}\).
 
 Therefore, the variance of these conditional means, \(\sigma^2_{between}(f)\), converges in probability to zero:
 \[ \sigma^2_{between}(f) = \operatorname{Var}_K(\mu_K) = \sum_{j=1}^M p(j) (\mu_j - \mathbb{E}_{K}[\mu_K])^2 = \sum_{j=1}^M p(j) (\mu_j - \mu_{global})^2 \xrightarrow{P} 0 \]
@@ -227,11 +229,11 @@ Taking the square root (which is a continuous function for non-negative values),
 This completes the proof.
 
 **Interpretation of Necessary Bias:**
-Proposition 3.2 establishes that when a complex reality (represented by \(q_{correct}(x)\) with inherent variability \(\sigma > 0\)) is viewed through a highly simplifying lens (a typical random-like map \(f\) with \(N \gg M\)), the best possible judgment based only on the simplified view \(K\) will still have an average error (RMSE) close to the total standard deviation \(\sigma\). This occurs because such random maps typically fail to capture variance *between* categories (\(\sigma^2_{between}(f) \to 0\)), meaning the average *internal* variance \((B^*(f))^2\) necessarily converges to the total variance \(\sigma^2\).
+Proposition 3.2 establishes that when a complex reality (represented by \(q_{\text{correct}}(x)\) with inherent variability \(\sigma > 0\)) is viewed through a highly simplifying lens (a typical random-like map \(f\) with \(N \gg M\)), the best possible judgment based only on the simplified view \(K\) will still have an average error (RMSE) close to the total standard deviation \(\sigma\). This occurs because such random maps typically fail to capture variance *between* categories (\(\sigma^2_{between}(f) \to 0\)), meaning the average *internal* variance \((B^*(f))^2\) necessarily converges to the total variance \(\sigma^2\).
 Any specific cognitive heuristic \(\mathcal{J}\) operating on \(K\) can only perform as well as, or worse than, the optimal heuristic \(\mathcal{J}^*\). Thus, the achievable RMSE is bounded below: \(\operatorname{RMSE}(f, \mathcal{J}) \ge B^*(f) \approx \sigma\).
 Significant bias is therefore a necessary consequence for typical simplification schemes when operating on complex phenomena (\(\sigma > 0\)).
 
-*Example (Coin Flips): Consider \(n=100\) coins, each independently having a probability \(p_i\) of being Heads, where \(p_i\) itself is drawn from some distribution (e.g., \(p_i\) is \(0.4\) with probability \(0.5\), and \(0.6\) with probability \(0.5\)). A microstate \(x\) is the full sequence of Heads/Tails. Let \(q_{correct}(x)\) be the actual average \(P(H)\) of the 100 coins used to generate sequence \(x\). This \(q_{correct}(x)\) will have some standard deviation \(\sigma\) across all possible microstates \(x\). If we only observe \(K=\) number of heads, Proposition 3.2 suggests that our best estimate of the true average \(P(H)\) for that sequence, based only on \(K\), will have an RMSE of approximately \(\sigma\). Knowing we got 53 heads is not enough to precisely determine the underlying \(p_i\) values for that sequence if the mapping from sequences to head counts is treated as a generic coarse-graining.*
+*Example (Coin Flips): Consider \(n=100\) coins, each independently having a probability \(p_i\) of being Heads, where \(p_i\) itself is drawn from some distribution (e.g., \(p_i\) is \(0.4\) with probability \(0.5\), and \(0.6\) with probability \(0.5\)). A microstate \(x\) is the full sequence of Heads/Tails. Let \(q_{\text{correct}}(x)\) be the actual average \(P(H)\) of the 100 coins used to generate sequence \(x\). This \(q_{\text{correct}}(x)\) will have some standard deviation \(\sigma\) across all possible microstates \(x\). If we only observe \(K=\) number of heads, Proposition 3.2 suggests that our best estimate of the true average \(P(H)\) for that sequence, based only on \(K\), will have an RMSE of approximately \(\sigma\). Knowing we got 53 heads is not enough to precisely determine the underlying \(p_i\) values for that sequence if the mapping from sequences to head counts is treated as a generic coarse-graining.*
 
 ## 4. Conclusion
 
