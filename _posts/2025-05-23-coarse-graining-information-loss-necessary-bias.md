@@ -18,7 +18,7 @@ The microstate space \\(\Omega\\) (with alphabet \\(\mathcal{X}\\)) and the macr
 
 **Definition 1.1 (Microstate Description and Entropy):**
 Let \\(X\\) be a random variable representing the microstate, taking values \\(x \in \mathcal{X}\\) with distribution \\(p(x) = P(X=x)\\). The **microstate entropy** is:
-\\[ H(X) \coloneqq - \sum_{x \in \mathcal{X}} p(x) \log_2 p(x) \\]
+\\[ H(X) := - \sum_{x \in \mathcal{X}} p(x) \log_2 p(x) \\]
 In the common case where microstates are assumed to be uniformly distributed (e.g., for lack of information suggesting otherwise, or to explore typical behavior), \\(p(x) = 1/N\\) for all \\(x \in \mathcal{X}\\). In this scenario, the microstate entropy simplifies to:
 \\[ H(X) = - \sum_{x \in \mathcal{X}} \frac{1}{N} \log_2 \left(\frac{1}{N}\right) = N \left( -\frac{1}{N} \log_2 \frac{1}{N} \right) = \log_2 N \\]
 *Example (Coin Flips): For \\(n=100\\) fair coin flips, there are \\(N=2^{100}\\) possible sequences (microstates). If each sequence is equally likely, \\(H(X) = \log_2(2^{100}) = 100\\) bits.*
@@ -31,19 +31,19 @@ For a deterministic map \\(f\\), we assume it is surjective, meaning each \\(k \
 
 **Definition 1.3 (Macrostate Description - Deterministic Map):**
 Given a microstate distribution \\(p(x)\\) and a deterministic map \\(f\\):
-1.  **Partition Cell:** \\(\Omega_k \coloneqq f^{-1}(k) = \{x \in \mathcal{X} | f(x)=k\}\\). The set of all partition cells \\(\{\Omega_k\}_{k \in \mathcal{K}}\\) forms a partition of \\(\mathcal{X}\\).
-2.  **Multiplicity:** \\(W_k \coloneqq |\Omega_k|\\). By surjectivity, \\(W_k \ge 1\\). Also, \\(\sum_{k=1}^M W_k = N\\).
-3.  **Macrostate Variable:** \\(K \coloneqq f(X)\\), taking values \\(k \in \mathcal{K}\\).
-4.  **Macrostate Distribution:** \\(p(k) \coloneqq P(K=k) = \sum_{x \in \Omega_k} p(x)\\).
-5.  **Macrostate Entropy:** \\(H(K) \coloneqq - \sum_{k \in \mathcal{K}} p(k) \log_2 p(k)\\).
+1.  **Partition Cell:** \\(\Omega_k := f^{-1}(k) = \{x \in \mathcal{X} \mid f(x)=k\}\\). The set of all partition cells \\(\{\Omega_k\}_{k \in \mathcal{K}}\\) forms a partition of \\(\mathcal{X}\\).
+2.  **Multiplicity:** \\(W_k := |\Omega_k|\\). By surjectivity, \\(W_k \ge 1\\). Also, \\(\sum_{k=1}^M W_k = N\\).
+3.  **Macrostate Variable:** \\(K := f(X)\\), taking values \\(k \in \mathcal{K}\\).
+4.  **Macrostate Distribution:** \\(p(k) := P(K=k) = \sum_{x \in \Omega_k} p(x)\\).
+5.  **Macrostate Entropy:** \\(H(K) := - \sum_{k \in \mathcal{K}} p(k) \log_2 p(k)\\).
 *Example (Coin Flips): If \\(X\\) is a sequence of 100 flips and \\(K\\) is the number of heads, \\(M=101\\) (0 to 100 heads). \\(W_k = \binom{100}{k}\\) is the number of sequences with \\(k\\) heads. If \\(p(x)=1/2^{100}\\), then \\(p(k) = \binom{100}{k}/2^{100}\\).*
 
 **Definition 1.4 (Conditional Entropy and Information Loss - Deterministic Map):**
-1.  **Conditional Distribution:** For \\(p(k) > 0\\), the conditional probability of microstate \\(x\\) given macrostate \\(k\\) is \\(p(x|k) \coloneqq p(X=x|K=k)\\). If \\(x \notin \Omega_k\\), then \\(p(x|k)=0\\). If \\(x \in \Omega_k\\), then \\(p(x|k) = p(x)/p(k)\\).
+1.  **Conditional Distribution:** For \\(p(k) > 0\\), the conditional probability of microstate \\(x\\) given macrostate \\(k\\) is \\(p(x|k) := p(X=x \mid K=k)\\). If \\(x \notin \Omega_k\\), then \\(p(x|k)=0\\). If \\(x \in \Omega_k\\), then \\(p(x|k) = p(x)/p(k)\\).
     *If \\(p(x)=1/N\\) (uniform microstates), then \\(p(k) = W_k/N\\). For \\(x \in \Omega_k\\), \\(p(x|k) = (1/N) / (W_k/N) = 1/W_k\\). This is the uniform distribution over the microstates within the partition cell \\(\Omega_k\\).*
-2.  **Conditional Entropy (Specific):** \\(H(X|K=k) \coloneqq - \sum_{x \in \Omega_k} p(x|k) \log_2 p(x|k)\\).
+2.  **Conditional Entropy (Specific):** \\(H(X|K=k) := - \sum_{x \in \Omega_k} p(x|k) \log_2 p(x|k)\\).
     *If \\(p(x)=1/N\\), then \\(H(X|K=k) = - \sum_{x \in \Omega_k} (1/W_k) \log_2 (1/W_k) = \log_2 W_k\\).*
-3.  **Average Conditional Entropy (Information Loss):** \\(H(X|K) \coloneqq \sum_{k \in \mathcal{K}} p(k) H(X|K=k) = \mathbb{E}_K [H(X|K=k)]\\). This quantity represents the average information lost about the microstate \\(X\\) when only the macrostate \\(K\\) is known.
+3.  **Average Conditional Entropy (Information Loss):** \\(H(X|K) := \sum_{k \in \mathcal{K}} p(k) H(X|K=k) = \mathbb{E}_K [H(X|K=k)]\\). This quantity represents the average information lost about the microstate \\(X\\) when only the macrostate \\(K\\) is known.
     *If \\(p(x)=1/N\\), then \\(H(X|K) = \sum_{k \in \mathcal{K}} (W_k/N) \log_2 W_k = \mathbb{E}_K[\log_2 W_K]\\).*
 
 **Proposition 1.1 (Chain Rule):**
@@ -131,28 +131,28 @@ Let \\(q_{correct}(x)\\) represent the true value or normatively correct judgmen
 
 **Definition 3.1 (Judgment Error and Bias):**
 The error for a given microstate \\(x\\) is \\(e(x) = q_{correct}(x) - q_{subj}(f(x))\\). The overall magnitude of error is often measured using the Root Mean Square Error (RMSE):
-\\[ \operatorname{RMSE}(f, \mathcal{J}) \coloneqq \sqrt{ \mathbb{E}_X [ (q_{correct}(X) - q_{subj}(f(X)))^2 ] } \\]
+\\[ \operatorname{RMSE}(f, \mathcal{J}) := \sqrt{ \mathbb{E}_X [ (q_{correct}(X) - q_{subj}(f(X)))^2 ] } \\]
 where the expectation \\(\mathbb{E}_X\\) is over the microstate distribution \\(p(x)\\).
 
 **Definition 3.2 (Optimal Heuristic and Inherent Bias):**
 For a given map \\(f\\), the heuristic \\(\mathcal{J}^*\\) that minimizes the RMSE is the conditional expectation:
-\\[ q^*_{subj}(k) \coloneqq \mathcal{J}^*(k) = \mathbb{E}[q_{correct}(X) | K=k] = \sum_{x \in \Omega_k} p(x|k) q_{correct}(x) \\]
+\\[ q^*_{subj}(k) := \mathcal{J}^*(k) = \mathbb{E}[q_{correct}(X) \mid K=k] = \sum_{x \in \Omega_k} p(x|k) q_{correct}(x) \\]
 (Assuming \\(p(x)\\) is uniform, \\(p(x|k) = 1/W_k\\) for \\(x \in \Omega_k\\), so \\(q^*_{subj}(k) = \frac{1}{W_k} \sum_{x \in \Omega_k} q_{correct}(x)\\).)
 The minimum achievable RMSE for map \\(f\\), obtained using \\(\mathcal{J}^*\\), represents the **inherent bias** (or inherent error) imposed by the coarse-graining itself:
-\\[ B^*(f) \coloneqq \operatorname{RMSE}(f, \mathcal{J}^*) = \sqrt{ \mathbb{E}_X [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') | K'=f(X)])^2 ] } \\]
+\\[ B^*(f) := \operatorname{RMSE}(f, \mathcal{J}^*) = \sqrt{ \mathbb{E}_X [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=f(X)])^2 ] } \\]
 
 **Lemma 3.1 (Inherent Bias and Conditional Variance):**
 The square of the inherent bias for a map \\(f\\) is the expected conditional variance of the normative judgment given the macrostate:
-\\[ (B^*(f))^2 = \mathbb{E}_K [ \operatorname{Var}(q_{correct}(X) | K=k) ] \\]
+\\[ (B^*(f))^2 = \mathbb{E}_K [ \operatorname{Var}(q_{correct}(X) \mid K=k) ] \\]
 **Proof of Lemma 3.1:**
 By definition of conditional variance:
 \\[
 \begin{align*}
-\mathbb{E}_K [ \operatorname{Var}(q_{correct}(X) | K=k) ] &= \sum_{j \in \mathcal{K}} p(j) \operatorname{Var}(q_{correct}(X) | K=j) \\
-&= \sum_{j \in \mathcal{K}} p(j) \mathbb{E} [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X')|K'=j])^2 | K=j ] \\
-&= \sum_{j \in \mathcal{K}} p(j) \sum_{x \in \Omega_j} p(x|j) (q_{correct}(x) - \mathbb{E}[q_{correct}(X')|K'=j])^2 \\
-&= \sum_{x \in \mathcal{X}} p(x) (q_{correct}(x) - \mathbb{E}[q_{correct}(X')|K'=f(x)])^2 \quad (\text{since } p(x) = p(f(x))p(x|f(x)) ) \\
-&= \mathbb{E}_X [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') | K'=f(X)])^2 ] \\
+\mathbb{E}_K [ \operatorname{Var}(q_{correct}(X) \mid K=k) ] &= \sum_{j \in \mathcal{K}} p(j) \operatorname{Var}(q_{correct}(X) \mid K=j) \\
+&= \sum_{j \in \mathcal{K}} p(j) \mathbb{E} [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=j])^2 \mid K=j ] \\
+&= \sum_{j \in \mathcal{K}} p(j) \sum_{x \in \Omega_j} p(x|j) (q_{correct}(x) - \mathbb{E}[q_{correct}(X') \mid K'=j])^2 \\
+&= \sum_{x \in \mathcal{X}} p(x) (q_{correct}(x) - \mathbb{E}[q_{correct}(X') \mid K'=f(x)])^2 \quad (\text{since } p(x) = p(f(x))p(x|f(x)) ) \\
+&= \mathbb{E}_X [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=f(X)])^2 ] \\
 &= (B^*(f))^2
 \end{align*}
 \\]
@@ -161,31 +161,31 @@ The first line is the definition of expected conditional variance.
 The second line expands the conditional variance.
 The third line expands the conditional expectation definition.
 The fourth line rewrites the sum over macrostates \\(j\\) and microstates \\(x \in \Omega_j\\) as a single sum over all microstates \\(x \in \mathcal{X}\\), using the fact that \\(p(j)p(x|j) = p(x,j) = p(x)\\) if \\(x \in \Omega_j\\) (i.e., \\(f(x)=j\\)), and \\(p(x|j)=0\\) otherwise.
-The fifth line recognizes this sum as the definition of \\(\mathbb{E}_X [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') | K'=f(X)])^2 ]\\).
+The fifth line recognizes this sum as the definition of \\(\mathbb{E}_X [ (q_{correct}(X) - \mathbb{E}[q_{correct}(X') \mid K'=f(X)])^2 ]\\).
 The final line is from the definition of \\(B^*(f)\\).
 
 **Proposition 3.1 (Bias as Residual Variance):**
 For any coarse-graining map \\(f: \mathcal{X} \to \mathcal{K}\\) and any function \\(q_{correct}: \mathcal{X} \to \mathbb{R}\\), the squared inherent bias \\((B^*(f))^2\\) is equal to the total variance of \\(q_{correct}(X)\\) minus the variance of the conditional expectation of \\(q_{correct}(X)\\) given the macrostate \\(K=f(X)\\).
-\\[ (B^*(f))^2 = \operatorname{Var}(q_{correct}(X)) - \operatorname{Var}_K ( \mathbb{E}[q_{correct}(X) | K=k] ) \\]
+\\[ (B^*(f))^2 = \operatorname{Var}(q_{correct}(X)) - \operatorname{Var}_K ( \mathbb{E}[q_{correct}(X) \mid K=k] ) \\]
 where \\(\operatorname{Var}_K(\cdot)\\) denotes the variance taken over the distribution \\(p(k)\\) of the macrostates.
 
 **Proof of Proposition 3.1:**
 This follows directly from the Law of Total Variance, which states:
-\\(\operatorname{Var}(Y) = \mathbb{E}[\operatorname{Var}(Y|Z)] + \operatorname{Var}(\mathbb{E}[Y|Z])\\).
+\\(\operatorname{Var}(Y) = \mathbb{E}[\operatorname{Var}(Y \mid Z)] + \operatorname{Var}(\mathbb{E}[Y \mid Z])\\).
 
 Let \\(Y = q_{correct}(X)\\) and \\(Z = K = f(X)\\).
 Let \\(\sigma^2_{total} = \operatorname{Var}(q_{correct}(X))\\) be the total variance of the normative judgment.
 
 Substituting into the Law of Total Variance, we get:
-\\(\sigma^2_{total} = \mathbb{E}_K[\operatorname{Var}(q_{correct}(X)|K=k)] + \operatorname{Var}_K(\mathbb{E}[q_{correct}(X)|K=k])\\).
+\\(\sigma^2_{total} = \mathbb{E}_K[\operatorname{Var}(q_{correct}(X) \mid K=k)] + \operatorname{Var}_K(\mathbb{E}[q_{correct}(X) \mid K=k])\\).
 
-By Lemma 3.1, we know that \\(\mathbb{E}_K[\operatorname{Var}(q_{correct}(X)|K=k)] = (B^*(f))^2\\).
+By Lemma 3.1, we know that \\(\mathbb{E}_K[\operatorname{Var}(q_{correct}(X) \mid K=k)] = (B^*(f))^2\\).
 
 Substituting this into the equation gives:
-\\(\sigma^2_{total} = (B^*(f))^2 + \operatorname{Var}_K(\mathbb{E}[q_{correct}(X)|K=k])\\).
+\\(\sigma^2_{total} = (B^*(f))^2 + \operatorname{Var}_K(\mathbb{E}[q_{correct}(X) \mid K=k])\\).
 
 Rearranging this equation to solve for \\((B^*(f))^2\\) yields:
-\\((B^*(f))^2 = \sigma^2_{total} - \operatorname{Var}_K(\mathbb{E}[q_{correct}(X)|K=k])\\).
+\\((B^*(f))^2 = \sigma^2_{total} - \operatorname{Var}_K(\mathbb{E}[q_{correct}(X) \mid K=k])\\).
 This completes the proof.
 
 **Proposition 3.2 (Necessary Bias under Random Coarse-Graining):**
@@ -194,11 +194,11 @@ Let \\(p(x)\\) be the uniform distribution over \\(\mathcal{X}\\) (\\(|\mathcal{
 **Proof of Proposition 3.2:**
 From Proposition 3.1, we have the relationship:
 \\(\sigma^2 = (B^*(f))^2 + \sigma^2_{between}(f)\\),
-where \\(\sigma^2 = \operatorname{Var}(q_{correct}(X))\\) is the total variance of the normative judgment, and \\(\sigma^2_{between}(f) = \operatorname{Var}_K ( \mathbb{E}[q_{correct}(X) | K=k] )\\) is the variance of the conditional expectations (the "between-category" variance).
+where \\(\sigma^2 = \operatorname{Var}(q_{correct}(X))\\) is the total variance of the normative judgment, and \\(\sigma^2_{between}(f) = \operatorname{Var}_K ( \mathbb{E}[q_{correct}(X) \mid K=k] )\\) is the variance of the conditional expectations (the "between-category" variance).
 
 Our goal is to show that for a map \\(f\\) chosen uniformly at random from \\(\mathcal{F}_{N,M}\\), the term \\(\sigma^2_{between}(f) \xrightarrow{P} 0\\) as \\(N \to \infty\\) with \\(M\\) fixed.
 
-Let \\(\mu_k = \mathbb{E}[q_{correct}(X) | K=k]\\). Since \\(p(x)\\) is uniform, \\(p(x|k) = 1/W_k\\) for \\(x \in \Omega_k\\).
+Let \\(\mu_k = \mathbb{E}[q_{correct}(X) \mid K=k]\\). Since \\(p(x)\\) is uniform, \\(p(x|k) = 1/W_k\\) for \\(x \in \Omega_k\\).
 Thus, \\(\mu_k\\) is the sample mean of \\(q_{correct}(x)\\) over the microstates in partition cell \\(\Omega_k\\):
 \\[ \mu_k = \frac{1}{W_k} \sum_{x \in \Omega_k} q_{correct}(x) \\]
 
@@ -212,7 +212,7 @@ That is, for any fixed \\(k \in \mathcal{K}\\), \\(\mu_k \xrightarrow{P} \mu_{gl
 Since this convergence \\(\mu_k \xrightarrow{P} \mu_{global}\\) holds for all \\(k\\) in the finite set \\(\mathcal{K}\\) (as \\(N \to \infty\\), all \\(W_k\\) tend to infinity if \\(M\\) is fixed), the distribution of these conditional means \\(\mu_k\\) (each weighted by \\(p(k)\\), which for random maps tends towards \\(1/M\\) for each \\(k\\)) collapses towards a point mass at \\(\mu_{global}\\).
 
 The overall mean of these conditional means is given by the law of total expectation:
-\\(\mathbb{E}_K[\mu_K] = \sum_j p(j) \mu_j = \sum_j p(j) \mathbb{E}[q_{correct}(X)|K=j] = \mathbb{E}[q_{correct}(X)] = \mu_{global}\\).
+\\(\mathbb{E}_K[\mu_K] = \sum_j p(j) \mu_j = \sum_j p(j) \mathbb{E}[q_{correct}(X) \mid K=j] = \mathbb{E}[q_{correct}(X)] = \mu_{global}\\).
 
 Therefore, the variance of these conditional means, \\(\sigma^2_{between}(f)\\), converges in probability to zero:
 \\[ \sigma^2_{between}(f) = \operatorname{Var}_K(\mu_K) = \sum_{j=1}^M p(j) (\mu_j - \mathbb{E}_K[\mu_K])^2 = \sum_{j=1}^M p(j) (\mu_j - \mu_{global})^2 \xrightarrow{P} 0 \\]
