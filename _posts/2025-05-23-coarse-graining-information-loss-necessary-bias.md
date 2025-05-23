@@ -59,47 +59,47 @@ To understand the typical consequences of coarse-graining, especially when \\(N 
 
 **Proposition 2.1 (Information Loss for Random Maps - Uniform Microstates):**
 Let \\(p(x)\\) be the uniform distribution over \\(\\mathcal{X}\\) (\\(\\lvert\\mathcal{X}\\rvert=N\\)), so \\(H(X) = \\log_2 N\\). Let \\(\\mathcal{F}_{N,M}\\) be the set of all surjective deterministic maps \\(f: \\mathcal{X} \\to \\mathcal{K}\\) (\\(\\lvert\\mathcal{K}\\rvert=M\\), \\(M \\le N\\)). If a map \\(f\\) is chosen uniformly at random from \\(\\mathcal{F}_{N,M}\\), let \\(K=f(X)\\) and \\(p_f(k)\\) be the resulting macrostate distribution. Let \\(W_k = \\lvert f^{-1}(k) \\rvert\\). Then:
-1.  The expected macrostate distribution is uniform: \\(\\mathbb{E}\\_f[p_f(k)] = 1/M\\) for all \\(k \\in \\mathcal{K}\\).
-2.  The expected retained information is bounded: \\(\\mathbb{E}\\_f[H(K)] \\le \\log_2 M\\).
-3.  The expected information loss is bounded below: \\(\\mathbb{E}\\_f[H(X \\mid K)] \\ge \\log_2(N/M)\\).
+1.  The expected macrostate distribution is uniform: \\(\\mathbb{E}_f[p_f(k)] = 1/M\\) for all \\(k \\in \\mathcal{K}\\).
+2.  The expected retained information is bounded: \\(\\mathbb{E}_f[H(K)] \\le \\log_2 M\\).
+3.  The expected information loss is bounded below: \\(\\mathbb{E}_f[H(X \\mid K)] \\ge \\log_2(N/M)\\).
 4.  In the asymptotic limit \\(N \\to \\infty\\) with \\(M\\) fixed, the retained information concentrates: \\(H(K) \\xrightarrow{P} \\log_2 M\\).
 5.  In the asymptotic limit \\(N \\to \\infty\\) with \\(M\\) fixed, the information loss concentrates: \\(H(X \\mid K) \\xrightarrow{P} \\log_2(N/M)\\).
 (Convergence \\(\\xrightarrow{P}\\) denotes convergence in probability).
 
 **Proof of Proposition 2.1:**
-Let \\(\\mathbb{E}\\_f[\\cdot]\\) denote the expectation over the uniform distribution on \\(\\mathcal{F}_{N,M}\\).
+Let \\(\\mathbb{E}_f[\\cdot]\\) denote the expectation over the uniform distribution on \\(\\mathcal{F}_{N,M}\\).
 
 **(a) Expected Macrostate Distribution:**
-We compute \\(\\mathbb{E}\\_f[p_f(k)]\\) for a fixed \\(k \\in \\mathcal{K}\\).
+We compute \\(\\mathbb{E}_f[p_f(k)]\\) for a fixed \\(k \\in \\mathcal{K}\\).
 Since \\(p(x)=1/N\\), the macrostate probability is \\(p_f(k) = \\sum_{x \\in \\Omega_k} p(x) = W_k / N\\).
 Thus, the expected macrostate probability is:
-\\[ \\mathbb{E}\\_f[p_f(k)] = \\frac{1}{N} \\mathbb{E}\\_f[W_k] \\]
+\\[ \\mathbb{E}_f[p_f(k)] = \\frac{1}{N} \\mathbb{E}_f[W_k] \\]
 
-By symmetry, averaging over all surjective maps \\(f\\) (which are invariant to relabeling of the output \\(k\\)), the expected size \\(\\mathbb{E}\\_f[W_k]\\) must be the same for all \\(k\\). Let this average size be \\(W_{avg}\\).
+By symmetry, averaging over all surjective maps \\(f\\) (which are invariant to relabeling of the output \\(k\\)), the expected size \\(\\mathbb{E}_f[W_k]\\) must be the same for all \\(k\\). Let this average size be \\(W_{avg}\\).
 
 Since \\(\\sum_{j=1}^M W_j = N\\) for any specific map \\(f\\), linearity of expectation gives:
-\\(\\sum_{j=1}^M \\mathbb{E}\\_f[W_j] = \\mathbb{E}\\_f\\left[\\sum_{j=1}^M W_j\\right] = \\mathbb{E}\\_f[N] = N\\).
+\\(\\sum_{j=1}^M \\mathbb{E}_f[W_j] = \\mathbb{E}_f\\left[\\sum_{j=1}^M W_j\\right] = \\mathbb{E}_f[N] = N\\).
 
 This implies \\(M \\cdot W_{avg} = N\\), so \\(W_{avg} = N/M\\).
-Substituting this back, we get \\(\\mathbb{E}\\_f[p_f(k)] = \\frac{1}{N} (N/M) = 1/M\\). This proves part (1).
+Substituting this back, we get \\(\\mathbb{E}_f[p_f(k)] = \\frac{1}{N} (N/M) = 1/M\\). This proves part (1).
 
 **(b) Expected Retained Information:**
 The entropy function \\(H(P)\\) is concave in the distribution \\(P\\). By Jensen's inequality for concave functions:
-\\[ \\mathbb{E}\\_f[H(K)] = \\mathbb{E}\\_f[H(p_f)] \\le H(\\mathbb{E}\\_f[p_f]) \\]
+\\[ \\mathbb{E}_f[H(K)] = \\mathbb{E}_f[H(p_f)] \\le H(\\mathbb{E}_f[p_f]) \\]
 
-Using the result from part (a), \\(\\mathbb{E}\\_f[p_f]\\) is the uniform distribution over \\(M\\) states, i.e., \\((1/M, \\dots, 1/M)\\).
+Using the result from part (a), \\(\\mathbb{E}_f[p_f]\\) is the uniform distribution over \\(M\\) states, i.e., \\((1/M, \\dots, 1/M)\\).
 The entropy of this uniform distribution is \\(H(1/M, \\dots, 1/M) = -\\sum_{j=1}^M (1/M) \\log_2(1/M) = \\log_2 M\\).
 
-Therefore, \\(\\mathbb{E}\\_f[H(K)] \\le \\log_2 M\\). This proves part (2).
+Therefore, \\(\\mathbb{E}_f[H(K)] \\le \\log_2 M\\). This proves part (2).
 
 **(c) Expected Information Loss:**
 From the chain rule for entropy, we have \\(H(X \\mid K) = H(X) - H(K)\\).
 Taking the expectation over \\(f\\):
-\\[ \\mathbb{E}\\_f[H(X \\mid K)] = \\mathbb{E}\\_f[H(X) - H(K)] = H(X) - \\mathbb{E}\\_f[H(K)] \\]
+\\[ \\mathbb{E}_f[H(X \\mid K)] = \\mathbb{E}_f[H(X) - H(K)] = H(X) - \\mathbb{E}_f[H(K)] \\]
 (Note that \\(H(X)\\) is independent of \\(f\\) as \\(p(x)\\) is fixed).
 
-Since \\(H(X) = \\log_2 N\\) (because \\(p(x)\\) is uniform) and we know from part (b) that \\(\\mathbb{E}\\_f[H(K)] \\le \\log_2 M\\):
-\\[ \\mathbb{E}\\_f[H(X \\mid K)] \\ge \\log_2 N - \\log_2 M = \\log_2(N/M) \\]
+Since \\(H(X) = \\log_2 N\\) (because \\(p(x)\\) is uniform) and we know from part (b) that \\(\\mathbb{E}_f[H(K)] \\le \\log_2 M\\):
+\\[ \\mathbb{E}_f[H(X \\mid K)] \\ge \\log_2 N - \\log_2 M = \\log_2(N/M) \\]
 This proves part (3).
 
 **(d) Concentration of Retained Information:**
@@ -133,28 +133,28 @@ Let \\(q_{correct}(x)\\) represent the true value or normatively correct judgmen
 
 **Definition 3.1 (Judgment Error and Bias):**
 The error for a given microstate \\(x\\) is \\(e(x) = q_{correct}(x) - q_{subj}(f(x))\\). The overall magnitude of error is often measured using the Root Mean Square Error (RMSE):
-\\[ \\operatorname{RMSE}(f, \\mathcal{J}) := \\sqrt{ \\mathbb{E}\\_X [ (q_{correct}(X) - q_{subj}(f(X)))^2 ] } \\]
-where the expectation \\(\\mathbb{E}\\_X\\) is over the microstate distribution \\(p(x)\\).
+\\[ \\operatorname{RMSE}(f, \\mathcal{J}) := \\sqrt{ \\mathbb{E}_X [ (q_{correct}(X) - q_{subj}(f(X)))^2 ] } \\]
+where the expectation \\(\\mathbb{E}_X\\) is over the microstate distribution \\(p(x)\\).
 
 **Definition 3.2 (Optimal Heuristic and Inherent Bias):**
 For a given map \\(f\\), the heuristic \\(\\mathcal{J}^*\\) that minimizes the RMSE is the conditional expectation:
 \\[ q^*_{subj}(k) := \\mathcal{J}^*(k) = \\mathbb{E}[q_{correct}(X) \\mid K=k] = \\sum_{x \\in \\Omega_k} p(x \\mid k) q_{correct}(x) \\]
 (Assuming \\(p(x)\\) is uniform, \\(p(x \\mid k) = 1/W_k\\) for \\(x \\in \\Omega_k\\), so \\(q^*_{subj}(k) = \\frac{1}{W_k} \\sum_{x \\in \\Omega_k} q_{correct}(x)\\).)
 The minimum achievable RMSE for map \\(f\\), obtained using \\(\\mathcal{J}^*\\), represents the **inherent bias** (or inherent error) imposed by the coarse-graining itself:
-\\[ B^*(f) := \\operatorname{RMSE}(f, \\mathcal{J}^*) = \\sqrt{ \\mathbb{E}\\_X [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(X)])^2 ] } \\]
+\\[ B^*(f) := \\operatorname{RMSE}(f, \\mathcal{J}^*) = \\sqrt{ \\mathbb{E}_X [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(X)])^2 ] } \\]
 
 **Lemma 3.1 (Inherent Bias and Conditional Variance):**
 The square of the inherent bias for a map \\(f\\) is the expected conditional variance of the normative judgment given the macrostate:
-\\[ (B^*(f))^2 = \\mathbb{E}\\_K [ \\operatorname{Var}(q_{correct}(X) \\mid K=k) ] \\]
+\\[ (B^*(f))^2 = \\mathbb{E}_K [ \\operatorname{Var}(q_{correct}(X) \\mid K=k) ] \\]
 
 **Proof of Lemma 3.1:**
 By definition of conditional variance:
 \\[
-\\mathbb{E}\\_K [ \\operatorname{Var}(q_{correct}(X) \\mid K=k) ] &= \\sum_{j \\in \\mathcal{K}} p(j) \\operatorname{Var}(q_{correct}(X) \\mid K=j) \\\\
+\\mathbb{E}_K [ \\operatorname{Var}(q_{correct}(X) \\mid K=k) ] &= \\sum_{j \\in \\mathcal{K}} p(j) \\operatorname{Var}(q_{correct}(X) \\mid K=j) \\\\
 &= \\sum_{j \\in \\mathcal{K}} p(j) \\mathbb{E} [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=j])^2 \\mid K=j ] \\\\
 &= \\sum_{j \\in \\mathcal{K}} p(j) \\sum_{x \\in \\Omega_j} p(x \\mid j) (q_{correct}(x) - \\mathbb{E}[q_{correct}(X') \\mid K'=j])^2 \\\\
 &= \\sum_{x \\in \\mathcal{X}} p(x) (q_{correct}(x) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(x)])^2 \\quad (\\text{since } p(x) = p(f(x))p(x \\mid f(x)) ) \\\\
-&= \\mathbb{E}\\_X [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(X)])^2 ] \\\\
+&= \\mathbb{E}_X [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(X)])^2 ] \\\\
 &= (B^*(f))^2
 \\]
 
@@ -162,7 +162,7 @@ The first line is the definition of expected conditional variance.
 The second line expands the conditional variance.
 The third line expands the conditional expectation definition.
 The fourth line rewrites the sum over macrostates \\(j\\) and microstates \\(x \\in \\Omega_j\\) as a single sum over all microstates \\(x \\in \\mathcal{X}\\), using the fact that \\(p(j)p(x \\mid j) = p(x,j) = p(x)\\) if \\(x \\in \\Omega_j\\) (i.e., \\(f(x)=j\\)), and \\(p(x \\mid j)=0\\) otherwise.
-The fifth line recognizes this sum as the definition of \\(\\mathbb{E}\\_X [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(X)])^2 ]\\).
+The fifth line recognizes this sum as the definition of \\(\\mathbb{E}_X [ (q_{correct}(X) - \\mathbb{E}[q_{correct}(X') \\mid K'=f(X)])^2 ]\\).
 The final line is from the definition of \\(B^*(f)\\).
 
 **Proposition 3.1 (Bias as Residual Variance):**
@@ -178,9 +178,9 @@ Let \\(Y = q_{correct}(X)\\) and \\(Z = K = f(X)\\).
 Let \\(\\sigma^2_{total} = \\operatorname{Var}(q_{correct}(X))\\) be the total variance of the normative judgment.
 
 Substituting into the Law of Total Variance, we get:
-\\(\\sigma^2_{total} = \\mathbb{E}\\_K[\\operatorname{Var}(q_{correct}(X) \\mid K=k)] + \\operatorname{Var}_K(\\mathbb{E}[q_{correct}(X) \\mid K=k])\\).
+\\(\\sigma^2_{total} = \\mathbb{E}_K[\\operatorname{Var}(q_{correct}(X) \\mid K=k)] + \\operatorname{Var}_K(\\mathbb{E}[q_{correct}(X) \\mid K=k])\\).
 
-By Lemma 3.1, we know that \\(\\mathbb{E}\\_K[\\operatorname{Var}(q_{correct}(X) \\mid K=k)] = (B^*(f))^2\\).
+By Lemma 3.1, we know that \\(\\mathbb{E}_K[\\operatorname{Var}(q_{correct}(X) \\mid K=k)] = (B^*(f))^2\\).
 
 Substituting this into the equation gives:
 \\(\\sigma^2_{total} = (B^*(f))^2 + \\operatorname{Var}_K(\\mathbb{E}[q_{correct}(X) \\mid K=k])\\).
@@ -214,10 +214,10 @@ That is, for any fixed \\(k \\in \\mathcal{K}\\), \\(\\mu_k \\xrightarrow{P} \\m
 Since this convergence \\(\\mu_k \\xrightarrow{P} \\mu_{global}\\) holds for all \\(k\\) in the finite set \\(\\mathcal{K}\\) (as \\(N \\to \\infty\\), all \\(W_k\\) tend to infinity if \\(M\\) is fixed), the distribution of these conditional means \\(\\mu_k\\) (each weighted by \\(p(k)\\), which for random maps tends towards \\(1/M\\) for each \\(k\\)) collapses towards a point mass at \\(\\mu_{global}\\).
 
 The overall mean of these conditional means is given by the law of total expectation:
-\\(\\mathbb{E}\\_K[\\mu_K] = \\sum_j p(j) \\mu_j = \\sum_j p(j) \\mathbb{E}[q_{correct}(X) \\mid K=j] = \\mathbb{E}[q_{correct}(X)] = \\mu_{global}\\).
+\\(\\mathbb{E}_K[\\mu_K] = \\sum_j p(j) \\mu_j = \\sum_j p(j) \\mathbb{E}[q_{correct}(X) \\mid K=j] = \\mathbb{E}[q_{correct}(X)] = \\mu_{global}\\).
 
 Therefore, the variance of these conditional means, \\(\\sigma^2_{between}(f)\\), converges in probability to zero:
-\\[ \\sigma^2_{between}(f) = \\operatorname{Var}_K(\\mu_K) = \\sum_{j=1}^M p(j) (\\mu_j - \\mathbb{E}\\_K[\\mu_K])^2 = \\sum_{j=1}^M p(j) (\\mu_j - \\mu_{global})^2 \\xrightarrow{P} 0 \\]
+\\[ \\sigma^2_{between}(f) = \\operatorname{Var}_K(\\mu_K) = \\sum_{j=1}^M p(j) (\\mu_j - \\mathbb{E}_K[\\mu_K])^2 = \\sum_{j=1}^M p(j) (\\mu_j - \\mu_{global})^2 \\xrightarrow{P} 0 \\]
 This is because each \\(p(j)\\) tends to \\(1/M\\) (or at least remains bounded and sums to 1), and each \\((\\mu_j - \\mu_{global})^2\\) tends to 0 in probability.
 
 Since \\(\\sigma^2 = (B^*(f))^2 + \\sigma^2_{between}(f)\\) and we have shown \\(\\sigma^2_{between}(f) \\xrightarrow{P} 0\\), it follows directly that:
