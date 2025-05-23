@@ -30,13 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function addImageClickHandlers() {
     const images = document.querySelectorAll('.post-content img, .post img, article img');
     images.forEach(function(img) {
-      // Skip if image is already clickable or very small
-      if (img.closest('a') || img.width < 100 || img.height < 100) {
-        return;
-      }
-      
       img.style.cursor = 'pointer';
-      img.addEventListener('click', function() {
+      img.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior if any
         openModal(this.src, this.alt);
       });
     });
