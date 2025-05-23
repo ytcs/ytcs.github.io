@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: "Understanding the Scaling Laws of LLM Hallucination"
+title: "Understanding the Scaling Law of LLM Hallucination"
 categories: machine-learning
 date: 2025-05-23
 ---
