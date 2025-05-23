@@ -1,36 +1,23 @@
 ---
 published: true
 layout: post
-title: MathJax Test Post
+title: MathJax Test Post  
 ---
 
-This is a test post to verify that MathJax is working correctly.
+This is a simple test for MathJax rendering.
 
-## Inline Math
+## Test 1: Basic Inline Math
 
-Here is some inline math: \(\alpha + \beta = \gamma\) and another one: \(x^2 + y^2 = z^2\).
+Simple inline expression: \(\alpha + \beta = \gamma\)
 
-## Display Math
+## Test 2: Basic Display Math
 
-Here is a display equation:
+Simple display expression:
 
-$$E = mc^2$$
+\[E = mc^2\]
 
-And another using different delimiters:
+## Test 3: Greek Letters
 
-\[
-\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
-\]
+Greek letters: \(\alpha, \beta, \gamma, \delta\)
 
-## More Complex Equations
-
-The quadratic formula:
-\[
-x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
-\]
-
-Greek letters: \(\alpha, \beta, \gamma, \delta, \epsilon\)
-
-Subscripts and superscripts: \(x_1^2 + x_2^2 = r^2\)
-
-If you can see all the math expressions properly formatted, then MathJax is working! 
+If you can see proper mathematical notation instead of raw LaTeX code, then MathJax is working! 

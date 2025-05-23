@@ -1,38 +1,12 @@
 <script>
-window.MathJax = {
+MathJax = {
   tex: {
     inlineMath: [['\\(', '\\)']],
     displayMath: [['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true
-  },
-  options: {
-    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    ignoreHtmlClass: ".*|",
-    processHtmlClass: "arithmatex"
+    processEscapes: true
   }
 };
-
-// Convert kramdown's script tags to proper delimiters before MathJax processes them
-document.addEventListener('DOMContentLoaded', function(){
-  function stripCDATA(x) {
-    if (x.startsWith('% <![CDATA[') && x.endsWith('%]]>'))
-      return x.substring(11, x.length-4);
-    return x;
-  }
-  
-  document.querySelectorAll("script[type='math/tex']").forEach(function(el){
-    el.outerHTML = "\\(" + stripCDATA(el.textContent) + "\\)";
-  });
-  
-  document.querySelectorAll("script[type='math/tex; mode=display']").forEach(function(el){
-    el.outerHTML = "\\[" + stripCDATA(el.textContent) + "\\]";
-  });
-  
-  // Now load MathJax after conversion is complete
-  var script = document.createElement('script');
-  script.src = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js";
-  script.async = true;
-  document.head.appendChild(script);
-}, false);
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script> 
