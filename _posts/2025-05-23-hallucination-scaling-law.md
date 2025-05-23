@@ -38,33 +38,67 @@ Our goal is to understand how $$\bar{P}_{h}$$, the average hallucination probabi
 
 ## Modeling Logits from Corpus Evidence
 
-Our first step is to model how an LLM might arrive at its logits based on its training data. Intuitively, the more 'evidence' a model has seen in its training data for a particular token to follow a given context, the higher its logit for that token should be.
+Our first step is to model how an LLM might arrive at its logits based on its training data. One way to approach this is by considering the behavior of very wide neural networks, a regime often studied through the Neural Tangent Kernel (NTK).
 
-**1. Evidence Density $$E(y_k \mid X)$$:**
-For a context $$X$$ and a potential next token $$y_k \in V$$, its evidence density from the training corpus $$\mathcal{D}$$ is defined as the sum of semantic similarities between $$X$$ and all contexts $$X_j$$ in $$\mathcal{D}$$ where $$y_k$$ was the target token:
-
+In the NTK limit, particularly for networks trained with gradient descent, the output of the network (e.g., a logit for a specific token) can be approximated as a linear function of the initial parameters, or equivalently, as a sum over contributions from the training data, weighted by the NTK.
+Specifically, the logit $$l_i(X, \theta)$$ for a token $$y_i$$ given a context $$X$$, after training on a corpus $$\mathcal{D} = \{(X_j, y_{\text{target},j})\}_{j=1}^{\vert\mathcal{D}\vert}$$ can be expressed in a form like:
 $$
-E(y_k \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_k} K(X, X_j)
+l_i(X, \theta) \approx \sum_{(X_j, y_{\text{target},j}) \in \mathcal{D}} \alpha_{ij}(X_j, y_{\text{target},j}) \Theta(X, X_j; \theta_0) + b_i
 $$
+where $$\Theta(X, X_j; \theta_0)$$ is the Neural Tangent Kernel evaluated between the current context $$X$$ and a training context $$X_j$$ (computed with network parameters at initialization $$ \theta_0 $$), $$\alpha_{ij}$$ are learned coefficients that depend on the specific training example (including the target token $$y_{\text{target},j}$$ and its relation to $$y_i$$), and $$b_i$$ is a bias term. This formulation suggests that logits are built by accumulating "support" from similar training instances.
 
-Here, $$K(X, X_j)$$ is a semantic similarity kernel, with $$0 \le K(X,X_j) \le 1$$. It measures how relevant a training example $$(X_j, y_k)$$ is to the current context $$X$$.
+For simplicity and tractability in our analysis, we adopt a simplified model inspired by this NTK perspective. We propose that the logit $$l_i(X, \theta)$$ for a token $$y_i$$ given context $$X$$ is primarily determined by how much "evidence" in the corpus $$\mathcal{D}$$ supports $$y_i$$ in this context, versus the total evidence for any token in this context.
 
-It's worth noting some basic properties of these evidence densities:
-- $$0 \le E(y_k \mid X) \le N_{y_k}(\mathcal{D})$$, where $$N_{y_k}(\mathcal{D})$$ is the total count of token $$y_k$$ in the training corpus $$\mathcal{D}$$. This is because the kernel $$K(X,X_j)$$ is between 0 and 1.
-- The total evidence density for a given context $$X$$ across all possible next tokens is $$\mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k \mid X)$$. This sum can be rewritten as $$\mathcal{E}_X = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D}} K(X, X_j)$$, so $$0 \le \mathcal{E}_X \le \vert\mathcal{D}\vert$$, the total size of the corpus.
+**1. Simplified Logit Model:**
+The logit is approximated as:
+$$
+l_i(X, \theta) \approx \beta_S \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_i} K(X, X_j) - \beta_C \sum_{k=1}^{N_V} \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_k} K(X, X_j) + c
+$$
+This can be rewritten more compactly. Let:
+- $$E(y_i \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_i} K(X, X_j)$$ represent the accumulated kernel-weighted count of occurrences where $$y_i$$ follows a context similar to $$X$$ in the training data.
+- $$\mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D}} K(X, X_j)$$ represent the total accumulated kernel-weighted counts for context $$X$$ across all possible next tokens.
 
-**2. Simplified Logit Model:**
-We adopt a simplified model where the logit $$l_i(X, \theta)$$ for token $$y_i$$ is approximated by a linear function of these evidence densities:
+Then, our simplified logit model becomes:
+$$
+l_i(X, \theta) \approx (\beta_S + \beta_C) E(y_i \mid X) - \beta_C \mathcal{E}_X + c'
+$$
+(Note: we absorbed the original $$\beta_S$$ into a new $$(beta_S + beta_C)$$ term for the first part and adjusted $$c$$ to $$c'$$ to maintain a similar structure to your original paper's simplified form, where the first term is $$E(y_i|X)$$ and the second is related to $$\mathcal{E}_X$$. For the derivation to proceed as in the original paper, we can redefine the coefficients. Let's use the form from your paper for consistency with later sections):
 
 $$
 l_i(X, \theta) \approx \beta_S E(y_i \mid X) - \beta_C \mathcal{E}_X + c
 $$
+Where:
+- $$K(X, X_j)$$ is a semantic similarity kernel, with $$0 \le K(X,X_j) \le 1$$. It measures how relevant a training example $$(X_j, y_k)$$ is to the current context $$X$$.
+- $$E(y_i \mid X)$$ is the sum of these similarities for training examples where $$y_i$$ was the target token, given contexts similar to $$X$$.
+- $$\mathcal{E}_X$$ is the sum of $$E(y_k \mid X)$$ over all possible tokens $$y_k$$.
+- $$\beta_S > 0$$ and $$\beta_C \ge 0$$ are parameters, and $$c$$ is a constant bias term.
 
-This simplified model has a few key assumptions:
-- Each token $$y_i$$ gains logit strength proportional to its own evidence $$E(y_i \mid X)$$ (scaled by $$\beta_S$$).
-- It loses logit strength proportional to the *total* evidence $$\mathcal{E}_X$$ for *all* tokens in that context (scaled by $$\beta_C$$). This introduces a competitive dynamic: the more evidence there is for other tokens, the harder it is for $$y_i$$ to stand out.
-- The parameters $$\beta_S > 0$$ (self-evidence boost) and $$\beta_C \ge 0$$ (cross-evidence competition factor) and the bias $$c$$ are constants for the model.
-Essentially, a token's logit is determined by its own specific evidence, penalized by a measure of the 'background' evidence for all tokens in that context. This form is inspired by more general Neural Tangent Kernel (NTK) approaches but is simplified for tractability.
+This model captures a competitive dynamic:
+- A token $$y_i$$ gains logit strength proportional to the support it has in $$E(y_i \mid X)$$.
+- It loses logit strength proportional to the total support $$\mathcal{E}_X$$ for all tokens in that context.
+
+Essentially, a token's logit is determined by its own support, penalized by a measure of the 'background' support for all tokens in that context. This simplified form allows for a more tractable analysis of hallucination probability.
+
+**2. Notation for Corpus-Derived Quantities:**
+Let's formally define the terms based on the training corpus $$\mathcal{D}$$ and the kernel $$K(X, X_j)$$:
+
+**a. $$E(y_k \mid X)$$:**
+For a context $$X$$ and a potential next token $$y_k \in V$$, this quantity is:
+$$
+E(y_k \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_k} K(X, X_j)
+$$
+Intuitively, the more 'support' (high-similarity training examples) a model has seen for a particular token $$y_k$$ to follow a given context $$X$$, the higher $$E(y_k \mid X)$$ will be.
+
+**b. $$\mathcal{E}_X$$:**
+This quantity for a given context $$X$$ across all possible next tokens is:
+$$
+\mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k \mid X)
+$$
+This can also be written as $$\mathcal{E}_X = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D}} K(X, X_j)$$.
+
+**Properties of these quantities:**
+- $$0 \le E(y_k \mid X) \le N_{y_k}(\mathcal{D})$$, where $$N_{y_k}(\mathcal{D})$$ is the total count of token $$y_k$$ in the training corpus $$\mathcal{D}$$. This follows from $$0 \le K(X,X_j) \le 1$$.
+- $$0 \le \mathcal{E}_X \le \vert\mathcal{D}\vert$$, the total size of the training corpus.
 
 ## Condition for Bounded Hallucination
 
@@ -191,4 +225,5 @@ This derivation provides a theoretical lower bound on the average hallucination 
 -   **Model/Kernel Properties ($$C$$):** Factors like effective semantic similarity spread also play a role.
 
 
+It is important to remember that this model, while illustrative, is a significant simplification of the complex mechanisms underlying LLM behavior, and does not encompass more intricate forms of hallucination. Note that the exact form of the scaling we derived here is predicated on the softmax function. A natural follow-up question is whether there is an alternative to softmax that would result in qualitatively better scaling behavior.
 It is important to remember that this model, while illustrative, is a significant simplification of the complex mechanisms underlying LLM behavior, and does not encompass more intricate forms of hallucination. Note that the exact form of the scaling we derived here is predicated on the softmax function. A natural follow-up question is whether there is an alternative to softmax that would result in qualitatively better scaling behavior.
