@@ -143,7 +143,7 @@ a:hover {
 }
 
 .post-list > li {
-  padding: 0.05rem 0;
+  padding: 0.25rem 0;
   margin-bottom: 0;
   border-bottom: 1px solid var(--border-light);
   transition: var(--transition);
@@ -161,8 +161,8 @@ a:hover {
   margin: 0 -16px;
   padding-left: 16px;
   padding-right: 16px;
-  padding-top: 0.05rem;
-  padding-bottom: 0.05rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .post-meta {
