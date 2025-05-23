@@ -1,19 +1,26 @@
-<footer class="site-footer h-card">
+<footer class="site-footer">
   <div class="wrapper">
-    <div class="footer-content">
-      {%- if site.footer.contact -%}
-        <div class="contact-info">
-          {%- for contact in site.footer.contact -%}
-            {%- if contact.link -%}
-              <a href="{{ contact.link }}">{{ contact.value }}</a>
-            {%- else -%}
-              {{ contact.value }}
-            {%- endif -%}
-          {%- endfor -%}
-        </div>
-      {%- endif -%}
-      
-      {%- include social.html -%}
-    </div>
+    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+    
+    {%- if site.footer.contact -%}
+      <div class="contact-info">
+        {%- for contact in site.footer.contact -%}
+          {%- if contact.link -%}
+            <a href="{{ contact.link }}">{{ contact.value }}</a>
+          {%- else -%}
+            {{ contact.value }}
+          {%- endif -%}
+          {%- unless forloop.last -%} | {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    
+    {%- if site.footer.follow -%}
+      <div class="social-links">
+        {%- for link in site.footer.follow -%}
+          <a href="{{ link.link }}" title="{{ link.name }}">{{ link.name }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </div>
 </footer> 

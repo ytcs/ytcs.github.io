@@ -1,8 +1,0 @@
-{%- if site.footer.follow -%}
-<div class="social-links">
-  {%- for link in site.footer.follow -%}
-    <a href="{{ link.link }}" title="{{ link.name }}">{{ link.name }}</a>
-    {%- unless forloop.last -%} | {%- endunless -%}
-  {%- endfor -%}
-</div>
-{%- endif -%} 

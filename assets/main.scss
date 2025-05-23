@@ -1,6 +1,6 @@
 ---
 ---
-@import "minima";
+/* Custom CSS for To Chin Yu's website */
 
 /* Import Google Fonts for better typography */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
@@ -21,7 +21,13 @@
   --transition: all 0.3s ease;
 }
 
-/* Base typography */
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
@@ -32,7 +38,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enhanced headings */
+/* Layout structure */
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.page-content {
+  padding: 3rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+/* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.3;
@@ -57,7 +75,22 @@ h3 {
   font-size: 1.5rem;
 }
 
-/* Enhanced site header */
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+/* Header */
 .site-header {
   background-color: var(--background-color);
   border-bottom: 1px solid var(--border-color);
@@ -66,39 +99,47 @@ h3 {
   top: 0;
   z-index: 100;
   backdrop-filter: blur(10px);
-  min-height: auto;
+  padding: 1rem 0;
+}
+
+.site-header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .site-title {
-  font-size: 1.8rem !important;
-  font-weight: 700 !important;
-  color: var(--primary-color) !important;
-  text-decoration: none !important;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
   transition: var(--transition);
 }
 
 .site-title:hover {
-  color: var(--accent-color) !important;
+  color: var(--accent-color);
+  text-decoration: none;
 }
 
-/* Main content area */
-.wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 20px;
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
 }
 
-.page-content {
-  padding: 3rem 0;
-  min-height: calc(100vh - 200px);
+.site-nav .page-link {
+  color: var(--text-color);
+  font-weight: 500;
 }
 
-/* Enhanced post list */
+.site-nav .page-link:hover {
+  color: var(--accent-color);
+}
+
+/* Post list */
 .post-list {
   list-style: none;
   padding: 0;
   margin: 3rem 0;
-  margin-left: 0;
 }
 
 .post-list > li {
@@ -110,7 +151,6 @@ h3 {
   transition: var(--transition);
   position: relative;
   padding-left: 2rem;
-  list-style: none;
 }
 
 .post-list > li:not(:last-child) {
@@ -141,7 +181,7 @@ h3 {
 }
 
 .post-meta {
-  color: var(--text-muted) !important;
+  color: var(--text-muted);
   font-size: 0.9rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -151,8 +191,8 @@ h3 {
 }
 
 .post-link {
-  color: var(--primary-color) !important;
-  text-decoration: none !important;
+  color: var(--primary-color);
+  text-decoration: none;
   font-weight: 600;
   font-size: 1.3rem;
   line-height: 1.4;
@@ -160,10 +200,19 @@ h3 {
 }
 
 .post-link:hover {
-  color: var(--accent-color) !important;
+  color: var(--accent-color);
 }
 
-/* Enhanced content typography */
+/* Post content */
+.post-header {
+  margin-bottom: 3rem;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .post-content p {
   margin-bottom: 1.5rem;
   text-align: justify;
@@ -178,19 +227,6 @@ h3 {
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.post-content a {
-  color: var(--accent-color);
-}
-
-.post-content a:visited {
-  color: var(--primary-color);
-}
-
-.post-content a:hover {
-  color: var(--primary-color);
-  text-decoration: underline;
 }
 
 /* Code styling */
@@ -237,59 +273,6 @@ pre code {
   box-shadow: var(--shadow-light) !important;
 }
 
-/* Enhanced footer */
-.site-footer {
-  background: var(--background-light);
-  border-top: 1px solid var(--border-color);
-  padding: 3rem 0 2rem;
-  margin-top: 4rem;
-}
-
-.footer-content {
-  text-align: center;
-  color: var(--text-muted);
-  padding: 20px 0;
-}
-
-.contact-info {
-  margin-bottom: 1rem;
-  font-size: 1rem;
-}
-
-.social-links {
-  font-size: 0.9rem;
-}
-
-.social-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  margin: 0 1rem;
-  padding: 0.5rem;
-  border-radius: 4px;
-  transition: var(--transition);
-  display: inline-block;
-}
-
-.social-links a:hover {
-  color: var(--accent-color);
-  background: var(--background-color);
-  transform: translateY(-1px);
-  text-decoration: underline;
-}
-
-/* Welcome message styling */
-.home p {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin: 2rem 0 3rem;
-  font-style: italic;
-  padding: 2rem;
-  background: var(--background-light);
-  border-radius: var(--border-radius);
-  border-left: 4px solid var(--accent-color);
-}
-
 /* Blockquotes */
 blockquote {
   border-left: 4px solid var(--accent-color);
@@ -301,14 +284,52 @@ blockquote {
   color: var(--text-muted);
 }
 
-/* Links */
-a {
-  color: var(--accent-color);
+/* Footer */
+.site-footer {
+  background: var(--background-light);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.footer-heading {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info {
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.social-links a {
+  color: var(--text-muted);
   transition: var(--transition);
 }
 
-a:hover {
-  color: var(--primary-color);
+.social-links a:hover {
+  color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+/* Welcome message */
+.home p {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 2rem 0 3rem;
+  font-style: italic;
+  padding: 2rem;
+  background: var(--background-light);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--accent-color);
 }
 
 /* Responsive design */
@@ -337,6 +358,11 @@ a:hover {
     padding: 1.5rem;
     font-size: 1.1rem;
   }
+  
+  .site-header .wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 /* Print styles */
@@ -358,7 +384,7 @@ a:hover {
   }
 }
 
-/* Focus styles for accessibility */
+/* Accessibility */
 a:focus,
 button:focus {
   outline: 2px solid var(--accent-color);
