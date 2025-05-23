@@ -31,16 +31,16 @@ A lower temperature ($$T \to 0$$) makes the distribution sharper (more determini
 For a given context $$X$$, let $$y^*(X)$$ denote the "correct" or desired next token (e.g., in factual recall tasks where the answer is unambiguous). The hallucination probability is then the probability of *not* generating this correct token:
 
 $$
-P_{\text{h}}(X, \theta, T) = 1 - P_T(y^*(X) \mid X, \theta)
+P_{h}(X, \theta, T) = 1 - P_T(y^*(X) \mid X, \theta)
 $$
 
-Our goal is to understand how $$\bar{P}_{\text{h}}$$, the average hallucination probability over all contexts, behaves.
+Our goal is to understand how $$\bar{P}_{h}$$, the average hallucination probability over all contexts, behaves.
 
 ## Modeling Logits from Corpus Evidence
 
 Our first step is to model how an LLM might arrive at its logits based on its training data. Intuitively, the more 'evidence' a model has seen in its training data for a particular token to follow a given context, the higher its logit for that token should be.
 
-**1. Evidence Density ($$E(y_k \mid X)$$):**
+**1. Evidence Density $$E(y_k \mid X)$$:**
 For a context $$X$$ and a potential next token $$y_k \in V$$, its evidence density from the training corpus $$\mathcal{D}$$ is defined as the sum of semantic similarities between $$X$$ and all contexts $$X_j$$ in $$\mathcal{D}$$ where $$y_k$$ was the target token:
 
 $$
@@ -68,7 +68,7 @@ Essentially, a token's logit is determined by its own specific evidence, penaliz
 
 ## Condition for Bounded Hallucination
 
-Now, let's consider what it takes for the hallucination probability $$P_{\text{hall}}(X, \theta, T)$$ for a *specific* context $$X$$ to be below a chosen threshold $$\epsilon_0 \in (0,1)$$. If $$P_{\text{hall}}(X, \theta, T) \le \epsilon_0$$, then the probability of generating the correct token $$y^*(X)$$ must be $$P_T(y^*(X) \mid X, \theta) \ge 1 - \epsilon_0$$.
+Now, let's consider what it takes for the hallucination probability $$P_{h}(X, \theta, T)$$ for a *specific* context $$X$$ to be below a chosen threshold $$\epsilon_0 \in (0,1)$$. If $$P_{h}(X, \theta, T) \le \epsilon_0$$, then the probability of generating the correct token $$y^*(X)$$ must be $$P_T(y^*(X) \mid X, \theta) \ge 1 - \epsilon_0$$.
 
 This implies that the logit of the correct token $$l_{y^*}$$ must be sufficiently larger than the logit of any other token $$l_{y_{\text{alt}}}$$. For the highest-logit alternative token $$y_{\text{alt}}$$, and assuming a large vocabulary $$N_V$$, this condition can be shown to require:
 
@@ -83,13 +83,13 @@ E(y^*(X) \mid X) - E(y_{\text{alt}} \mid X) \ge \frac{T \log\left(\frac{1 - \eps
 $$
 
 Let's define the right-hand side as $$M'(\epsilon_0, T) = \frac{T \log\left(\frac{1 - \epsilon_0}{\epsilon_0}\right)}{\beta_S}$$. This term $$M'$$ represents the minimum evidence advantage the correct token must have over its strongest competitor.
-If $$E(y^*(X) \mid X) - E(y_{\text{alt}} \mid X) < M'(\epsilon_0, T)$$, then $$P_{\text{h}}(X, \theta, T) > \epsilon_0$$.
+If $$E(y^*(X) \mid X) - E(y_{\text{alt}} \mid X) < M'(\epsilon_0, T)$$, then $$P_{h}(X, \theta, T) > \epsilon_0$$.
 
 In simpler terms, for the model to avoid hallucinating (with probability at least $$1-\epsilon_0$$) in a given instance, the 'evidence signal' for the correct token $$y^*$$ must exceed the evidence for the strongest competitor $$y_{\text{alt}}$$ by this margin $$M'$$. This margin depends on our desired confidence (related to $$\epsilon_0$$) and the generation temperature $$T$$. A higher temperature or a stricter (smaller) $$\epsilon_0$$ demands a larger evidence gap.
 
 ## Aggregate Hallucination and Data Sparsity
 
-Deriving the exact average hallucination probability $$\bar{P}_{\text{h}}$$ is complex. Instead, we seek a lower bound. To make progress, we consider a simplified (and stronger) condition for when $$P_{\text{h}}(X, \theta, T) > \epsilon_0$$: we assume this happens if the *total* evidence density for the context, $$\mathcal{E}_X$$, is less than the required evidence margin $$M'(\epsilon_0, T)$$.
+Deriving the exact average hallucination probability $$\bar{P}_{h}$$ is complex. Instead, we seek a lower bound. To make progress, we consider a simplified (and stronger) condition for when $$P_{h}(X, \theta, T) > \epsilon_0$$: we assume this happens if the *total* evidence density for the context, $$\mathcal{E}_X$$, is less than the required evidence margin $$M'(\epsilon_0, T)$$.
 
 The intuition is that if the overall evidence available for *any* token in a given context $$X$$ is very low (i.e., the context is highly unfamiliar or ambiguous based on the training data, such that $$\mathcal{E}_X < M'$$), it becomes difficult for the correct token $$y^*$$ to gather enough evidence to significantly surpass alternatives by the necessary margin. This simplification allows us to use aggregate statistics of $$\mathcal{E}_X$$ to derive a bound.
 
@@ -107,7 +107,7 @@ Where:
 This shows that average evidence density increases with corpus size and decreases with the vastness of the language space.
 
 **2. Lower Bound on Fraction of Low-Evidence Contexts:**
-Let $$f(\epsilon_0)$$ be the fraction of contexts for which $$\mathcal{E}_X < M'(\epsilon_0, T)$$. For these contexts, by our simplifying assumption, $$P_{\text{h}}(X, \theta, T) > \epsilon_0$$.
+Let $$f(\epsilon_0)$$ be the fraction of contexts for which $$\mathcal{E}_X < M'(\epsilon_0, T)$$. For these contexts, by our simplifying assumption, $$P_{h}(X, \theta, T) > \epsilon_0$$.
 Using Markov's inequality, which states $$P(Z \ge a) \le \mathbb{E}[Z]/a$$ for a non-negative random variable $$Z$$, we have $$P(\mathcal{E}_X \ge M'(\epsilon_0, T)) \le \frac{\bar{\mathcal{E}}_X}{M'(\epsilon_0, T)}$$.
 Therefore, the fraction of low-evidence contexts is bounded:
 
@@ -127,12 +127,12 @@ f(\epsilon_0) \ge 1 - \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)
 $$
 
 **3. Lower Bound on Average Hallucination:**
-The average hallucination probability $$\bar{P}_{\text{h}} = \mathbb{E}_{X} [P_{\text{h}}(X, \theta, T)]$$ can be lower-bounded because, for the fraction $$f(\epsilon_0)$$ of contexts, $$P_{\text{h}} > \epsilon_0$$. Thus:
-$$\bar{P}_{\text{h}} > \epsilon_0 \cdot f(\epsilon_0)$$
+The average hallucination probability $$\bar{P}_{h} = \mathbb{E}_{X} [P_{h}(X, \theta, T)]$$ can be lower-bounded because, for the fraction $$f(\epsilon_0)$$ of contexts, $$P_{h} > \epsilon_0$$. Thus:
+$$\bar{P}_{h} > \epsilon_0 \cdot f(\epsilon_0)$$
 Substituting the bound for $$f(\epsilon_0)$$:
 
 $$
-\bar{P}_{\text{h}} > \epsilon_0 \left(1 - \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)}\right)
+\bar{P}_{h} > \epsilon_0 \left(1 - \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)}\right)
 $$
 
 This inequality gives us a lower bound on the average hallucination probability. Let's break down the term $$k_0(\epsilon_0) = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T L(\epsilon_0)}$$:
@@ -158,13 +158,13 @@ The optimized value $$\epsilon_0^*$$ is then $$\frac{1}{1+e^{L^*}}$$.
 Substituting $$\epsilon_0^*$$ and $$L^*$$ into $$g(\epsilon_0)$$ gives the optimized lower bound on average hallucination:
 
 $$
-\bar{P}_{\text{h}} > \frac{1}{1+e^{L^*}} \left(1 - \frac{k}{L^*}\right)
+\bar{P}_{h} > \frac{1}{1+e^{L^*}} \left(1 - \frac{k}{L^*}\right)
 $$
 
 This is our main result: a lower bound on average hallucination probability that depends on the consolidated parameter $$k$$.
 
 ![Hallucination Lower Bound](/assets/img/hallucination_bound.png)
-*Figure 1: The optimized lower bound on average hallucination probability, $$\bar{P}_{\text{h}}$$, as a function of the data density, model, and temperature parameter $$k = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T}$$. The bound transitions from $$\approx 0.5$$ for small $$k$$ (sparse data/high temperature) towards $$0$$ for large $$k$$ (dense data/low temperature).*
+*Figure 1: The optimized lower bound on average hallucination probability, $$\bar{P}_{h}$$, as a function of the data density, model, and temperature parameter $$k = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T}$$. The bound transitions from $$\approx 0.5$$ for small $$k$$ (sparse data/high temperature) towards $$0$$ for large $$k$$ (dense data/low temperature).*
 
 ## Asymptotic Behavior of the Optimized Bound
 
@@ -173,13 +173,13 @@ The behavior of this optimized bound in limiting cases of the parameter $$k$$ is
 1.  **$$k \to 0$$ (Extreme Data Sparsity or High Temperature)**
     In this regime, data is very scarce relative to language complexity, or generation is very random. It can be shown that $$L^* \approx \sqrt{2k}$$, which approaches 0.
     As $$L^* \to 0$$, $$\epsilon_0^* = \frac{1}{1+e^{L^*}} \to \frac{1}{2}$$.
-    Further analysis shows the entire bound $$\bar{P}_{\text{h}} \to \frac{1}{2}$$.
+    Further analysis shows the entire bound $$\bar{P}_{h} \to \frac{1}{2}$$.
     This suggests that with very sparse data or at very high temperatures, the model's output is nearly random concerning correctness, leading to an average hallucination probability of at least 50%. This makes intuitive sense: if the model has very little reliable information from its training ($$k \to 0$$), its performance should degrade towards random guessing. For a binary decision of 'correct' vs 'any incorrect alternative', random guessing would yield a 50% error rate.
 
 2.  **$$k \to \infty$$ (Data-Rich Regime or Low Temperature)**
     In this regime, data is abundant, or generation is nearly deterministic. It can be shown that $$L^* \approx k$$.
     Then $$\epsilon_0^* = \frac{1}{1+e^{L^*}} \approx e^{-L^*}$$ $$\approx e^{-k}$$.
-    The term $$(1 - k/L^*)$$ approaches 0. More precisely, the bound $$\bar{P}_{\text{h}}$$ decays towards 0, approximately as $$\frac{e^{-k}}{k}$$.
+    The term $$(1 - k/L^*)$$ approaches 0. More precisely, the bound $$\bar{P}_{h}$$ decays towards 0, approximately as $$\frac{e^{-k}}{k}$$.
     This indicates that with sufficiently dense data and low temperature, the derived lower bound on hallucination can be made arbitrarily small, decaying exponentially with $$k$$. This is also intuitive: if we have abundant data relative to complexity and low randomness ($$k \to \infty$$), the model should be able to learn the correct patterns effectively, and the floor for hallucination should drop significantly.
 
 ## Conclusion
