@@ -1,9 +1,8 @@
 {%- if site.footer.follow -%}
-<ul class="social-media-list">
+<div class="social-links">
   {%- for link in site.footer.follow -%}
-    <li>
-      <a href="{{ link.link }}" title="{{ link.name }}">{{ link.name }}</a>
-    </li>
+    <a href="{{ link.link }}" title="{{ link.name }}">{{ link.name }}</a>
+    {%- unless forloop.last -%} | {%- endunless -%}
   {%- endfor -%}
-</ul>
+</div>
 {%- endif -%} 
