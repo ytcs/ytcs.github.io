@@ -182,9 +182,7 @@ This is our main result: a lower bound on average hallucination probability that
 ![Hallucination Lower Bound](/assets/img/hallucination_bound.png)
 *Figure 1: The optimized lower bound on average hallucination probability, $$\bar{P}_{h}$$, as a function of the data density, model, and temperature parameter $$k = \frac{C \vert\mathcal{D}\vert}{N_V^{L_X-1} T}$$. The bound transitions from $$\approx 0.5$$ for small $$k$$ (sparse data/high temperature) towards $$0$$ for large $$k$$ (dense data/low temperature).*
 
-## Asymptotic Behavior of the Optimized Bound
-
-The behavior of this optimized bound in limiting cases of the parameter $$k$$ is particularly insightful:
+We can derive the behavior of this optimized bound in limiting cases of the parameter $$k$$:
 
 1.  **$$k \to 0$$ (Extreme Data Sparsity or High Temperature)**
     In this regime, data is very scarce relative to language complexity, or generation is very random. It can be shown that $$L^* \approx \sqrt{2k}$$, which approaches 0.
