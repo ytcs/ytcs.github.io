@@ -56,13 +56,13 @@ l_i(X, \theta) \approx \beta_S E(y_i \mid X) - \beta_C \mathcal{E}_X + c
 $$
 In this model:
 
--   $$E(y_i \mid X)$$ represents the accumulated support for token $$y_i$$ in the context $$X$$. It is calculated by summing a semantic similarity kernel, $$K(X, X_j)$$, over all training instances $$(X_j, y_{\text{target}})$$ from the corpus $$\mathcal{D}$$ where the target token $$y_{\text{target}}$$ was indeed $$y_i$$. The kernel $$K(X, X_j)$$ measures the relevance of a training context $$X_j$$ to the current context $$X$$, with $$0 \le K(X,X_j) \le 1$$. Formally:
+-   $$E(y_i \mid X)$$ represents the accumulated support for token $$y_i$$ in the context $$X$$, which we can also refer to as its "evidence density". It is calculated by summing a semantic similarity kernel, $$K(X, X_j)$$, over all training instances $$(X_j, y_{\text{target}})$$ from the corpus $$\mathcal{D}$$ where the target token $$y_{\text{target}}$$ was indeed $$y_i$$. The kernel $$K(X, X_j)$$ measures the relevance of a training context $$X_j$$ to the current context $$X$$, with $$0 \le K(X,X_j) \le 1$$. Formally:
     $$
     E(y_i \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_i} K(X, X_j)
     $$
-    Intuitively, the more 'support' (high-similarity training examples) the model has seen for $$y_i$$ following a context like $$X$$, the higher $$E(y_i \mid X)$$ will be. This quantity is bounded by $$0 \le E(y_i \mid X) \le N_{y_i}(\mathcal{D})$$, where $$N_{y_i}(\mathcal{D})$$ is the total count of token $$y_i$$ in the training corpus.
+    Intuitively, the more 'support' (high-similarity training examples) the model has seen for $$y_i$$ following a context like $$X$$, the higher its evidence density $$E(y_i \mid X)$$ will be. This quantity is bounded by $$0 \le E(y_i \mid X) \le N_{y_i}(\mathcal{D})$$, where $$N_{y_i}(\mathcal{D})$$ is the total count of token $$y_i$$ in the training corpus.
 
--   $$\mathcal{E}_X$$ represents the total support for *any* token in the context $$X$$. It is the sum of the individual supports $$E(y_k \mid X)$$ for all possible tokens $$y_k$$ in the vocabulary $$V$$:
+-   $$\mathcal{E}_X$$ represents the total support for *any* token in the context $$X$$. It is the sum of the individual evidence densities $$E(y_k \mid X)$$ for all possible tokens $$y_k$$ in the vocabulary $$V$$:
     $$
     \mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k \mid X)
     $$
