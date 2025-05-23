@@ -42,30 +42,38 @@ Our first step is to model how an LLM might arrive at its logits based on its tr
 
 Equivalently, this can be viewed as a sum over contributions from the training data, weighted by the NTK.
 Specifically, the logit $$l_i(X, \theta)$$ for a token $$y_i$$ given a context $$X$$, after training on a corpus $$\mathcal{D} = \{(X_j, y_{\text{target},j})\}_{j=1}^{\vert\mathcal{D}\vert}$$, can be expressed in a form like:
+
 $$
 l_i(X, \theta) \approx \sum_{(X_j, y_{\text{target},j}) \in \mathcal{D}} \alpha_{ij}(X_j, y_{\text{target},j}) \Theta(X, X_j; \theta_0) + b_i
 $$
+
 Here, $$\Theta(X, X_j; \theta_0)$$ is the Neural Tangent Kernel evaluated between the current context $$X$$ and a training context $$X_j$$ (computed with network parameters at initialization $$ \theta_0 $$).
 The terms $$\alpha_{ij}$$ are learned coefficients that depend on the specific training example (including the target token $$y_{\text{target},j}$$ and its relation to $$y_i$$), and $$b_i$$ is a bias term.
 
 This formulation suggests that logits are built by accumulating "support" from similar training instances.
 
 For simplicity and tractability in our analysis, we adopt a simplified model inspired by this NTK perspective. We propose that the logit $$l_i(X, \theta)$$ for a token $$y_i$$ given context $$X$$ is primarily determined by how much "support" in the corpus $$\mathcal{D}$$ favors $$y_i$$ in this context, versus the total support for any token. The logit is approximated as:
+
 $$
 l_i(X, \theta) \approx \beta_S E(y_i \mid X) - \beta_C \mathcal{E}_X + c
 $$
+
 In this model:
 
 -   $$E(y_i \mid X)$$ represents the accumulated support for token $$y_i$$ in the context $$X$$, which we can also refer to as its "evidence density". It is calculated by summing a semantic similarity kernel, $$K(X, X_j)$$, over all training instances $$(X_j, y_{\text{target}})$$ from the corpus $$\mathcal{D}$$ where the target token $$y_{\text{target}}$$ was indeed $$y_i$$. The kernel $$K(X, X_j)$$ measures the relevance of a training context $$X_j$$ to the current context $$X$$, with $$0 \le K(X,X_j) \le 1$$. Formally:
+
     $$
     E(y_i \mid X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_i} K(X, X_j)
     $$
+    
     Intuitively, the more 'support' (high-similarity training examples) the model has seen for $$y_i$$ following a context like $$X$$, the higher its evidence density $$E(y_i \mid X)$$ will be. This quantity is bounded by $$0 \le E(y_i \mid X) \le N_{y_i}(\mathcal{D})$$, where $$N_{y_i}(\mathcal{D})$$ is the total count of token $$y_i$$ in the training corpus.
 
 -   $$\mathcal{E}_X$$ represents the total support for *any* token in the context $$X$$. It is the sum of the individual evidence densities $$E(y_k \mid X)$$ for all possible tokens $$y_k$$ in the vocabulary $$V$$:
+
     $$
     \mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k \mid X)
     $$
+
     This can also be expressed as a sum of kernel similarities over all training examples whose contexts $$X_j$$ are relevant to the current context $$X$$, regardless of the target token: $$\mathcal{E}_X = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D}} K(X, X_j)$$. Consequently, $$0 \le \mathcal{E}_X \le \vert\mathcal{D}\vert$$, the total size of the training corpus.
 
 -   $$\beta_S > 0$$ and $$\beta_C \ge 0$$ are parameters that scale the influence of these respective support terms, and $$c$$ is a constant bias term.
