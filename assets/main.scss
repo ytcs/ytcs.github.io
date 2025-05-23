@@ -7,15 +7,17 @@
 
 /* CSS Variables for minimal theming */
 :root {
-  --primary-color: #1a1a1a;
+  --primary-color: #2d2d2d;
   --secondary-color: #666666;
-  --accent-color: #2563eb;
+  --accent-color: #5a7fa5;
+  --accent-warm: #b8860b;
   --text-color: #333333;
   --text-muted: #888888;
-  --background-color: #ffffff;
-  --background-subtle: #fafafa;
-  --border-color: #e5e5e5;
-  --border-light: #f0f0f0;
+  --background-color: #fdfcf8;
+  --background-subtle: #f6f4ee;
+  --background-warm: #f9f7f1;
+  --border-color: #e8e6e0;
+  --border-light: #ede9e0;
   --transition: all 0.2s ease;
 }
 
@@ -44,7 +46,7 @@ body {
 }
 
 .page-content {
-  padding: 2rem 0;
+  padding: 1rem 0;
   min-height: calc(100vh - 200px);
 }
 
@@ -92,10 +94,10 @@ a:hover {
 
 /* Header */
 .site-header {
-  background-color: var(--background-color);
+  background-color: var(--background-warm);
   border-bottom: 1px solid var(--border-light);
-  padding: 1.5rem 0;
-  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+  margin-bottom: 0;
 }
 
 .site-header .wrapper {
@@ -137,11 +139,11 @@ a:hover {
 .post-list {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0;
+  margin: 0;
 }
 
 .post-list > li {
-  padding: 0.8rem 0;
+  padding: 0.4rem 0;
   border-bottom: 1px solid var(--border-light);
   transition: var(--transition);
   display: flex;
@@ -154,16 +156,18 @@ a:hover {
 }
 
 .post-list > li:hover {
-  background-color: var(--background-subtle);
+  background-color: var(--background-warm);
   margin: 0 -16px;
   padding-left: 16px;
   padding-right: 16px;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
 }
 
 .post-meta {
-  color: var(--text-muted);
+  color: var(--accent-warm);
   font-size: 0.8rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.25px;
   white-space: nowrap;
   flex-shrink: 0;
@@ -282,15 +286,16 @@ code, pre {
 }
 
 code {
-  background: var(--background-subtle);
+  background: var(--background-warm);
   color: var(--secondary-color);
   padding: 0.15em 0.3em;
   border-radius: 3px;
   font-size: 0.85em;
+  border: 1px solid var(--border-light);
 }
 
 pre {
-  background: var(--background-subtle);
+  background: var(--background-warm);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 1.2rem;
@@ -326,6 +331,7 @@ blockquote {
 
 /* Footer */
 .site-footer {
+  background: var(--background-subtle);
   border-top: 1px solid var(--border-light);
   padding: 3rem 0 2rem;
   margin-top: 4rem;
@@ -365,12 +371,7 @@ blockquote {
 
 /* Welcome message */
 .home p {
-  font-size: 1.1rem;
-  color: var(--secondary-color);
-  text-align: center;
-  margin: 1rem 0 1.5rem;
-  font-style: italic;
-  line-height: 1.6;
+  display: none;
 }
 
 /* Responsive design */
@@ -380,18 +381,20 @@ blockquote {
   }
   
   .page-content {
-    padding: 1.5rem 0;
+    padding: 0.8rem 0;
   }
   
   .post-list > li:hover {
     margin: 0 -12px;
     padding-left: 12px;
     padding-right: 12px;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
   }
 
   .post-list > li {
     gap: 0.8rem;
-    padding: 0.7rem 0;
+    padding: 0.3rem 0;
   }
 
   .post-meta {
