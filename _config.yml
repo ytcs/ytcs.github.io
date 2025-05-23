@@ -1,7 +1,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
-title: To Chin Yu | Physicist
+title: To Chin Yu
 description: Personal site of To Chin Yu
 url: "https://ytcs.github.io"
 baseurl: ""
@@ -34,11 +34,6 @@ exclude:
 author:
   name: To Chin Yu
   email: public@tochinyu.com
-
-header:
-  pages:
-    - name: Blog
-      slug: /
 
 footer:
   show_powered_by: false

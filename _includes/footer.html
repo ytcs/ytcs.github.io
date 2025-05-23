@@ -1,49 +1,9 @@
 <footer class="site-footer h-card">
-  <data class="u-url" href="{{ "/" | relative_url }}"></data>
-
   <div class="wrapper">
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
-
     <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-              {{ site.author.name | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-          </li>
-          {%- if site.footer.contact -%}
-            {%- for contact in site.footer.contact -%}
-              <li>
-                {%- if contact.link -%}
-                  <a class="u-email" href="{{ contact.link }}">{{ contact.value }}</a>
-                {%- else -%}
-                  {{ contact.value }}
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          {%- endif -%}
-        </ul>
-      </div>
-
       <div class="footer-col footer-col-2">
         {%- include social.html -%}
       </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{ site.description | escape }}</p>
-      </div>
     </div>
-
-    {%- unless site.footer.show_powered_by == false -%}
-      <div class="footer-powered-by">
-        <p>
-          Powered by <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a> 
-          &amp; <a href="https://github.com/jekyll/minima" rel="nofollow">Minima</a>
-        </p>
-      </div>
-    {%- endunless -%}
   </div>
 </footer> 
