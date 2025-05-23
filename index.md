@@ -2,4 +2,4 @@
 layout: default
 ---
 
-Welcome to my blog where I explore physics, mathematics, and finance. Co-written by LLM. 
+I post irregularly on physics, maths, finance. Co-written by LLM.
