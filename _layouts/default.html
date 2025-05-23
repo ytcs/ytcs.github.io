@@ -30,7 +30,7 @@
               <span style="font-size: 0.9em; font-weight: bold;">Filter by category:</span>
               <a href="javascript:void(0);" class="category-link active" onclick="filterPosts('all')" style="font-size: 0.8em; margin-left: 5px;">All</a>
               {%- for category in categories -%}
-                <a href="javascript:void(0);" class="category-link" onclick="filterPosts('{{ category | slugify }}')" style="font-size: 0.8em; margin-left: 5px;">{{ category }}</a>
+                <a href="javascript:void(0);" class="category-link" onclick='filterPosts("{{ category | join: "" | slugify | escape }}")' style="font-size: 0.8em; margin-left: 5px;">{{ category | join: "" | escape }}</a>
               {%- endfor -%}
             </div>
             {%- endif -%}
@@ -41,7 +41,7 @@
                 {% for post in site.posts %}
                   {%- assign post_categories_slugified = "" | split: "," -%}
                   {%- for category in post.categories -%}
-                    {%- assign post_categories_slugified = post_categories_slugified | push: (category | slugify) -%}
+                    {%- assign post_categories_slugified = post_categories_slugified | push: (category | join: "" | slugify) -%}
                   {%- endfor -%}
                   <li data-categories="{{ post_categories_slugified | join: ' ' }}">
                     <span class="post-meta">{{ post.date | date: date_format }}</span>
