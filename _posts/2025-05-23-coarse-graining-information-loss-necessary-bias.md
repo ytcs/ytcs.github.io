@@ -192,7 +192,7 @@ Rearranging this equation to solve for \((B^*(f))^2\) yields:
 This completes the proof.
 
 **Proposition 3.2 (Necessary Bias under Random Coarse-Graining):**
-Let \(p(x)\) be the uniform distribution over \(\mathcal{X}\) (\(\lvert\mathcal{X}\rvert=N\)). Let \(q_{\text{correct}}(x)\) be a function on \(\mathcal{X}\) representing the true value, with finite total variance \(\operatorname{Var}(q_{\text{correct}}(X)) = \sigma^2 > 0\). Consider the set \(\mathcal{F}_{N,M}\) of all surjective maps \(f: \mathcal{X} \to \mathcal{K}\) (\(\lvert\mathcal{K}\rvert=M\), \(M \le N\)). If a map \(f\) is chosen uniformly at random from \(\mathcal{F}_{N,M}\), then in the asymptotic limit \(N \to \infty\) with \(M\) fixed, the inherent bias converges in probability to the total standard deviation of \(q_{\text{correct}\):
+Let \(p(x)\) be the uniform distribution over \(\mathcal{X}\) (\(\lvert\mathcal{X}\rvert=N\)). Let \(q_{\text{correct}}(x)\) be a function on \(\mathcal{X}\) representing the true value, with finite total variance \(\operatorname{Var}(q_{\text{correct}}(X)) = \sigma^2 > 0\). Consider the set \(\mathcal{F}_{N,M}\) of all surjective maps \(f: \mathcal{X} \to \mathcal{K}\) (\(\lvert\mathcal{K}\rvert=M\), \(M \le N\)). If a map \(f\) is chosen uniformly at random from \(\mathcal{F}_{N,M}\), then in the asymptotic limit \(N \to \infty\) with \(M\) fixed, the inherent bias converges in probability to the total standard deviation of \(q_{\text{correct}}\):
 \[ B^*(f) \xrightarrow{P} \sigma = \sqrt{\operatorname{Var}(q_{\text{correct}}(X))} \]
 
 **Proof of Proposition 3.2:**
