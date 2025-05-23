@@ -12,18 +12,18 @@ Understanding why Large Language Models (LLMs) sometimes 'hallucinate'—generat
 
 We begin by defining the essential components and notation used throughout this derivation.
 
-An LLM with parameters $$\theta$$ models a conditional probability distribution $$P(Y | X, \theta)$$, where $$X = (x_1, \ldots, x_{L_X-1})$$ is the input context of length $$L_X$$, and $$Y$$ is the next token. The model outputs logits $$\mathbf{l}(X, \theta) = (l_1, \ldots, l_{N_V})$$, where $$l_i$$ is the logit for the $$i$$-th token in a vocabulary $$V$$ of size $$N_V$$.
+An LLM with parameters $$\theta$$ models a conditional probability distribution $$P(Y|X, \theta)$$, where $$X = (x_1, \ldots, x_{L_X-1})$$ is the input context of length $$L_X$$, and $$Y$$ is the next token. The model outputs logits $$\mathbf{l}(X, \theta) = (l_1, \ldots, l_{N_V})$$, where $$l_i$$ is the logit for the $$i$$-th token in a vocabulary $$V$$ of size $$N_V$$.
 
 The probability of generating a specific token $$y_i$$ given context $$X$$ is given by the softmax function applied to the logits:
 
 $$
-P(y_i | X, \theta) = \frac{\exp(l_i)}{\sum_{j=1}^{N_V} \exp(l_j)}
+P(y_i|X, \theta) = \frac{\exp(l_i)}{\sum_{j=1}^{N_V} \exp(l_j)}
 $$
 
 When generating text with a temperature parameter $$T > 0$$, this probability is adjusted:
 
 $$
-P_T(y_i | X, \theta) = \frac{\exp(l_i/T)}{\sum_{j=1}^{N_V} \exp(l_j/T)}
+P_T(y_i|X, \theta) = \frac{\exp(l_i/T)}{\sum_{j=1}^{N_V} \exp(l_j/T)}
 $$
 
 A lower temperature ($$T \to 0$$) makes the distribution sharper (more deterministic), while a higher temperature ($$T \to \infty$$) makes it flatter (more random).
@@ -31,7 +31,7 @@ A lower temperature ($$T \to 0$$) makes the distribution sharper (more determini
 For a given context $$X$$, let $$y^*(X)$$ denote the "correct" or desired next token (e.g., in factual recall tasks where the answer is unambiguous). The hallucination probability is then the probability of *not* generating this correct token:
 
 $$
-P_{\text{h}}(X, \theta, T) = 1 - P_T(y^*(X) | X, \theta)
+P_{\text{h}}(X, \theta, T) = 1 - P_T(y^*(X)|X, \theta)
 $$
 
 Our goal is to understand how $$\bar{P}_{\text{h}}$$, the average hallucination probability over all contexts, behaves.
@@ -40,35 +40,35 @@ Our goal is to understand how $$\bar{P}_{\text{h}}$$, the average hallucination 
 
 Our first step is to model how an LLM might arrive at its logits based on its training data. Intuitively, the more 'evidence' a model has seen in its training data for a particular token to follow a given context, the higher its logit for that token should be.
 
-**1. Evidence Density ($$E(y_k | X)$$):**
+**1. Evidence Density ($$E(y_k|X)$$):**
 For a context $$X$$ and a potential next token $$y_k \in V$$, its evidence density from the training corpus $$\mathcal{D}$$ is defined as the sum of semantic similarities between $$X$$ and all contexts $$X_j$$ in $$\mathcal{D}$$ where $$y_k$$ was the target token:
 
 $$
-E(y_k | X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_k} K(X, X_j)
+E(y_k|X) = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D} \text{ s.t. } y_{\text{target}} = y_k} K(X, X_j)
 $$
 
 Here, $$K(X, X_j)$$ is a semantic similarity kernel, with $$0 \le K(X,X_j) \le 1$$. It measures how relevant a training example $$(X_j, y_k)$$ is to the current context $$X$$.
 
 It's worth noting some basic properties of these evidence densities:
-- $$0 \le E(y_k | X) \le N_{y_k}(\mathcal{D})$$, where $$N_{y_k}(\mathcal{D})$$ is the total count of token $$y_k$$ in the training corpus $$\mathcal{D}$$. This is because the kernel $$K(X,X_j)$$ is between 0 and 1.
-- The total evidence density for a given context $$X$$ across all possible next tokens is $$\mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k | X)$$. This sum can be rewritten as $$\mathcal{E}_X = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D}} K(X, X_j)$$, so $$0 \le \mathcal{E}_X \le |\mathcal{D}|$$, the total size of the corpus.
+- $$0 \le E(y_k|X) \le N_{y_k}(\mathcal{D})$$, where $$N_{y_k}(\mathcal{D})$$ is the total count of token $$y_k$$ in the training corpus $$\mathcal{D}$$. This is because the kernel $$K(X,X_j)$$ is between 0 and 1.
+- The total evidence density for a given context $$X$$ across all possible next tokens is $$\mathcal{E}_X = \sum_{k=1}^{N_V} E(y_k|X)$$. This sum can be rewritten as $$\mathcal{E}_X = \sum_{(X_j, y_{\text{target}}) \in \mathcal{D}} K(X, X_j)$$, so $$0 \le \mathcal{E}_X \le |\mathcal{D}|$$, the total size of the corpus.
 
 **2. Simplified Logit Model:**
 We adopt a simplified model where the logit $$l_i(X, \theta)$$ for token $$y_i$$ is approximated by a linear function of these evidence densities:
 
 $$
-l_i(X, \theta) \approx \beta_S E(y_i | X) - \beta_C \mathcal{E}_X + c
+l_i(X, \theta) \approx \beta_S E(y_i|X) - \beta_C \mathcal{E}_X + c
 $$
 
 This simplified model has a few key assumptions:
-- Each token $$y_i$$ gains logit strength proportional to its own evidence $$E(y_i | X)$$ (scaled by $$\beta_S$$).
+- Each token $$y_i$$ gains logit strength proportional to its own evidence $$E(y_i|X)$$ (scaled by $$\beta_S$$).
 - It loses logit strength proportional to the *total* evidence $$\mathcal{E}_X$$ for *all* tokens in that context (scaled by $$\beta_C$$). This introduces a competitive dynamic: the more evidence there is for other tokens, the harder it is for $$y_i$$ to stand out.
 - The parameters $$\beta_S > 0$$ (self-evidence boost) and $$\beta_C \ge 0$$ (cross-evidence competition factor) and the bias $$c$$ are constants for the model.
 Essentially, a token's logit is determined by its own specific evidence, penalized by a measure of the 'background' evidence for all tokens in that context. This form is inspired by more general Neural Tangent Kernel (NTK) approaches but is simplified for tractability.
 
 ## Condition for Bounded Hallucination
 
-Now, let's consider what it takes for the hallucination probability $$P_{\text{hall}}(X, \theta, T)$$ for a *specific* context $$X$$ to be below a chosen threshold $$\epsilon_0 \in (0,1)$$. If $$P_{\text{hall}}(X, \theta, T) \le \epsilon_0$$, then the probability of generating the correct token $$y^*(X)$$ must be $$P_T(y^*(X) | X, \theta) \ge 1 - \epsilon_0$$.
+Now, let's consider what it takes for the hallucination probability $$P_{\text{hall}}(X, \theta, T)$$ for a *specific* context $$X$$ to be below a chosen threshold $$\epsilon_0 \in (0,1)$$. If $$P_{\text{hall}}(X, \theta, T) \le \epsilon_0$$, then the probability of generating the correct token $$y^*(X)$$ must be $$P_T(y^*(X)|X, \theta) \ge 1 - \epsilon_0$$.
 
 This implies that the logit of the correct token $$l_{y^*}$$ must be sufficiently larger than the logit of any other token $$l_{y_{\text{alt}}}$$. For the highest-logit alternative token $$y_{\text{alt}}$$, and assuming a large vocabulary $$N_V$$, this condition can be shown to require:
 
@@ -79,11 +79,11 @@ $$
 Substituting our simplified logit model into this inequality, we get a condition on the difference in evidence densities:
 
 $$
-E(y^*(X) | X) - E(y_{\text{alt}} | X) \ge \frac{T \log\left(\frac{1 - \epsilon_0}{\epsilon_0}\right)}{\beta_S}
+E(y^*(X)|X) - E(y_{\text{alt}}|X) \ge \frac{T \log\left(\frac{1 - \epsilon_0}{\epsilon_0}\right)}{\beta_S}
 $$
 
 Let's define the right-hand side as $$M'(\epsilon_0, T) = \frac{T \log\left(\frac{1 - \epsilon_0}{\epsilon_0}\right)}{\beta_S}$$. This term $$M'$$ represents the minimum evidence advantage the correct token must have over its strongest competitor.
-If $$E(y^*(X) | X) - E(y_{\text{alt}} | X) < M'(\epsilon_0, T)$$, then $$P_{\text{h}}(X, \theta, T) > \epsilon_0$$.
+If $$E(y^*(X)|X) - E(y_{\text{alt}}|X) < M'(\epsilon_0, T)$$, then $$P_{\text{h}}(X, \theta, T) > \epsilon_0$$.
 
 In simpler terms, for the model to avoid hallucinating (with probability at least $$1-\epsilon_0$$) in a given instance, the 'evidence signal' for the correct token $$y^*$$ must exceed the evidence for the strongest competitor $$y_{\text{alt}}$$ by this margin $$M'$$. This margin depends on our desired confidence (related to $$\epsilon_0$$) and the generation temperature $$T$$. A higher temperature or a stricter (smaller) $$\epsilon_0$$ demands a larger evidence gap.
 
