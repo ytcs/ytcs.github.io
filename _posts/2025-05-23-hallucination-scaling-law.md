@@ -38,11 +38,7 @@ Our goal is to understand how $$\bar{P}_{h}$$, the average hallucination probabi
 
 ## Modeling Logits from Corpus Evidence
 
-Our first step is to model how an LLM might arrive at its logits based on its training data.
-
-One way to approach this is by considering the behavior of very wide neural networks, a regime often studied through the Neural Tangent Kernel (NTK).
-
-In the NTK limit, particularly for networks trained with gradient descent, the output of the network (e.g., a logit for a specific token) can be approximated as a linear function of the initial parameters.
+Our first step is to model how an LLM might arrive at its logits based on its training data. One way to approach this is by considering the behavior of very wide neural networks, a regime often studied through the Neural Tangent Kernel (NTK). In the NTK limit, particularly for networks trained with gradient descent, the output of the network (e.g., a logit for a specific token) can be approximated as a linear function of the initial parameters.
 
 Equivalently, this can be viewed as a sum over contributions from the training data, weighted by the NTK.
 Specifically, the logit $$l_i(X, \theta)$$ for a token $$y_i$$ given a context $$X$$, after training on a corpus $$\mathcal{D} = \{(X_j, y_{\text{target},j})\}_{j=1}^{\vert\mathcal{D}\vert}$$, can be expressed in a form like:
