@@ -45,8 +45,10 @@ Given a microstate distribution \\(p(x)\\) and a deterministic map \\(f\\):
     *If \\(p(x)=1/N\\) (uniform microstates), then \\(p(k) = W_k/N\\). For \\(x \\in \\Omega_k\\), \\(p(x \\mid k) = (1/N) / (W_k/N) = 1/W_k\\). This is the uniform distribution over the microstates within the partition cell \\(\\Omega_k\\).*
 2.  **Conditional Entropy (Specific):** \\(H(X \\mid K=k) := - \\sum_{x \\in \\Omega_k} p(x \\mid k) \\log_2 p(x \\mid k)\\).
     *If \\(p(x)=1/N\\), then \\(H(X \\mid K=k) = - \\sum_{x \\in \\Omega_k} (1/W_k) \\log_2 (1/W_k) = \\log_2 W_k\\).*
-3.  **Average Conditional Entropy (Information Loss):** \\(H(X \\mid K) := \\sum_{k \\in \\mathcal{K}} p(k) H(X \\mid K=k) = \\mathbb{E}_{K} [H(X \\mid K=k)]\\). This quantity represents the average information lost about the microstate \\(X\\) when only the macrostate \\(K\\) is known.
-    *If \\(p(x)=1/N\\), then \\(H(X \\mid K) = \\sum_{k \\in \\mathcal{K}} (W_k/N) \\log_2 W_k = \\mathbb{E}_{K}[\\log_2 W_K]\\).*
+3.  {::nomarkdown}
+    **Average Conditional Entropy (Information Loss):** \\(H(X \\mid K) := \\sum_{k \\in \\mathcal{K}} p(k) H(X \\mid K=k) = \\mathbb{E}_{K} [H(X \\mid K=k)]\\). This quantity represents the average information lost about the microstate \\(X\\) when only the macrostate \\(K\\) is known.
+    *If \\(p(x)=1/N\\), then \\(H(X \\mid K) = \\sum_{k \\in \\mathcal{K}} (W_k/N) \\log_2 W_k = \\mathbb{E}_{K}[\\log_2 W_K]\).*    
+    {:/nomarkdown}
 
 **Proposition 1.1 (Chain Rule):**
 The total microstate entropy can be decomposed as:
