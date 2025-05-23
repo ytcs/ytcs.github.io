@@ -21,6 +21,7 @@ Let \\(X\\) be a random variable representing the microstate, taking values \\(x
 \\[ H(X) := - \\sum_{x \\in \\mathcal{X}} p(x) \\log_2 p(x) \\]
 In the common case where microstates are assumed to be uniformly distributed (e.g., for lack of information suggesting otherwise, or to explore typical behavior), \\(p(x) = 1/N\\) for all \\(x \\in \\mathcal{X}\\). In this scenario, the microstate entropy simplifies to:
 \\[ H(X) = - \\sum_{x \\in \\mathcal{X}} \\frac{1}{N} \\log_2 \\left(\\frac{1}{N}\\right) = N \\left( -\\frac{1}{N} \\log_2 \\frac{1}{N} \\right) = \\log_2 N \\]
+
 *Example (Coin Flips): For \\(n=100\\) fair coin flips, there are \\(N=2^{100}\\) possible sequences (microstates). If each sequence is equally likely, \\(H(X) = \\log_2(2^{100}) = 100\\) bits.*
 
 **Definition 1.2 (Coarse-Graining Map):**
@@ -145,6 +146,7 @@ The minimum achievable RMSE for map \\(f\\), obtained using \\(\\mathcal{J}^*\\)
 **Lemma 3.1 (Inherent Bias and Conditional Variance):**
 The square of the inherent bias for a map \\(f\\) is the expected conditional variance of the normative judgment given the macrostate:
 \\[ (B^*(f))^2 = \\mathbb{E}_K [ \\operatorname{Var}(q_{correct}(X) \\mid K=k) ] \\]
+
 **Proof of Lemma 3.1:**
 By definition of conditional variance:
 \\[
@@ -190,6 +192,7 @@ This completes the proof.
 **Proposition 3.2 (Necessary Bias under Random Coarse-Graining):**
 Let \\(p(x)\\) be the uniform distribution over \\(\\mathcal{X}\\) (\\(\\lvert\\mathcal{X}\\rvert=N\\)). Let \\(q_{correct}(x)\\) be a function on \\(\\mathcal{X}\\) representing the true value, with finite total variance \\(\\operatorname{Var}(q_{correct}(X)) = \\sigma^2 > 0\\). Consider the set \\(\\mathcal{F}_{N,M}\\) of all surjective maps \\(f: \\mathcal{X} \\to \\mathcal{K}\\) (\\(\\lvert\\mathcal{K}\\rvert=M\\), \\(M \\le N\\)). If a map \\(f\\) is chosen uniformly at random from \\(\\mathcal{F}_{N,M}\\), then in the asymptotic limit \\(N \\to \\infty\\) with \\(M\\) fixed, the inherent bias converges in probability to the total standard deviation of \\(q_{correct}\\):
 \\[ B^*(f) \\xrightarrow{P} \\sigma = \\sqrt{\\operatorname{Var}(q_{correct}(X))} \\]
+
 **Proof of Proposition 3.2:**
 From Proposition 3.1, we have the relationship:
 \\(\\sigma^2 = (B^*(f))^2 + \\sigma^2_{between}(f)\\),
@@ -235,5 +238,3 @@ Significant bias is therefore a necessary consequence for typical simplification
 Coarse-graining is an essential process for dealing with complexity, but it carries an inherent cost in terms of information loss. When the microstate space is significantly larger than the macrostate space (\\(N \\gg M\\)) and the mapping is typical (random-like), this information loss \\(H(X \\mid K)\\) is substantial, concentrating around \\(\\log_2(N/M)\\) under uniform microstate assumptions.
 
 This lost information directly translates into a fundamental limit on the accuracy of judgments based on the simplified macrostates. The inherent bias \\(B^*(f)\\), representing the minimum achievable RMSE, converges to the total standard deviation \\(\\sigma\\) of the quantity being judged for such typical maps. This means that a certain level of bias is not merely a product of suboptimal heuristics but a necessary consequence of the information destroyed by the simplification process itself when the underlying reality has inherent variability and the coarse-graining map does not specifically preserve the relevant distinctions.
-
-Understanding these information-theoretic limits is crucial for evaluating the potential accuracy of any cognitive system or model that relies on simplified representations of complex phenomena.
