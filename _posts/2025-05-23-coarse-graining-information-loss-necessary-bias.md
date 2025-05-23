@@ -7,7 +7,7 @@ categories: information-theory
 
 The process of simplifying complex information, known as **coarse-graining**, is fundamental to both cognitive systems and the modeling of complex physical or computational systems. This involves mapping a large set of detailed **microstates** \(X\) to a smaller, more manageable set of **macrostates** \(K\). While essential for tractability, this simplification inevitably leads to information loss. This post explores the information-theoretic underpinnings of this loss and its direct consequences on the minimum achievable error, or **inherent bias**, when making judgments based on these simplified macrostate representations.
 
-We will focus on the behavior of coarse-graining under general conditions, particularly when the mapping from microstates to macrostates lacks specific structure, akin to a random map. The discussion will adhere to the uniform microstate distribution assumption for key results concerning information loss and bias. The primary example used for illustration will be the coarse-graining of sequences of coin flips (microstates) to the count of heads (a macrostate).
+We will focus on the behavior of coarse-graining under general conditions, particularly when the mapping from microstates to macrostates lacks specific structure, akin to a random map. For many of the key results concerning information loss with random maps and the subsequent inherent bias, a uniform distribution over microstates will be assumed, providing a baseline for understanding typical outcomes. The primary example used for illustration will be the coarse-graining of sequences of coin flips (microstates) to the count of heads (a macrostate).
 
 ## 1. Information-Theoretic Framework
 
@@ -44,7 +44,7 @@ Given a microstate distribution \(p(x)\) and a deterministic map \(f\):
 1.  **Conditional Distribution:** For \(p(k) > 0\), the conditional probability of microstate \(x\) given macrostate \(k\) is \(p(x \mid k) := p(X=x \mid K=k)\). If \(x \notin \Omega_k\), then \(p(x \mid k)=0\). If \(x \in \Omega_k\), then \(p(x \mid k) = p(x)/p(k)\).
     *If \(p(x)=1/N\) (uniform microstates), then \(p(k) = W_k/N\). For \(x \in \Omega_k\), \(p(x \mid k) = (1/N) / (W_k/N) = 1/W_k\). This is the uniform distribution over the microstates within the partition cell \(\Omega_k\).*
 2.  **Conditional Entropy (Specific):** \(H(X \mid K=k) := - \sum_{x \in \Omega_k} p(x \mid k) \log_2 p(x \mid k)\).
-    *If \(p(x)=1/N\), then \(H(X \mid K=k) = - \sum_{x \in \Omega_k} (1/W_k) \log_2 (1/W_k) = \log_2 W_k\).*
+    *If \(p(x)=1/N\), then \(H(X \mid K=k) = - \sum_{x \in \Omega_k} (1/W_k) \log_2 (1/W_k) = \log_2 W_k\). Note that for a specific coarse-graining map \(f\), the multiplicities \(W_k\) are determined by \(f\), and thus this expected value is also specific to \(f\). The formula represents the information loss for that particular map under uniform microstates.*
 3.  **Average Conditional Entropy (Information Loss):** \(H(X \mid K) := \sum_{k \in \mathcal{K}} p(k) H(X \mid K=k) = \mathbb{E}_{K} [H(X \mid K=k)]\). This quantity represents the average information lost about the microstate \(X\) when only the macrostate \(K\) is known.
     *If \(p(x)=1/N\), then \(H(X \mid K) = \sum_{k \in \mathcal{K}} (W_k/N) \log_2 W_k = \mathbb{E}_{K}[\log_2 W_K]\).*
 
@@ -53,11 +53,11 @@ The total microstate entropy can be decomposed as:
 \[ H(X) = H(K) + H(X \mid K) \]
 This means: Total Information = Retained Information (in macrostate) + Lost Information.
 
-## 2. Information Loss for Random Maps (Uniform Microstates)
+## 2. Information Loss for Random Maps
 
-To understand the typical consequences of coarse-graining, especially when \(N \gg M\) and the map \(f\) is not specifically engineered to preserve certain information, we consider maps chosen randomly. The following proposition (Prop. 4.4 from the reference paper) details the behavior under a uniform microstate distribution \(p(x)=1/N\).
+To understand the typical consequences of coarse-graining, especially when \(N \gg M\) and the map \(f\) is not specifically engineered to preserve certain information, we consider maps chosen randomly. The following proposition details the behavior under a uniform microstate distribution \(p(x)=1/N\).
 
-**Proposition 2.1 (Information Loss for Random Maps - Uniform Microstates):**
+**Proposition 2.1 (Information Loss for Random Maps):**
 Let \(p(x)\) be the uniform distribution over \(\mathcal{X}\) (\(\lvert\mathcal{X}\rvert=N\)), so \(H(X) = \log_2 N\). Let \(\mathcal{F}_{N,M}\) be the set of all surjective deterministic maps \(f: \mathcal{X} \to \mathcal{K}\) (\(\lvert\mathcal{K}\rvert=M\), \(M \le N\)). If a map \(f\) is chosen uniformly at random from \(\mathcal{F}_{N,M}\), let \(K=f(X)\) and \(p_f(k)\) be the resulting macrostate distribution. Let \(W_k = \lvert f^{-1}(k) \rvert\). Then:
 1.  The expected macrostate distribution is uniform: \(\mathbb{E}_{f}[p_f(k)] = 1/M\) for all \(k \in \mathcal{K}\).
 2.  The expected retained information is bounded: \(\mathbb{E}_{f}[H(K)] \le \log_2 M\).
@@ -260,3 +260,5 @@ If, instead, the macrostates were "Score \(\ge 90\)", "Score \(50-89\)", "Score 
 Coarse-graining is an essential process for dealing with complexity, but it carries an inherent cost in terms of information loss. When the microstate space is significantly larger than the macrostate space (\(N \gg M\)) and the mapping is typical (random-like), this information loss \(H(X \mid K)\) is substantial, concentrating around \(\log_2(N/M)\) under uniform microstate assumptions.
 
 This lost information directly translates into a fundamental limit on the accuracy of judgments based on the simplified macrostates. The inherent bias \(B^*(f)\), representing the minimum achievable RMSE, converges to the total standard deviation \(\sigma\) of the quantity being judged for such typical maps. This means that a certain level of bias is not merely a product of suboptimal heuristics but a necessary consequence of the information destroyed by the simplification process itself when the underlying reality has inherent variability and the coarse-graining map does not specifically preserve the relevant distinctions.
+
+*(This post is generated by LLM)*
