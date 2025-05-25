@@ -605,10 +605,6 @@ Neural network circuits represent a powerful conceptual framework for understand
 
 5. **Visualization Tools:** Effective circuit understanding requires sophisticated visualization and analysis tools for exploring complex computational relationships.
 
-In **[Part 8]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %})**, we'll focus specifically on transformer circuits and attention mechanisms, exploring how the mathematical framework developed in Part 3 enables systematic analysis of these powerful sequence models. We'll examine attention head decomposition, composition mechanisms, and the information flow patterns that enable sophisticated language understanding.
-
-**[Part 9]({% post_url 2025-05-25-mechanistic-interpretability-part-9 %})** will delve into induction heads and in-context learning, revealing how specific circuit motifs enable transformers to learn new tasks from just a few examples—one of the most remarkable capabilities of modern language models.
-
 ---
 
 ## References and Further Reading

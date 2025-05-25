@@ -661,10 +661,6 @@ The next part will explore circuit-level analysis, building on our understanding
 
 ---
 
-*Next: [Part 7 - Circuit Analysis and Computational Graphs]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})*
-
----
-
 ## References and Further Reading
 
 This article synthesizes insights from the broader interpretability research program:

@@ -690,10 +690,6 @@ These validation methodologies are essential for establishing the reliability of
 
 ---
 
-*Next: [Part 6 - Polysemanticity and Monosemanticity]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})*
-
----
-
 ## References and Further Reading
 
 This article builds on the rigorous validation methodologies established in the Circuits Thread research:

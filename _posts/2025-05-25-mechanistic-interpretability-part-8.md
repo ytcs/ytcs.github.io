@@ -638,8 +638,6 @@ Transformer circuits represent one of the most successful applications of mechan
 
 6. **Validation Framework:** Rigorous circuit analysis requires multiple validation approaches including causal intervention, synthetic stimulus testing, and cross-model validation.
 
-In **[Part 9]({% post_url 2025-05-25-mechanistic-interpretability-part-9 %})**, we'll focus specifically on one of the most important transformer circuit motifs: **induction heads and in-context learning**. These specialized circuits enable transformers to learn new tasks from just a few examples—one of the most remarkable capabilities of modern language models and a key mechanism underlying their few-shot learning abilities.
-
 ---
 
 ## References and Further Reading

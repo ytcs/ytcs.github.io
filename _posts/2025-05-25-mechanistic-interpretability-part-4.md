@@ -453,10 +453,6 @@ While challenges remain in scaling, evaluation, and theoretical understanding, d
 
 ---
 
-*Next: [Part 5 - Feature Validation Methodologies]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})*
-
----
-
 ## References and Further Reading
 
 This article draws from the breakthrough work on dictionary learning for neural network interpretability:
