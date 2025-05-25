@@ -146,8 +146,8 @@ The decomposition of attention into query-key (QK) and output-value (OV) circuit
 - The attention score between positions $$i$$ and $$j$$ is $$\mathbf{x}_i^T \mathbf{W}_{QK} \mathbf{x}_j$$
 - $$\mathbf{W}_{QK}$$ can be analyzed through eigendecomposition to understand attention patterns
 
-![Attention Head Decomposition](https://transformer-circuits.pub/2021/framework/index.html#splitting-attention-head-terms-into-circuits)
-*Decomposition of attention heads into QK and OV circuits, separating "where to attend" from "what information to move". Source: [Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/)*
+![Attention Head Decomposition](/assets/img/mech_interp_QK_OV.png)
+*Decomposition of attention heads into QK and OV circuits, separating "where to attend" from "what information to move". Source: [Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html#splitting-attention-head-terms-into-circuits)*
 
 **OV Circuit:** $$\mathbf{W}_{OV} = \mathbf{W}_O \mathbf{W}_V$$ determines what information is moved and how it is transformed.
 
@@ -190,8 +190,8 @@ $$\text{Logits} = \sum_{P \in \mathcal{P}} \text{Logits}_P$$
 
 where $$\mathcal{P}$$ is the set of all valid paths through the model.
 
-![Path Expansion](https://transformer-circuits.pub/2021/framework/index.html#path-expansion-of-logits)
-*Path expansion through transformer layers: information flows through multiple possible routes from input to output. Source: [Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/)*
+![Path Expansion](/assets/img/mech_interp_logit_path.png)
+*Path expansion through transformer layers: information flows through multiple possible routes from input to output. Source: [Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/index.html#path-expansion-of-logits)*
 
 ### Attention-Only Path Analysis
 
@@ -249,9 +249,6 @@ $$\mathbf{k}_j^{(h_2)} = (\mathbf{x}_j + \mathbf{A}^{(h_1)}_{j,:} \mathbf{x} \ma
 
 $$\mathbf{v}_j^{(h_2)} = (\mathbf{x}_j + \mathbf{A}^{(h_1)}_{j,:} \mathbf{x} \mathbf{W}_{OV}^{(h_1)}) \mathbf{W}_V^{(h_2)}$$
 
-![Composition Types](https://transformer-circuits.pub/2021/framework/index.html#three-kinds-of-composition)
-*Three types of attention head composition: Q-composition (affecting attention patterns), K-composition (affecting attention targets), and V-composition (affecting information content). Source: [Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/)*
-
 ### Composition Analysis Techniques
 
 **Composition Strength Measurement:** The strength of composition between heads can be quantified through Frobenius norms of relevant virtual weight matrices:
@@ -276,9 +273,6 @@ Induction heads represent a paradigmatic example of composition-enabled behavior
 **Mechanistic Implementation:** Induction heads require K-composition between two heads:
 1. **Previous Token Head:** Attends to the previous token and copies its representation
 2. **Induction Head:** Uses the copied representation to find tokens that previously followed the current token
-
-![Induction Head Mechanism](https://transformer-circuits.pub/2021/framework/index.html#induction-heads)
-*The two-step induction head mechanism: a previous token head copies information, which an induction head uses to implement pattern matching. Source: [Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/)*
 
 **Mathematical Analysis:** The induction mechanism can be understood through the QK circuit of the induction head:
 

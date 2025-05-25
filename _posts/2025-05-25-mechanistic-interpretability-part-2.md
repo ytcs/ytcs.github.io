@@ -120,12 +120,12 @@ $$L = \mathbb{E}_{\mathbf{x}} \left[ \|\mathbf{x} - \mathbf{W}^T\mathbf{W}\mathb
 
 $$L = \sum_{i=1}^{n} I_i \left( 1 - \|\mathbf{w}_i\|^2 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
 
-where $$I_i$$ represents feature importance (variance) and $$\mathbf{w}_i$$ is the $i$-th column of $$\mathbf{W}$$.
+where $$I_i$$ represents feature importance (variance) and $$\mathbf{w}_i$$ is the $$i$$-th column of $$\mathbf{W}$$.
 
 - **Feature benefit:** $$\sum_{i=1}^{n} I_i (1 - \|\mathbf{w}_i\|^2)$$ encourages representing more features
 - **Interference penalty:** $$\sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$ penalizes non-orthogonal feature representations
 
-**No Superposition Result:** In the linear case, the interference penalty makes representing more features than dimensions suboptimal. The optimal solution represents the top $m$ features orthogonally and ignores the remaining $$n-m$$ features entirely.
+**No Superposition Result:** In the linear case, the interference penalty makes representing more features than dimensions suboptimal. The optimal solution represents the top $$m$$ features orthogonally and ignores the remaining $$n-m$$ features entirely.
 
 ### ReLU Model Analysis
 
