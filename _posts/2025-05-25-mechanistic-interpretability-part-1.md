@@ -61,9 +61,6 @@ Mechanistic interpretability represents a fundamental departure from black box a
 
 The development of mechanistic interpretability parallels the historical emergence of microscopy in biology. Prior to microscopy, biological investigation was limited to macroscopic observation, constraining theoretical development to phenomenological descriptions.
 
-![Microscopy Analogy](https://distill.pub/2020/circuits/zoom-in/images/micrographia2.jpg)
-*Hooke's Micrographia revealed a rich microscopic world, just as neural network visualization reveals internal structure. Source: [Distill Circuits Thread](https://distill.pub/2020/circuits/zoom-in/)*
-
 The invention of the microscope in the 17th century catalyzed a qualitative shift in biological understanding, revealing previously invisible cellular structure. This transition exemplifies several characteristics relevant to mechanistic interpretability:
 
 - **Observational Primacy:** Initial progress driven by careful observation rather than theoretical prediction
@@ -77,18 +74,15 @@ Just as cellular processes are invisible at the macroscopic scale, the computati
 
 Mechanistic interpretability rests upon three foundational claims that, if validated, establish the theoretical and empirical basis for systematic reverse engineering of neural networks.
 
-![Three Claims Visualization](https://distill.pub/2020/circuits/zoom-in/images/atlas-book-crop.png)
-*The three fundamental claims of mechanistic interpretability, analogous to early cell theory. Source: [Distill Circuits Thread](https://distill.pub/2020/circuits/zoom-in/)*
-
 ### Claim 1: Features as Fundamental Units
 
 **Formal Statement:** Features constitute the fundamental computational units of neural networks, corresponding to directions in the vector space of neural activations.
 
-**Mathematical Formulation:** Let $\mathbf{a}^{(l)} \in \mathbb{R}^{n_l}$ denote the activation vector for layer $l$. A feature $f$ is characterized by a direction vector $\mathbf{d} \in \mathbb{R}^{n_l}$ such that:
+**Mathematical Formulation:** Let $$\mathbf{a}^{(l)} \in \mathbb{R}^{n_l}$$ denote the activation vector for layer $l$. A feature $f$ is characterized by a direction vector $$\mathbf{d} \in \mathbb{R}^{n_l}$$ such that:
 
 $$f(\mathbf{x}) = \mathbf{d}^T \mathbf{a}^{(l)}(\mathbf{x})$$
 
-In the simplest case, $\mathbf{d}$ is a standard basis vector corresponding to an individual neuron. However, the feature hypothesis encompasses more general linear combinations capturing meaningful computational units not aligned with the neuron basis.
+In the simplest case, $$\mathbf{d}$$ is a standard basis vector corresponding to an individual neuron. However, the feature hypothesis encompasses more general linear combinations capturing meaningful computational units not aligned with the neuron basis.
 
 **Interpretability Criterion:** A feature is interpretable if it responds to a semantically coherent property articulable in human-understandable terms—encompassing both concrete visual features (edges, curves, textures) and abstract conceptual features (sentiment, grammatical structures).
 
@@ -98,23 +92,20 @@ In the simplest case, $\mathbf{d}$ is a standard basis vector corresponding to a
 3. Similar features should emerge across different architectures trained on related tasks
 4. Features should compose hierarchically, with complex features built from simpler components
 
-![Feature Examples](https://distill.pub/2020/circuits/zoom-in/images/deepdream.jpg)
-*Examples of interpretable features discovered in neural networks through visualization techniques. Source: [Distill Circuits Thread](https://distill.pub/2020/circuits/zoom-in/)*
-
 ### Claim 2: Circuits as Computational Subgraphs
 
 **Formal Statement:** Neural network computation can be decomposed into circuits—computational subgraphs consisting of features connected by weighted edges implementing specific algorithms.
 
-**Mathematical Formulation:** A circuit $C$ is defined as a directed acyclic graph $C = (V, E, W)$ where:
-- $V$ is a set of features spanning multiple layers
-- $E \subseteq V \times V$ is a set of directed edges between features in adjacent layers  
-- $W: E \rightarrow \mathbb{R}$ assigns weights to edges based on original network parameters
+**Mathematical Formulation:** A circuit $C$ is defined as a directed acyclic graph $$C = (V, E, W)$$ where:
+- $$V$$ is a set of features spanning multiple layers
+- $$E \subseteq V \times V$$ is a set of directed edges between features in adjacent layers  
+- $$W: E \rightarrow \mathbb{R}$$ assigns weights to edges based on original network parameters
 
-For features $f_i$ and $f_j$ in adjacent layers with direction vectors $\mathbf{d}_i$ and $\mathbf{d}_j$, the edge weight is:
+For features $f_i$ and $f_j$ in adjacent layers with direction vectors $$\mathbf{d}_i$ and $\mathbf{d}_j$$, the edge weight is:
 
 $$W(f_i, f_j) = \mathbf{d}_j^T \mathbf{W}^{(l,l+1)} \mathbf{d}_i$$
 
-where $\mathbf{W}^{(l,l+1)}$ is the weight matrix connecting layers $l$ and $l+1$.
+where $$\mathbf{W}^{(l,l+1)}$$ is the weight matrix connecting layers $$l$$ and $$l+1$$.
 
 **Scale Hierarchy:** Circuits exist at multiple scales:
 - *Micro-circuits*: Small subgraphs (< 10 features) implementing basic computational primitives
@@ -155,9 +146,11 @@ Given neural network complexity and potential for spurious patterns, robust inte
 
 **1. Feature Visualization:** Optimization-based techniques generating inputs maximally activating specific network components, establishing causal links between hypothesized features and network activations.
 
-**Mathematical Formulation:** For feature $f$ characterized by direction $\mathbf{d}$ in layer $l$:
+**Mathematical Formulation:** For feature $$f$$ characterized by direction $$\mathbf{d}$$ in layer $$l$$:
+
 $$\mathbf{x}^* = \arg\max_{\mathbf{x}} \mathbf{d}^T \mathbf{a}^{(l)}(\mathbf{x}) - \lambda R(\mathbf{x})$$
-where $R(\mathbf{x})$ ensures the generated input remains within natural data distribution.
+
+where $$R(\mathbf{x})$$ ensures the generated input remains within natural data distribution.
 
 **2. Dataset Examples:** Analysis of naturally occurring inputs strongly activating hypothesized features, validating proposed interpretations align with real-world data patterns.
 

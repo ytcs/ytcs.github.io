@@ -49,14 +49,14 @@ The superposition hypothesis provides a principled explanation for polysemantici
 
 Superposition builds upon the fundamental assumption that neural networks employ **linear representations**, where features correspond to directions in activation space.
 
-**Mathematical Formulation:** In a linear representation, each feature $f_i$ is associated with a direction vector $\mathbf{w}_i \in \mathbb{R}^m$ in the $m$-dimensional activation space. Multiple features $f_1, f_2, \ldots, f_n$ with activation values $x_1, x_2, \ldots, x_n$ are represented by:
+**Mathematical Formulation:** In a linear representation, each feature $f_i$ is associated with a direction vector $$\mathbf{w}_i \in \mathbb{R}^m$$ in the $$m$$-dimensional activation space. Multiple features $$f_1, f_2, \ldots, f_n$$ with activation values $$x_1, x_2, \ldots, x_n$$ are represented by:
 
 $$\mathbf{a} = \sum_{i=1}^{n} x_i \mathbf{w}_i$$
 
-where $\mathbf{a} \in \mathbb{R}^m$ is the resulting activation vector.
+where $$\mathbf{a} \in \mathbb{R}^m$$ is the resulting activation vector.
 
 **Empirical Support:** The linear representation hypothesis is supported by numerous findings:
-- **Word embedding arithmetic:** The famous result $V(\text{"king"}) - V(\text{"man"}) + V(\text{"woman"}) \approx V(\text{"queen"})$ demonstrates linear structure in semantic representations
+- **Word embedding arithmetic:** The famous result $$V(\text{"king"}) - V(\text{"man"}) + V(\text{"woman"}) \approx V(\text{"queen"})$$ demonstrates linear structure in semantic representations
 - **Interpretable neurons:** Cases where individual neurons correspond to interpretable features represent instances where features align with basis directions
 - **Linear probing success:** The effectiveness of linear classifiers for extracting information from neural representations suggests underlying linear structure
 
@@ -69,7 +69,7 @@ where $\mathbf{a} \in \mathbb{R}^m$ is the resulting activation vector.
 
 A crucial distinction concerns whether the coordinate system (basis) used to represent features has special computational significance.
 
-**Non-Privileged Bases:** In representations with non-privileged bases, no particular set of coordinate directions has special computational significance. Word embeddings exemplify this case—applying an arbitrary invertible linear transformation $\mathbf{M}$ to embeddings while applying $\mathbf{M}^{-1}$ to subsequent weights produces an identical model with completely different basis directions.
+**Non-Privileged Bases:** In representations with non-privileged bases, no particular set of coordinate directions has special computational significance. Word embeddings exemplify this case—applying an arbitrary invertible linear transformation $$\mathbf{M}$$ to embeddings while applying $$\mathbf{M}^{-1}$$ to subsequent weights produces an identical model with completely different basis directions.
 
 **Privileged Bases:** Conversely, representations with privileged bases have coordinate directions possessing special computational significance, typically due to architectural constraints breaking representational space symmetry.
 
@@ -107,31 +107,36 @@ To understand why superposition occurs in nonlinear models but not linear ones, 
 ### Linear Model Analysis
 
 **Model Specification:** Consider a linear autoencoder:
+
 $$\mathbf{h} = \mathbf{W}\mathbf{x}, \quad \mathbf{x}' = \mathbf{W}^T\mathbf{h} = \mathbf{W}^T\mathbf{W}\mathbf{x}$$
 
-where $\mathbf{x} \in \mathbb{R}^n$ is input, $\mathbf{h} \in \mathbb{R}^m$ is the hidden representation with $m < n$, and $\mathbf{W} \in \mathbb{R}^{m \times n}$ is the weight matrix.
+where $$\mathbf{x} \in \mathbb{R}^n$$ is input, $$\mathbf{h} \in \mathbb{R}^m$$ is the hidden representation with $$m < n$$, and $$\mathbf{W} \in \mathbb{R}^{m \times n}$$ is the weight matrix.
 
 **Loss Function:** The model minimizes reconstruction loss:
+
 $$L = \mathbb{E}_{\mathbf{x}} \left[ \|\mathbf{x} - \mathbf{W}^T\mathbf{W}\mathbf{x}\|^2 \right]$$
 
 **Force Decomposition:** This loss reveals two competing forces:
+
 $$L = \sum_{i=1}^{n} I_i \left( 1 - \|\mathbf{w}_i\|^2 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
 
-where $I_i$ represents feature importance (variance) and $\mathbf{w}_i$ is the $i$-th column of $\mathbf{W}$.
+where $$I_i$$ represents feature importance (variance) and $$\mathbf{w}_i$$ is the $i$-th column of $$\mathbf{W}$$.
 
-- **Feature benefit:** $\sum_{i=1}^{n} I_i (1 - \|\mathbf{w}_i\|^2)$ encourages representing more features
-- **Interference penalty:** $\sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$ penalizes non-orthogonal feature representations
+- **Feature benefit:** $$\sum_{i=1}^{n} I_i (1 - \|\mathbf{w}_i\|^2)$$ encourages representing more features
+- **Interference penalty:** $$\sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$ penalizes non-orthogonal feature representations
 
-**No Superposition Result:** In the linear case, the interference penalty makes representing more features than dimensions suboptimal. The optimal solution represents the top $m$ features orthogonally and ignores the remaining $n-m$ features entirely.
+**No Superposition Result:** In the linear case, the interference penalty makes representing more features than dimensions suboptimal. The optimal solution represents the top $m$ features orthogonally and ignores the remaining $$n-m$$ features entirely.
 
 ### ReLU Model Analysis
 
 The introduction of a single nonlinearity fundamentally changes the optimization landscape, enabling superposition solutions impossible in linear models.
 
 **Model Specification:** Consider the ReLU output model:
+
 $$\mathbf{h} = \mathbf{W}\mathbf{x}, \quad \mathbf{x}' = \text{ReLU}(\mathbf{W}^T\mathbf{h} + \mathbf{b})$$
 
-**Sparse Input Distribution:** Assume inputs are sparse with sparsity parameter $S$:
+**Sparse Input Distribution:** Assume inputs are sparse with sparsity parameter $$S$$:
+
 $$x_i = \begin{cases}
 \mathcal{N}(0, I_i) & \text{with probability } (1-S) \\
 0 & \text{with probability } S
@@ -141,15 +146,15 @@ $$x_i = \begin{cases}
 
 $$\text{Interference} = \sum_{i \neq j} I_i I_j \mathbb{E}_{x_i} \left[ \text{ReLU}'(\|\mathbf{w}_j\|^2 x_i + b_j) (\mathbf{w}_i \cdot \mathbf{w}_j)^2 \right]$$
 
-The ReLU derivative $\text{ReLU}'$ can be zero for small interference terms, enabling superposition when features are sparse enough.
+The ReLU derivative $$\text{ReLU}'$$ can be zero for small interference terms, enabling superposition when features are sparse enough.
 
 ### Phase Transition Analysis
 
 The transition between orthogonal and superposition regimes exhibits characteristics of a phase transition, with sharp boundaries determined by relative importance and sparsity of features.
 
-**Critical Sparsity:** For given feature importance $I$, there exists a critical sparsity $S_c(I)$ above which superposition becomes optimal. This critical point balances feature benefit against interference costs.
+**Critical Sparsity:** For given feature importance $I$, there exists a critical sparsity $$S_c(I)$$ above which superposition becomes optimal. This critical point balances feature benefit against interference costs.
 
-**Phase Diagram:** The $(S, I)$ parameter space divides into distinct phases:
+**Phase Diagram:** The $$(S, I)$$ parameter space divides into distinct phases:
 - **Dense phase:** Low sparsity, features represented orthogonally
 - **Sparse phase:** High sparsity, features in superposition
 - **Transition region:** Intermediate regime with mixed strategies
@@ -166,29 +171,31 @@ Concrete empirical demonstrations using carefully designed toy models allow prec
 ### Experimental Setup
 
 **Model Architecture:** A simple two-layer autoencoder:
+
 $$\mathbf{h} = \mathbf{W} \mathbf{x}, \quad \mathbf{x}' = \text{ReLU}(\mathbf{W}^T \mathbf{h} + \mathbf{b})$$
 
-where $\mathbf{W} \in \mathbb{R}^{m \times n}$ with $m < n$ creates a representational bottleneck.
+where $$\mathbf{W} \in \mathbb{R}^{m \times n}$$ with $$m < n$$ creates a representational bottleneck.
 
 **Data Generation:** Input vectors with controlled sparsity and feature importance:
+
 $$x_i \sim \begin{cases}
 \mathcal{N}(0, I_i) & \text{with probability } (1-S) \\
 0 & \text{with probability } S
 \end{cases}$$
 
-where $I_i = I_0 \cdot \alpha^i$ creates a feature importance hierarchy.
+where $$I_i = I_0 \cdot \alpha^i$$ creates a feature importance hierarchy.
 
 ### Demonstrating Superposition
 
-In a model with $m=5$ hidden dimensions and $n=10$ features, clear superposition behavior emerges as sparsity increases:
+In a model with $$m=5$$ hidden dimensions and $$n=10$$ features, clear superposition behavior emerges as sparsity increases:
 
-- **Low sparsity ($S=0.0$):** Features represented orthogonally, only top 5 features learned
-- **Medium sparsity ($S=0.7$):** Transition regime with mixed orthogonal and superposition representations  
-- **High sparsity ($S=0.95$):** Clear superposition with 8-9 features represented in 5 dimensions
+- **Low sparsity ($$S=0.0$$):** Features represented orthogonally, only top 5 features learned
+- **Medium sparsity ($$S=0.7$$):** Transition regime with mixed orthogonal and superposition representations  
+- **High sparsity ($$S=0.95$$):** Clear superposition with 8-9 features represented in 5 dimensions
 
-**Quantitative Analysis:** The number of features learned can be quantified using the Frobenius norm $\|\mathbf{W}\|_F^2 \approx \sum_i \|\mathbf{w}_i\|^2$, counting features with $\|\mathbf{w}_i\|^2 \approx 1$ as fully learned.
+**Quantitative Analysis:** The number of features learned can be quantified using the Frobenius norm $$\|\mathbf{W}\|_F^2 \approx \sum_i \|\mathbf{w}_i\|^2$$, counting features with $$\|\mathbf{w}_i\|^2 \approx 1$$ as fully learned.
 
-**Interference Measurement:** Feature interference can be quantified through off-diagonal terms of the Gram matrix $\mathbf{G}_{ij} = \mathbf{w}_i \cdot \mathbf{w}_j$, showing how superposition trades representational capacity for computational fidelity.
+**Interference Measurement:** Feature interference can be quantified through off-diagonal terms of the Gram matrix $$\mathbf{G}_{ij} = \mathbf{w}_i \cdot \mathbf{w}_j$$, showing how superposition trades representational capacity for computational fidelity.
 
 ## Geometric Structure of Superposition
 
@@ -196,7 +203,7 @@ One of the most striking discoveries is the emergence of precise geometric struc
 
 ### Uniform Polytope Structures
 
-**Antipodal Pairs:** In the simplest superposition regime, features organize into antipodal pairs where $\mathbf{w}_j = -\mathbf{w}_i$, allowing two features to share a single dimension with minimal interference.
+**Antipodal Pairs:** In the simplest superposition regime, features organize into antipodal pairs where $$\mathbf{w}_j = -\mathbf{w}_i$$, allowing two features to share a single dimension with minimal interference.
 
 **Regular Polytopes:** As more features are added, they organize into configurations corresponding to regular polytopes:
 - **Triangle:** 3 features in 2D arranged at 120° angles
@@ -212,6 +219,7 @@ One of the most striking discoveries is the emergence of precise geometric struc
 ### Dimensionality and Feature Capacity
 
 **Fractional Dimensionality:** In superposition regimes, features can be assigned fractional dimensionalities:
+
 $$d_{\text{eff}} = \frac{m}{\text{number of features}}$$
 
 **Sticky Points:** The relationship between sparsity and effective dimensionality exhibits "sticky points" at rational fractions (1/2, 1/3, 2/5), corresponding to particularly stable geometric configurations.
