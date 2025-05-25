@@ -56,7 +56,7 @@ $$\mathbf{a} = \sum_{i=1}^{n} x_i \mathbf{w}_i$$
 where $$\mathbf{a} \in \mathbb{R}^m$$ is the resulting activation vector.
 
 **Empirical Support:** The linear representation hypothesis is supported by numerous findings:
-- **Word embedding arithmetic:** The famous result $$V(\text{"king"}) - V(\text{"man"}) + V(\text{"woman"}) \approx V(\text{"queen"})$$ demonstrates linear structure in semantic representations
+- **Word embedding arithmetic:** The famous result $$V(\text{``king"}) - V(\text{``man"}) + V(\text{``woman"}) \approx V(\text{``queen"})$$ demonstrates linear structure in semantic representations
 - **Interpretable neurons:** Cases where individual neurons correspond to interpretable features represent instances where features align with basis directions
 - **Linear probing success:** The effectiveness of linear classifiers for extracting information from neural representations suggests underlying linear structure
 
