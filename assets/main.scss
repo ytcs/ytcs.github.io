@@ -523,4 +523,57 @@ button:focus {
 ::-moz-selection {
   background: var(--accent-color);
   color: white;
+}
+
+/* Post navigation */
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+  gap: 2rem;
+}
+
+.post-nav-item {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  max-width: 45%;
+  word-wrap: break-word;
+}
+
+.post-nav-item:hover {
+  color: var(--primary-color);
+}
+
+.post-nav-prev {
+  text-align: left;
+}
+
+.post-nav-next {
+  text-align: right;
+}
+
+/* Handle case where only one navigation link exists */
+.post-nav-item:only-child {
+  max-width: 100%;
+}
+
+/* Responsive design for post navigation */
+@media (max-width: 768px) {
+  .post-nav {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .post-nav-item {
+    max-width: 100%;
+    text-align: center;
+  }
 } 
