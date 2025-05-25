@@ -339,4 +339,14 @@ The superposition hypothesis provides crucial insights into neural network repre
 
 5. **Interpretability Implications:** Understanding superposition is crucial for developing effective neural network interpretability strategies.
 
-In **Part 3**, we'll build upon these foundations to develop the mathematical framework necessary for systematic transformer circuit analysis, extending superposition principles to attention-based architectures and exploring how complex behaviors emerge through component composition.
+In **[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})**, we'll build upon these foundations to develop the mathematical framework necessary for systematic transformer circuit analysis, extending superposition principles to attention-based architectures and exploring how complex behaviors emerge through component composition.
+
+---
+
+## References and Further Reading
+
+This article builds on the theoretical foundations established in the Circuits Thread research program:
+
+- **Elhage, N., Hume, T., Olsson, C., Schiefer, N., Henighan, T., Kravec, S., ... & Olah, C.** (2022). [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/). *Transformer Circuits Thread*.
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [Zoom In: An Introduction to Circuits](https://distill.pub/2020/circuits/zoom-in/). *Distill*.
+- **Bricken, T., Templeton, A., Batson, J., Chen, B., Jermyn, A., Conerly, T., ... & Olah, C.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/). *Transformer Circuits Thread*.

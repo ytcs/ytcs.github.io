@@ -451,4 +451,14 @@ While challenges remain in scaling, evaluation, and theoretical understanding, d
 
 ---
 
-*Next: [Part 5 - Feature Validation Methodologies]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})* 
+*Next: [Part 5 - Feature Validation Methodologies]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})*
+
+---
+
+## References and Further Reading
+
+This article draws from the breakthrough work on dictionary learning for neural network interpretability:
+
+- **Bricken, T., Templeton, A., Batson, J., Chen, B., Jermyn, A., Conerly, T., ... & Olah, C.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/). *Transformer Circuits Thread*.
+- **Templeton, A., Conerly, T., Marcus, J., Lindsey, J., Bricken, T., Chen, B., ... & Olah, C.** (2024). [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/). *Transformer Circuits Thread*.
+- **Elhage, N., Hume, T., Olsson, C., Schiefer, N., Henighan, T., Kravec, S., ... & Olah, C.** (2022). [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/). *Transformer Circuits Thread*. 

@@ -426,3 +426,13 @@ This comprehensive mathematical framework for transformer circuit analysis provi
 The mathematical framework developed here represents a foundational advance in our ability to understand and analyze transformer models. By providing precise tools for decomposing complex computations into interpretable components, this framework opens new possibilities for AI safety research, model debugging, and our fundamental understanding of how large language models process and generate text.
 
 As we continue to scale these techniques to larger models and extend them to include MLP layers, we move closer to the ultimate goal of mechanistic interpretability: understanding neural networks well enough to predict their behavior, identify potential failure modes, and ensure their alignment with human values and intentions.
+
+---
+
+## References and Further Reading
+
+This article is based on the mathematical framework developed in the Transformer Circuits Thread:
+
+- **Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., ... & Olah, C.** (2021). [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/). *Transformer Circuits Thread*.
+- **Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., ... & Olah, C.** (2022). [In-context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/). *Transformer Circuits Thread*.
+- **Elhage, N., Hume, T., Olsson, C., Schiefer, N., Henighan, T., Kravec, S., ... & Olah, C.** (2022). [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/). *Transformer Circuits Thread*.

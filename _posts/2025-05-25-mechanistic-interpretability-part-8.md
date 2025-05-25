@@ -636,4 +636,15 @@ Transformer circuits represent one of the most successful applications of mechan
 
 6. **Validation Framework:** Rigorous circuit analysis requires multiple validation approaches including causal intervention, synthetic stimulus testing, and cross-model validation.
 
-In **Part 9**, we'll focus specifically on one of the most important transformer circuit motifs: **induction heads and in-context learning**. These specialized circuits enable transformers to learn new tasks from just a few examples—one of the most remarkable capabilities of modern language models and a key mechanism underlying their few-shot learning abilities. 
+In **[Part 9]({% post_url 2025-05-25-mechanistic-interpretability-part-9 %})**, we'll focus specifically on one of the most important transformer circuit motifs: **induction heads and in-context learning**. These specialized circuits enable transformers to learn new tasks from just a few examples—one of the most remarkable capabilities of modern language models and a key mechanism underlying their few-shot learning abilities.
+
+---
+
+## References and Further Reading
+
+This article builds on the mathematical framework and empirical findings from the Transformer Circuits Thread:
+
+- **Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., ... & Olah, C.** (2021). [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/). *Transformer Circuits Thread*.
+- **Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., ... & Olah, C.** (2022). [In-context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/). *Transformer Circuits Thread*.
+- **Templeton, A., Conerly, T., Marcus, J., Lindsey, J., Bricken, T., Chen, B., ... & Olah, C.** (2024). [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/). *Transformer Circuits Thread*.
+- **Bricken, T., Templeton, A., Batson, J., Chen, B., Jermyn, A., Conerly, T., ... & Olah, C.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/). *Transformer Circuits Thread*. 

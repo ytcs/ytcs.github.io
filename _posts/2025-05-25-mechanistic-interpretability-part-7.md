@@ -605,6 +605,20 @@ Neural network circuits represent a powerful conceptual framework for understand
 
 5. **Visualization Tools:** Effective circuit understanding requires sophisticated visualization and analysis tools for exploring complex computational relationships.
 
-In **Part 8**, we'll focus specifically on transformer circuits and attention mechanisms, exploring how the mathematical framework developed in Part 3 enables systematic analysis of these powerful sequence models. We'll examine attention head decomposition, composition mechanisms, and the information flow patterns that enable sophisticated language understanding.
+In **[Part 8]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %})**, we'll focus specifically on transformer circuits and attention mechanisms, exploring how the mathematical framework developed in Part 3 enables systematic analysis of these powerful sequence models. We'll examine attention head decomposition, composition mechanisms, and the information flow patterns that enable sophisticated language understanding.
 
-**Part 9** will delve into induction heads and in-context learning, revealing how specific circuit motifs enable transformers to learn new tasks from just a few examples—one of the most remarkable capabilities of modern language models. 
+**[Part 9]({% post_url 2025-05-25-mechanistic-interpretability-part-9 %})** will delve into induction heads and in-context learning, revealing how specific circuit motifs enable transformers to learn new tasks from just a few examples—one of the most remarkable capabilities of modern language models.
+
+---
+
+## References and Further Reading
+
+This article builds on the foundational circuit analysis work from the Distill Circuits Thread:
+
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [Zoom In: An Introduction to Circuits](https://distill.pub/2020/circuits/zoom-in/). *Distill*.
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [An Overview of Early Vision in InceptionV1](https://distill.pub/2020/circuits/early-vision/). *Distill*.
+- **Cammarata, N., Goh, G., Carter, S., Schubert, L., Petrov, M., & Olah, C.** (2020). [Curve Detectors](https://distill.pub/2020/circuits/curve-detectors/). *Distill*.
+- **Cammarata, N., Goh, G., Carter, S., Voss, C., Schubert, L., & Olah, C.** (2021). [Curve Circuits](https://distill.pub/2020/circuits/curve-circuits/). *Distill*.
+- **Olah, C., Cammarata, N., Voss, C., Schubert, L., & Goh, G.** (2020). [Naturally Occurring Equivariance in Neural Networks](https://distill.pub/2020/circuits/equivariance/). *Distill*.
+- **Schubert, L., Voss, C., Cammarata, N., Goh, G., & Olah, C.** (2021). [High-Low Frequency Detectors](https://distill.pub/2020/circuits/frequency-edges/). *Distill*.
+- **Voss, C., Cammarata, N., Goh, G., Petrov, M., Schubert, L., Egan, B., Lim, S. K., & Olah, C.** (2021). [Visualizing Weights](https://distill.pub/2020/circuits/visualizing-weights/). *Distill*. 

@@ -222,6 +222,17 @@ This introduction has established the foundational concepts and methodological f
 
 4. **Historical Precedent:** The development of microscopy and cellular biology provides valuable analogy for understanding mechanistic interpretability's potential trajectory and challenges.
 
-In **Part 2**, we'll explore the superposition hypothesis—a crucial theoretical framework explaining why individual neurons often respond to multiple unrelated concepts, and how neural networks can represent more features than dimensions through sophisticated geometric arrangements.
+In **[Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})**, we'll explore the superposition hypothesis—a crucial theoretical framework explaining why individual neurons often respond to multiple unrelated concepts, and how neural networks can represent more features than dimensions through sophisticated geometric arrangements.
 
-**Part 3** will develop the mathematical framework necessary for systematic transformer circuit analysis, providing tools for decomposing attention mechanisms and understanding how complex behaviors emerge through component composition.
+**[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})** will develop the mathematical framework necessary for systematic transformer circuit analysis, providing tools for decomposing attention mechanisms and understanding how complex behaviors emerge through component composition.
+
+---
+
+## References and Further Reading
+
+This article draws primarily from the foundational work of the Circuits Thread research program:
+
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [Zoom In: An Introduction to Circuits](https://distill.pub/2020/circuits/zoom-in/). *Distill*.
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [An Overview of Early Vision in InceptionV1](https://distill.pub/2020/circuits/early-vision/). *Distill*.
+- **Cammarata, N., Goh, G., Carter, S., Schubert, L., Petrov, M., & Olah, C.** (2020). [Curve Detectors](https://distill.pub/2020/circuits/curve-detectors/). *Distill*.
+- **Olah, C., Cammarata, N., Voss, C., Schubert, L., & Goh, G.** (2020). [Naturally Occurring Equivariance in Neural Networks](https://distill.pub/2020/circuits/equivariance/). *Distill*.

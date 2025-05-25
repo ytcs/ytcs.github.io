@@ -690,4 +690,15 @@ The next part will explore the spectrum between polysemantic and monosemantic re
 
 ---
 
-*Next: [Part 6 - Polysemanticity and Monosemanticity]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})* 
+*Next: [Part 6 - Polysemanticity and Monosemanticity]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})*
+
+---
+
+## References and Further Reading
+
+This article builds on the rigorous validation methodologies established in the Circuits Thread research:
+
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [Zoom In: An Introduction to Circuits](https://distill.pub/2020/circuits/zoom-in/). *Distill*.
+- **Cammarata, N., Goh, G., Carter, S., Schubert, L., Petrov, M., & Olah, C.** (2020). [Curve Detectors](https://distill.pub/2020/circuits/curve-detectors/). *Distill*.
+- **Bricken, T., Templeton, A., Batson, J., Chen, B., Jermyn, A., Conerly, T., ... & Olah, C.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/). *Transformer Circuits Thread*.
+- **Templeton, A., Conerly, T., Marcus, J., Lindsey, J., Bricken, T., Chen, B., ... & Olah, C.** (2024). [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/). *Transformer Circuits Thread*. 

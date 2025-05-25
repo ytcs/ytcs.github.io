@@ -597,4 +597,15 @@ In our next exploration of mechanistic interpretability, we'll examine how these
 
 ---
 
+## References and Further Reading
+
+This article is based on the groundbreaking research on induction heads and in-context learning:
+
+- **Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., ... & Olah, C.** (2022). [In-context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/). *Transformer Circuits Thread*.
+- **Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., ... & Olah, C.** (2021). [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/). *Transformer Circuits Thread*.
+- **Templeton, A., Conerly, T., Marcus, J., Lindsey, J., Bricken, T., Chen, B., ... & Olah, C.** (2024). [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/). *Transformer Circuits Thread*.
+- **Bricken, T., Templeton, A., Batson, J., Chen, B., Jermyn, A., Conerly, T., ... & Olah, C.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/). *Transformer Circuits Thread*.
+
+---
+
 *This post is part of a series on mechanistic interpretability. Previous posts covered [foundational principles]({% post_url 2025-05-25-mechanistic-interpretability-part-1 %}), [superposition and polysemanticity]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}), [mathematical frameworks]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}), [feature visualization]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}), [activation patching]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), [causal scrubbing]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %}), [neural network circuits]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %}), and [transformer circuits]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %}).* 

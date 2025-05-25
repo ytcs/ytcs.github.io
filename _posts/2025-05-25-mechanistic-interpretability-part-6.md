@@ -659,4 +659,15 @@ The next part will explore circuit-level analysis, building on our understanding
 
 ---
 
-*Next: [Part 7 - Circuit Analysis and Computational Graphs]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})* 
+*Next: [Part 7 - Circuit Analysis and Computational Graphs]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})*
+
+---
+
+## References and Further Reading
+
+This article synthesizes insights from the broader interpretability research program:
+
+- **Bricken, T., Templeton, A., Batson, J., Chen, B., Jermyn, A., Conerly, T., ... & Olah, C.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/). *Transformer Circuits Thread*.
+- **Templeton, A., Conerly, T., Marcus, J., Lindsey, J., Bricken, T., Chen, B., ... & Olah, C.** (2024). [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/). *Transformer Circuits Thread*.
+- **Elhage, N., Hume, T., Olsson, C., Schiefer, N., Henighan, T., Kravec, S., ... & Olah, C.** (2022). [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/). *Transformer Circuits Thread*.
+- **Olah, C., Cammarata, N., Schubert, L., Goh, G., Petrov, M., & Carter, S.** (2020). [Zoom In: An Introduction to Circuits](https://distill.pub/2020/circuits/zoom-in/). *Distill*. 
