@@ -323,7 +323,7 @@ $$\text{Task Encoding} = \sum_{i=1}^k \text{Association}(x_i, y_i) + \text{Conte
 
 $$\text{ICL Update} \approx \theta - \alpha \nabla_\theta \mathcal{L}(\{(x_i, y_i)\}_{i=1}^k)$$
 
-**Bayesian Interpretation:** ICL as Bayesian inference:
+**Bayesian Interpretation:** [ICL as Bayesian inference](https://arxiv.org/abs/2211.01568):
 
 $$P(y | x, \text{context}) = \int P(y | x, \theta) P(\theta | \text{context}) d\theta$$
 
@@ -354,7 +354,7 @@ $$f_{\text{learned}}(x) = \text{Induction}(\{(x_i, y_i)\}_{i=1}^k, x)$$
 
 **Reasoning Tasks:** Multi-step logical inference:
 - **Pattern**: $$[\text{premises}][\text{conclusion}] \ldots$$
-- **Mechanism**: Chain-of-thought pattern completion
+- **Mechanism**: [Chain-of-thought pattern completion](https://www.promptingguide.ai/techniques/cot)
 - **Generalization**: Abstract logical rule application
 
 ## Emergent Abilities and Scaling

@@ -88,7 +88,7 @@ The core insight is that neural networks can represent more features than dimens
 
 **High-Dimensional Geometry:** The mathematical foundation lies in counterintuitive high-dimensional space properties:
 - **Almost orthogonal vectors:** While only $$n$$ vectors can be perfectly orthogonal in $$n$$-dimensional space, exponentially many vectors can be approximately orthogonal (cosine similarity $$< \epsilon$$)
-- **Johnson-Lindenstrauss lemma:** Random projections preserve distances approximately, suggesting high-dimensional representations can be compressed without significant information loss
+- **[Johnson-Lindenstrauss lemma](https://en.wikipedia.org/wiki/Johnson%E2%80%93Lindenstrauss_lemma):** Random projections preserve distances approximately, suggesting high-dimensional representations can be compressed without significant information loss
 
 **Sparsity as Enabling Condition:** Superposition becomes viable when features are sparse—most features are inactive for any given input. Sparsity reduces interference because:
 1. Inactive features contribute no interference to active features
@@ -108,7 +108,7 @@ To understand why superposition occurs in nonlinear models but not linear ones, 
 
 **Model Specification:** Consider a linear autoencoder:
 
-$$\mathbf{h} = \mathbf{W}\mathbf{x}, \quad \mathbf{x}' = \mathbf{W}^T\mathbf{h} = \mathbf{W}^T\mathbf{W}\mathbf{x}$$
+$$\mathbf{h} = \mathbf{W}\mathbf{x}, \quad \mathbf{x}' = \mathbf{W}^T\mathbf{h}$$
 
 where $$\mathbf{x} \in \mathbb{R}^n$$ is input, $$\mathbf{h} \in \mathbb{R}^m$$ is the hidden representation with $$m < n$$, and $$\mathbf{W} \in \mathbb{R}^{m \times n}$$ is the weight matrix.
 
@@ -244,7 +244,7 @@ One of the most striking discoveries is the emergence of precise geometric struc
 ![Geometric Structures](/assets/img/mech_interp_geometry.png)
 *Geometric structures that emerge in superposition: features organize into regular polytopes like triangles, pentagons, and tetrahedrons. Source: [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html#geometry)*
 
-**Thomson Problem Connection:** The geometric arrangements correspond to solutions of the Thomson problem—finding minimum energy configuration of charged particles on a sphere. This suggests superposition naturally discovers optimal packing arrangements.
+**[Thomson problem](https://en.wikipedia.org/wiki/Thomson_problem) Connection:** The geometric arrangements correspond to solutions of the Thomson problem—finding minimum energy configuration of charged particles on a sphere. This suggests superposition naturally discovers optimal packing arrangements.
 
 ### Dimensionality and Feature Capacity
 

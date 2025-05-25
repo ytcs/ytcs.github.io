@@ -106,7 +106,7 @@ Rigorous measurement of polysemanticity and monosemanticity requires sophisticat
 
 ### Concept-Based Measurement Approaches
 
-**Concept Activation Vectors (CAVs):** Measure how unit activation aligns with specific concepts:
+**[Concept Activation Vectors (CAVs)](https://arxiv.org/abs/1711.11279):** Measure how unit activation aligns with specific concepts:
 
 $$\text{CAV}_c(\mathbf{w}) = \arg\max_{\mathbf{v}} \sum_{i} y_i^{(c)} (\mathbf{v}^T \mathbf{a}_i)$$
 
@@ -124,17 +124,17 @@ $$\text{Concept Alignment}(u) = \max_c \text{Accuracy}(\text{Predict}(c | a_u))$
 
 **Clustering-Based Approaches:** Analyze structure of activation patterns to identify semantic clusters.
 
-**Silhouette Analysis:** Measure how well activation patterns cluster by semantic category:
+**[Silhouette Analysis](https://en.wikipedia.org/wiki/Silhouette_(clustering)):** Measure how well activation patterns cluster by semantic category:
 
 $$\text{Silhouette}(u) = \frac{1}{n} \sum_{i=1}^{n} \frac{b_i - a_i}{\max(a_i, b_i)}$$
 
 where $$a_i$$ is average distance to points in the same semantic cluster and $$b_i$$ is average distance to the nearest different cluster.
 
-**Calinski-Harabasz Index:** Measure cluster separation:
+**[Calinski-Harabasz Index](https://en.wikipedia.org/wiki/Calinski-Harabasz_index):** Measure cluster separation:
 
 $$\text{CH}(u) = \frac{\text{Between-cluster variance}}{\text{Within-cluster variance}} \cdot \frac{n-k}{k-1}$$
 
-**Davies-Bouldin Index:** Measure cluster compactness and separation:
+**[Davies-Bouldin Index](https://en.wikipedia.org/wiki/Davies%E2%80%93Bouldin_index):** Measure cluster compactness and separation:
 
 $$\text{DB}(u) = \frac{1}{k} \sum_{i=1}^{k} \max_{j \neq i} \frac{\sigma_i + \sigma_j}{d_{ij}}$$
 
@@ -146,7 +146,7 @@ where $$\sigma_i$$ is within-cluster scatter and $$d_{ij}$$ is between-cluster d
 
 $$I(A_u; \mathbf{C}) = \sum_{c \in \mathbf{C}} I(A_u; C_c) - \text{Redundancy} + \text{Synergy}$$
 
-**Partial Information Decomposition (PID):** Decompose information into unique, redundant, and synergistic components:
+**[Partial Information Decomposition (PID)](https://en.wikipedia.org/wiki/Partial_information_decomposition):** Decompose information into unique, redundant, and synergistic components:
 
 $$I(A_u; C_1, C_2) = \text{Unique}(C_1) + \text{Unique}(C_2) + \text{Redundant}(C_1, C_2) + \text{Synergy}(C_1, C_2)$$
 
@@ -290,19 +290,19 @@ where concepts with higher importance receive more dedicated capacity.
 
 ### Information-Theoretic Models
 
-**Rate-Distortion Framework:** Semantic organization emerges from optimal information compression:
+**[Rate-Distortion Theory](https://en.wikipedia.org/wiki/Rate%E2%80%93distortion_theory) Framework:** Semantic organization emerges from optimal information compression:
 
 $$\min_{\text{encoding}} \mathbb{E}[D(\mathbf{x}, \hat{\mathbf{x}})] \text{ subject to } I(\mathbf{x}; \mathbf{z}) \leq R$$
 
 where $$D$$ is distortion, $$\mathbf{z}$$ is encoded representation, and $$R$$ is the rate constraint.
 
-**Semantic Information Bottleneck:** Balance compression and semantic preservation:
+**Semantic [Information Bottleneck Method](https://en.wikipedia.org/wiki/Information_bottleneck_method):** Balance compression and semantic preservation:
 
 $$\min_{\mathbf{z}} I(\mathbf{x}; \mathbf{z}) - \beta I(\mathbf{z}; \mathbf{y}_{\text{semantic}})$$
 
 where $$\mathbf{y}_{\text{semantic}}$$ represents semantic labels and $$\beta$$ controls the trade-off.
 
-**Minimum Description Length (MDL):** Semantic organization minimizes total description length:
+**[Minimum Description Length (MDL)](https://en.wikipedia.org/wiki/Minimum_description_length):** Semantic organization minimizes total description length:
 
 $$\text{MDL} = \text{Code Length}(\text{Model}) + \text{Code Length}(\text{Data | Model})$$
 
@@ -320,7 +320,7 @@ where stronger features suppress weaker ones, leading to specialization.
 - Hebbian learning promoting correlated activation
 - Homeostatic mechanisms preventing feature death
 
-**Lottery Ticket Extension:** Monosemantic features may correspond to "winning tickets":
+**[Lottery Ticket Hypothesis](https://arxiv.org/abs/1803.03635) Extension:** Monosemantic features may correspond to "winning tickets":
 
 $$P(\text{Monosemantic}(i)) \propto \text{Initial Weight Magnitude}(i)^{\alpha}$$
 

@@ -162,7 +162,7 @@ $$\mathbf{W}_{OV} \approx -\alpha \cdot \text{Feature projection}$$
 
 **Attention Head Taxonomy:** Classification based on function:
 
-**Induction Heads:** Implementing pattern completion:
+**[Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html):** Implementing pattern completion:
 - QK circuit: Attends to tokens following repeated patterns
 - OV circuit: Copies information from pattern completions
 - Function: Enables in-context learning and pattern matching

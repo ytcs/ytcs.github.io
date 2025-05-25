@@ -127,7 +127,7 @@ $$\mathbf{y}_{i,j} = \sum_{k,l} w_{k,l} \cdot \mathbf{x}_{i+k,j+l}$$
 - Steerable filters and oriented feature detectors
 - Multi-orientation feature banks
 - Rotation-invariant pooling mechanisms
-- Group convolution implementations
+- [Group convolution](https://towardsdatascience.com/a-comprehensive-introduction-to-different-types-of-convolutions-in-deep-learning-5282391c390c) implementations
 
 **Scale Equivariance:** Circuits handling scale transformations:
 
@@ -273,7 +273,7 @@ $$I_{\text{low}} = G_{\sigma_{\text{large}}} * I, \quad I_{\text{high}} = I - I_
 - *Integration mechanisms*: Combining multi-scale information
 - *Attention modulation*: Selective frequency emphasis
 
-**Laplacian Pyramid Implementation:** Neural version of classical image pyramids:
+**[Laplacian Pyramid](https://en.wikipedia.org/wiki/Laplacian_pyramid) Implementation:** Neural version of classical image pyramids:
 
 $$L_k = G_k - \text{Expand}(G_{k+1})$$
 
@@ -342,15 +342,15 @@ $$\text{Similarity}(\mathbf{W}, \mathbf{T}) = \frac{\text{tr}(\mathbf{W}^T \math
 
 **Convolution Kernel Analysis:** Identifying classical computer vision operations:
 
-**Sobel Edge Detection:** Recognizing edge detection kernels:
+**[Sobel operator](https://en.wikipedia.org/wiki/Sobel_operator) Edge Detection:** Recognizing edge detection kernels:
 
 $$\mathbf{S}_x = \begin{pmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{pmatrix}, \quad \mathbf{S}_y = \begin{pmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{pmatrix}$$
 
-**Gaussian Blur:** Identifying smoothing operations:
+**[Gaussian blur](https://en.wikipedia.org/wiki/Gaussian_blur):** Identifying smoothing operations:
 
 $$G_{i,j} = \frac{1}{2\pi\sigma^2} \exp\left(-\frac{(i-\mu_i)^2 + (j-\mu_j)^2}{2\sigma^2}\right)$$
 
-**Laplacian of Gaussian:** Detecting blob and keypoint operations:
+**[Laplacian of Gaussian](https://en.wikipedia.org/wiki/Laplacian_of_Gaussian):** Detecting blob and keypoint operations:
 
 $$\text{LoG}(x, y) = -\frac{1}{\pi\sigma^4}\left[1 - \frac{x^2 + y^2}{2\sigma^2}\right] \exp\left(-\frac{x^2 + y^2}{2\sigma^2}\right)$$
 
@@ -402,7 +402,7 @@ $$\mathbf{h}^{(t+1)} = f^{(t+1)}(\mathbf{h}^{(t)}, \mathbf{x}; \boldsymbol{\thet
 
 **Bottleneck Analysis:** Identifying computational constraints:
 
-$$\text{Information Bottleneck} = \arg\min_{p(z|x)} I(X; Z) - \beta I(Z; Y)$$
+$$\text{[Information Bottleneck method](https://en.wikipedia.org/wiki/Information_bottleneck_method)} = \arg\min_{p(z|x)} I(X; Z) - \beta I(Z; Y)$$
 
 **Algorithmic Complexity Estimation:** Measuring computational requirements:
 

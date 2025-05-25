@@ -83,19 +83,19 @@ $$\text{Write:} \quad \mathbf{x}^{(\ell)} = \mathbf{x}^{(\ell-1)} + \mathbf{h}^{
 
 ## Virtual Weights and Effective Connectivity
 
-The linear structure of the residual stream enables computation of virtual weights capturing effective connectivity between non-adjacent components, providing a powerful tool for understanding long-range dependencies. Think of the residual stream as a highway where information from different components (cars) can be added. A component later in the network doesn't just see the output of the immediately preceding component; it sees the sum of outputs from *all* previous components that wrote to the residual stream. Virtual weights help us quantify the total influence of one component's output on another component's input, considering all the additions that happened in between.
+The linear structure of the residual stream enables computation of virtual weights capturing effective connectivity between non-adjacent components, providing a powerful tool for understanding long-range dependencies. Think of the residual stream as a highway where information from different components (cars) can be added. A component later in the network doesn't just see the output of the immediately preceding component; it sees the sum of outputs from *all* previous components that wrote to the residual stream. Virtual weights help us quantify the total influence of one component's output on another component's input. This considers all additions to the residual stream that occurred between the two components.
 
 ### Virtual Weight Computation
 
-**Definition:** Virtual weights $$\mathbf{W}_{\text{virtual}}^{(i,j)}$$ represent the effective linear transformation from component $$i$$ output to component $$j$$ input, computed by multiplying relevant weight matrices through the residual stream.
+**Definition:** Virtual weights $$\mathbf{W}_{\text{virtual}}^{(I,J)}$$ represent the effective linear transformation from component $$I$$ output to component $$J$$ input, computed by multiplying relevant weight matrices through the residual stream.
 
-**Mathematical Formulation:** For components in layers $$i < j$$, the simplest virtual weight considers only the direct write from component $$i$$ and the direct read by component $$j$$ from the residual stream state *as it was after component i wrote to it*. If no other components wrote to the stream between $$i$$ and $$j$$, or if we are only interested in the direct path component $$i$$ adds to the stream that $$j$$ then reads, this is:
+**Mathematical Formulation:** For components in layers $$I < J$$, the simplest virtual weight considers only the direct write from component $$I$$ and the direct read by component $$J$$ from the residual stream state *as it was after component I wrote to it*. If no other components wrote to the stream between $$I$$ and $$J$$, or if we are only interested in the direct path component $$I$$ adds to the stream that $$J$$ then reads, this is:
 
-$$\mathbf{W}_{\text{virtual}}^{(i,j)} = \mathbf{W}_{\text{in}}^{(j)} \mathbf{W}_{\text{out}}^{(i)}$$
+$$\mathbf{W}_{\text{virtual}}^{(I,J)} = \mathbf{W}_{\text{in}}^{(J)} \mathbf{W}_{\text{out}}^{(I)}$$
 
-**Multi-Hop Virtual Weights:** However, the residual stream accumulates signals. For components separated by multiple layers, the input to component $$j$$ is influenced by component $$i$$ not just directly, but also through any intermediate layers $$k$$ (where $$i < k < j$$) that read from the stream (influenced by $$i$$) and then write back to it. The term $$\left( \mathbf{I} + \sum_{k=i+1}^{j-1} \mathbf{W}_{\text{out}}^{(k)} \mathbf{W}_{\text{in}}^{(k)} \right)$$ in the formula below accounts for these multi-hop paths. The identity matrix $$\mathbf{I}$$ represents the direct influence of component $$i$$'s output if it were to pass through to $$j$$ without intermediate modification, and the sum accumulates the effects of all intermediate components $$k$$ that read from the residual stream (which includes $$i$$'s contribution) and then write their output back to the stream before $$j$$ reads it. Thus, the total effective linear transformation from the output of component $$i$$ to the input of component $$j$$ is:
+**Multi-Hop Virtual Weights:** However, the residual stream accumulates signals. For components separated by multiple layers, the input to component $$J$$ is influenced by component $$I$$ not just directly, but also through any intermediate layers $$k$$ (where $$I < k < J$$) that read from the stream (influenced by $$I$$) and then write back to it. The term $$\left( \mathbf{I} + \sum_{k=I+1}^{J-1} \mathbf{W}_{\text{out}}^{(k)} \mathbf{W}_{\text{in}}^{(k)} \right)$$ in the formula below accounts for these multi-hop paths. The identity matrix $$\mathbf{I}$$ represents the direct influence of component $$I$$'s output if it were to pass through to $$J$$ without intermediate modification, and the sum accumulates the effects of all intermediate components $$k$$ that read from the residual stream (which includes $$I$$'s contribution) and then write their output back to the stream before $$J$$ reads it. Thus, the total effective linear transformation from the output of component $$I$$ to the input of component $$J$$ is:
 
-$$\mathbf{W}_{\text{virtual}}^{(i,j)} = \mathbf{W}_{\text{in}}^{(j)} \left( \mathbf{I} + \sum_{k=i+1}^{j-1} \mathbf{W}_{\text{out}}^{(k)} \mathbf{W}_{\text{in}}^{(k)} \right) \mathbf{W}_{\text{out}}^{(i)}$$
+$$\mathbf{W}_{\text{virtual}}^{(I,J)} = \mathbf{W}_{\text{in}}^{(J)} \left( \mathbf{I} + \sum_{k=I+1}^{J-1} \mathbf{W}_{\text{out}}^{(k)} \mathbf{W}_{\text{in}}^{(k)} \right) \mathbf{W}_{\text{out}}^{(I)}$$
 
 **Interpretation:** Virtual weights reveal which components can directly influence each other and quantify interaction strength. Large virtual weight magnitudes indicate strong potential for information transfer between components.
 
@@ -139,11 +139,11 @@ where $$\mathbf{W}_{OV} = \mathbf{W}_O \mathbf{W}_V$$ and $$\otimes$$ denotes th
 
 The decomposition of attention into query-key (QK) and output-value (OV) circuits provides a powerful framework for understanding attention head function.
 
-**QK Circuit:** $$\mathbf{W}_{QK} = \mathbf{W}_Q^T \mathbf{W}_K$$ determines the attention pattern by computing similarity scores between query and key representations.
+**QK Circuit:** $$\mathbf{W}_{QK} = \mathbf{W}_Q \mathbf{W}_K^T$$ determines the attention pattern by computing similarity scores between query and key representations.
 
 **Mathematical Properties:**
 - $$\mathbf{W}_{QK}$$ is a $$d_{\text{model}} \times d_{\text{model}}$$ matrix operating on token representations
-- The attention score between positions $$i$$ and $$j$$ is $$\mathbf{x}_i^T \mathbf{W}_{QK} \mathbf{x}_j$$
+- The attention score between positions $$i$$ and $$j$$ is $$\mathbf{x}_i \mathbf{W}_{QK} \mathbf{x}_j^T$$
 - $$\mathbf{W}_{QK}$$ can be analyzed through eigendecomposition to understand attention patterns
 
 ![Attention Head Decomposition](/assets/img/mech_interp_QK_OV.png)

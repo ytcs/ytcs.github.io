@@ -34,7 +34,7 @@ Consider this thought experiment: if we applied sparse autoencoders to random no
 
 ### Scientific Methodology in Interpretability
 
-Following Popper's criterion of demarcation, valid interpretability claims must be:
+Following [Popper's criterion of demarcation](https://en.wikipedia.org/wiki/Demarcation_problem), valid interpretability claims must be:
 
 **Falsifiable:** Formulated as testable hypotheses that can be empirically refuted.
 
@@ -382,7 +382,7 @@ $$\alpha_{\text{corrected}} = \frac{\alpha}{m}$$
 **False Discovery Rate Control:** More powerful approach:
 $$\text{FDR} = \mathbb{E}\left[\frac{\text{False Positives}}{\text{Total Positives}}\right]$$
 
-**Benjamini-Hochberg Procedure:**
+**[Benjamini-Hochberg Procedure](https://en.wikipedia.org/wiki/False_discovery_rate#Benjamini%E2%80%93Hochberg_procedure):**
 1. Order p-values: $$p_{(1)} \leq p_{(2)} \leq \ldots \leq p_{(m)}$$
 2. Find largest $$k$$ such that $$p_{(k)} \leq \frac{k}{m} \alpha$$
 3. Reject hypotheses $$1, 2, \ldots, k$$
@@ -411,7 +411,7 @@ $$\text{FDR} = \mathbb{E}\left[\frac{\text{False Positives}}{\text{Total Positiv
 
 **Beyond Statistical Significance:** Effect sizes quantify practical importance:
 
-**Cohen's d for feature comparisons:**
+**[Cohen's d](https://en.wikipedia.org/wiki/Effect_size#Cohen's_d) for feature comparisons:**
 $$d = \frac{\mu_1 - \mu_2}{\sqrt{\frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}}}$$
 
 **Explained Variance:**

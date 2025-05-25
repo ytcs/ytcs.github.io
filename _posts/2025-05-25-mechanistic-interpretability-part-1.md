@@ -6,7 +6,7 @@ categories: machine-learning
 date: 2025-05-25
 ---
 
-Understanding how neural networks transform inputs into outputs represents one of the most fundamental challenges in modern AI research. While traditional interpretability approaches treat models as black boxes, **mechanistic interpretability** takes a radically different approach: reverse-engineering neural networks to understand the specific algorithms they implement. This three-part series explores the theoretical foundations, mathematical frameworks, and practical techniques that enable us to peer inside the computational machinery of modern AI systems.
+Understanding how neural networks transform inputs into outputs represents one of the most fundamental challenges in modern AI research. While traditional interpretability approaches treat models as black boxes, **mechanistic interpretability** takes a radically different approach: reverse-engineering neural networks to understand the specific algorithms they implement. This nine-part series explores the theoretical foundations, mathematical frameworks, and practical techniques that enable us to peer inside the computational machinery of modern AI systems.
 
 ## The Interpretability Landscape
 
@@ -132,7 +132,7 @@ The transition from ad hoc interpretability techniques to rigorous scientific in
 
 ### Falsifiability and Empirical Validation
 
-Following Popper's criterion of demarcation, scientific claims must be potentially falsifiable through empirical observation. In mechanistic interpretability, this manifests as:
+Following [Popper's criterion of demarcation](https://en.wikipedia.org/wiki/Demarcation_problem), scientific claims must be potentially falsifiable through empirical observation. In mechanistic interpretability, this manifests as:
 
 **Operational Definitions:** Interpretability claims must use operationally defined, measurable concepts. Rather than claiming a neuron "detects dogs", we must specify precise activation conditions and quantitative evaluation criteria.
 
