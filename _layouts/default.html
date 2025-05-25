@@ -17,19 +17,10 @@
 
             {%- assign categories = "" | split: "," -%}
             {%- for post in site.posts -%}
-              {%- assign post_cats = post.categories -%}
-              {%- if post_cats == blank -%}
-                {%- assign post_cats = "" | split: "," -%}
-              {%- elsif post_cats.size == nil -%}
-                {%- assign post_cats = post_cats | split: " " -%}
-              {%- endif -%}
-              {%- for item_in_post_cats in post_cats -%}
-                {%- assign cat_as_string = item_in_post_cats | join: "" -%}
-                {%- if cat_as_string != "" and cat_as_string != blank -%}
-                  {%- unless categories contains cat_as_string -%}
-                    {%- assign categories = categories | push: cat_as_string -%}
-                  {%- endunless -%}
-                {%- endif -%}
+              {%- for category in post.categories -%}
+                {%- unless categories contains category -%}
+                  {%- assign categories = categories | push: category -%}
+                {%- endunless -%}
               {%- endfor -%}
             {%- endfor -%}
             {%- assign categories = categories | sort -%}
@@ -39,7 +30,7 @@
               <span style="font-size: 0.9em; font-weight: bold;">Filter by category:</span>
               <a href="javascript:void(0);" class="category-link active" onclick="filterPosts('all')" style="font-size: 0.8em; margin-left: 5px;">All</a>
               {%- for category in categories -%}
-                <a href="javascript:void(0);" class="category-link" onclick='filterPosts("{{ category | slugify | escape }}")' style="font-size: 0.8em; margin-left: 5px;">{{ category | escape }}</a>
+                <a href="javascript:void(0);" class="category-link" onclick='filterPosts("{{ category | join: "" | slugify | escape }}")' style="font-size: 0.8em; margin-left: 5px;">{{ category | join: "" | escape }}</a>
               {%- endfor -%}
             </div>
             {%- endif -%}
@@ -49,17 +40,8 @@
                 {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
                 {% for post in site.posts %}
                   {%- assign post_categories_slugified = "" | split: "," -%}
-                  {%- assign post_cats = post.categories -%}
-                  {%- if post_cats == blank -%}
-                    {%- assign post_cats = "" | split: "," -%}
-                  {%- elsif post_cats.size == nil -%}
-                    {%- assign post_cats = post_cats | split: " " -%}
-                  {%- endif -%}
-                  {%- for item_in_post_cats in post_cats -%}
-                    {%- assign cat_as_string = item_in_post_cats | join: "" -%}
-                    {%- if cat_as_string != "" and cat_as_string != blank -%}
-                      {%- assign post_categories_slugified = post_categories_slugified | push: (cat_as_string | slugify) -%}
-                    {%- endif -%}
+                  {%- for category in post.categories -%}
+                    {%- assign post_categories_slugified = post_categories_slugified | push: (category | join: "" | slugify) -%}
                   {%- endfor -%}
                   <li data-categories="{{ post_categories_slugified | join: ' ' }}">
                     <span class="post-meta">{{ post.date | date: date_format }}</span>
