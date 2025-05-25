@@ -17,7 +17,13 @@
 
             {%- assign categories = "" | split: "," -%}
             {%- for post in site.posts -%}
-              {%- for category in post.categories -%}
+              {%- assign post_cats = post.categories -%}
+              {%- if post_cats == blank -%}
+                {%- assign post_cats = "" | split: "," -%}
+              {%- elsif post_cats.size == nil -%}
+                {%- assign post_cats = post_cats | split: " " -%}
+              {%- endif -%}
+              {%- for category in post_cats -%}
                 {%- unless categories contains category -%}
                   {%- assign categories = categories | push: category -%}
                 {%- endunless -%}
@@ -40,7 +46,13 @@
                 {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
                 {% for post in site.posts %}
                   {%- assign post_categories_slugified = "" | split: "," -%}
-                  {%- for category in post.categories -%}
+                  {%- assign post_cats = post.categories -%}
+                  {%- if post_cats == blank -%}
+                    {%- assign post_cats = "" | split: "," -%}
+                  {%- elsif post_cats.size == nil -%}
+                    {%- assign post_cats = post_cats | split: " " -%}
+                  {%- endif -%}
+                  {%- for category in post_cats -%}
                     {%- assign post_categories_slugified = post_categories_slugified | push: (category | slugify) -%}
                   {%- endfor -%}
                   <li data-categories="{{ post_categories_slugified | join: ' ' }}">
