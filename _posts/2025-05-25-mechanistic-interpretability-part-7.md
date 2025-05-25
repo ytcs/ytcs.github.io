@@ -6,7 +6,7 @@ categories: machine-learning
 date: 2025-05-25
 ---
 
-In the previous parts of this series, we've explored the foundational principles of mechanistic interpretability, the superposition hypothesis, and mathematical frameworks for transformer analysis. Now we turn to one of the most powerful conceptual frameworks in the field: **neural network circuits**. Moving beyond individual features, circuits capture the computational relationships and information flow patterns that enable complex behaviors, providing a bridge between low-level neural activations and high-level algorithmic understanding.
+In the previous parts of this series, we've explored the foundational principles of mechanistic interpretability ([Part 1]({% post_url 2025-05-25-mechanistic-interpretability-part-1 %})), the superposition hypothesis ([Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})), mathematical frameworks for transformer analysis ([Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})), dictionary learning techniques ([Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})), validation methodologies ([Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})), and the polysemantic-monosemantic spectrum ([Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})). Now we turn to one of the most powerful conceptual frameworks in the field: **neural network circuits**. Moving beyond individual features, circuits capture the computational relationships and information flow patterns that enable complex behaviors, providing a bridge between low-level neural activations and high-level algorithmic understanding.
 
 ## Circuit Definition and Scope
 

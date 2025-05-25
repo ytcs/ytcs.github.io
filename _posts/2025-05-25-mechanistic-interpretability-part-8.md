@@ -6,7 +6,7 @@ categories: machine-learning
 date: 2025-05-25
 ---
 
-In [Part 7]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %}), we explored the general framework of neural network circuits and their computational patterns. Now we turn to one of the most important applications of circuit analysis: understanding **transformer circuits and attention mechanisms**. Transformers represent the backbone of modern AI systems, from GPT to BERT to multimodal models, making their mechanistic understanding crucial for both scientific insight and practical AI safety.
+In [Part 7]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %}), we explored the general framework of neural network circuits and their computational patterns. Now we turn to one of the most important applications of circuit analysis: understanding **transformer circuits and attention mechanisms**. Building on the mathematical frameworks established in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}), we can now apply these tools systematically to analyze attention heads, understand information flow, and decode the computational algorithms that make transformers so powerful. Transformers represent the backbone of modern AI systems, from GPT to BERT to multimodal models, making their mechanistic understanding crucial for both scientific insight and practical AI safety.
 
 ## Transformer Architecture and Circuit Decomposition
 

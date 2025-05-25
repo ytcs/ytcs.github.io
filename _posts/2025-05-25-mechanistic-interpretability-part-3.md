@@ -284,6 +284,7 @@ where the second term implements K-composition with the previous token head.
 - Strong K-composition with previous token heads
 - Positive eigenvalues in both QK and OV circuits (indicating copying behavior)
 - Characteristic attention patterns on repeated sequences
+- Rigorous validation using the methodologies developed in [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})
 
 ## Zero and One-Layer Analysis
 
@@ -424,6 +425,8 @@ This comprehensive mathematical framework for transformer circuit analysis provi
 6. **Emergent Complexity:** Two-layer models exhibit qualitatively new capabilities through composition, representing a critical transition point in computational sophistication.
 
 The mathematical framework developed here represents a foundational advance in our ability to understand and analyze transformer models. By providing precise tools for decomposing complex computations into interpretable components, this framework opens new possibilities for AI safety research, model debugging, and our fundamental understanding of how large language models process and generate text.
+
+Building on this mathematical foundation, **[Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})** addresses a practical challenge raised by the superposition hypothesis from [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}): how to extract interpretable features when they exist in superposition. **[Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})** then develops the validation methodologies necessary to ensure our circuit analyses reflect genuine computational understanding. The framework established here also sets the stage for the detailed circuit analysis in **[Parts 7-9]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})**, where we apply these mathematical tools to understand specific transformer mechanisms like induction heads.
 
 As we continue to scale these techniques to larger models and extend them to include MLP layers, we move closer to the ultimate goal of mechanistic interpretability: understanding neural networks well enough to predict their behavior, identify potential failure modes, and ensure their alignment with human values and intentions.
 

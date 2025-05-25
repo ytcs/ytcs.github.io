@@ -201,9 +201,19 @@ This introduction has established the foundational concepts and methodological f
 
 4. **Historical Precedent:** The development of microscopy and cellular biology provides valuable analogy for understanding mechanistic interpretability's potential trajectory and challenges.
 
-In **[Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})**, we'll explore the superposition hypothesis—a crucial theoretical framework explaining why individual neurons often respond to multiple unrelated concepts, and how neural networks can represent more features than dimensions through sophisticated geometric arrangements.
+This series unfolds these ideas systematically:
 
-**[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})** will develop the mathematical framework necessary for systematic transformer circuit analysis, providing tools for decomposing attention mechanisms and understanding how complex behaviors emerge through component composition.
+**[Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})** explores the superposition hypothesis—a crucial theoretical framework explaining why individual neurons often respond to multiple unrelated concepts, and how neural networks can represent more features than dimensions through sophisticated geometric arrangements.
+
+**[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})** develops the mathematical framework necessary for systematic transformer circuit analysis, providing tools for decomposing attention mechanisms and understanding how complex behaviors emerge through component composition.
+
+**[Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})** introduces dictionary learning and sparse autoencoders as practical solutions to the superposition problem, enabling extraction of interpretable features from neural networks.
+
+**[Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})** establishes rigorous validation methodologies ensuring that interpretability claims reflect genuine understanding rather than wishful thinking.
+
+**[Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})** examines the spectrum between polysemantic and monosemantic representations, exploring how neural networks organize their computational structure and the implications for interpretability.
+
+**[Parts 7-9]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})** dive deep into practical circuit analysis, examining transformer architectures, attention mechanisms, and the remarkable phenomenon of induction heads that enable in-context learning.
 
 ---
 

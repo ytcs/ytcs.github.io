@@ -6,7 +6,7 @@ categories: machine-learning
 date: 2025-05-25
 ---
 
-In [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), we developed rigorous validation methodologies for interpretability claims. Now we turn to one of the most fundamental organizing principles in neural network representations: the **spectrum between polysemanticity and monosemanticity**. This spectrum captures the degree to which individual computational units correspond to coherent, interpretable concepts—a property that fundamentally shapes both the feasibility and methodology of mechanistic interpretability.
+In [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), we developed rigorous validation methodologies for interpretability claims. Now we turn to one of the most fundamental organizing principles in neural network representations: the **spectrum between polysemanticity and monosemanticity**. This spectrum captures the degree to which individual computational units correspond to coherent, interpretable concepts—building directly on the polysemanticity problem identified in [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}) and the dictionary learning solutions from [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}). This property fundamentally shapes both the feasibility and methodology of mechanistic interpretability.
 
 ## Defining the Semantic Spectrum
 
@@ -654,6 +654,8 @@ Key insights include:
 5. **Interpretability Implications:** The semantic spectrum fundamentally affects interpretability methodology, requiring different analysis approaches for different degrees of polysemanticity.
 
 6. **Safety Applications:** Understanding and controlling semantic organization is crucial for AI safety, enabling better monitoring, intervention, and alignment of advanced systems.
+
+Understanding the polysemantic-monosemantic spectrum provides crucial context for the circuit analyses that follow. The individual features analyzed here—whether polysemantic or monosemantic—form the building blocks of the larger computational circuits examined in [Parts 7-9]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %}). The validation methodologies from [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}) prove essential for reliably characterizing feature semantics, while the extraction techniques from [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}) enable us to move beyond the polysemanticity limitations identified in [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}).
 
 The next part will explore circuit-level analysis, building on our understanding of individual feature semantics to examine how features combine into larger computational circuits implementing complex algorithms.
 

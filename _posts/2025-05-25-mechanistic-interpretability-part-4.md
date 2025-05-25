@@ -6,7 +6,7 @@ categories: machine-learning
 date: 2025-05-25
 ---
 
-In [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}), we explored the superposition hypothesis and discovered why individual neurons often respond to multiple, seemingly unrelated concepts. This polysemanticity problem poses a fundamental challenge: if features are mixed together in superposition, how can we extract interpretable, monosemantic features from neural networks? The answer lies in **dictionary learning** through **sparse autoencoders**—a powerful technique that can decompose superposed representations into their constituent features.
+In [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}), we explored the superposition hypothesis and discovered why individual neurons often respond to multiple, seemingly unrelated concepts. This polysemanticity problem poses a fundamental challenge: if features are mixed together in superposition, how can we extract interpretable, monosemantic features from neural networks? Building on the foundational principles from [Part 1]({% post_url 2025-05-25-mechanistic-interpretability-part-1 %}) and the mathematical framework from [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}), the answer lies in **dictionary learning** through **sparse autoencoders**—a powerful technique that can decompose superposed representations into their constituent features.
 
 ## From Superposition to Dictionary Learning
 
@@ -449,7 +449,7 @@ Key insights include:
 
 5. **Safety Applications:** Discovery of safety-relevant features opens new possibilities for AI alignment research.
 
-While challenges remain in scaling, evaluation, and theoretical understanding, dictionary learning represents a major advance toward mechanistic interpretability of modern AI systems. The next part will explore rigorous validation methodologies for ensuring discovered features are genuinely interpretable rather than artifacts of the decomposition process.
+While challenges remain in scaling, evaluation, and theoretical understanding, dictionary learning represents a major advance toward mechanistic interpretability of modern AI systems. The extracted features from dictionary learning directly address the polysemanticity problem identified in [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}), providing the monosemantic building blocks explored in [Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %}). However, as we'll see in the next part, rigorous validation methodologies are essential for ensuring discovered features are genuinely interpretable rather than artifacts of the decomposition process.
 
 ---
 

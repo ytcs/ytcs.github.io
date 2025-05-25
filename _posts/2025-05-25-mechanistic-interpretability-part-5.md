@@ -6,7 +6,7 @@ categories: machine-learning
 date: 2025-05-25
 ---
 
-In [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}), we explored how sparse autoencoders can extract interpretable features from neural networks. But extracting features is only the first step—without rigorous validation, we risk mistaking optimization artifacts for meaningful computational primitives. This part develops comprehensive methodologies for validating interpretability claims through multiple independent lines of evidence, ensuring our insights reflect genuine understanding rather than wishful thinking.
+In [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}), we explored how sparse autoencoders can extract interpretable features from neural networks, building on the superposition analysis from [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}) and the mathematical frameworks from [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}). But extracting features is only the first step—without rigorous validation, we risk mistaking optimization artifacts for meaningful computational primitives. This part develops comprehensive methodologies for validating interpretability claims through multiple independent lines of evidence, ensuring our insights reflect genuine understanding rather than wishful thinking.
 
 ## The Validation Imperative
 
@@ -686,7 +686,7 @@ Key principles for robust validation include:
 
 5. **Bias Awareness:** Active recognition and mitigation of systematic biases threatening validity.
 
-The next part will explore the spectrum between polysemantic and monosemantic representations, building on these validation frameworks to understand how neural networks organize their computational structure.
+These validation methodologies are essential for establishing the reliability of the dictionary learning techniques from [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}) and will prove crucial for understanding the circuit analyses in [Parts 7-9]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %}). The rigorous standards developed here provide the foundation for confident claims about feature quality and computational understanding. The next part will explore the spectrum between polysemantic and monosemantic representations, building on these validation frameworks to understand how neural networks organize their computational structure.
 
 ---
 

@@ -286,7 +286,7 @@ The superposition hypothesis suggests three potential strategies:
 - Trade model capacity for interpretability
 
 **Strategy 2: Extract Features from Superposition**
-- Develop sophisticated dictionary learning methods
+- Develop sophisticated dictionary learning methods (explored in [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}))
 - Apply sparse autoencoder techniques
 - Use mathematical optimization to decompose representations
 
@@ -344,6 +344,8 @@ The superposition hypothesis provides crucial insights into neural network repre
 4. **Geometric Structure:** Superposition organizes features into precise geometric configurations corresponding to optimal packing arrangements.
 
 5. **Interpretability Implications:** Understanding superposition is crucial for developing effective neural network interpretability strategies.
+
+This understanding of superposition motivates the rest of our series: **[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})** develops the mathematical framework necessary for systematic transformer circuit analysis, extending superposition principles to attention-based architectures. **[Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})** then addresses the practical challenge of extracting interpretable features from superposition through dictionary learning techniques. The polysemanticity problem revealed here directly motivates the monosemanticity research explored in **[Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})**, while the validation challenges necessitate the rigorous methodologies developed in **[Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})**.
 
 In **[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})**, we'll build upon these foundations to develop the mathematical framework necessary for systematic transformer circuit analysis, extending superposition principles to attention-based architectures and exploring how complex behaviors emerge through component composition.
 
