@@ -137,11 +137,13 @@ $$\mathcal{L}_{\text{sparsity}} = ||\mathbf{f}||_1 = \sum_{i=1}^{n} |f_i|$$
 
 **Alternative Sparsity Measures:**
 
-**L0 Approximation:** Smooth approximations to count non-zero elements:
+**L0 Approximation:** While L1 regularization encourages many coefficients to be *small*, it doesn't directly enforce them to be *exactly zero*. The L0 norm, which counts the number of non-zero elements, would be ideal but is non-differentiable. Smooth approximations to the L0 norm can be used to more directly penalize the number of active features:
 $$\mathcal{L}_{\text{L0}} = \sum_{i=1}^{n} \sigma(\alpha f_i + \beta)$$
+(Here, $$\sigma$$ is a sigmoid-like function that approximates a step function, and $$\alpha, \beta$$ are parameters.)
 
-**Hoyer Sparsity:** Measures ratio of L1 to L2 norms:
-$$\mathcal{L}_{\text{Hoyer}} = \frac{||\mathbf{f}||_1}{||\mathbf{f}||_2}$$
+**Hoyer Sparsity:** This measure encourages solutions where a few features have large activations, while most others are very close to zero. It is defined as the ratio of the L1 norm to the L2 norm and can be more effective than L1 alone in promoting highly sparse, peaky feature activations:
+$$\mathcal{L}_{\text{Hoyer}} = \frac{\|\mathbf{f}\|_1}{\|\mathbf{f}\|_2}$$
+Maximizing this ratio (or penalizing its inverse) encourages sparsity.
 
 ### Auxiliary Losses
 

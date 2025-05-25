@@ -54,7 +54,7 @@ The seven-argument framework provides a systematic approach to validation throug
 
 $$\mathbf{x}^* = \arg\max_{\mathbf{x}} \mathbf{d}^T \mathbf{a}^{(\ell)}(\mathbf{x}) - \lambda R(\mathbf{x})$$
 
-where $$R(\mathbf{x})$$ is regularization ensuring the generated input remains within the natural data distribution.
+where $$R(\mathbf{x})$$ is regularization ensuring the generated input remains within the natural data distribution. The regularization term $$R(\mathbf{x})$$ is crucial because simply maximizing the feature activation $$\mathbf{d}^T \mathbf{a}^{(\ell)}(\mathbf{x})$$ can often result in highly unnatural or "adversarial" inputs (e.g., random noise patterns) that maximally excite the feature but do not reflect the kinds of inputs the feature is meant to respond to in practice. Regularization helps guide the optimization towards inputs that are both high-activating and semantically meaningful.
 
 **Regularization for Language Models:**
 

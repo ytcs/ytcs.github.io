@@ -70,6 +70,8 @@ $$\mathbf{W}_{QK} = \mathbf{W}_Q \mathbf{W}_K^T$$
 
 $$\mathbf{W}_{OV} = \mathbf{W}_V \mathbf{W}_O$$
 
+Note that if the input token representations $$\mathbf{x}_i, \mathbf{x}_j$$ are in $$\mathbb{R}^{d_{\text{model}}}$$, and $$\mathbf{W}_Q, \mathbf{W}_K$$ project to $$\mathbb{R}^{d_{\text{head}}}$$, then $$\mathbf{W}_Q \in \mathbb{R}^{d_{\text{model}} \times d_{\text{head}}}$$ and $$\mathbf{W}_K \in \mathbb{R}^{d_{\text{model}} \times d_{\text{head}}}$$. Thus, $$\mathbf{W}_{QK}^{\text{effective}} = \mathbf{W}_Q \mathbf{W}_K^T$$ would be a $$\mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$$ matrix if we consider its action on the full token representations (i.e., $$(\mathbf{x}_i \mathbf{W}_Q)(\mathbf{x}_j \mathbf{W}_K)^T = \mathbf{x}_i (\mathbf{W}_Q \mathbf{W}_K^T) \mathbf{x}_j^T$$). This effective QK matrix shows how pairs of token representations in the residual stream are compared to produce attention scores. Similarly, if $$\mathbf{W}_V \in \mathbb{R}^{d_{\text{model}} \times d_{\text{head}}}$$ and $$\mathbf{W}_O \in \mathbb{R}^{d_{\text{head}} \times d_{\text{model}}}$$, then $$\mathbf{W}_{OV} = \mathbf{W}_V \mathbf{W}_O$$ is a $$\mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$$ matrix. This OV matrix describes the transformation applied to a value vector (derived from a token representation) before it's written back to the residual stream.
+
 **Low-Rank Structure:** Attention matrices have inherent low-rank structure:
 
 $$\text{rank}(\mathbf{W}_{QK}) \leq \min(d_{\text{model}}, d_{\text{head}})$$

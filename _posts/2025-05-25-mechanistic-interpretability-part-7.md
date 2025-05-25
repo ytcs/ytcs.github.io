@@ -332,7 +332,7 @@ $$\text{Pattern Strength} = \frac{||\mathbf{w}_{\text{pattern}}||_2}{||\mathbf{w
 
 $$\mathbf{W} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^T = \sum_{i=1}^{r} \sigma_i \mathbf{u}_i \mathbf{v}_i^T$$
 
-where dominant singular vectors reveal key computational patterns.
+where dominant singular vectors reveal key computational patterns. Each term $$\sigma_i \mathbf{u}_i \mathbf{v}_i^T$$ represents a rank-one matrix (an "outer product"), and the SVD decomposes $$\mathbf{W}$$ into a sum of these, ordered by the magnitude of the singular values $$\sigma_i$$. The vectors $$\mathbf{v}_i$$ (columns of $$\mathbf{V}$$ or rows of $$\mathbf{V}^T$$) form an orthonormal basis for the input space, and $$\mathbf{u}_i$$ (columns of $$\mathbf{U}$$) form an orthonormal basis for the output space. Each $$\mathbf{v}_i$$ can be thought of as an input pattern (or direction in input space) that the matrix $$\mathbf{W}$$ responds to, and the corresponding $$\mathbf{u}_i$$ is the output pattern (direction in output space) produced, scaled by $$\sigma_i$$. Thus, the leading singular value(s) and their associated vectors highlight the most significant linear transformations the weight matrix $$\mathbf{W}$$ performs.
 
 **Template Matching:** Comparing learned weights to algorithmic templates:
 

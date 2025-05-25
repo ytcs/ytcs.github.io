@@ -130,13 +130,19 @@ $$x_i - \sum_{j=1}^{n} x_j (\mathbf{w}_i \cdot \mathbf{w}_j) = x_i - x_i \|\math
 
 $$= x_i(1 - \|\mathbf{w}_i\|^2) - \sum_{j \neq i} x_j (\mathbf{w}_i \cdot \mathbf{w}_j)$$
 
-Squaring and taking expectations (assuming $$\mathbb{E}[x_i x_j] = 0$$ for $$i \neq j$$ and $$\mathbb{E}[x_i^2] = I_i$$):
+Squaring this error term gives:
+
+$$ \left( x_i(1 - \|\mathbf{w}_i\|^2) - \sum_{j \neq i} x_j (\mathbf{w}_i \cdot \mathbf{w}_j) \right)^2 = x_i^2(1 - \|\mathbf{w}_i\|^2)^2 - 2 x_i(1 - \|\mathbf{w}_i\|^2) \sum_{j \neq i} x_j (\mathbf{w}_i \cdot \mathbf{w}_j) + \left( \sum_{j \neq i} x_j (\mathbf{w}_i \cdot \mathbf{w}_j) \right)^2 $$
+
+Taking the expectation, and assuming that the input features $$x_k$$ are uncorrelated (i.e., $$\mathbb{E}[x_k x_l] = 0$$ for $$k \neq l$$) and that $$\mathbb{E}[x_k^2] = I_k$$ (the importance or variance of feature $$k$$), the cross-terms vanish. The first term becomes $$I_i(1 - \|\mathbf{w}_i\|^2)^2$$. The second term's expectation becomes zero because it involves $$x_i x_j$$ terms where $$i \neq j$$. The third term, when expanded, is $$\sum_{j \neq i} \sum_{k \neq i} x_j x_k (\mathbf{w}_i \cdot \mathbf{w}_j)(\mathbf{w}_i \cdot \mathbf{w}_k)$$. Due to the uncorrelated inputs, only terms where $$j=k$$ survive in the expectation, giving $$\sum_{j \neq i} x_j^2 (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$. Taking the expectation, this becomes $$\sum_{j \neq i} I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$. 
+
+Thus, the expected squared error for component $$i$$ is:
 
 $$\mathbb{E}[(x_i - (\mathbf{W}^T\mathbf{W}\mathbf{x})_i)^2] = I_i(1 - \|\mathbf{w}_i\|^2)^2 + \sum_{j \neq i} I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
 
 Summing over all components and expanding $$(1 - \|\mathbf{w}_i\|^2)^2 = 1 - 2\|\mathbf{w}_i\|^2 + \|\mathbf{w}_i\|^4$$:
 
-$$L = \sum_{i=1}^{n} I_i \left( 1 - 2\|\mathbf{w}_i\|^2 + \|\mathbf{w}_i\|^4 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
+$$L = \sum_{i=1}^{n} I_i \left( 1 - 2\|\mathbf{w}_i\|^2 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
 
 For small $$\|\mathbf{w}_i\|^2$$, we can approximate $$\|\mathbf{w}_i\|^4 \approx 0$$, giving us the key decomposition:
 
@@ -170,7 +176,7 @@ $$x_i = \begin{cases}
 
 $$\text{Interference} = \sum_{i \neq j} I_i I_j \mathbb{E}_{x_i} \left[ \text{ReLU}'(\|\mathbf{w}_j\|^2 x_i + b_j) (\mathbf{w}_i \cdot \mathbf{w}_j)^2 \right]$$
 
-The ReLU derivative $$\text{ReLU}'$$ can be zero for small interference terms, enabling superposition when features are sparse enough.
+The ReLU derivative $$\text{ReLU}'$$ is 1 for positive arguments and 0 for negative arguments. If the feature activations $$x_i$$ are sparse and the biases $$b_j$$ are set appropriately (e.g., slightly negative), the argument to ReLU ($$\|\mathbf{w}_j\|^2 x_i + b_j$$) will often be negative when only small interference terms are present (i.e., when the primary feature $$x_j$$ that $$w_j$$ is trying to represent is not active). In such cases, the derivative is zero, effectively nullifying the interference penalty for those instances. This allows the model to learn to represent features in superposition without incurring the full interference cost that a linear model would face, especially when features are sparse.
 
 ### Phase Transition Analysis
 

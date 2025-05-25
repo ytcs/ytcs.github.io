@@ -196,11 +196,11 @@ Extensive empirical analysis reveals consistent patterns in the distribution and
 - Reduced but still significant polysemanticity
 - More predictable activation patterns
 
-**Quantitative Analysis:** Empirical measurements across transformer layers:
+**Quantitative Analysis:** Empirical measurements across transformer layers sometimes show a pattern where polysemanticity is lower in the initial and final layers and peaks in the middle. This can be modeled, for instance, with a quadratic relationship:
 
 $$\text{Polysemanticity}(\ell) = \alpha \cdot \ell \cdot (L - \ell) + \beta$$
 
-where $$\ell$$ is layer index, $$L$$ is total layers, and $$\alpha, \beta$$ are fitted parameters.
+where $$\ell$$ is layer index, $$L$$ is total layers, and $$\alpha, \beta$$ are fitted parameters. The $$\ell(L-\ell)$$ term captures this rise-and-fall pattern: early layers handle more direct input features, late layers focus on task-specific outputs (both potentially more monosemantic), while middle layers perform complex, abstract transformations where features might be combined in many ways, leading to higher polysemanticity.
 
 ### Relationship to Network Capacity
 

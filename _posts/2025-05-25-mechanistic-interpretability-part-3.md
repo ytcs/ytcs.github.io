@@ -83,17 +83,17 @@ $$\text{Write:} \quad \mathbf{x}^{(\ell)} = \mathbf{x}^{(\ell-1)} + \mathbf{h}^{
 
 ## Virtual Weights and Effective Connectivity
 
-The linear structure of the residual stream enables computation of virtual weights capturing effective connectivity between non-adjacent components, providing a powerful tool for understanding long-range dependencies.
+The linear structure of the residual stream enables computation of virtual weights capturing effective connectivity between non-adjacent components, providing a powerful tool for understanding long-range dependencies. Think of the residual stream as a highway where information from different components (cars) can be added. A component later in the network doesn't just see the output of the immediately preceding component; it sees the sum of outputs from *all* previous components that wrote to the residual stream. Virtual weights help us quantify the total influence of one component's output on another component's input, considering all the additions that happened in between.
 
 ### Virtual Weight Computation
 
-**Definition:** Virtual weights $$\mathbf{W}_{\text{virtual}}^{(i,j)}$$ represent the effective linear transformation from component $i$ output to component $$j$$ input, computed by multiplying relevant weight matrices through the residual stream.
+**Definition:** Virtual weights $$\mathbf{W}_{\text{virtual}}^{(i,j)}$$ represent the effective linear transformation from component $$i$$ output to component $$j$$ input, computed by multiplying relevant weight matrices through the residual stream.
 
-**Mathematical Formulation:** For components in layers $$i < j$$:
+**Mathematical Formulation:** For components in layers $$i < j$$, the simplest virtual weight considers only the direct write from component $$i$$ and the direct read by component $$j$$ from the residual stream state *as it was after component i wrote to it*. If no other components wrote to the stream between $$i$$ and $$j$$, or if we are only interested in the direct path component $$i$$ adds to the stream that $$j$$ then reads, this is:
 
 $$\mathbf{W}_{\text{virtual}}^{(i,j)} = \mathbf{W}_{\text{in}}^{(j)} \mathbf{W}_{\text{out}}^{(i)}$$
 
-**Multi-Hop Virtual Weights:** For components separated by multiple layers, virtual weights consider all possible paths through intermediate layers:
+**Multi-Hop Virtual Weights:** However, the residual stream accumulates signals. For components separated by multiple layers, the input to component $$j$$ is influenced by component $$i$$ not just directly, but also through any intermediate layers $$k$$ (where $$i < k < j$$) that read from the stream (influenced by $$i$$) and then write back to it. The term $$\left( \mathbf{I} + \sum_{k=i+1}^{j-1} \mathbf{W}_{\text{out}}^{(k)} \mathbf{W}_{\text{in}}^{(k)} \right)$$ in the formula below accounts for these multi-hop paths. The identity matrix $$\mathbf{I}$$ represents the direct influence of component $$i$$'s output if it were to pass through to $$j$$ without intermediate modification, and the sum accumulates the effects of all intermediate components $$k$$ that read from the residual stream (which includes $$i$$'s contribution) and then write their output back to the stream before $$j$$ reads it. Thus, the total effective linear transformation from the output of component $$i$$ to the input of component $$j$$ is:
 
 $$\mathbf{W}_{\text{virtual}}^{(i,j)} = \mathbf{W}_{\text{in}}^{(j)} \left( \mathbf{I} + \sum_{k=i+1}^{j-1} \mathbf{W}_{\text{out}}^{(k)} \mathbf{W}_{\text{in}}^{(k)} \right) \mathbf{W}_{\text{out}}^{(i)}$$
 

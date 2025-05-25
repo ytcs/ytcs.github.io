@@ -140,29 +140,8 @@ Following Popper's criterion of demarcation, scientific claims must be potential
 
 **Intervention-Based Testing:** The gold standard involves demonstrating that interventions based on proposed mechanisms produce predicted changes in network behavior, establishing causal rather than merely correlational relationships.
 
-### Multi-Evidence Convergence Framework
-
-Given neural network complexity and potential for spurious patterns, robust interpretability claims require convergent evidence from multiple independent sources. This framework encompasses seven complementary approaches:
-
-**1. Feature Visualization:** Optimization-based techniques generating inputs maximally activating specific network components, establishing causal links between hypothesized features and network activations.
-
-**Mathematical Formulation:** For feature $$f$$ characterized by direction $$\mathbf{d}$$ in layer $$l$$:
-
-$$\mathbf{x}^* = \arg\max_{\mathbf{x}} \mathbf{d}^T \mathbf{a}^{(l)}(\mathbf{x}) - \lambda R(\mathbf{x})$$
-
-where $$R(\mathbf{x})$$ ensures the generated input remains within natural data distribution.
-
-**2. Dataset Examples:** Analysis of naturally occurring inputs strongly activating hypothesized features, validating proposed interpretations align with real-world data patterns.
-
-**3. Synthetic Stimuli:** Controlled experiments using artificially constructed inputs systematically varying hypothesized features while controlling confounding factors.
-
-**4. Tuning Curves:** Quantitative characterization of feature responses across systematic input parameter variations, providing detailed functional characterization.
-
-**5. Implementation Analysis:** Examination of computational mechanisms constructing features from earlier network layers through weight pattern and connectivity structure analysis.
-
-**6. Usage Analysis:** Investigation of how downstream network components utilize features, validating interpretations by demonstrating semantically consistent usage.
-
-**7. Cleanroom Reimplementation:** Construction of hand-designed networks implementing hypothesized computational algorithms, providing strong evidence through successful behavior reproduction.
+### Rigorous Validation of Claims
+Given neural network complexity and the potential for identifying spurious patterns, robust interpretability claims require convergent evidence from multiple independent lines of inquiry. Mechanistic interpretations should be treated as scientific hypotheses that are rigorously tested. This involves not only observing correlations but also establishing causal links through interventions and seeking falsifiable predictions. A comprehensive validation approach, which will be detailed in Part 5 of this series, typically involves diverse techniques such as analyzing feature activations on real and synthetic data, examining the internal structure of how features are computed, studying their downstream effects, and attempting to reproduce observed behaviors in simplified settings. This multi-faceted approach is crucial for building reliable and validated understanding of neural network mechanisms.
 
 ### Statistical Rigor and Reproducibility
 

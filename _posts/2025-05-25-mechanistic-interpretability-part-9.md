@@ -75,7 +75,7 @@ $$\mathbf{q}_i^{(l+k)} = (\mathbf{x}_i^{(0)} + \text{contributions from layers }
 
 $$\mathbf{W}_{\text{induction}} = \mathbf{W}_{QK}^{(l+k)} \mathbf{W}_{OV}^{(l)}$$
 
-This composition allows the later layer to "read" the associations created by the earlier layer.
+This composition allows the later layer to "read" the associations created by the earlier layer. More concretely, $$\mathbf{W}_{OV}^{(l)}$$ (from the previous token head at layer $$l$$) determines how information (e.g., token $$B$$ following token $$A$$) is written to the residual stream. Then, $$\mathbf{W}_{QK}^{(l+k)}$$ (of the induction head at layer $$l+k$$) determines how the query (derived from a new instance of token $$A$$) at layer $$l+k$$ uses the information present in the residual stream (which includes the output from layer $$l$$) to form its attention pattern. The product $$\mathbf{W}_{\text{induction}}$$ thus represents the effective matrix that dictates how the output of the first head (carrying the $$[A][B]$$ association) influences the attention scores of the second head when it sees a new $$A$$, enabling it to look for previous occurrences of $$B$$.
 
 ## Induction Head Formation and Training Dynamics
 
