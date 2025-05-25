@@ -78,7 +78,7 @@ Mechanistic interpretability rests upon three foundational claims that, if valid
 
 **Formal Statement:** Features constitute the fundamental computational units of neural networks, corresponding to directions in the vector space of neural activations.
 
-**Mathematical Formulation:** Let $$\mathbf{a}^{(l)} \in \mathbb{R}^{n_l}$$ denote the activation vector for layer $l$. A feature $f$ is characterized by a direction vector $$\mathbf{d} \in \mathbb{R}^{n_l}$$ such that:
+**Mathematical Formulation:** Let $$\mathbf{a}^{(l)} \in \mathbb{R}^{n_l}$$ denote the activation vector for layer $$l$$. A feature $$f$$ is characterized by a direction vector $$\mathbf{d} \in \mathbb{R}^{n_l}$$ such that:
 
 $$f(\mathbf{x}) = \mathbf{d}^T \mathbf{a}^{(l)}(\mathbf{x})$$
 
@@ -96,12 +96,12 @@ In the simplest case, $$\mathbf{d}$$ is a standard basis vector corresponding to
 
 **Formal Statement:** Neural network computation can be decomposed into circuits—computational subgraphs consisting of features connected by weighted edges implementing specific algorithms.
 
-**Mathematical Formulation:** A circuit $C$ is defined as a directed acyclic graph $$C = (V, E, W)$$ where:
+**Mathematical Formulation:** A circuit $$C$$ is defined as a directed acyclic graph $$C = (V, E, W)$$ where:
 - $$V$$ is a set of features spanning multiple layers
 - $$E \subseteq V \times V$$ is a set of directed edges between features in adjacent layers  
 - $$W: E \rightarrow \mathbb{R}$$ assigns weights to edges based on original network parameters
 
-For features $f_i$ and $f_j$ in adjacent layers with direction vectors $$\mathbf{d}_i$ and $\mathbf{d}_j$$, the edge weight is:
+For features $$f_i$$ and $$f_j$$ in adjacent layers with direction vectors $$\mathbf{d}_i$$ and $$\mathbf{d}_j$$, the edge weight is:
 
 $$W(f_i, f_j) = \mathbf{d}_j^T \mathbf{W}^{(l,l+1)} \mathbf{d}_i$$
 

@@ -178,7 +178,7 @@ The linear structure of transformers enables exact decomposition of model comput
 
 ### Path Decomposition Framework
 
-**Path Definition:** A path $P$ through a transformer is a sequence of components $$(c_1, c_2, \ldots, c_k)$$ that information can flow through from input to output.
+**Path Definition:** A path $$P$$ through a transformer is a sequence of components $$(c_1, c_2, \ldots, c_k)$$ that information can flow through from input to output.
 
 **Path Contribution:** The contribution of path $$P$$ to final logits is:
 

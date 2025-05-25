@@ -49,7 +49,7 @@ The superposition hypothesis provides a principled explanation for polysemantici
 
 Superposition builds upon the fundamental assumption that neural networks employ **linear representations**, where features correspond to directions in activation space.
 
-**Mathematical Formulation:** In a linear representation, each feature $f_i$ is associated with a direction vector $$\mathbf{w}_i \in \mathbb{R}^m$$ in the $$m$$-dimensional activation space. Multiple features $$f_1, f_2, \ldots, f_n$$ with activation values $$x_1, x_2, \ldots, x_n$$ are represented by:
+**Mathematical Formulation:** In a linear representation, each feature $$f_i$$ is associated with a direction vector $$\mathbf{w}_i \in \mathbb{R}^m$$ in the $$m$$-dimensional activation space. Multiple features $$f_1, f_2, \ldots, f_n$$ with activation values $$x_1, x_2, \ldots, x_n$$ are represented by:
 
 $$\mathbf{a} = \sum_{i=1}^{n} x_i \mathbf{w}_i$$
 
@@ -87,7 +87,7 @@ A crucial distinction concerns whether the coordinate system (basis) used to rep
 The core insight is that neural networks can represent more features than dimensions by exploiting high-dimensional space properties, effectively simulating larger, sparser networks within smaller, denser ones.
 
 **High-Dimensional Geometry:** The mathematical foundation lies in counterintuitive high-dimensional space properties:
-- **Almost orthogonal vectors:** While only $n$ vectors can be perfectly orthogonal in $n$-dimensional space, exponentially many vectors can be approximately orthogonal (cosine similarity $< \epsilon$)
+- **Almost orthogonal vectors:** While only $$n$$ vectors can be perfectly orthogonal in $$n$$-dimensional space, exponentially many vectors can be approximately orthogonal (cosine similarity $$< \epsilon$$)
 - **Johnson-Lindenstrauss lemma:** Random projections preserve distances approximately, suggesting high-dimensional representations can be compressed without significant information loss
 
 **Sparsity as Enabling Condition:** Superposition becomes viable when features are sparse—most features are inactive for any given input. Sparsity reduces interference because:
@@ -152,7 +152,7 @@ The ReLU derivative $$\text{ReLU}'$$ can be zero for small interference terms, e
 
 The transition between orthogonal and superposition regimes exhibits characteristics of a phase transition, with sharp boundaries determined by relative importance and sparsity of features.
 
-**Critical Sparsity:** For given feature importance $I$, there exists a critical sparsity $$S_c(I)$$ above which superposition becomes optimal. This critical point balances feature benefit against interference costs.
+**Critical Sparsity:** For given feature importance $$I$$, there exists a critical sparsity $$S_c(I)$$ above which superposition becomes optimal. This critical point balances feature benefit against interference costs.
 
 **Phase Diagram:** The $$(S, I)$$ parameter space divides into distinct phases:
 - **Dense phase:** Low sparsity, features represented orthogonally
