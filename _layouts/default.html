@@ -23,10 +23,13 @@
               {%- elsif post_cats.size == nil -%}
                 {%- assign post_cats = post_cats | split: " " -%}
               {%- endif -%}
-              {%- for category in post_cats -%}
-                {%- unless categories contains category -%}
-                  {%- assign categories = categories | push: category -%}
-                {%- endunless -%}
+              {%- for item_in_post_cats in post_cats -%}
+                {%- assign cat_as_string = item_in_post_cats | join: "" -%}
+                {%- if cat_as_string != "" and cat_as_string != blank -%}
+                  {%- unless categories contains cat_as_string -%}
+                    {%- assign categories = categories | push: cat_as_string -%}
+                  {%- endunless -%}
+                {%- endif -%}
               {%- endfor -%}
             {%- endfor -%}
             {%- assign categories = categories | sort -%}
@@ -52,8 +55,11 @@
                   {%- elsif post_cats.size == nil -%}
                     {%- assign post_cats = post_cats | split: " " -%}
                   {%- endif -%}
-                  {%- for category in post_cats -%}
-                    {%- assign post_categories_slugified = post_categories_slugified | push: (category | slugify) -%}
+                  {%- for item_in_post_cats in post_cats -%}
+                    {%- assign cat_as_string = item_in_post_cats | join: "" -%}
+                    {%- if cat_as_string != "" and cat_as_string != blank -%}
+                      {%- assign post_categories_slugified = post_categories_slugified | push: (cat_as_string | slugify) -%}
+                    {%- endif -%}
                   {%- endfor -%}
                   <li data-categories="{{ post_categories_slugified | join: ' ' }}">
                     <span class="post-meta">{{ post.date | date: date_format }}</span>
