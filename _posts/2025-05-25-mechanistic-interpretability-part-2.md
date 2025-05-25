@@ -159,8 +159,8 @@ The transition between orthogonal and superposition regimes exhibits characteris
 - **Sparse phase:** High sparsity, features in superposition
 - **Transition region:** Intermediate regime with mixed strategies
 
-![Phase Transition Diagram](https://transformer-circuits.pub/2022/toy_model/index.html#phase-change)
-*Phase diagram showing the transition between orthogonal and superposition regimes as a function of sparsity and feature importance. Source: [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/)*
+![Phase Transition Diagram](/assets/img/mech_interp_phase_change.png)
+*Phase diagram showing the transition between orthogonal and superposition regimes as a function of sparsity and feature importance. Source: [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html#phase-change)*
 
 **Universality:** The phase transition behavior appears universal across different model sizes and architectures, suggesting fundamental principles governing feature representation.
 
@@ -211,8 +211,8 @@ One of the most striking discoveries is the emergence of precise geometric struc
 - **Pentagon:** 5 features in 2D (approximated, impossible as regular polytope)
 - **Octahedron:** 6 features in 3D at octahedral vertices
 
-![Geometric Structures](https://transformer-circuits.pub/2022/toy_model/index.html#geometry)
-*Geometric structures that emerge in superposition: features organize into regular polytopes like triangles, pentagons, and tetrahedrons. Source: [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/)*
+![Geometric Structures](/assets/img/mech_interp_geometry.png)
+*Geometric structures that emerge in superposition: features organize into regular polytopes like triangles, pentagons, and tetrahedrons. Source: [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_model/index.html#geometry)*
 
 **Thomson Problem Connection:** The geometric arrangements correspond to solutions of the Thomson problem—finding minimum energy configuration of charged particles on a sphere. This suggests superposition naturally discovers optimal packing arrangements.
 
