@@ -432,7 +432,3 @@ This comprehensive mathematical framework for transformer circuit analysis provi
 The mathematical framework developed here represents a foundational advance in our ability to understand and analyze transformer models. By providing precise tools for decomposing complex computations into interpretable components, this framework opens new possibilities for AI safety research, model debugging, and our fundamental understanding of how large language models process and generate text.
 
 As we continue to scale these techniques to larger models and extend them to include MLP layers, we move closer to the ultimate goal of mechanistic interpretability: understanding neural networks well enough to predict their behavior, identify potential failure modes, and ensure their alignment with human values and intentions.
-
----
-
-*This mathematical framework for transformer circuits represents the culmination of years of research in mechanistic interpretability, drawing from foundational work at [Anthropic](https://transformer-circuits.pub/) and the broader interpretability community. The techniques described here are actively being applied to understand increasingly large and capable language models, with significant implications for AI safety and our understanding of machine intelligence.* 

@@ -225,7 +225,3 @@ This introduction has established the foundational concepts and methodological f
 In **Part 2**, we'll explore the superposition hypothesis—a crucial theoretical framework explaining why individual neurons often respond to multiple unrelated concepts, and how neural networks can represent more features than dimensions through sophisticated geometric arrangements.
 
 **Part 3** will develop the mathematical framework necessary for systematic transformer circuit analysis, providing tools for decomposing attention mechanisms and understanding how complex behaviors emerge through component composition.
-
----
-
-*This series draws from cutting-edge research in mechanistic interpretability, particularly work from [Anthropic's Transformer Circuits Thread](https://transformer-circuits.pub/) and the foundational [Distill Circuits collaboration](https://distill.pub/2020/circuits/). The mathematical frameworks and empirical findings discussed represent active areas of research with significant implications for AI safety and our fundamental understanding of neural computation.* 
