@@ -116,13 +116,37 @@ where $$\mathbf{x} \in \mathbb{R}^n$$ is input, $$\mathbf{h} \in \mathbb{R}^m$$ 
 
 $$L = \mathbb{E}_{\mathbf{x}} \left[ \|\mathbf{x} - \mathbf{W}^T\mathbf{W}\mathbf{x}\|^2 \right]$$
 
-**Force Decomposition:** This loss reveals two competing forces:
+**Force Decomposition:** To understand why superposition occurs, we need to carefully derive the loss function structure. Starting with the reconstruction loss:
 
-$$L = \sum_{i=1}^{n} I_i \left( 1 - \|\mathbf{w}_i\|^2 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
+$$L = \mathbb{E}_{\mathbf{x}} \left[ \|\mathbf{x} - \mathbf{W}^T\mathbf{W}\mathbf{x}\|^2 \right]$$
 
-where $$I_i$$ represents feature importance (variance) and $$\mathbf{w}_i$$ is the $$i$$-th column of $$\mathbf{W}$$.
+Let's expand this step by step. First, note that $$\mathbf{W}^T\mathbf{W}$$ is an $$n \times n$$ matrix where the $$(i,j)$$-th entry is $$\mathbf{w}_i \cdot \mathbf{w}_j$$. So:
 
-- **Feature benefit:** $$\sum_{i=1}^{n} I_i (1 - \|\mathbf{w}_i\|^2)$$ encourages representing more features
+$$\mathbf{W}^T\mathbf{W}\mathbf{x} = \sum_{j=1}^{n} x_j \sum_{i=1}^{n} (\mathbf{w}_i \cdot \mathbf{w}_j) \mathbf{e}_i$$
+
+where $$\mathbf{e}_i$$ is the $$i$$-th standard basis vector. The reconstruction error for component $$i$$ is:
+
+$$x_i - \sum_{j=1}^{n} x_j (\mathbf{w}_i \cdot \mathbf{w}_j) = x_i - x_i \|\mathbf{w}_i\|^2 - \sum_{j \neq i} x_j (\mathbf{w}_i \cdot \mathbf{w}_j)$$
+
+$$= x_i(1 - \|\mathbf{w}_i\|^2) - \sum_{j \neq i} x_j (\mathbf{w}_i \cdot \mathbf{w}_j)$$
+
+Squaring and taking expectations (assuming $$\mathbb{E}[x_i x_j] = 0$$ for $$i \neq j$$ and $$\mathbb{E}[x_i^2] = I_i$$):
+
+$$\mathbb{E}[(x_i - (\mathbf{W}^T\mathbf{W}\mathbf{x})_i)^2] = I_i(1 - \|\mathbf{w}_i\|^2)^2 + \sum_{j \neq i} I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
+
+Summing over all components and expanding $$(1 - \|\mathbf{w}_i\|^2)^2 = 1 - 2\|\mathbf{w}_i\|^2 + \|\mathbf{w}_i\|^4$$:
+
+$$L = \sum_{i=1}^{n} I_i \left( 1 - 2\|\mathbf{w}_i\|^2 + \|\mathbf{w}_i\|^4 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
+
+For small $$\|\mathbf{w}_i\|^2$$, we can approximate $$\|\mathbf{w}_i\|^4 \approx 0$$, giving us the key decomposition:
+
+$$L \approx \sum_{i=1}^{n} I_i \left( 1 - 2\|\mathbf{w}_i\|^2 \right) + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
+
+$$= \text{const} - 2\sum_{i=1}^{n} I_i \|\mathbf{w}_i\|^2 + \sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$
+
+This reveals two competing forces:
+
+- **Feature benefit:** $$-2\sum_{i=1}^{n} I_i \|\mathbf{w}_i\|^2$$ encourages representing more features (larger $$\|\mathbf{w}_i\|$$)
 - **Interference penalty:** $$\sum_{i \neq j} I_i I_j (\mathbf{w}_i \cdot \mathbf{w}_j)^2$$ penalizes non-orthogonal feature representations
 
 **No Superposition Result:** In the linear case, the interference penalty makes representing more features than dimensions suboptimal. The optimal solution represents the top $$m$$ features orthogonally and ignores the remaining $$n-m$$ features entirely.
