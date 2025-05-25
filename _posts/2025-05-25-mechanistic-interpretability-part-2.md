@@ -213,7 +213,7 @@ $$x_i \sim \begin{cases}
 0 & \text{with probability } S
 \end{cases}$$
 
-where $$I_i = I_0 \cdot \alpha^i$$ creates a feature importance hierarchy.
+where $$I_i$$ represents the feature importance.
 
 ### Demonstrating Superposition
 
