@@ -134,7 +134,7 @@ The transition from ad hoc interpretability techniques to rigorous scientific in
 
 Following Popper's criterion of demarcation, scientific claims must be potentially falsifiable through empirical observation. In mechanistic interpretability, this manifests as:
 
-**Operational Definitions:** Interpretability claims must use operationally defined, measurable concepts. Rather than claiming a neuron "detects dogs," we must specify precise activation conditions and quantitative evaluation criteria.
+**Operational Definitions:** Interpretability claims must use operationally defined, measurable concepts. Rather than claiming a neuron "detects dogs", we must specify precise activation conditions and quantitative evaluation criteria.
 
 **Predictive Specificity:** Valid hypotheses must generate specific, testable predictions about network behavior with sufficient precision for clear empirical validation or refutation.
 
