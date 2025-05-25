@@ -25,5 +25,19 @@ layout: default
     {{ content }}
   </div>
 
+  <nav class="post-nav">
+    {%- if page.previous -%}
+      <a class="post-nav-item post-nav-prev" href="{{ page.previous.url | relative_url }}">
+        &laquo; {{ page.previous.title | escape }}
+      </a>
+    {%- endif -%}
+
+    {%- if page.next -%}
+      <a class="post-nav-item post-nav-next" href="{{ page.next.url | relative_url }}">
+        {{ page.next.title | escape }} &raquo;
+      </a>
+    {%- endif -%}
+  </nav>
+
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article> 
