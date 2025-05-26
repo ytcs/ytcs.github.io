@@ -29,8 +29,12 @@ where $$\text{ComponentOutput}_k^{(l)}$$ is the output of the $$k$$-th component
 Because of the residual stream's additive nature, a component in a later layer $$L_J$$ doesn't just see the direct output of layer $$L_J-1$$; it effectively sees the sum of outputs from *all* preceding components in layers $$L_I < L_J$$ that wrote to the stream. **Virtual weights** quantify the effective linear transformation from the input of an earlier component (or its output contribution) to an input processing stage of a later component, considering all intermediate additions and transformations in the residual stream.
 
 Let's define some terms:
--   Let $$\mathbf{M}_{out}^{(C_I)}$$ be the effective output matrix of a component $$C_I$$ (e.g., an attention head $$H_I$$ or an MLP block) in layer $$L_I$$. If $$X$$ is the input to component $$C_I$$ from the residual stream, its output contribution to the stream is $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$. For an attention head $$H_I$$, $$\mathbf{M}_{out}^{(H_I)}$$ would be its value-output transformation $$\mathbf{W}_V^{(H_I)}\mathbf{W}_O^{(H_I)}$$ (a $$d_{\text{model}} \times d_{\text{model}}$$ matrix), assuming the attention pattern itself is fixed or we are analyzing a specific path of information flow through a value vector. For an MLP layer, it would be $$\mathbf{W}_{in}^{(MLP)}\mathbf{W}_{out}^{(MLP)}$$ (again, $$d_{\text{model}} \times d_{\text{model}}$$).
--   Let $$\mathbf{W}_{in-proj}^{(C_J)}$$ be an input projection matrix of a component $$C_J$$ in layer $$L_J$$. For an attention head $$H_J$$, this could be its query matrix $$\mathbf{W}_Q^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$), key matrix $$\mathbf{W}_K^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$), or value matrix $$\mathbf{W}_V^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$). For an MLP, it could be its first weight matrix $$\mathbf{W}_{in}^{(MLP)}$$.
+-   Let $$\mathbf{M}_{out}^{(C_I)}$$ be the effective output matrix of a component $$C_I$$ (e.g., an attention head $$H_I$$ or an MLP block) in layer $$L_I$$. If $$X$$ is the input to component $$C_I$$ from the residual stream, its output contribution to the stream is $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$. 
+For an attention head $$H_I$$, $$\mathbf{M}_{out}^{(H_I)}$$ would be its value-output transformation $$\mathbf{W}_V^{(H_I)}\mathbf{W}_O^{(H_I)}$$ (a $$d_{\text{model}} \times d_{\text{model}}$$ matrix), assuming the attention pattern itself is fixed or we are analyzing a specific path of information flow through a value vector. 
+For an MLP layer, it would be $$\mathbf{W}_{in}^{(MLP)}\mathbf{W}_{out}^{(MLP)}$$ (again, $$d_{\text{model}} \times d_{\text{model}}$$).
+-   Let $$\mathbf{W}_{in-proj}^{(C_J)}$$ be an input projection matrix of a component $$C_J$$ in layer $$L_J$$. 
+For an attention head $$H_J$$, this could be its query matrix $$\mathbf{W}_Q^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$), key matrix $$\mathbf{W}_K^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$), or value matrix $$\mathbf{W}_V^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$). 
+For an MLP, it could be its first weight matrix $$\mathbf{W}_{in}^{(MLP)}$$.
 
 **1. Direct Virtual Weight (No Intermediate Layers, i.e., $$L_J = L_I + 1$$ or within the same layer if analyzing parallel components):**
 
@@ -44,6 +48,7 @@ For example, the virtual weight from the input of Head $$H_a$$'s OV circuit (mat
 **2. Virtual Weight Across Intermediate Layers:**
 
 Now, consider components $$C_I$$ in layer $$L_I$$ and $$C_J$$ in a later layer $$L_J$$ ($$L_J > L_I$$). The signal $$O_{C_I}$$ from $$C_I$$ passes through intermediate layers $$L_k$$ (for $$L_I < L_k < L_J$$).
+
 Each intermediate layer $$L_k$$ applies a linear transformation to the signal passing through its residual stream. If layer $$L_k$$ contains components $$C_{k,m}$$ (heads or MLPs) with effective output matrices $$\mathbf{M}^{(k,m)}$$, then a signal $$S$$ entering layer $$L_k$$ from the previous layer's residual stream is transformed to $$S + \sum_m S \mathbf{M}^{(k,m)} = S (\mathbf{I} + \sum_m \mathbf{M}^{(k,m)})$$ upon exiting layer $$L_k$$.
 Let $$T_k = (\mathbf{I} + \sum_m \mathbf{M}^{(k,m)})$$ be this full linear transformation for layer $$L_k$$.
 
@@ -67,8 +72,14 @@ $$\mathbf{q}_i = \mathbf{x}_i \mathbf{W}_Q, \quad \mathbf{k}_j = \mathbf{x}_j \m
 (Note: $$\mathbf{q}_i, \mathbf{k}_j, \mathbf{v}_j$$ are row vectors of dimension $$d_{\text{head}}$$.)
 
 Attention scores are computed as the dot product of a query vector with a key vector, scaled by $$\sqrt{d_{\text{head}}}$$:
+
 $$e_{ij} = \frac{\mathbf{q}_i \mathbf{k}_j^T}{\sqrt{d_{\text{head}}}}$$
-These scores are then normalized via Softmax across all source positions $$j$$ to get attention weights $$\alpha_{ij} = \text{Softmax}_j(e_{ij})$$. The output for query token $$i$$ from this head, before the final output projection, is a weighted sum of value vectors: $$\mathbf{z}_i = \sum_j \alpha_{ij} \mathbf{v}_j$$. This output $$\mathbf{z}_i$$ (a $$d_{\text{head}}$$ dimensional row vector) is then projected back to the model dimension using the output weight matrix $$\mathbf{W}_O \in \mathbb{R}^{d_{\text{head}} \times d_{\text{model}}}$$. The head's final contribution to the residual stream for token $$i$$ is $$\mathbf{o}_i = \mathbf{z}_i \mathbf{W}_O$$.
+
+These scores are then normalized via Softmax across all source positions $$j$$ to get attention weights $$\alpha_{ij} = \text{Softmax}_j(e_{ij})$$. The output for query token $$i$$ from this head, before the final output projection, is a weighted sum of value vectors: $$\mathbf{z}_i = \sum_j \alpha_{ij} \mathbf{v}_j$$. 
+
+This output $$\mathbf{z}_i$$ (a $$d_{\text{head}}$$ dimensional row vector) is then projected back to the model dimension using the output weight matrix $$\mathbf{W}_O \in \mathbb{R}^{d_{\text{head}} \times d_{\text{model}}}$$. The head's final contribution to the residual stream for token $$i$$ is 
+
+$$\mathbf{o}_i = \mathbf{z}_i \mathbf{W}_O$$.
 
 This mechanism can be decomposed into two key conceptual circuits:
 
@@ -86,7 +97,9 @@ This mechanism can be decomposed into two key conceptual circuits:
     The matrix $$\mathbf{W}_{\text{eff-QK}} = \mathbf{W}_Q \mathbf{W}_K^T$$ is an effective $$d_{\text{model}} \times d_{\text{model}}$$ matrix that defines how pairs of token representations in the residual stream are compared to produce attention scores. Since $$\mathbf{W}_Q$$ is $$d_{\text{model}} \times d_{\text{head}}$$ and $$\mathbf{W}_K^T$$ is $$d_{\text{head}} \times d_{\text{model}}$$, the rank of $$\mathbf{W}_{\text{eff-QK}}$$ is at most $$d_{\text{head}}$$, which is typically much smaller than $$d_{\text{model}}$$. This low-rank structure implies that the QK circuit is specialized in comparing specific types of information.
 
 2.  **Output-Value (OV) Circuit:** Determines *what information to move* from the attended positions and how it's transformed. Once attention weights $$\alpha_{ij}$$ are computed, the OV circuit processes the value vectors. The full transformation from an original token representation $$\mathbf{x}_j$$ (at a source position $$j$$) to its potential contribution to the output (if fully attended, i.e., $$\alpha_{ij}=1$$) is $$\mathbf{x}_j \mathbf{W}_V \mathbf{W}_O$$.
+
     The matrix $$\mathbf{W}_{\text{OV}} = \mathbf{W}_V \mathbf{W}_O$$ is an effective $$d_{\text{model}} \times d_{\text{model}}$$ matrix. (Since $$\mathbf{W}_V$$ is $$d_{\text{model}} \times d_{\text{head}}$$ and $$\mathbf{W}_O$$ is $$d_{\text{head}} \times d_{\text{model}}$$, their product is $$d_{\text{model}} \times d_{\text{model}}$$).
+
     This matrix describes the transformation applied to a value vector (derived from a token representation $$\mathbf{x}_j$$ in the residual stream) before it's written back to the residual stream at position $$i$$. Its rank is also at most $$d_{\text{head}}$$. For example, if $$\mathbf{W}_{\text{OV}} \approx \mathbf{I}$$ (identity matrix), the head primarily copies information from attended positions. If it's different, it transforms the information.
 
 Analyzing the properties (e.g., SVD, eigenvalues) of $$\mathbf{W}_Q \mathbf{W}_K^T$$ and $$\mathbf{W}_V \mathbf{W}_O$$ reveals the specific attention patterns and information processing strategies of individual heads.
@@ -114,7 +127,9 @@ The true power of multi-layer Transformers comes from **composition**, where the
 
 1.  **Q-Composition (Query Composition):** The output of head $$H_1$$ (in layer $$L_1$$) modifies the residual stream. When head $$H_2$$ (in layer $$L_2 > L_1$$) computes its Query vector, it reads from this modified stream. Thus, $$H_1$$ influences what $$H_2$$ attends to.
     Let $$X$$ be the input to $$H_1$$'s OV circuit (matrix $$\mathbf{M}_{out}^{(H_1)} = \mathbf{W}_V^{(H_1)}\mathbf{W}_O^{(H_1)}$$). Its output contribution is $$X \mathbf{M}_{out}^{(H_1)}$$. If there are intermediate layers transforming this by a product of matrices $$T_{inter}$$, this signal becomes $$X \mathbf{M}_{out}^{(H_1)} T_{inter}$$ as it enters the layer of $$H_2$$.
+
     The query vector for $$H_2$$ is formed from the stream $$S_{L_2-1}$$ as $$S_{L_2-1} \mathbf{W}_Q^{(H_2)}$$. The part of this query that comes from $$X$$ via $$H_1$$ is $$(X \mathbf{M}_{out}^{(H_1)} T_{inter}) \mathbf{W}_Q^{(H_2)}$$.
+    
     The virtual weight matrix for this Q-composition path is $$\mathbf{W}_{\text{Q-comp}} = \mathbf{M}_{out}^{(H_1)} T_{inter} \mathbf{W}_Q^{(H_2)}$$.
 
 2.  **K-Composition (Key Composition):** Similarly, $$H_1$$ can influence the Key vectors that $$H_2$$ uses for comparison. The output from $$H_1$$ ($$X \mathbf{M}_{out}^{(H_1)} T_{inter}$$) influences the stream from which $$H_2$$ forms its key vectors $$S_{L_2-1} \mathbf{W}_K^{(H_2)}$$.
