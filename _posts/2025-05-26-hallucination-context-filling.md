@@ -117,14 +117,17 @@ This final equation is quite revealing. It tells us how the expected variance (o
 
 1.  **Independent Features ($$\bar{\rho} = 0$$):**
     If the influences from different contextual features are effectively uncorrelated ($$\bar{\rho} = 0$$), then $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p/N$$.
+
     *Interpretation:* The logit variance shrinks proportionally to $$1/N$$. If new information is entirely "fresh" and unrelated to what the model has already processed, its primary effect is to reduce the logit spread, making the logits cluster more tightly.
 
 2.  **Positively Correlated Features ($$0 < \bar{\rho} < 1$$):**
     The variance still decreases as $$N$$ grows, thanks to the $$(1-\bar{\rho})/N$$ term which still pushes it down. However, as $$N$$ gets very large, the variance doesn't go to zero. Instead, it approaches a floor: $$\lim_{N\to\infty} \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p \bar{\rho}$$.
+
     *Interpretation:* Shared or redundant information (positive correlation) limits how much the $$1/N$$ scaling can smooth out the logits. Even with tons of information, if much of it is saying similar things, the logit spread won't completely vanish.
 
 3.  **Perfectly Correlated Features ($$\bar{\rho} = 1$$):**
     If all contextual influences are perfectly correlated in their effect on logit spread ($$\bar{\rho} = 1$$), then $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p$$.
+    
     *Interpretation:* The $$1/N$$ scaling offers no reduction in variance if all it's doing is scaling (effectively) the same piece of information repeatedly. The logit spread remains the same as if there were only one piece of information.
 
 The takeaway is this: as long as new contextual features bring at least *some* new, uncorrelated influence ($$\bar{\rho} < 1$$), our $$1/N$$ scaling mechanism will cause the expected variance of the logits to decrease as context richness $$N$$ grows.
