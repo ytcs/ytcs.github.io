@@ -81,12 +81,12 @@ The journey of mechanistic interpretability is akin to the early days of biology
 This introduction has laid out the conceptual terrain of mechanistic interpretability, contrasting it with black-box approaches and outlining the foundational "circuits" hypothesis. The core ambition is to move from opaque models to transparent, reverse-engineered computational systems.
 
 The subsequent parts of this series will delve deeper into the challenges and breakthroughs in this field:
--   **[Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})**: The Superposition Hypothesis – How networks might represent more features than they have neurons.
--   **[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})**: Mathematical Framework for Transformer Circuits – Decomposing the architecture of large language models.
--   **[Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})**: Dictionary Learning and Sparse Autoencoders – Techniques for extracting meaningful features from superposition.
--   **[Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})**: Feature Validation Methodologies – Ensuring rigor in our interpretations.
--   **[Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})**: Polysemanticity and Monosemanticity – The spectrum of feature interpretability.
--   **[Parts 7-9]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})**: Detailed explorations of specific circuit types, including those in vision models, attention mechanisms, and the remarkable induction heads enabling in-context learning in transformers.
+-   **[Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})**: The Superposition Hypothesis and Dictionary Learning – How networks represent more features than they have neurons and techniques for extracting meaningful features from superposition.
+-   **[Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})**: Information Flow in Transformers – Mathematical framework for analyzing attention and composition in large language models.
+-   **[Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})**: The Spectrum of Polysemanticity and Monosemanticity – Understanding the interpretability challenges posed by feature overlap and techniques to achieve cleaner representations.
+-   **[Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})**: Validating Learned Features and Circuits – Rigorous methodologies for ensuring our interpretations are grounded in robust evidence.
+-   **[Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})**: Neural Network Circuits: Taxonomy and Attention Patterns – A comprehensive exploration of circuit types and specialized attention mechanisms in Transformers.
+-   **[Part 7]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})**: Induction Heads: The Mechanics of In-Context Learning – Detailed analysis of the remarkable circuits that enable Transformers to learn from context examples.
 
 ---
 
