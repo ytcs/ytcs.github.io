@@ -56,10 +56,10 @@ To make the concept of superposition more concrete, let's explore a simplified t
 - These features are encoded in a hidden layer of dimensionality $$D$$.
 - For simplicity, features are **sparse**: only one feature is active at any given time. (We'll discuss relaxing this later).
 - Each feature $$k$$ is represented by a vector $$\mathbf{f}_k \in \mathbb{R}^D$$ in the hidden layer.
-- The model tries to reconstruct which feature is active. If feature $k$ is active (input $$x_k=1$$, others $$x_j=0$$), the hidden state is $$\mathbf{h} = \mathbf{f}_k$$.
-- A linear decoder with weights (matching the encoder vectors) $\mathbf{f}_j$ for each feature $$j$$ attempts to reconstruct the input. So, the reconstructed activity for feature $$j$$ is 
+- The model tries to reconstruct which feature is active. If feature $$k$$ is active (input $$x_k=1$$, others $$x_j=0$$), the hidden state is $$\mathbf{h} = \mathbf{f}_k$$.
+- A linear decoder with weights (matching the encoder vectors) $$\mathbf{f}_j$$ for each feature $$j$$ attempts to reconstruct the input. So, the reconstructed activity for feature $$j$$ is 
 
-$$\hat{x}_j = \text{activation_function}(\mathbf{f}_j \cdot \mathbf{h} + b_j)$$
+$$\hat{x}_j = \sigma(\mathbf{f}_j \cdot \mathbf{h} + b_j)$$
 
 , where $$b_j$$ is a bias term.
 
@@ -74,7 +74,7 @@ $$L = \mathbb{E}_k [L_k]$$.
 
 **1. The Linear Case (No Superposition)**
 
-If the activation function is linear (i.e., identity, $$\text{activation_function}(z)=z$$) and we set biases $$b_j=0$$ for simplicity, the reconstruction is $$\hat{x}_j = \mathbf{f}_j \cdot \mathbf{h}$$.
+If the activation function is linear (i.e., identity, $$\sigma(z)=z$$) and we set biases $$b_j=0$$ for simplicity, the reconstruction is $$\hat{x}_j = \mathbf{f}_j \cdot \mathbf{h}$$.
 When feature $$k$$ is active, $$\mathbf{h} = \mathbf{f}_k$$. So, $$\hat{x}_j = \mathbf{f}_j \cdot \mathbf{f}_k$$.
 The loss for active feature $$k$$ becomes:
 
@@ -90,7 +90,7 @@ If the number of features $$N$$ is greater than the hidden dimensionality $$D$$ 
 
 **2. The Non-Linear Case (with ReLU) Enables Superposition**
 
-Now, let's introduce a non-linearity, specifically ReLU: $$\text{activation_function}(z) = \text{ReLU}(z) = \max(0, z)$$.
+Now, let's introduce a non-linearity, specifically ReLU: $$\sigma(z) = \text{ReLU}(z) = \max(0, z)$$.
 The reconstruction for feature $$j$$, when feature $$k$$ is active ($$\mathbf{h}=\mathbf{f}_k$$), is 
 
 $$\hat{x}_j = \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j)$$.
