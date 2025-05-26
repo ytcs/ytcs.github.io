@@ -152,7 +152,7 @@ So, we've seen that more information ($$N$$) tends to make the logits less sprea
 3.  **Applying Chebyshev's Inequality:** Now for the concentration part, we can use [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality). For our logit difference $$D_{ij}^{(N)}$$ (with mean 0 and variance $$\sigma_{D_{ij}}^2(N)$$), it states that for any threshold $$\epsilon > 0$$:
 
     $$
-    P\\left(|D_{ij}^{(N)}| \\ge \\epsilon\\right) \\le \\frac{\\sigma_{D_{ij}}^2(N)}{\\epsilon^2}
+    P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \le \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
     $$
 
     This tells us the probability that the absolute difference between two logits is *large* (at least $$\epsilon$$) is small if their variance $$\sigma_{D_{ij}}^2(N)$$ is small compared to $$\epsilon^2$$.
@@ -162,7 +162,7 @@ So, we've seen that more information ($$N$$) tends to make the logits less sprea
     $$
     P\left(|D_{ij}^{(N)}| < \epsilon\right) = 1 - P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \ge 1 - \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
     $$
-    
+
     For this lower bound to be meaningful (i.e., greater than 0), we need our chosen threshold $$\epsilon$$ to be such that $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$.
 
 5.  **Implication of Decreasing Variance:** Here's the punchline: as $$N$$ (context richness) increases, we've argued that $$\sigma_{D_{ij}}^2(N)$$ (the variance of logit differences) tends to decrease. If it decreases enough, we can pick a small $$\epsilon$$ such that the condition $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$ holds. In this situation, the lower bound $$1 - \sigma_{D_{ij}}^2(N)/\epsilon^2$$ gets closer to 1. This means that as context richness $$N$$ grows, the probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are very close to each other (within $$\epsilon$$) *increases*.
