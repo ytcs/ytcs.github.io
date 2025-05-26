@@ -66,7 +66,7 @@ Through the analysis of various neural network architectures across different ta
 
 ### 6. Compositional Circuits (Sequential Algorithmic Processing)
    - **Function:** These circuits are fundamental to building multi-step algorithms. They combine the outputs of earlier-stage circuits or features to compute more complex functions, where the operation of a later stage is contingent upon the results from an earlier stage.
-   - **Mathematical Signature & Elaboration:** The concept of composition was extensively detailed in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}) with respect to Transformer attention heads. For instance, Q-composition occurs when the output of a head $$H_1$$ (denoted $$O_1$$) is added to the residual stream $$\mathbf{r}$$, resulting in a modified stream $$\mathbf{r}\' = \mathbf{r} + O_1$$. A subsequent head $$H_2$$ then forms its query vectors using this modified stream: $$\mathbf{q}^{(H2)} = \mathbf{r}\' \mathbf{W}_Q^{(H2)} = (\mathbf{r} + O_1) \mathbf{W}_Q^{(H2)}$$. This equation explicitly demonstrates how the output of $$H_1$$ influences the attention pattern of $$H_2$$ by altering its query vectors. Similar logic applies to K-composition (influencing key vectors) and V-composition (influencing value vectors, and thus the information retrieved and processed).
+   - **Mathematical Signature & Elaboration:** The concept of composition was extensively detailed in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}) with respect to Transformer attention heads. For instance, Q-composition occurs when the output of a head $$H_1$$ (denoted $$O_1$$) is added to the residual stream $$\mathbf{r}$$, resulting in a modified stream $$ \mathbf{r}' = \mathbf{r} + O_1 $$. A subsequent head $$H_2$$ then forms its query vectors using this modified stream: $$ \mathbf{q}^{(H2)} = \mathbf{r}' \mathbf{W}_Q^{(H2)} = (\mathbf{r} + O_1) \mathbf{W}_Q^{(H2)} $$. This equation explicitly demonstrates how the output of $$H_1$$ influences the attention pattern of $$H_2$$ by altering its query vectors. Similar logic applies to K-composition (influencing key vectors) and V-composition (influencing value vectors, and thus the information retrieved and processed).
    - **Example:** Induction heads, which enable basic in-context learning in Transformers (discussed in [Part 7]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})), are a powerful and well-studied instance of compositional circuits, typically involving the sequential operation of at least two attention heads.
 
 ## Attention Head Circuits: Specialized Meso-Circuits in Transformers
@@ -149,8 +149,6 @@ Attention heads in Transformers serve as particularly well-studied examples of m
 The mathematical formalisms of graph theory, path expansion, and virtual weights provide the analytical language, while a rigorous, iterative process of hypothesis and validation provides the empirical grounding. This approach allows the field to move beyond treating models as opaque black boxes towards achieving detailed, mechanistic explanations of their behavior.
 
 Subsequent parts of this series will delve into the analysis of specific, well-characterized circuits found within Transformer models, focusing particularly on the remarkable phenomenon of in-context learning through induction heads.
-
-Next, in [Part 7 - Induction Heads: The Mechanics of In-Context Learning]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})
 
 ---
 
