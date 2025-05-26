@@ -117,7 +117,7 @@ Several metrics can quantify aspects of a feature's tuning curve:
 **Probing Invariances:**
 Beyond selectivity for a primary characteristic, understanding what a feature *ignores* is equally important. For example:
 *   **Positional Invariance:** Does a feature respond to a local pattern (e.g., a specific word or n-gram) regardless of its position in a sequence? This can be tested by examining the correlation of feature activations when the same pattern appears at different positions: $$\text{Corr}(f(\mathbf{x}_{\text{pattern at pos}_1}), f(\mathbf{x}_{\text{pattern at pos}_2})) $$.
-*   **Contextual Invariance:** Does a feature respond to its preferred stimulus consistently across different surrounding contexts? This might be assessed by measuring the variance of the expected feature activation conditioned on different contexts, for a fixed preferred stimulus: $$\text{Var}_{\text{context}}(\mathbb{E}[f(\mathbf{x} | \text{context}, \text{stimulus})])$$.
+*   **Contextual Invariance:** Does a feature respond to its preferred stimulus consistently across different surrounding contexts? This might be assessed by measuring the variance of the expected feature activation conditioned on different contexts, for a fixed preferred stimulus: $$\text{Var}_{\text{context}}(\mathbb{E}[f(\mathbf{x} \vert \text{context}, \text{stimulus})])$$.
 *   **Scale/Abstraction Invariance:** Does a feature respond to a concept at different levels of abstraction or specificity? (e.g., responds to "dog" and also to "animal").
 
 Tuning curve analysis provides a detailed, quantitative fingerprint of a feature's response properties, essential for building a precise understanding of its computational role and its generalization capabilities.
@@ -186,7 +186,7 @@ While the preceding validation methods provide strong correlational and descript
 
 Observational data can establish correlations (e.g., feature $$F$$ is often active when output $$Y$$ occurs), but correlation does not imply causation. Feature $$F$$ might cause $$Y$$, $$Y$$ might cause $$F$$ (less likely in a feed-forward pass, but possible through training dynamics or complex recurrences), or a third, unobserved factor $$Z$$ might cause both $$F$$ and $$Y$$. Alternatively, the relationship might be a complex, non-causal statistical dependency.
 
-Causal inference, drawing inspiration from frameworks like Judea Pearl's do-calculus, addresses this by asking: "What happens to $$Y$$ if we *force* feature $$F$$ to take on a specific value $$f'$$, regardless of its natural state?" This is denoted $$P(Y | do(F=f'))$$. If this interventional probability differs significantly from the observational conditional probability $$P(Y | F=f')$$, it suggests a causal link. The $$do()$$ operator signifies an external intervention that breaks the normal causal pathways leading to $$F$$, allowing us to isolate $$F$$'s direct downstream effects.
+Causal inference, drawing inspiration from frameworks like Judea Pearl's do-calculus, addresses this by asking: "What happens to $$Y$$ if we *force* feature $$F$$ to take on a specific value $$f'$$, regardless of its natural state?" This is denoted $$P(Y \vert do(F=f'))$$. If this interventional probability differs significantly from the observational conditional probability $$P(Y \vert F=f')$$, it suggests a causal link. The $$do()$$ operator signifies an external intervention that breaks the normal causal pathways leading to $$F$$, allowing us to isolate $$F$$'s direct downstream effects.
 
 In neural networks, we can approximate such interventions by directly setting or modifying the activations of hypothesized features or neurons and measuring the impact on subsequent layer activations or, ultimately, the model's output.
 
@@ -242,7 +242,7 @@ A significant degradation in performance or a specific change in output behavior
 **Methodology:**
 *   **Global Enhancement:** Artificially increase the activation of feature $$f$$ by a positive amount $$\beta$$: 
 
-$$a_{f, \text{enhanced}} = a_{f, \text{original}} + \beta $$. 
+$$a_{f, \text{enhanced}} = a_{f, \text{original}} + \beta $$
 
 Or, set it to a high value representative of its typical maximum activation.
 *   **Directional Steering:** If the feature is part of a more complex representation, one might want to modify the activation vector $$\mathbf{a}$$ in a specific direction $$\mathbf{d}_{\text{target}}$$ (which could be aligned with the feature itself, or a related concept): $$\mathbf{a}_{\text{steered}} = \mathbf{a}_{\text{original}} + \gamma \mathbf{d}_{\text{target}}$$.
