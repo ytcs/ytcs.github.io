@@ -59,17 +59,17 @@ To make the concept of superposition more concrete, let's explore a simplified t
 - The model tries to reconstruct which feature is active. If feature $$k$$ is active (input $$x_k=1$$, others $$x_j=0$$), the hidden state is $$\mathbf{h} = \mathbf{f}_k$$.
 - A linear decoder with weights (matching the encoder vectors) $$\mathbf{f}_j$$ for each feature $$j$$ attempts to reconstruct the input. So, the reconstructed activity for feature $$j$$ is 
 
-$$\hat{x}_j = \sigma(\mathbf{f}_j \cdot \mathbf{h} + b_j)$$
+$$ \hat{x}_j = \sigma(\mathbf{f}_j \cdot \mathbf{h} + b_j) $$
 
 , where $$b_j$$ is a bias term.
 
-The goal of the model is to minimize reconstruction error. If feature $$k$$ is active, we want $$\hat{x}_k \approx 1$$ and $$\hat{x}_j \approx 0$$ for $$j \neq k$$. The loss function, assuming feature $k$ is active, would be:
+The goal of the model is to minimize reconstruction error. If feature $$k$$ is active, we want $$\hat{x}_k \approx 1$$ and $$\hat{x}_j \approx 0$$ for $$j \neq k$$. The loss function, assuming feature $$k$$ is active, would be:
 
 $$ L_k = (1 - \hat{x}_k)^2 + \sum_{j \neq k} (0 - \hat{x}_j)^2 $$
 
 The total loss is the average over all possible active features: 
 
-$$L = \mathbb{E}_k [L_k]$$.
+$$ L = \mathbb{E}_k [L_k] $$.
 
 
 **1. The Linear Case (No Superposition)**
@@ -93,7 +93,7 @@ If the number of features $$N$$ is greater than the hidden dimensionality $$D$$ 
 Now, let's introduce a non-linearity, specifically ReLU: $$\sigma(z) = \text{ReLU}(z) = \max(0, z)$$.
 The reconstruction for feature $$j$$, when feature $$k$$ is active ($$\mathbf{h}=\mathbf{f}_k$$), is 
 
-$$\hat{x}_j = \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j)$$.
+$$ \hat{x}_j = \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j) $$.
 
 The loss for active feature $$k$$ is:
 
