@@ -25,7 +25,7 @@ Before diving into meta-prompting, let's categorize tasks based on two dimension
     *   **Easy:** Tasks where the quality of output can be quickly assessed (e.g., checking factual accuracy, validating code syntax).
     *   **Difficult:** Tasks where evaluation is subjective or requires expertise (e.g., assessing the persuasiveness of an argument, judging artistic merit).
 
-Hand-crafting prompts is more feasible for tasks that are easy to instruct and evaluate. As tasks become more complex in either dimension, manual prompt engineering becomes increasingly difficult.
+Hand-crafting prompts is more feasible for tasks that are easy to instruct and easy to evaluate. As tasks become more complex in the instruction dimension, manual prompt engineering becomes increasingly difficult. Meta-prompting, as we'll see, is particularly powerful for tasks that are **difficult to prescribe detailed instructions for, but where the results are relatively easy to evaluate**, as this allows for a clear definition of success in the first step of the workflow. When evaluation itself is highly abstract or vague, defining the initial desired characteristics becomes a significant challenge.
 
 ## Why Hand-Prompting is Hard (Beyond Basic Tasks)
 
@@ -52,7 +52,7 @@ Here's a simple, three-step workflow for generating robust prompts using meta-pr
 1.  **Define Desired Output Characteristics:**
     *   **Action:** Ask an LLM to describe what makes a *good result* for your specific task.
     *   **Example Meta-Prompt:** "I want to write a blog post explaining [topic] to beginners. What are the key characteristics of an excellent beginner-friendly blog post?"
-    *   **Rationale:** This establishes clear evaluation criteria and a shared understanding of success.
+    *   **Rationale:** This establishes clear evaluation criteria and a shared understanding of success. This step is most effective when the task, despite being hard to instruct, has outcomes that are relatively straightforward to evaluate; otherwise, defining these characteristics can be as challenging as writing the prompt itself.
 
 2.  **Generate Step-by-Step Instructions:**
     *   **Action:** Ask the LLM to use those characteristics to create detailed instructions for achieving the task.
@@ -66,7 +66,7 @@ Here's a simple, three-step workflow for generating robust prompts using meta-pr
 
 ## Benefits of Meta-Prompting
 
-*   **Improved Prompt Quality:** LLMs can generate more comprehensive and effective prompts than humans, especially for complex tasks.
+*   **Improved Prompt Quality:** LLMs can generate more comprehensive and effective prompts than humans, especially for tasks that are complex to articulate but have clear evaluation metrics.
 *   **Time Savings:** Automates a significant portion of the prompt engineering process.
 *   **Enhanced Creativity:** Helps discover novel prompting strategies you might not think of.
 *   **Adaptability:** Prompts can be easily tailored to different LLMs or task variations.
@@ -74,9 +74,9 @@ Here's a simple, three-step workflow for generating robust prompts using meta-pr
 
 ## Conclusion
 
-Meta-prompting transforms LLMs from mere task-doers into collaborators in the prompt engineering process itself. By guiding an LLM to define what a good output looks like and then construct instructions to achieve it, you can create highly effective prompts for various tasks.
+Meta-prompting transforms LLMs from mere task-doers into collaborators in the prompt engineering process itself. By guiding an LLM to define what a good output looks like (a step most fruitful when evaluation is clear) and then construct instructions to achieve it, you can create highly effective prompts for a variety of tasks, especially those that are otherwise difficult to prescribe.
 
-The key insight is that we don't just write simple one-line prompts. Instead, we use a series of meta-prompts to guide an LLM through the requirements, define quality, structure the task, and refine the instructions. This results in significantly more effective master prompts.
+The key insight is that we don't just write simple one-line prompts. Instead, we use a series of meta-prompts to guide an LLM through the requirements, define quality (which hinges on evaluability), structure the task, and refine the instructions. This results in significantly more effective master prompts.
 
 As LLMs continue to evolve, meta-prompting will become an increasingly essential skill for anyone looking to harness their full potential.
 
