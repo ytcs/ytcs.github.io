@@ -115,8 +115,6 @@ The paper ["On the Biology of a Large Language Model"](https://transformer-circu
 
 All findings are supported by attribution graphs, intervention experiments, and detailed case studies. The paper emphasizes the limitations and partial nature of these insights, and encourages further research.
 
-Reference: [Lindsey, J., et al. (2025). *On the Biology of a Large Language Model*](https://transformer-circuits.pub/2025/attribution-graphs/biology.html)
-
 ### Emerging Technical Themes from SOTA Research
 
 1.  **Universality (Model Diffing & Sparse Crosscoders - Oct 2024, Feb 2025 updates):**
