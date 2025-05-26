@@ -14,7 +14,7 @@ Transformers, while complex, possess a highly structured architecture that lends
 
 ### The Residual Stream: A Central Communication Bus
 
-The **residual stream** is arguably the most critical architectural feature for enabling mechanistic analysis. At each layer $$l$$, the output $$\mathbf{x}^{(l)}$$ is the sum of the input from the previous layer $$\mathbf{x}^{(l-1)}$$ and the computations performed by the current layer\'s components (e.g., attention head outputs, MLP outputs):
+The **residual stream** is arguably the most critical architectural feature for enabling mechanistic analysis. At each layer $$l$$, the output $$\mathbf{x}^{(l)}$$ is the sum of the input from the previous layer $$\mathbf{x}^{(l-1)}$$ and the computations performed by the current layer's components (e.g., attention head outputs, MLP outputs):
 
 $$\mathbf{x}^{(l)} = \mathbf{x}^{(l-1)} + \sum_k \text{ComponentOutput}_k^{(l)}(\mathbf{x}^{(l-1)})$$
 
