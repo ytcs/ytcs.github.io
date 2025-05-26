@@ -43,7 +43,7 @@ These challenges make hand-prompting a bottleneck, especially when aiming for hi
 
 Meta-prompting shifts the burden of prompt creation to an LLM. Instead of meticulously crafting the perfect prompt yourself, you guide an LLM to do it for you. This leverages the LLM's understanding of language and task requirements to generate more effective prompts.
 
-[Suggestion: Insert diagram illustrating the meta-prompting workflow - showing the user asking an LLM to generate a prompt, which is then used with another LLM to get the final output.]
+![Meta-Prompting Workflow](/assets/img/metaprompt-workflow.svg)
 
 ### A Practical Meta-Prompting Workflow
 
