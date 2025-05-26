@@ -215,7 +215,7 @@ Understanding superposition is vital, as it pushes us beyond neuron-level analys
 
 While techniques like sparse autoencoders are not without their challenges and depend on factors such as feature sparsity and careful training, they represent a significant advancement in our ability to decompose complex neural network representations into more understandable components. This pursuit is central to the goals of mechanistic interpretability.
 
-Next, in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}), we will introduce the mathematical framework for analyzing Transformer circuits, which builds upon understanding these features. Following that, in [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), we will delve into the crucial aspect of validating these learned features and the circuits they form.
+Next, in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %}), we will explore the spectrum of polysemanticity and monosemanticity in more depth. Following that, in [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}), we will introduce the mathematical framework for analyzing Transformer circuits, which builds upon understanding these features. In [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), we will delve into the crucial aspect of validating these learned features and the circuits they form.
 
 ---
 

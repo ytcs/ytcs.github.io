@@ -1,162 +1,95 @@
 ---
 published: true
 layout: post
-title: "Mechanistic Interpretability: Part 3 - Mathematical Framework for Transformer Circuits"
+title: "Mechanistic Interpretability: Part 3 - The Spectrum of Polysemanticity and Monosemanticity"
 categories: machine-learning
 date: 2025-05-25
 ---
 
-Following our exploration of the superposition hypothesis in [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %}), which addressed how features might be represented, we now turn to the specific architecture that dominates modern AI: the Transformer. To understand the learned algorithms within these powerful models, we need a robust **mathematical framework** that allows for systematic decomposition and analysis of their internal workings, particularly their attention mechanisms and information flow. This part lays out such a framework, building on the conceptual foundations from [Part 1]({% post_url 2025-05-25-mechanistic-interpretability-part-1 %}).
+In our journey through mechanistic interpretability, we have encountered the challenge of **polysemanticity**: where a single neuron or representational dimension responds to multiple, seemingly unrelated concepts ([Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})). The ideal for interpretability would be **monosemanticity**, where each representational unit (e.g., a neuron, or a feature derived through techniques like dictionary learning as in [Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})) corresponds to a single, clear, and distinct concept. This part explores the spectrum between these two extremes, the theoretical pressures that shape representations, and the implications for understanding neural networks.
 
-## Deconstructing the Transformer
+## Defining the Spectrum: From Ambiguity to Clarity
 
-Transformers, while complex, possess a highly structured architecture that lends itself to mathematical decomposition. Key components include token embeddings, positional encodings, multiple layers of attention and MLP (Multi-Layer Perceptron) blocks, and a final unembedding step. For the development of a clear mathematical framework, we often initially simplify by focusing on attention-only models or omitting biases and layer normalization, as these can be added back later without fundamentally altering the core computational pathways.
+The concepts of polysemanticity and monosemanticity define the boundaries of a crucial spectrum for understanding learned representations. At one end, a **polysemantic** representational unit is characterized by its activation in response to a diverse and apparently unrelated set of inputs or underlying conceptual features. Consider, for instance, a neuron in a language model that exhibits heightened activation when processing text related to "legal contracts," but also for discussions of "18th-century French philosophy," and again for "debugging Python code." The activation of such a neuron, viewed in isolation, offers an ambiguous signal, revealing little about the specific concept the model is currently processing.
 
-### The Residual Stream: A Central Communication Bus
+At the opposite end of this spectrum lies **monosemanticity**. A representational unit achieves monosemanticity if its activation is specific and, ideally, exclusive to a single, coherent, and well-defined concept. An example might be a feature derived from a sparse autoencoder that activates consistently and solely for inputs containing "dates formatted as YYYY-MM-DD," and not for other numerical sequences or date formats.
 
-The **residual stream** is arguably the most critical architectural feature for enabling mechanistic analysis. At each layer $$l$$, the output $$\mathbf{x}^{(l)}$$ is the sum of the input from the previous layer $$\mathbf{x}^{(l-1)}$$ and the computations performed by the current layer's components (e.g., attention head outputs, MLP outputs):
+It is essential to conceptualize this as a **continuous spectrum** rather than a strict dichotomy. Most neurons within a conventionally trained neural network are likely to exhibit some degree of polysemanticity. Conversely, analytical techniques such as dictionary learning are explicitly designed to derive features that aspire to be as monosemantic as possible, thereby shifting the representation towards the clearer end of the spectrum.
 
-$$\mathbf{x}^{(l)} = \mathbf{x}^{(l-1)} + \sum_k \text{ComponentOutput}_k^{(l)}(\mathbf{x}^{(l-1)})$$
+## Theoretical Pressures and Trade-offs Shaping Representations
 
-where $$\text{ComponentOutput}_k^{(l)}(\mathbf{x}^{(l-1)})$$ is the output of the $$k$$-th component in layer $$l$$ (e.g., an attention head or an MLP block), which itself is a function of the input to that layer, $$\mathbf{x}^{(l-1)}$$. This additive, linear structure means the residual stream acts like a shared communication bus or a "results highway." Any component can read from the accumulated state of the stream and write its own contribution back. This has profound implications:
+The internal representations learned by neural networks are molded by a complex interplay of competing pressures, primarily the drive for representational efficiency versus the implicit desiderata that might lead to more interpretable structures. Understanding why networks do not spontaneously learn perfectly monosemantic representations in their most direct basis (e.g., individual neurons) requires examining these underlying forces.
 
-1.  **Linearity for Analysis:** The primary information pathway is linear, allowing for techniques like path expansion and virtual weight computation.
-2.  **Non-Privileged Basis:** The residual stream itself doesn't inherently have a privileged basis. Any global orthogonal transformation applied consistently to all interacting weight matrices would leave the model functionally unchanged. This reinforces the idea (from Part 2) that features are directions, not necessarily neuron alignments.
-3.  **Superposition at Scale:** With many components writing to and reading from a residual stream of fixed dimensionality ($$d_{\text{model}}$$), it naturally becomes a place where multiple signals (feature activations) are superposed.
+### 1. The Compressive Efficiency of Polysemanticity via Superposition
 
-### Virtual Weights: Unveiling Effective Connectivity
+As extensively discussed in our exploration of the superposition hypothesis ([Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})), neural networks often face the challenge of representing a vast number of potentially relevant features ($$N$$) using a neural architecture with a comparatively limited dimensionality in its activation spaces ($$d_{\text{model}}$$). If each of these $$N$$ features were to be assigned a unique, orthogonal dimension in the activation space, the required dimensionality $$d_{\text{model}}$$ would need to be at least $$N$$.
 
-Because of the residual stream's additive nature, a component in a later layer $$L_J$$ doesn't just see the direct output of layer $$L_J-1$$; it effectively sees the sum of outputs from *all* preceding components in layers $$L_I < L_J$$ that wrote to the stream. **Virtual weights** quantify the effective linear transformation from the input of an earlier component (or its output contribution) to an input processing stage of a later component, considering all intermediate additions and transformations in the residual stream.
+However, when the number of features to be encoded significantly exceeds the available dimensions ($$N > d_{\text{model}}$$), the network is compelled to adopt more compressive strategies. Superposition provides such a strategy: features are not represented by individual neurons firing in isolation but as **directions in the shared activation space**. In this scenario, the activation vector observed in a layer is a linear combination of the active feature vectors.
 
-Let's define some terms:
--   Let $$\mathbf{M}_{out}^{(C_I)}$$ be the effective output matrix of a component $$C_I$$ (e.g., an attention head $$H_I$$ or an MLP block) in layer $$L_I$$. If $$X$$ is the input to component $$C_I$$ from the residual stream, its output contribution to the stream is $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$. 
-    For an attention head $$H_I$$, $$\mathbf{M}_{out}^{(H_I)}$$ would be its value-output transformation $$\mathbf{W}_V^{(H_I)}\mathbf{W}_O^{(H_I)}$$ (a $$d_{\text{model}} \times d_{\text{model}}$$ matrix), assuming the attention pattern itself is fixed or we are analyzing a specific path of information flow through a value vector. 
-    For an MLP layer, if it's a simple linear transformation, $$\mathbf{M}_{out}^{(MLP)}$$ would be its weight matrix. If it's a non-linear MLP (e.g., with ReLU), $$\mathbf{M}_{out}^{(MLP)}$$ represents an effective linear matrix for a specific input or an average sense, or considers the path through specific active neurons. For the purpose of linear path analysis, we often approximate non-linear components by their local linear behavior or focus on paths where non-linearities are fixed (e.g. a specific ReLU activation pattern). A common formulation for a two-layer MLP is $$\mathbf{W}_{in}^{(MLP)}\mathbf{W}_{out}^{(MLP)}$$ (again, $$d_{\text{model}} \times d_{\text{model}}$$).
--   Let $$\mathbf{W}_{in-proj}^{(C_J)}$$ be an input projection matrix of a component $$C_J$$ in layer $$L_J$$. 
-    For an attention head $$H_J$$, this could be its query matrix $$\mathbf{W}_Q^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$), key matrix $$\mathbf{W}_K^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$), or value matrix $$\mathbf{W}_V^{(H_J)}$$ ($$d_{\text{model}} \times d_{\text{head}}$$). 
+The mathematical implication is profound: if $$N > d_{\text{model}}$$, it is impossible for all $$N$$ features to be represented by orthogonal basis vectors within the $$d_{\text{model}}$$-dimensional space. Consequently, perfect monosemanticity in the standard neuron basis (where each neuron corresponds to a basis vector) becomes unattainable. To encode all $$N$$ features, their vector representations must necessarily overlap, meaning that a single neuron (a single basis vector direction) will generally have non-zero projections from multiple feature vectors. Thus, polysemantic neurons emerge as a natural and direct consequence of the model's efficient strategy for packing a rich feature set into a constrained representational space. This is a form of lossy compression if viewed from the perspective of individual feature recovery, but from the model's perspective, it's a way to maintain information about many features simultaneously.
 
-**1. Direct Virtual Weight (No Intermediate Layers, i.e., $$L_J = L_I + 1$$ or within the same layer if analyzing parallel components):**
+### 2. The Interpretability Cost of Polysemanticity
 
-If component $$C_I$$ outputs $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$ to the stream, and component $$C_J$$ (in the next layer or a later component in the same layer reading from the updated stream) uses an input projection $$\mathbf{W}_{in-proj}^{(C_J)}$$, the part of $$C_J$$'s projected input that comes from $$X$$ via $$C_I$$ is $$ (X \mathbf{M}_{out}^{(C_I)}) \mathbf{W}_{in-proj}^{(C_J)} $$.
-The **direct virtual weight matrix** $$\mathbf{W}_{\text{virtual}}^{(C_I \rightarrow C_J)}$$ mapping the input $$X$$ (that fed into $$C_I$$) to this specific contribution at $$C_J$$'s input projection is:
+While superposition and the resultant polysemanticity offer a solution to the representational bottleneck from the model's perspective, they impose a significant cost on human interpretability. If the activation of a single neuron can signify one of many distinct and unrelated underlying concepts, then observing that neuron's activity provides an inherently ambiguous signal about the model's internal state or its computational pathway. Disentangling the precise "meaning" of a polysemantic neuron's activation requires looking beyond the neuron itself to the broader context of activations or employing specialized analytical techniques.
 
-$$\mathbf{W}_{\text{virtual, direct}}^{(C_I \rightarrow C_J)} = \mathbf{M}_{out}^{(C_I)} \mathbf{W}_{in-proj}^{(C_J)}$$
+### 3. The Drive for Monosemanticity in Derived Features
 
-For example, the virtual weight from the input of Head $$H_a$$'s OV circuit (matrix $$\mathbf{W}_V^{(Ha)}\mathbf{W}_O^{(Ha)}$$) to the Query input projection of Head $$H_b$$ (matrix $$\mathbf{W}_Q^{(Hb)}$$) in an immediately subsequent processing step is $$(\mathbf{W}_V^{(Ha)}\mathbf{W}_O^{(Ha)}) \mathbf{W}_Q^{(Hb)}$$. This resulting matrix has dimensions $$d_{\text{model}} \times d_{\text{head}}^{(Hb)}$$.
+Mechanistic interpretability endeavors to overcome this ambiguity by seeking representations—which may not correspond directly to the raw neuron basis—wherein features *are* monosemantic. Techniques like sparse autoencoders ([Part 2]({% post_url 2025-05-25-mechanistic-interpretability-part-2 %})) are designed precisely for this purpose. They learn an overcomplete dictionary of basis vectors (the dictionary elements, or derived features) such that each dictionary element is encouraged to represent a single, underlying concept. This is achieved through the interplay of two primary components in the autoencoder's objective function:
 
-**2. Virtual Weight Across Intermediate Layers:**
+-   **Reconstruction Loss:** This term ($$ \vert\vert\mathbf{x} - \hat{\mathbf{x}}\vert\vert_2^2 $$) ensures that the learned dictionary and the feature activations can accurately reconstruct the original activation vector $$\mathbf{x}$$.
+-   **Sparsity Penalty:** This term, typically an $$L_1$$ norm on the feature activations ($$\lambda \vert\vert\mathbf{f}\vert\vert_1$$), is crucial for driving towards monosemanticity. The $$L_1$$ penalty encourages solutions where the feature activation vector $$\mathbf{f}$$ has as few non-zero elements as possible for any given input $$\mathbf{x}$$.
 
-Now, consider components $$C_I$$ in layer $$L_I$$ and $$C_J$$ in a later layer $$L_J$$ ($$L_J > L_I$$). The signal $$O_{C_I}$$ from $$C_I$$ passes through intermediate layers $$L_k$$ (for $$L_I < L_k < L_J$$).
+The effectiveness of the $$L_1$$ penalty in promoting sparsity stems from the geometry of the L1-ball (the set of vectors $$\mathbf{f}$$ for which $$\vert\vert\mathbf{f}\vert\vert_1 \le C$$ for some constant $$C$$). Unlike the L2-ball (a sphere), the L1-ball has "corners" or vertices along the axes of the feature space (e.g., a diamond in 2D, an octahedron in 3D). Optimization procedures subject to an L1 constraint (or penalizing the L1 norm) tend to find solutions at these corners, where many components of $$\mathbf{f}$$ are precisely zero. This property favors explanations of the input activation $$\mathbf{x}$$ that use a minimal set of dictionary elements. If the dictionary elements (columns of $$\mathbf{W}_d$$) have been successfully learned such that they align with true, underlying monosemantic features present in the data, then an L1-penalized sparse coding will favor explaining $$\mathbf{x}$$ as a linear combination of the fewest possible dictionary elements. This parsimonious explanation naturally pushes each active dictionary element to correspond to a distinct, necessary component of $$\mathbf{x}$$, thereby fostering monosemantic interpretations for these derived features.
 
-Each intermediate layer $$L_k$$ applies a linear transformation to the signal passing through its residual stream. If layer $$L_k$$ contains components $$C_{k,m}$$ (heads or MLPs) with effective output matrices $$\mathbf{M}_{out}^{(k,m)}$$ (as defined above, noting the linear approximation for MLPs if non-linear), then a signal $$S$$ entering layer $$L_k$$ from the previous layer's residual stream is transformed to $$S + \sum_m S \mathbf{M}_{out}^{(k,m)} = S (\mathbf{I} + \sum_m \mathbf{M}_{out}^{(k,m)})$$ upon exiting layer $$L_k$$. 
-Let $$T_k = (\mathbf{I} + \sum_m \mathbf{M}_{out}^{(k,m)})$$ be this full linear transformation for layer $$L_k$$, representing the cumulative effect of all parallel components in that layer on a signal passing through the residual stream.
+## Factors Influencing a Representation's Position on the Spectrum
 
-The output contribution $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$ from component $$C_I$$ (where $$X$$ was its input from the stream) becomes $$ (X \mathbf{M}_{out}^{(C_I)}) \cdot T_{L_I+1} \cdot T_{L_I+2} \cdot \ldots \cdot T_{L_J-1} $$ by the time it reaches the input of layer $$L_J$$.
-This transformed signal is then processed by $$C_J$$'s input projection $$\mathbf{W}_{in-proj}^{(C_J)}$$.
-Thus, the **full virtual weight matrix** from the input $$X$$ of component $$C_I$$ to the specific projected input of component $$C_J$$ is:
+The degree to which a learned representation—whether in the raw neuron activations or in features derived through specific techniques—exhibits polysemanticity or approaches monosemanticity is influenced by a confluence of factors, ranging from fundamental mathematical constraints to the statistical properties of the training data.
 
-$$\mathbf{W}_{\text{virtual}}^{(C_I \rightarrow C_J)} = \mathbf{M}_{out}^{(C_I)} \left( \prod_{k=L_I+1}^{L_J-1} T_k \right) \mathbf{W}_{in-proj}^{(C_J)}$$
+A primary determinant is the relationship between the **model's representational capacity and the sheer number of distinct features** the model endeavors to learn from the data. As established, if the number of true underlying features ($$N$$) greatly exceeds the dimensionality of a given representation layer ($$d_{\text{model}}$$), the imperative for superposition will almost inevitably lead to polysemantic neurons in that layer. Dictionary learning techniques attempt to alleviate this by explicitly creating a higher-dimensional feature space ($$d_{\text{dict}} \gg d_{\text{model}}$$), offering the *potential* for $$d_{\text{dict}} \ge N$$. This expanded space provides more "room" for individual dictionary elements to specialize, each ideally capturing a single, monosemantic concept.
 
-If there are no intermediate layers ($$L_J = L_I+1$$), the product term is empty (or an identity matrix), reducing to the direct case.
-This concept is crucial for understanding how non-adjacent layers and components influence each other, effectively forming long-range circuits by composing these linear transformations.
+The **inherent sparsity of feature activations in the data generating process** also plays a critical role. If, for any given input, only a small fraction of all possible true features are genuinely active, it becomes considerably easier to disentangle these features, even if the neurons encoding them are polysemantic. In such a scenario, a polysemantic neuron, though capable of responding to multiple concepts, might for any specific input be active due to only one (or very few) of its associated concepts being present. The efficacy of sparse autoencoders, for instance, hinges on the assumption that the underlying "true" features that combine to form any observed activation vector are themselves sparsely active. If, conversely, typical inputs require the simultaneous activation of a dense array of true features, separating their contributions becomes a much more challenging proposition.
 
-## Decomposing the Attention Head
+Furthermore, the **geometric arrangement and correlation structure of the true features** significantly impact how they are represented.
+-   **Highly correlated features**, such as "is a weekday" and "is a business day," which frequently co-occur or are semantically proximal, might be efficiently represented by the model using a single, somewhat polysemantic unit (be it a neuron or a derived dictionary element). From the model's optimization perspective, the marginal benefit of dedicating separate units to distinguish such closely related concepts might be outweighed by the cost of additional parameters or representational complexity, especially if such a distinction offers little improvement in task performance.
+-   Conversely, **anti-correlated features**—those that rarely or never appear together—are more readily assigned to distinct, monosemantic units because there is less pressure to conflate them.
+-   The broader **geometric configuration of feature vectors** in the activation space—whether they are nearly orthogonal, form a simplex (maximizing mutual separation, as seen in the "Toy Models of Superposition" paper for efficient packing), or possess some other structure—influences the specific strategies of superposition the model adopts, as illuminated by theoretical work on toy models of superposition.
 
-The attention mechanism is the heart of the Transformer. It dynamically routes information based on context. An attention head computes its output by attending to various positions in the input sequence and constructing a weighted sum of their value vectors.
+Finally, the **statistical properties of the training data and certain regularization techniques** exert a formative influence.
+-   **L2 regularization (weight decay)**, while encouraging smaller weights overall (which can sometimes lead to sparser network connectivity or simpler feature interactions), does not directly compel activations to be sparse or features to be monosemantic in the way an L1 penalty on activations does. Its effect on polysemanticity is generally indirect.
+-   There can be **implicit sparsity pressures arising from the optimization process itself**. Stochastic Gradient Descent (SGD) and its variants, navigating complex loss landscapes, may sometimes converge to solutions that are inherently sparser or simpler than alternative solutions with similar performance, potentially favoring representations that are less entangled.
+-   Ultimately, the **data distribution** is paramount. The frequency with which different concepts appear in the training data, and more importantly, their patterns of co-occurrence, directly shape the learned representations. Features that are consistently present and discriminative for the task will be encoded, and their relationships with other features will dictate the degree of polysemanticity in their learned representations.
 
-Mathematically, for a single attention head, given input token representations $$\mathbf{x}_1, \dots, \mathbf{x}_N \in \mathbb{R}^{d_{\text{model}}}$$, the head first projects these into Query ($$\mathbf{q}_i$$), Key ($$\mathbf{k}_j$$), and Value ($$\mathbf{v}_j$$) vectors for each token $$i$$ (query) and $$j$$ (key/value source) using weight matrices $$\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V \in \mathbb{R}^{d_{\text{model}} \times d_{\text{head}}}$$:
+## Dictionary Learning as a Transformative Bridge
 
-$$\mathbf{q}_i = \mathbf{x}_i \mathbf{W}_Q, \quad \mathbf{k}_j = \mathbf{x}_j \mathbf{W}_K, \quad \mathbf{v}_j = \mathbf{x}_j \mathbf{W}_V$$
+It is crucial to understand that dictionary learning techniques, such as sparse autoencoders, do not typically alter the polysemantic nature of the *original* neuron activations within the trained model. The underlying weights and functions of the base model remain unchanged. Instead, dictionary learning provides a **transformation**: it maps the model's existing activation vectors (e.g., from a specific layer's residual stream or MLP output) into a new, usually higher-dimensional, basis. This new basis is defined by the learned dictionary elements (features).
 
-(Note: $$\mathbf{q}_i, \mathbf{k}_j, \mathbf{v}_j$$ are row vectors of dimension $$d_{\text{head}}$$.)
+The key distinction is that this new feature basis is *explicitly optimized* with the goal of achieving monosemanticity, primarily through the sparsity penalty on the feature activations in the new basis. The analytical focus then shifts from attempting to interpret the often-polysemantic individual neurons of the original model to interpreting these learned dictionary features, which are designed to be more semantically coherent.
 
-Attention scores are computed as the dot product of a query vector with a key vector, scaled by $$\sqrt{d_{\text{head}}}$$:
+The field is actively researching ways to improve the quality and monosemanticity of features derived from dictionary learning. This includes exploring **advanced Sparse Autoencoder (SAE) techniques and optimizations**, such as novel optimization strategies, adjustments to training data (like oversampling specific data points), and modifications to the SAE architecture itself (e.g., investigating top-k activations or gated mechanisms), as highlighted in ongoing research (e.g., Anthropic's Circuits Updates, 2024-2025).
 
-$$e_{ij} = \frac{\mathbf{q}_i \mathbf{k}_j^T}{\sqrt{d_{\text{head}}}}$$
+The extent to which these derived dictionary features achieve true monosemanticity is not guaranteed a priori but is an empirical question. Their interpretability and semantic purity must be rigorously assessed using the validation methodologies detailed in [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), such as analyzing maximal activating examples and testing for causal impact on model behavior.
 
-These scores are then normalized via Softmax across all source positions $$j$$ to get attention weights $$\alpha_{ij} = \text{Softmax}_j(e_{ij})$$. The output for query token $$i$$ from this head, before the final output projection, is a weighted sum of value vectors: $$\mathbf{z}_i = \sum_j \alpha_{ij} \mathbf{v}_j$$. 
+## Conceptual Implications for Interpretability
 
-This output $$\mathbf{z}_i$$ (a $$d_{\text{head}}$$ dimensional row vector) is then projected back to the model dimension using the output weight matrix $$\mathbf{W}_O \in \mathbb{R}^{d_{\text{head}} \times d_{\text{model}}}$$. The head's final contribution to the residual stream for token $$i$$ is 
+A nuanced understanding of the polysemanticity-monosemanticity spectrum provides vital conceptual guidance for mechanistic interpretability research:
 
-$$\mathbf{o}_i = \mathbf{z}_i \mathbf{W}_O$$.
-
-This mechanism can be decomposed into two key conceptual circuits:
-
-1.  **Query-Key (QK) Circuit:** Determines *where to attend*. The QK circuit computes the attention scores $$e_{ij}$$ (before softmax). The core of this computation is the term $$\mathbf{q}_i \mathbf{k}_j^T$$. Let's derive its form in terms of the original residual stream vectors $$\mathbf{x}_i$$ and $$\mathbf{x}_j$$:
-
-    $$\mathbf{q}_i \mathbf{k}_j^T = (\mathbf{x}_i \mathbf{W}_Q) (\mathbf{x}_j \mathbf{W}_K)^T$$
-
-    Using the matrix transpose property $$(AB)^T = B^T A^T$$, we have $$( \mathbf{x}_j \mathbf{W}_K )^T = \mathbf{W}_K^T \mathbf{x}_j^T$$.
-    Substituting this back, we get:
-
-    $$\mathbf{q}_i \mathbf{k}_j^T = \mathbf{x}_i \mathbf{W}_Q \mathbf{W}_K^T \mathbf{x}_j^T$$
-
-    This expression shows that the unnormalized attention score between token $$i$$ and token $$j$$ is a bilinear form $$\mathbf{x}_i (\mathbf{W}_Q \mathbf{W}_K^T) \mathbf{x}_j^T$$.
-
-    The matrix $$\mathbf{W}_{\text{eff-QK}} = \mathbf{W}_Q \mathbf{W}_K^T$$ is an effective $$d_{\text{model}} \times d_{\text{model}}$$ matrix that defines how pairs of token representations in the residual stream are compared to produce attention scores. Since $$\mathbf{W}_Q$$ is $$d_{\text{model}} \times d_{\text{head}}$$ and $$\mathbf{W}_K^T$$ is $$d_{\text{head}} \times d_{\text{model}}$$, the rank of $$\mathbf{W}_{\text{eff-QK}}$$ is at most $$d_{\text{head}}$$, which is typically much smaller than $$d_{\text{model}}$$. This low-rank structure implies that the QK circuit is specialized in comparing specific types of information, effectively projecting the $$d_{\text{model}}$$-dimensional token representations into a shared $$d_{\text{head}}$$-dimensional space for comparison.
-
-2.  **Output-Value (OV) Circuit:** Determines *what information to move* from the attended positions and how it's transformed. Once attention weights $$\alpha_{ij}$$ are computed, the OV circuit processes the value vectors. The full transformation from an original token representation $$\mathbf{x}_j$$ (at a source position $$j$$) to its potential contribution to the output (if fully attended, i.e., $$\alpha_{ij}=1$$) is $$\mathbf{x}_j \mathbf{W}_V \mathbf{W}_O$$.
-
-    The matrix $$\mathbf{W}_{\text{OV}} = \mathbf{W}_V \mathbf{W}_O$$ is an effective $$d_{\text{model}} \times d_{\text{model}}$$ matrix. (Since $$\mathbf{W}_V$$ is $$d_{\text{model}} \times d_{\text{head}}$$ and $$\mathbf{W}_O$$ is $$d_{\text{head}} \times d_{\text{model}}$$, their product is $$d_{\text{model}} \times d_{\text{model}}$$).
-
-    This matrix describes the transformation applied to a value vector (derived from a token representation $$\mathbf{x}_j$$ in the residual stream) before it's written back to the residual stream at position $$i$$. Its rank is also at most $$d_{\text{head}}$$. For example, if $$\mathbf{W}_{\text{OV}} \approx \mathbf{I}$$ (identity matrix), the head primarily copies information from attended positions. If it's different, it transforms the information.
-
-Analyzing the properties (e.g., SVD, eigenvalues) of $$\mathbf{W}_Q \mathbf{W}_K^T$$ and $$\mathbf{W}_V \mathbf{W}_O$$ reveals the specific attention patterns and information processing strategies of individual heads.
-
-## Path Expansion and Compositional Power
-
-The overall computation of a Transformer can be viewed as a sum over all possible **paths** that information can take from the input embedding to the final output logits. Each path involves a sequence of components (attention heads, MLP layers) and their respective weight matrices. While attention introduces non-linearity via softmax, analyzing specific paths (e.g., by fixing attention patterns or looking at linear segments of the computation) is a key strategy.
-
-For an attention-only transformer, the output logit for a token $$c$$ given a previous token (position $$pos$$) can be written as:
-
-$$\text{Logits}(c | pos) = \mathbf{U}[c,:] \left( \mathbf{E}[pos,:] + \sum_{l,h} \text{OutputContribution}_{l,h} \right)$$
-
-where $$\mathbf{E}$$ is the token embedding matrix (row per token, $$d_{vocab} \times d_{model}$$), $$\mathbf{U}$$ is the unembedding matrix (often $$\mathbf{E}^T$$, so $$d_{model} \times d_{vocab}$$), and $$\text{OutputContribution}_{l,h}$$ is the output vector added to the residual stream by head $$h$$ in layer $$l$$.
-
-This can be expanded. For instance, the output contribution of head $$(l,h)$$ acting on the stream input $$\mathbf{S}^{(l-1)}$$ (output of layer $$l-1$$) is $$ ( \sum_j \alpha_{pos,j}^{(l,h)} ( \mathbf{S}_j^{(l-1)}\mathbf{W}_V^{(l,h)} ) ) \mathbf{W}_O^{(l,h)} $$.
-
-The simplest paths are:
--   **Zero-Layer Path:** The direct connection from embedding to unembedding. If token at position $$pos$$ has embedding vector $$\mathbf{E}[pos,:]$$, then the direct contribution to logits is $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$. This path effectively captures token co-occurrence statistics similar to bigrams if $$\mathbf{U} \approx \mathbf{E}^T$$.
-
--   **One-Layer Paths:** Paths passing through a single attention head. The term $$\mathbf{U}[c,:] \text{Head}_{l,h}(\mathbf{E}[pos,:]) $$ describes the influence of head $$(l,h)$$ acting on the initial embedding $$\mathbf{E}[pos,:]$$ (if it's in the first layer) on the logit for token $$c$$. This can implement more complex statistics like skip-trigrams.
-
-### Composition Mechanisms: The Source of Complex Algorithms
-
-The true power of multi-layer Transformers comes from **composition**, where the output of earlier components influences the computation of later components. This is where virtual weights become essential for analysis. For attention heads, this occurs in three main ways:
-
-1.  **Q-Composition (Query Composition):** The output of head $$H_1$$ (in layer $$L_1$$) modifies the residual stream. When head $$H_2$$ (in layer $$L_2 > L_1$$) computes its Query vector, it reads from this modified stream. Thus, $$H_1$$ influences what $$H_2$$ attends to.
-    Let $$X$$ be the input to $$H_1$$'s OV circuit (matrix $$\mathbf{M}_{out}^{(H_1)} = \mathbf{W}_V^{(H_1)}\mathbf{W}_O^{(H_1)}$$). Its output contribution is $$X \mathbf{M}_{out}^{(H_1)}$$. If there are intermediate layers transforming this by a product of matrices $$T_{inter} = \prod_{k=L_1+1}^{L_2-1} ( \mathbf{I} + \sum_m \mathbf{M}_{out}^{(k,m)} )$$, this signal becomes $$X \mathbf{M}_{out}^{(H_1)} T_{inter}$$ as it enters the layer of $$H_2$$.
-
-    The query vector for $$H_2$$ is formed from the stream $$S_{L_2-1}$$ as $$S_{L_2-1} \mathbf{W}_Q^{(H_2)}$$. The part of this query that comes from $$X$$ via $$H_1$$ is $$(X \mathbf{M}_{out}^{(H_1)} T_{inter}) \mathbf{W}_Q^{(H_2)}$$.
-    
-    The virtual weight matrix for this Q-composition path is $$\mathbf{W}_{\text{Q-comp}} = \mathbf{M}_{out}^{(H_1)} T_{inter} \mathbf{W}_Q^{(H_2)}$$.
-
-2.  **K-Composition (Key Composition):** Similarly, $$H_1$$ can influence the Key vectors that $$H_2$$ uses for comparison. The output from $$H_1$$ ($$X \mathbf{M}_{out}^{(H_1)} T_{inter}$$) influences the stream from which $$H_2$$ forms its key vectors $$S_{L_2-1} \mathbf{W}_K^{(H_2)}$$.
-    The virtual weight matrix for this K-composition path (from input of $$H_1$$'s OV to $$H_2$$'s K-projection) is $$\mathbf{W}_{\text{K-comp}} = \mathbf{M}_{out}^{(H_1)} T_{inter} \mathbf{W}_K^{(H_2)}$$.
-
-3.  **V-Composition (Value Composition):** And $$H_1$$ can influence the Value vectors that $$H_2$$ aggregates. The output from $$H_1$$ ($$X \mathbf{M}_{out}^{(H_1)} T_{inter}$$) influences the stream from which $$H_2$$ forms its value vectors $$S_{L_2-1} \mathbf{W}_V^{(H_2)}$$. This then passes through $$H_2$$'s output projection $$\mathbf{W}_O^{(H_2)}$$.
-    The virtual weight matrix for this V-composition path (from input of $$H_1$$'s OV to $$H_2$$'s OV output) is $$\mathbf{W}_{\text{V-comp}} = \mathbf{M}_{out}^{(H_1)} T_{inter} \mathbf{W}_V^{(H_2)} \mathbf{W}_O^{(H_2)}$$.
-
-These composition mechanisms, understood via virtual weights, allow for the construction of **virtual attention heads**, where the combined effect of multiple heads implements a more complex attention pattern or information transformation than any single head could. For instance, K-composition is fundamental to **induction heads** (explored in Part 9).
-
-### Emergent Complexity in Two-Layer Models
-
-While a zero-layer Transformer is limited to bigrams and a one-layer attention-only Transformer to skip-trigrams, a **two-layer Transformer** can already exhibit qualitatively new capabilities due to composition. For example, an induction head typically requires at least two heads working in sequence:
--   A "previous token" head (Head 1) in an earlier layer $$L_1$$ copies (parts of) the $$N-1$$-th token's representation into the residual stream.
--   An "induction" head (Head 2) in a later layer $$L_2$$ uses this copied representation. Specifically, via K-composition, the Key vectors generated by $$H_2$$ for previous tokens in the sequence are modulated by the output of $$H_1$$. If $$H_2$$ is looking for the token that followed previous instances of token $$N-1$$, its Query vector (also potentially influenced by $$H_1$$'s output via Q-composition) will match strongly with Key vectors of tokens that *are* $$N-1$$, and the overall QK circuit of $$H_2$$ is further specialized to shift attention to the token *after* these matched $$N-1$$ tokens. The OV circuit of $$H_2$$ then copies this successfully identified token. This is a form of in-context learning that is impossible with single heads in isolation.
+-   **Directing Interpretability Efforts:** It underscores why directly interpreting individual neurons in complex neural networks is often fraught with difficulty and can be misleading. This motivates the continued development and refinement of methods, like dictionary learning, that aim to discover or construct more interpretable feature bases that explicitly strive for monosemanticity.
+-   **Setting Realistic Expectations:** It teaches us that due to inherent efficiency pressures and the nature of superposition, we should anticipate a significant degree of polysemanticity in the standard neural representations of complex models. Aspiring to find perfect, one-to-one monosemantic mappings for all learnable concepts within the raw parameters of a large, conventionally trained model is likely an unrealistic expectation, especially for highly abstract or compositional concepts. Even with sophisticated dictionary learning, there may still be aspects of model activations that are not easily decomposed into clean, interpretable features—sometimes referred to as potential "dark matter" in activations (Anthropic Circuits Update, July 2024). The goal of interpretability is often to find *sufficiently* monosemantic features that provide meaningful insight, even if perfect disentanglement or complete explanation of all activation variance is elusive.
+-   **Informing Theoretical Understanding:** Studying the conditions under which representations tend towards either end of the spectrum can offer deeper insights into the learning dynamics of neural networks and the principles that govern their internal organization. For example, understanding how feature correlation statistics in the input data translate into the geometric arrangement of learned feature vectors can illuminate the origins of specific superposition patterns.
 
 ## Conclusion
 
-This mathematical framework provides the tools to dissect Transformers into their constituent computational parts: the residual stream as a communication bus, attention heads decomposed into QK and OV circuits, and the powerful concept of composition that allows simple components to build complex algorithms. By analyzing virtual weights, path expansions, and composition strengths, we can start to reverse-engineer the specific computations learned by these models.
+The dichotomy between the computational efficiency that often leads to polysemantic superposition and the human desire for clear, monosemantic features represents a fundamental tension in the field of mechanistic interpretability. While raw neural representations in contemporary models frequently lean towards the polysemantic end of the spectrum as a consequence of efficiently encoding a multitude of features, analytical techniques like dictionary learning endeavor to bridge this gap by discovering an underlying, more monosemantic feature basis. The specific characteristics of a representation—its position on this spectrum—are shaped by a dynamic interplay of factors including model capacity, the inherent sparsity of true features in the data, and the geometric and correlational structure of these features. A clear apprehension of these dynamics is essential for selecting appropriate analytical tools, for setting well-founded goals in our quest to understand the intricate internal workings of these powerful computational systems, and for advancing our theoretical grasp of how neural networks learn to represent the world.
 
-This foundation is crucial for understanding phenomena like superposition within these architectures and for developing techniques to extract and validate the features and circuits that implement their remarkable capabilities. It sets the stage for [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}), where we will explore dictionary learning as a method to deal with superposition, and for later parts like [Part 7]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %}) where we will apply this framework to analyze specific circuits like induction heads in detail.
+The subsequent parts of this series will build upon this understanding by delving into the analysis of specific types of circuits and their constituent components, particularly within the architecture of Transformer models.
+
+Next, in [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %}), we will explore the mathematical framework necessary for understanding Transformer circuits. Following that, in [Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %}), we will delve into validating learned features and the circuits they form.
 
 ---
 
 ## References and Further Reading
 
-This framework is primarily based on the work by Elhage et al. and Olsson et al. in the Transformer Circuits Thread:
-
--   **Elhage, N., Nanda, N., Olsson, C., Henighan, T., Joseph, N., Mann, B., ... & Olah, C.** (2021). [A Mathematical Framework for Transformer Circuits](https://transformer-circuits.pub/2021/framework/). *Transformer Circuits Thread*
--   **Olsson, C., Elhage, N., Nanda, N., Joseph, N., DasSarma, N., Henighan, T., ... & Olah, C.** (2022). [In-context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/). *Transformer Circuits Thread*
--   Insights on the residual stream and attention also draw from the original Transformer paper: Vaswani, A., et al. (2017). [Attention Is All You Need](https://arxiv.org/abs/1706.03762). *NeurIPS*.
+-   **Elhage, N., et al.** (2022). [Toy Models of Superposition](https://transformer-circuits.pub/2022/toy_models/index.html). *Transformer Circuits Thread*. (Essential for understanding the origins of polysemanticity).
+-   **Olah, C.** (2022). [Mechanistic Interpretability, Variables, and the Importance of Interpretable Bases](https://distill.pub/2022/mechanistic-interpretability-scope/). *Distill*.
+-   **Bricken, T., et al.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html). *Transformer Circuits Thread*.
+-   **Gurnee, W., et al.** (2023). [Finding Neurons in a Haystack: Case Studies with Sparse Probing](https://arxiv.org/abs/2305.01610). (Discusses finding naturally occurring monosemantic neurons even without dictionary learning in some cases, which complements the pursuit of derived monosemantic features).
