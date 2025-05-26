@@ -69,7 +69,7 @@ $$ L_k = (1 - \hat{x}_k)^2 + \sum_{j \neq k} (0 - \hat{x}_j)^2 $$
 
 The total loss is the average over all possible active features: 
 
-$$ L = \mathbb{E}_k [L_k] $$.
+$$ L = \mathbb{E}_k [L_k] $$
 
 
 **1. The Linear Case (No Superposition)**
@@ -93,7 +93,7 @@ If the number of features $$N$$ is greater than the hidden dimensionality $$D$$ 
 Now, let's introduce a non-linearity, specifically ReLU: $$\sigma(z) = \text{ReLU}(z) = \max(0, z)$$.
 The reconstruction for feature $$j$$, when feature $$k$$ is active ($$\mathbf{h}=\mathbf{f}_k$$), is 
 
-$$ \hat{x}_j = \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j) $$.
+$$ \hat{x}_j = \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j) $$
 
 The loss for active feature $$k$$ is:
 
