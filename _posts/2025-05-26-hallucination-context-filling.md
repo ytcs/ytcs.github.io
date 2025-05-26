@@ -7,113 +7,153 @@ date: 2025-05-26
 math: true
 ---
 
-I have observed that hallucination likelihood might increase as more information fills the LLM's context window—as "context richness" grows. This post explores a plausible theoretical "toy model" to understand this empirical observation. We focus on how a specific mechanism—logit computation involving a $$1/N$$ scaling—can lead to a flatter distribution of pre-softmax logits, potentially increasing model uncertainty and thus hallucination.
+Have you ever noticed that LLMs sometimes seem more likely to "hallucinate" or generate nonsensical information when their context window is packed with information? This post dives into a simplified "toy model" to explore a potential reason for this. We'll focus on how a specific mechanism—where the influence of individual pieces of information is scaled down by $$1/N$$ as more (say, $$N$$) pieces arrive—can lead to a less "peaked" (flatter) probability distribution for the next word, possibly making the model more uncertain and prone to hallucination.
 
 ## The Toy Model: Core Components
 
-Let's establish the basic elements of our model.
+Let's lay out the building blocks of our simplified model.
 
 ### Context Richness and Logit Influence Vectors
 
-We consider $$N$$ distinct "contextual features" or informational cues that the LLM processes. As the input context becomes richer, $$N$$ increases.
-Each feature $$k$$ (for $$k=1, \dots, N$$) exerts an "effective logit influence vector" $$\mathbf{p}_k \in \mathbb{R}^V$$ on the next token prediction, where $$V$$ is the vocabulary size. The component $$p_{ki}$$ is the influence of feature $$k$$ on the logit for the $$i$$-th vocabulary token.
+Imagine the LLM processing $$N$$ distinct "contextual features" or pieces of information. As the input context gets richer (e.g., a longer prompt or conversation history), $$N$$ naturally increases.
+Each piece of information, let's call it feature $$k$$ (for $$k=1, \dots, N$$), tries to nudge the model's prediction for the next word. We represent this nudge as an "effective logit influence vector" $$\mathbf{p}_k$$. This vector has a value for every word in the LLM's vocabulary (size $$V$$), telling us how feature $$k$$ wants to increase or decrease the pre-softmax logit for each potential next word.
 
 ### The Key Mechanism: Logit Computation with $$1/N$$ Scaling
 
-The cornerstone of our toy model is how these individual influences combine:
-
-The final logit vector $$\mathbf{L}^{(N)} \in \mathbb{R}^V$$ (before the softmax function) is postulated to be the arithmetic mean of the effective logit influence vectors from the $$N$$ active contextual features:
+The heart of our toy model is how these individual nudges combine. We propose that the final logit vector $$\mathbf{L}^{(N)} \in \mathbb{R}^V$$ (the one right before the softmax function turns logits into probabilities) is simply the average of all the individual influence vectors:
 
 $$
-\mathbf{L}^{(N)} = \frac{1}{N} \sum_{k=1}^{N} \mathbf{p}_k 
+\mathbf{L}^{(N)} = \frac{1}{N} \sum_{k=1}^{N} \mathbf{p}_k
 $$
 
-This explicit $$1/N$$ scaling is critical. If influences were merely summed (a $$1/1$$ scaling), logit variance would generally grow with $$N$$. If scaled by $$1/\sqrt{N}$$ (common in statistical averaging of i.i.d. variables), variance would remain constant (for uncorrelated $$\mathbf{p}_k$$). The $$1/N$$ scaling ensures that, under certain conditions, variance *decreases* as more features are added.
+This $$1/N$$ scaling is crucial. It means that as more information comes in, each individual piece of information has proportionally less say, preventing any single piece from "shouting down" the others. If we just summed the influences (a $$1/1$$ scaling), the overall magnitude of the logits would likely grow with $$N$$, potentially making the variance grow too. If we scaled by $$1/\sqrt{N}$$ (common when averaging independent, identically distributed random variables), the variance might stay constant if the influences were uncorrelated. The $$1/N$$ scaling, however, is a stronger form of down-weighting that, as we'll see, can actively *reduce* the variance of the combined logits under certain conditions.
 
-Why assume such scaling?
-1.  **Mechanistic Aggregation in Circuits:** Neural architectures might implement such scaling. For example, if $$N$$ processed hidden states $$\mathbf{h}_k^{\text{proc}}$$ (derived from the contextual cues) are explicitly averaged before a final linear projection $$W_{out}$$ to the logit space:
+Why might such scaling occur in a real LLM?
+1.  **Mechanistic Aggregation in Circuits:** It's plausible that neural network architectures perform a similar averaging. For instance, if hidden states $$\mathbf{h}_k^{\text{proc}}$$ (representing processed contextual cues) are averaged before a final linear layer $$W_{out}$$ produces the logits:
     $$
     \mathbf{L}^{(N)} \approx W_{out} \left( \frac{1}{N} \sum_{k=1}^N \mathbf{h}_k^{\text{proc}} \right) = \frac{1}{N} \sum_{k=1}^N (W_{out} \mathbf{h}_k^{\text{proc}})
     $$
-    Defining $$\mathbf{p}_k = W_{out} \mathbf{h}_k^{\text{proc}} - \mathbb{E}[W_{out} \mathbf{h}_k^{\text{proc}}]$$ (i.e., centered influences) directly yields the postulated form.
+    If we define $$\mathbf{p}_k = W_{out} \mathbf{h}_k^{\text{proc}} - \mathbb{E}[W_{out} \mathbf{h}_k^{\text{proc}}]$$ (so they represent deviations from an average effect), we get our postulated form.
 
-2.  **Neural Tangent Kernel (NTK) Implication:** In very wide networks (the NTK regime), if an input is a composition of $$N$$ elements $$\mathbf{c}_k$$, and the network's feature extractor $$\phi(\cdot)$$ effectively averages these (i.e., $$\phi(\text{input}) \approx \frac{1}{N} \sum_k \phi(\mathbf{c}_k)$$), then the logits, being a linear transformation of $$\phi(\text{input})$$, would also exhibit this scaling.
+2.  **Neural Tangent Kernel (NTK) Implication:** In very wide neural networks (the "NTK regime"), the network's behavior can sometimes be approximated by a kernel machine. If the network's feature extractor $$\phi(\cdot)$$ effectively averages the features of $$N$$ input components (i.e., $$\phi(\text{input}) \approx \frac{1}{N} \sum_k \phi(\mathbf{c}_k)$$), then the logits, being a linear transformation of these features, would also show this scaling.
 
 ### Simplifying Assumptions for Logit Influences ($$\mathbf{p}_k$$)
 
-For our toy model, we make the following simplifying statistical assumptions about the influence vectors $$\mathbf{p}_k$$:
-1.  **Zero Mean Influence:** $$\mathbb{E}[\mathbf{p}_k] = \mathbf{0}$$. This means $$\mathbf{p}_k$$ represent deviations from a baseline influence, simplifying variance calculations.
-2.  **Common Covariance:** The covariance matrix of any single feature's influence vector $$\mathbf{p}_k$$ is the same: $$\mathrm{Cov}(\mathbf{p}_k) = \mathbf{\Sigma}_p = \mathbb{E}[\mathbf{p}_k \mathbf{p}_k^T]$$.
-3.  **Inter-Feature Covariance:** The covariance between influence vectors from different features $$k \neq l$$ is $$\mathrm{Cov}(\mathbf{p}_k, \mathbf{p}_l) = \mathbf{C}_{kl} = \mathbb{E}[\mathbf{p}_k \mathbf{p}_l^T]$$.
+To make our model tractable, we'll make a few statistical assumptions about these influence vectors $$\mathbf{p}_k$$:
+1.  **Zero Mean Influence:** On average, each $$\mathbf{p}_k$$ is zero ($$\mathbb{E}[\mathbf{p}_k] = \mathbf{0}$$). This just means we're looking at influences as deviations from some baseline, which simplifies our math, especially variance calculations.
+2.  **Common Covariance:** The "shape" of the random fluctuation of each $$\mathbf{p}_k$$ is the same, described by a common covariance matrix: $$\mathrm{Cov}(\mathbf{p}_k) = \mathbf{\Sigma}_p = \mathbb{E}[\mathbf{p}_k \mathbf{p}_k^T]$$.
+3.  **Inter-Feature Covariance:** The way influences from different features ($$k$$ and $$l$$) vary together is described by $$\mathrm{Cov}(\mathbf{p}_k, \mathbf{p}_l) = \mathbf{C}_{kl} = \mathbb{E}[\mathbf{p}_k \mathbf{p}_l^T]$$.
 
 ## Deriving the Expected Variance of Logits
 
-Our goal is to see how the spread (sample variance) of the logit values $$L_i^{(N)}$$ across the vocabulary changes with $$N$$. The sample variance is $$\mathrm{Var}_i(L_i^{(N)}) = \frac{1}{V} \sum_{i=1}^{V} (L_i^{(N)} - \bar{L}^{(N)})^2$$, where $$\bar{L}^{(N)}$$ is the mean logit.
+Our main goal is to see how the "spread" of the final logit values $$L_i^{(N)}$$ across the vocabulary changes as $$N$$ increases. We measure this spread using the sample variance: $$\mathrm{Var}_i(L_i^{(N)}) = \frac{1}{V} \sum_{i=1}^{V} (L_i^{(N)} - \bar{L}^{(N)})^2$$, where $$\bar{L}^{(N)}$$ is the average logit value.
 
 1.  **Covariance of the Scaled Logit Vector ($$\mathbf{L}^{(N)}$$):**
-    Using $$\mathbf{L}^{(N)} = \frac{1}{N} \sum \mathbf{p}_k$$ and properties of covariance:
+    We start with our formula $$\mathbf{L}^{(N)} = \frac{1}{N} \sum \mathbf{p}_k$$. Using standard properties of covariance (specifically, its bilinearity and how it behaves with sums of random vectors), we find the covariance matrix of $$\mathbf{L}^{(N)}$$:
     $$
     \mathbf{\Sigma}_{\mathbf{L}^{(N)}} = \mathrm{Cov}\left(\frac{1}{N} \sum_{k=1}^{N} \mathbf{p}_k\right) = \frac{1}{N^2} \mathrm{Cov}\left(\sum_{k=1}^{N} \mathbf{p}_k\right)
     $$
+    Expanding the covariance of the sum (akin to $$\mathrm{Var}(X+Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y)$$, but for vectors):
     $$
     \mathbf{\Sigma}_{\mathbf{L}^{(N)}} = \frac{1}{N^2} \left( \sum_{k=1}^{N} \mathrm{Cov}(\mathbf{p}_k) + \sum_{k \neq l} \mathrm{Cov}(\mathbf{p}_k, \mathbf{p}_l) \right)
     $$
-    Applying our assumptions:
+    Plugging in our assumptions ($$\mathrm{Cov}(\mathbf{p}_k) = \mathbf{\Sigma}_p$$ and $$\mathrm{Cov}(\mathbf{p}_k, \mathbf{p}_l) = \mathbf{C}_{kl}$$):
     $$
     \mathbf{\Sigma}_{\mathbf{L}^{(N)}} = \frac{1}{N^2} \left( N \mathbf{\Sigma}_p + \sum_{k \neq l} \mathbf{C}_{kl} \right)
     $$
 
 2.  **Expected Sample Variance of Logits:**
-    Since $$\mathbb{E}[L_i^{(N)}] = 0$$ (due to $$\mathbb{E}[\mathbf{p}_k] = \mathbf{0}$$), the expected sample variance can be written using a function $$S(\mathbf{A}) = \frac{1}{V} \mathrm{Tr}(\mathbf{A}) - \frac{1}{V^2} \mathbf{1}^T \mathbf{A} \mathbf{1}$$, which measures the average variance of components of a zero-mean random vector with covariance $$\mathbf{A}$$:
+    Since we assumed $$\mathbb{E}[\mathbf{p}_k] = \mathbf{0}$$, it follows that $$\mathbb{E}[L_i^{(N)}] = 0$$ for any logit $$i$$. This simplifies things. The expected sample variance of the logits can be related to the covariance matrix $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ using a function $$S(\mathbf{A}) = \frac{1}{V} \mathrm{Tr}(\mathbf{A}) - \frac{1}{V^2} \mathbf{1}^T \mathbf{A} \mathbf{1}$$. This function $$S(\mathbf{A})$$ essentially measures the average variance of the components of a zero-mean random vector whose covariance is $$\mathbf{A}$$. (It's derived from the general sample variance formula $$S(\mathbf{A}) = \frac{1}{V} \sum_i \mathbb{E}[(A_i - \bar{A})^2]$$, which simplifies nicely when the mean $$\mathbb{E}[A_i]$$ is zero).
+    So, we have:
     $$
     \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = S(\mathbf{\Sigma}_{\mathbf{L}^{(N)}})
     $$
-    Substituting the expression for $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ and using the linearity of $$S(\cdot)$$:
+    Because $$S(\cdot)$$ is a linear function of its matrix argument (it involves traces and linear combinations), we can write:
     $$
     \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = \frac{1}{N^2} \left( N S(\mathbf{\Sigma}_p) + \sum_{k \neq l} S(\mathbf{C}_{kl}) \right)
     $$
 
 3.  **Introducing Simplified Correlation:**
-    Let $$V_p = S(\mathbf{\Sigma}_p)$$ be the inherent expected sample variance from a single feature's influence. To simplify the correlation term, we assume a homogeneous structure: $$S(\mathbf{C}_{kl}) = \rho_{kl} V_p$$, where $$\rho_{kl}$$ is a scalar effective correlation. Let $$\bar{\rho} = \frac{1}{N(N-1)} \sum_{k \neq l} \rho_{kl}$$ be the average inter-feature correlation (for $$N \ge 2$$; if $$N=1$$, this term is zero).
-    The sum becomes $$\sum_{k \neq l} S(\mathbf{C}_{kl}) = N(N-1)\bar{\rho} V_p$$.
+    Let's define $$V_p = S(\mathbf{\Sigma}_p)$$ as the inherent expected sample variance if we only had a single feature's influence. To make the sum of cross-feature terms $$S(\mathbf{C}_{kl})$$ easier to handle, we make another simplifying assumption: we assume that the "shape" of these cross-covariances is somewhat similar, differing mainly by a scalar factor. Specifically, we let $$S(\mathbf{C}_{kl}) = \rho_{kl} V_p$$. Here, $$\rho_{kl}$$ is a scalar "effective correlation" that captures how much the typical spread pattern of influence from feature $$k$$ aligns with that of feature $$l$$, normalized by $$V_p$$.
+    Now, let $$\bar{\rho} = \frac{1}{N(N-1)} \sum_{k \neq l} \rho_{kl}$$ be the average of these effective correlations over all distinct pairs of features (this term is zero if $$N=1$$).
+    The sum then becomes $$\sum_{k \neq l} S(\mathbf{C}_{kl}) = N(N-1)\bar{\rho} V_p$$.
 
 4.  **Final Result for Expected Logit Variance:**
-    Substituting this into the equation gives:
+    Substituting this back into our equation for the expected sample variance:
     $$
     \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = \frac{1}{N^2} \left( N V_p + N(N-1)\bar{\rho} V_p \right)
     $$
-    Simplifying this expression, we get:
+    Factoring out $$N V_p$$ and simplifying the terms within the parenthesis leads to:
     $$
     \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p \left( \frac{N + N(N-1)\bar{\rho}}{N^2} \right) = V_p \left( \frac{1 + (N-1)\bar{\rho}}{N} \right)
     $$
-    This can be conveniently rewritten as:
+    This looks a bit complicated, but it can be rewritten in a more insightful way:
     $$
     \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p \left( \frac{1 - \bar{\rho}}{N} + \bar{\rho} \right) \quad (\text{for } N \ge 1)
     $$
+    This is our key result for how the expected spread of logits changes!
 
 ## What the Toy Model Shows
 
-This final equation reveals how the expected variance of logits across the vocabulary changes with context richness ($$N$$) and average inter-feature correlation ($$\bar{\rho}$$):
+This final equation is quite revealing. It tells us how the expected variance (or "spread") of the logits across the vocabulary changes based on the number of contextual features ($$N$$) and their average effective correlation ($$\bar{\rho}$$):
 
 1.  **Independent Features ($$\bar{\rho} = 0$$):**
-    If contextual influences are uncorrelated, $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p/N$$. The logit variance decreases inversely with $$N$$. More diverse information leads to a tighter clustering of logit values.
+    If the influences from different contextual features are effectively uncorrelated ($$\bar{\rho} = 0$$), then $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p/N$$.
+    *Interpretation:* The logit variance shrinks proportionally to $$1/N$$. If new information is entirely "fresh" and unrelated to what the model has already processed, its primary effect is to reduce the logit spread, making the logits cluster more tightly.
 
 2.  **Positively Correlated Features ($$0 < \bar{\rho} < 1$$):**
-    The variance still decreases as $$N$$ increases due to the $$(1-\bar{\rho})/N$$ term. However, as $$N \to \infty$$, the variance approaches a non-zero floor: $$\lim_{N\to\infty} \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p \bar{\rho}$$. Shared information (correlation) limits how much this scaling can smooth out the logits.
+    The variance still decreases as $$N$$ grows, thanks to the $$(1-\bar{\rho})/N$$ term which still pushes it down. However, as $$N$$ gets very large, the variance doesn't go to zero. Instead, it approaches a floor: $$\lim_{N\to\infty} \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p \bar{\rho}$$.
+    *Interpretation:* Shared or redundant information (positive correlation) limits how much the $$1/N$$ scaling can smooth out the logits. Even with tons of information, if much of it is saying similar things, the logit spread won't completely vanish.
 
 3.  **Perfectly Correlated Features ($$\bar{\rho} = 1$$):**
-    If all influences are perfectly correlated, $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p$$. Scaling identical (up to a constant factor) information provides no reduction in variance.
+    If all contextual influences are perfectly correlated in their effect on logit spread ($$\bar{\rho} = 1$$), then $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p$$.
+    *Interpretation:* The $$1/N$$ scaling offers no reduction in variance if all it's doing is scaling (effectively) the same piece of information repeatedly. The logit spread remains the same as if there were only one piece of information.
 
-The core insight: as long as contextual features are not perfectly correlated ($$\bar{\rho} < 1$$), the $$1/N$$ scaling mechanism causes the expected variance of the logits to decrease as context richness $$N$$ increases.
+The takeaway is this: as long as new contextual features bring at least *some* new, uncorrelated influence ($$\bar{\rho} < 1$$), our $$1/N$$ scaling mechanism will cause the expected variance of the logits to decrease as context richness $$N$$ grows.
+
+## Connecting to Hallucination Probability
+
+So, we've seen that more information ($$N$$) tends to make the logits less spread out (lower variance), assuming the information isn't perfectly redundant. How does this connect to the model's certainty and potential for hallucination? We can use a concentration inequality to make this link clearer.
+
+1.  **Focus on Logit Differences:** Instead of looking at individual logits, let's look at the difference between any two of them: $$D_{ij}^{(N)} = L_i^{(N)} - L_j^{(N)}$$. Since we assumed individual influences $$\mathbf{p}_k$$ have zero mean, so do our final logits $$L_i^{(N)}$$. Thus, the expected difference is also zero: $$\mathbb{E}[D_{ij}^{(N)}] = 0$$.
+
+2.  **Variance of Logit Differences:** The variance of this difference, $$\sigma_{D_{ij}}^2(N) = \mathrm{Var}(D_{ij}^{(N)})$$, is given by the standard formula:
+    $$
+    \sigma_{D_{ij}}^2(N) = \mathrm{Var}(L_i^{(N)}) + \mathrm{Var}(L_j^{(N)}) - 2\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})
+    $$
+    These terms ($$\mathrm{Var}(L_i^{(N)})$$ and $$\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})$$ are just the diagonal and off-diagonal entries of the overall logit covariance matrix $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ we found earlier:
+    $$
+    \mathbf{\Sigma}_{\mathbf{L}^{(N)}} = \frac{1}{N^2} \left( N \mathbf{\Sigma}_p + \sum_{k \neq l} \mathbf{C}_{kl} \right)
+    $$
+    As $$N$$ increases, the $$1/N^2$$ factor (and the $$N/N^2 = 1/N$$ factor for the first term) generally causes the elements of $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ to decrease (or approach a floor if $$\bar{\rho}$$ is large and positive). Consequently, $$\sigma_{D_{ij}}^2(N)$$, the variance of the difference between any two logits, will also tend to decrease with $$N$$.
+
+3.  **Applying Chebyshev's Inequality:** Now for the concentration part, we can use [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality). For our logit difference $$D_{ij}^{(N)}$$ (with mean 0 and variance $$\sigma_{D_{ij}}^2(N)$$), it states that for any threshold $$\epsilon > 0$$:
+    $$
+    P\\left(|D_{ij}^{(N)}| \\ge \\epsilon\\right) \\le \\frac{\\sigma_{D_{ij}}^2(N)}{\\epsilon^2}
+    $$
+    This tells us the probability that the absolute difference between two logits is *large* (at least $$\epsilon$$) is small if their variance $$\sigma_{D_{ij}}^2(N)$$ is small compared to $$\epsilon^2$$.
+
+4.  **Probability of Logits Being Close:** We can flip this around to say something about the probability that two logits are *close* to each other:
+    $$
+    P\left(|D_{ij}^{(N)}| < \epsilon\right) = 1 - P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \ge 1 - \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
+    $$
+    For this lower bound to be meaningful (i.e., greater than 0), we need our chosen threshold $$\epsilon$$ to be such that $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$.
+
+5.  **Implication of Decreasing Variance:** Here's the punchline: as $$N$$ (context richness) increases, we've argued that $$\sigma_{D_{ij}}^2(N)$$ (the variance of logit differences) tends to decrease. If it decreases enough, we can pick a small $$\epsilon$$ such that the condition $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$ holds. In this situation, the lower bound $$1 - \sigma_{D_{ij}}^2(N)/\epsilon^2$$ gets closer to 1. This means that as context richness $$N$$ grows, the probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are very close to each other (within $$\epsilon$$) *increases*.
+
+6.  **Link to Softmax Flatness:** When most pairs of logits are very close, their resulting softmax probabilities also become similar. Remember, the ratio of two probabilities in the softmax output is $$p_i / p_j = \exp(L_i^{(N)} - L_j^{(N)}) = \exp(D_{ij}^{(N)})$$. If $$D_{ij}^{(N)}$$ is small (close to zero), then $$\exp(D_{ij}^{(N)})$$ is close to $$\exp(0) = 1$$, meaning $$p_i \approx p_j$$. If this happens for many pairs of vocabulary items $$i$$ and $$j$$, the whole probability distribution $$p_1, \dots, p_V$$ becomes flatter, or more uniform.
+
+This concentration argument forges a clearer path: more (not perfectly redundant) information leads to less spread-out logits, which in turn means a higher chance that logits are numerically close, leading to a flatter softmax distribution.
 
 ## Link to Hallucination
 
-A lower variance among logit values means the logits become more similar to each other. This has a direct consequence for the softmax probability distribution used to select the next token:
-*   **Flatter Distribution:** Similar logit values lead to a more uniform probability distribution over the vocabulary.
-*   **Increased Entropy:** A flatter distribution has higher Shannon entropy ($$H = -\sum p_i \log p_i$$), signifying greater model uncertainty.
+Now, let's directly connect this to hallucination. A lower variance among logit values, leading to those logits being more similar to each other, has a crucial consequence for the softmax probability distribution used to pick the next token:
 
-This increased uncertainty—where the model is less "peaked" or confident in its next token choice—is hypothesized to increase the likelihood of sampling less coherent, factually ungrounded, or nonsensical tokens, characteristic of hallucinations. The model, by applying this scaling to many potentially disparate signals (especially if $$\bar{\rho}$$ is small), might lose strong individual signals in a sea of moderate ones, leading to this uncertain state.
+*   **Flatter Distribution:** As we just saw, similar logit values result in a more uniform (flatter) probability distribution over the entire vocabulary. The model becomes less "opinionated" about which word should come next.
+*   **Increased Entropy:** A flatter probability distribution inherently has higher Shannon entropy ($$H = -\sum p_i \log p_i$$). Higher entropy signifies greater uncertainty from the model's perspective.
+
+This state of increased uncertainty—where the model is less "peaked" or confident in any particular next token choice—is what we hypothesize increases the likelihood of it sampling less coherent, factually ungrounded, or simply nonsensical tokens. These are the hallmarks of hallucination. By applying the $$1/N$$ scaling to many contextual signals (especially if their average correlation $$\bar{\rho}$$ is low, meaning they are diverse), the model might "average out" strong individual signals, leaving it in a muddled, uncertain state where it's easier to pick a "wrong" path.
 
 ## Conclusion
 
-This toy model, built upon $$1/N$$ scaling of logits, demonstrates a potential mechanism for how increasing context richness ($$N$$) can decrease the expected variance of an LLM's pre-softmax logits. The derived relationship, $$\mathbb{E}[\text{Var}] = V_p ( (1 - \bar{\rho})/N + \bar{\rho} )$$, highlights that this reduction is most significant when new contextual cues are diverse (low $$\bar{\rho}$$). The resulting flatter softmax distribution (higher uncertainty) offers a plausible mathematical pathway to understanding why LLMs might become more prone to hallucination when processing very long and information-rich contexts.
+This toy model, centered on the idea of $$1/N$$ scaling of logit influences from various contextual features, paints a plausible picture of how increasing context richness ($$N$$) could, somewhat counterintuitively, lead to trouble. The key result, $$\mathbb{E}[\text{Var}_i(L_i^{(N)})] = V_p ( (1 - \bar{\rho})/N + \bar{\rho} )$$, shows that the expected spread of pre-softmax logits tends to decrease as more features are added, especially if these features are diverse (low average correlation $$\bar{\rho}$$). This reduction in logit variance, as we argued using Chebyshev's inequality, makes the logits cluster together, leading to a flatter softmax probability distribution. This flatter distribution signifies higher model uncertainty, offering a mathematical pathway to understanding why an LLM might become more prone to hallucination when its context window is filled with a large amount of information. While a simplification, this model provides a conceptual framework for thinking about the delicate balance of information aggregation in LLMs.
