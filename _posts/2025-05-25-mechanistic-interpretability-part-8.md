@@ -98,16 +98,24 @@ This work demonstrates the successful application of Sparse Autoencoders (SAEs) 
     3.  **Feature Sparsity:** Successful training yielded highly sparse $$\mathbf{f}$$ vectors, meaning for any given input, only a small subset of the $$d_{\text{dict}}$$ features were active. This is essential for both interpretability and for the SAE to effectively de-mix superposed signals. The L0 norm of $$\mathbf{f}$$ might be in the tens or low hundreds, while $$d_{\text{dict}}$$ is many thousands.
     4.  **Reconstruction Quality:** The reconstructed activations $$\hat{\mathbf{x}}$$ were close enough to $$\mathbf{x}$$ to suggest that the SAE feature basis captured most of the functionally relevant information. This is measured by $$\vert\vert\mathbf{x} - \hat{\mathbf{x}}\vert\vert_2^2 / \vert\vert\mathbf{x}\vert\vert_2^2$$ (fraction of unexplained variance).
 
-### Case Study 2: "Biology" of Production LLMs (Hypothetical: Lindsey et al., 2025 - Claude 3.5 Haiku)
+### Case Study 2: Mechanistic Insights from Claude 3.5 Haiku (Lindsey et al., 2025)
 
-This research would dive deeper into how the features discovered by SAEs (like in Templeton et al.) are *used* in circuits.
-*   **Circuit Discovery with SAE Features:**
-    *   Nodes in circuits are now activations $$f_i$$ of dictionary features $$\mathbf{d}_i$$.
-    *   Effective weights between features: If feature $$\mathbf{d}_A$$ (in layer $$L$$) influences feature $$\mathbf{d}_B$$ (in layer $$L'$$) via a path involving model weight matrices $$\mathbf{W}_{\text{path}}$$, the effective weight $$w_{AB}^{\text{eff}}$$ can be approximated by projecting this path onto the feature directions: $$w_{AB}^{\text{eff}} \approx \mathbf{d}_B^T \mathbf{W}_{\text{path}} \mathbf{d}_A$$. (This simplifies a more complex projection of the full transformation).
-*   **Example: Feature-Based Induction Circuit:**
-    *   **Head 1 (Previous Token Head):** Its OV circuit $$ \mathbf{W}_{OV}^{(H1)} $$ might be found to map a set of general token identity features (e.g., $$ \{\mathbf{d}_{\text{token\_X}}, \mathbf{d}_{\text{token\_Y}}\} $$) from position $$j$$ to features representing "recently seen TokenX/TokenY" ($$ \{\mathbf{d}_{\text{rec\_X}}, \mathbf{d}_{\text{rec\_Y}}\} $$) in the residual stream at $$j$$.
-    *   **Head 2 (Induction Head):** Its query formation from position $$t$$ might be sensitive to $$\mathbf{d}_{\text{rec\_X}}$$. Its key formation at position $$k < t$$ might also be sensitive to $$\mathbf{d}_{\text{rec\_X}}$$ (K-composition via query). The QK matrix $$\mathbf{W}_Q^{(H2)}\mathbf{W}_K^{(H2)T}$$ would be structured to use this shared sensitivity to $$\mathbf{d}_{\text{rec\_X}}$$ to locate the *original* occurrence of TokenX at $$k$$, then shift attention to $$k+1$$ to copy features of the token following it.
-    *   The technical analysis would involve showing high dot products: e.g., $$(\mathbf{d}_{\text{rec\_X}})^T \mathbf{W}_Q^{(H2)}$$ is large, and for TokenX at $$k$$, $$(\mathbf{d}_{\text{rec\_X}})^T \mathbf{W}_K^{(H2)}$$ helps form a matching key component. The actual value copied from $$k+1$$ would again be represented in terms of its SAE feature activations.
+The paper ["On the Biology of a Large Language Model"](https://transformer-circuits.pub/2025/attribution-graphs/biology.html) investigates the internal mechanisms of Claude 3.5 Haiku using attribution graphs and circuit tracing. Key findings include:
+
+* **Multi-step Reasoning:** The model performs genuine multi-hop reasoning, with internal features representing intermediate concepts (e.g., inferring "Texas" from "Dallas" before outputting "Austin"). Attribution graphs and intervention experiments confirm that these intermediate steps are causally involved in the model's output.
+* **Planning in Poems:** When writing poetry, the model plans ahead by activating features for candidate rhyming words before composing the line, showing both forward and backward planning mechanisms.
+* **Multilingual Circuits:** The model uses both language-specific and language-independent circuits, with the latter more prominent in larger models. This enables generalization across languages.
+* **Addition and Arithmetic:** The same addition circuitry generalizes across different contexts, suggesting a robust, reusable mechanism for arithmetic.
+* **Medical Diagnoses:** The model internally represents candidate diagnoses and uses them to inform follow-up questions, demonstrating internal reasoning not always explicit in its output.
+* **Entity Recognition and Hallucinations:** Circuits distinguish between familiar and unfamiliar entities, affecting whether the model answers or professes ignorance. Misfires in these circuits can cause hallucinations.
+* **Refusals:** The model aggregates features for specific harmful requests into a general-purpose "harmful requests" feature during finetuning, which is used to trigger refusals.
+* **Jailbreaks:** The paper analyzes how certain attacks can bypass safety by exploiting the model's internal mechanisms, such as activating benign request features to mask harmful intent.
+* **Chain-of-thought Faithfulness:** The model sometimes genuinely performs the steps it claims in chain-of-thought, but sometimes does not. Attribution graphs can distinguish between faithful and unfaithful reasoning.
+* **Hidden Goals:** The method can reveal mechanisms for hidden goals in finetuned models, even when the model avoids revealing them in its output.
+
+All findings are supported by attribution graphs, intervention experiments, and detailed case studies. The paper emphasizes the limitations and partial nature of these insights, and encourages further research.
+
+Reference: [Lindsey, J., et al. (2025). *On the Biology of a Large Language Model*](https://transformer-circuits.pub/2025/attribution-graphs/biology.html)
 
 ### Emerging Technical Themes from SOTA Research
 
@@ -148,7 +156,7 @@ The ultimate goal remains the development of a comprehensive, causal understandi
 
 *   [Ameisen, E., et al. (2025). *Circuit Tracing: Revealing Computational Graphs in Language Models*](https://transformer-circuits.pub/2025/circuit-tracing/index.html). Transformer Circuits Thread.
 *   [Templeton, A., et al. (2024). *Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet*](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). Transformer Circuits Thread.
-*   [Lindsey, J., et al. (2025). *On the Biology of a Large Language Model: Mechanisms in Claude 3.5 Haiku*](https://transformer-circuits.pub/2025/llm-biology/index.html). Transformer Circuits Thread.
+*   [Lindsey, J., et al. (2025). *On the Biology of a Large Language Model*](https://transformer-circuits.pub/2025/attribution-graphs/biology.html). Transformer Circuits Thread.
 *   [Anthropic Interpretability Team. (April 2025). *Circuits Updates — April 2025*](https://transformer-circuits.pub/2025/updates-april/index.html). Transformer Circuits Thread.
 *   [Anthropic Interpretability Team. (February 2025). *Insights on Crosscoder Model Diffing*](https://transformer-circuits.pub/2025/crosscoder-diffing/index.html). Transformer Circuits Thread.
 *   [Anthropic Interpretability Team. (January 2025). *Circuits Updates — January 2025*](https://transformer-circuits.pub/2025/updates-january/index.html). Transformer Circuits Thread.
