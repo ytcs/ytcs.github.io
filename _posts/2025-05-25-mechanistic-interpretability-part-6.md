@@ -96,7 +96,9 @@ Finally, **Broadcast or Diffuse Heads** exhibit attention patterns that are spre
 
 ## The OV Circuit: Processing and Routing Attended Information
 
-Once the QK circuit has determined *where* the head should attend by producing attention weights $$\alpha_{ij}$$, the Output-Value (OV) circuit takes over. Defined by the effective matrix $$\mathbf{W}_{OV} = \mathbf{W}_V \mathbf{W}_O \in \mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$$, this circuit dictates *what information is moved* from the attended value vectors ($$\mathbf{v}_j = \mathbf{x}_j \mathbf{W}_V$$) and, crucially, *how this information is transformed* before being written back to the residual stream. The final output contribution is $$\mathbf{o}_i = (\sum_j \alpha_{ij} \mathbf{x}_j \mathbf{W}_V) \mathbf{W}_O$$.
+Once the QK circuit has determined *where* the head should attend by producing attention weights $$\alpha_{ij}$$, the Output-Value (OV) circuit takes over. Defined by the effective matrix $$\mathbf{W}_{OV} = \mathbf{W}_V \mathbf{W}_O \in \mathbb{R}^{d_{\text{model}} \times d_{\text{model}}}$$, this circuit dictates *what information is moved* from the attended value vectors ($$\mathbf{v}_j = \mathbf{x}_j \mathbf{W}_V$$) and, crucially, *how this information is transformed* before being written back to the residual stream. The final output contribution is 
+
+$$\mathbf{o}_i = (\sum_j \alpha_{ij} \mathbf{x}_j \mathbf{W}_V) \mathbf{W}_O$$
 
 Common functional roles implemented by the OV circuit include:
 
