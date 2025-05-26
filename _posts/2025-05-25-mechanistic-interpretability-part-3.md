@@ -104,17 +104,7 @@ where $$\mathbf{E}$$ is the token embedding matrix (row per token, $$d_{vocab} \
 This can be expanded. For instance, the output contribution of head $$(l,h)$$ acting on the stream input $$\mathbf{S}^{(l-1)}$$ (output of layer $$l-1$$) is $$ ( \sum_j \alpha_{pos,j}^{(l,h)} ( \mathbf{S}_j^{(l-1)}\mathbf{W}_V^{(l,h)} ) ) \mathbf{W}_O^{(l,h)} $$.
 
 The simplest paths are:
--   **Zero-Layer Path:** The direct connection from embedding to unembedding. If $$X_{pos} = \mathbf{E}[pos,:] $$, then $$\text{Logits}(c | pos)_{\text{0-layer}} = X_{pos} \mathbf{U}[:,c]$$. This path effectively captures token co-occurrence statistics similar to bigrams if $$\mathbf{U} \approx \mathbf{E}^T$$. (Assuming row vectors for embeddings and logits, this should be $$\mathbf{E}[pos,:] \mathbf{U}[c,:]^T$$ or $$\mathbf{E}[pos,:] \mathbf{U}_{:,c}$$ if U is $$d_m \times d_v$$ and we take a column). 
-The current text: $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ suggests $$\mathbf{U}$$ is $$d_v \times d_m$$ and $$\mathbf{E}$$ is $$d_m \times d_v$$, with results being scalars, or an interpretation issue. 
-
-Let's assume embeddings $$\mathbf{E}$$ map token indices to $$d_m$$ vectors, and $$\mathbf{U}$$ maps $$d_m$$ vectors to logit vectors. If $$\mathbf{E}_{pos}$$ is the embedding for the token at `pos`, then the 0-layer contribution to logits is $$\mathbf{E}_{pos} \mathbf{W}_U$$, where $$\mathbf{W}_U$$ is the unembedding weight matrix. The existing notation $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ suggests that $$\mathbf{E}[pos,:]$$ is a row vector, and $$\mathbf{U}[c,:]$$ is also a row vector representing the c-th logit's projection. This implies an element-wise product then sum, or perhaps $$\mathbf{E}[pos,:]$$ is a column vector here. 
-
-For clarity, let $$X_{pos}$$ be the embedding vector. The direct path term for logit of token $$c$$ is $$X_{pos} \cdot \mathbf{w}_{U,c}$$, where $$\mathbf{w}_{U,c}$$ is the vector for token $$c$$ in the unembedding matrix. The formulation $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ is fine if we interpret $$\mathbf{U}[c,:]$$ as the *row* of the unembedding matrix that gives the logit for token c, and $$\mathbf{E}[pos,:]$$ is the *column* vector for the embedding. Or, more standardly, if $$\mathbf{E}[pos,:]$$ is a row vector and $$\mathbf{W}_U$$ is the unembedding matrix ($$d_m \times d_v$$), then logits are $$\mathbf{E}[pos,:] \mathbf{W}_U$$, and $$\text{Logits}(c|pos) = ( \mathbf{E}[pos,:] \mathbf{W}_U )_c$$.
-    The current text: 
-    
-    $$\text{Logits}(c | pos) = \underbrace{\mathbf{U}[c,:] \mathbf{E}[pos,:]}_{\text{Direct Path (0-layer)}} + \sum_{l,h} \underbrace{\mathbf{U}[c,:] \text{Head}_{l,h}(\mathbf{E}[pos,:])}_{\text{1-layer paths}} + \dots$$
-    
-    This structure assumes $$\mathbf{U}[c,:]$$ is a linear functional applied to the final residual stream state. This is fine.
+-   **Zero-Layer Path:** The direct connection from embedding to unembedding. If token at position $$pos$$ has embedding vector $$\mathbf{E}[pos,:]$$, then the direct contribution to logits is $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$. This path effectively captures token co-occurrence statistics similar to bigrams if $$\mathbf{U} \approx \mathbf{E}^T$$.
 
 -   **One-Layer Paths:** Paths passing through a single attention head. The term $$\mathbf{U}[c,:] \text{Head}_{l,h}(\mathbf{E}[pos,:]) $$ describes the influence of head $$(l,h)$$ acting on the initial embedding $$\mathbf{E}[pos,:]$$ (if it's in the first layer) on the logit for token $$c$$. This can implement more complex statistics like skip-trigrams.
 
