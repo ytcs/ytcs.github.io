@@ -170,6 +170,7 @@ Understanding feature usage is crucial for confirming that an interpretable feat
     *   **Direct Code:** Write a small piece of Python code (or other language) that directly implements the extracted algorithm.
     *   **Minimal Neural Network:** Construct the smallest possible neural network (potentially with specifically chosen weights and biases if the algorithm is very NN-like) that performs the same computation.
     *   **Symbolic or Rule-Based System:** If the hypothesized logic is more symbolic (e.g., IF X AND (NOT Y) THEN Z), implement it as such.
+    *   **Circuit Tracing:** Methodologies like those described in **"Circuit Tracing: Revealing Computational Graphs in Language Models" (Ameisen et al., 2025)** aim to systematically trace the flow of computation for specific inputs, which can be seen as a form of detailed, input-specific algorithm extraction. The insights from such traces can directly inform the reimplementation by revealing the precise sequence of operations and data transformations a model performs.
 *   **Validation and Comparison:** Crucially, the reimplemented model must be tested against the original model on a relevant set of inputs:
     *   **Quantitative Comparison:** Measure the correlation or agreement between the outputs of the reimplemented model and the behavior of the original feature/circuit (e.g., its activation values, its contribution to downstream effects) across a diverse set of inputs.
     *   **Analysis of Discrepancies (Iterative Refinement):** Where the reimplementation fails to match the original, these discrepancies are valuable. They indicate areas where the hypothesized algorithm is incomplete or incorrect. This leads to an iterative process of refining the hypothesis, updating the reimplementation, and re-testing.
@@ -247,7 +248,7 @@ Or, set it to a high value representative of its typical maximum activation.
 *   **Directional Steering:** If the feature is part of a more complex representation, one might want to modify the activation vector $$\mathbf{a}$$ in a specific direction $$\mathbf{d}_{\text{target}}$$ (which could be aligned with the feature itself, or a related concept): $$\mathbf{a}_{\text{steered}} = \mathbf{a}_{\text{original}} + \gamma \mathbf{d}_{\text{target}}$$.
 *   **Conditional Steering:** Modifying the feature only under specific input conditions to test context-dependent causal effects.
 
-**Applications and Interpretation:** Successful steering (i.e., observing the hypothesized downstream effect when the feature is enhanced) provides evidence for the feature's causal power. This has potential applications in model control, such as attempting to suppress undesirable behaviors (e.g., steer away from a "toxicity feature") or enhance desired ones (e.g., steer towards a "truthfulness feature"), though such applications require extreme caution and thorough validation.
+**Applications and Interpretation:** Successful steering (i.e., observing the hypothesized downstream effect when the feature is enhanced) provides evidence for the feature's causal power. This has potential applications in model control and alignment. For instance, identifying and understanding safety-critical features (e.g., those related to detecting harmful content, as explored by **Templeton et al., 2024**, or features involved in model "jailbreaks" that bypass safety protocols, as discussed in Anthropic's April 2025 Circuits Update) is a high-priority research area. Intervention techniques like steering could, in principle, be used to attempt to suppress undesirable behaviors (e.g., steer away from a "toxicity feature" or a feature implicated in a jailbreak mechanism) or enhance desired ones (e.g., steer towards a "truthfulness feature"). However, such applications require extreme caution and thorough validation to avoid unintended consequences and ensure genuine alignment rather than superficial behavioral changes.
 
 ### Considerations and Validity Threats for Interventions
 
@@ -341,4 +342,5 @@ This article builds on the rigorous validation methodologies established in the 
 
 Additionally, the following resources provide valuable insights and further reading:
 
-- **Nanda, N.** (2022). [Concrete Steps to Get Started in Transformer Mechanistic Interpretability](https://www.neelnanda.io/mechanistic-interpretability/getting-started). 
+- **Nanda, N.** (2022). [Concrete Steps to Get Started in Transformer Mechanistic Interpretability](https://www.neelnanda.io/mechanistic-interpretability/getting-started).
+- **Ameisen, E., et al.** (2025). [Circuit Tracing: Revealing Computational Graphs in Language Models](https://transformer-circuits.pub/2025/circuit-tracing/). *Transformer Circuits Thread*. 

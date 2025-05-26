@@ -36,6 +36,8 @@ A single neuron's activation value is its component of the vector $$\mathbf{a}$$
 
 This is polysemanticity from a geometric viewpoint: a neuron is active not because one specific feature it "owns" is active, but because the current linear combination of active *features* (which are directions) results in an overall activation vector that has a component along that neuron's axis.
 
+It's also worth noting that the picture of features being randomly superposed in a homogeneous space might be further nuanced by effects from the training process itself. Research such as **Elhage et al. (2023), "Privileged Bases in the Transformer Residual Stream,"** suggests that certain optimizers, like Adam, might introduce per-dimension normalization effects that cause some directions in the residual stream (the neuron basis, or close to it) to become "privileged" or to carry disproportionate representational importance. While this doesn't negate the superposition hypothesis (features can still be superposed within these or other directions), it adds another layer to how feature representations might organize within the model.
+
 ## Why Superposition?
 
 -   **Efficiency:** It allows the model to represent a vast number of potentially useful features (concepts, patterns, attributes) without requiring an equally vast number of neurons. This is a form of representational compression.
@@ -203,6 +205,8 @@ The Anthropic paper "Toy Models of Superposition" provides crucial theoretical i
 
 Sparse autoencoders attempt to learn a basis (the dictionary $$\mathbf{W}_d$$) that aligns with these underlying feature directions. The overcompleteness ($$d_{\text{dict}} > d_{\text{model}}$$) provides enough representational capacity to assign individual dictionary elements to individual features, and the L1 penalty encourages the selection of the sparsest explanation for any given activation $$\mathbf{x}$$.
 
+The practical success of this approach has been notably demonstrated in large-scale models. For instance, **Templeton et al. (2024) in "Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet,"** successfully applied sparse autoencoders to Anthropic's Claude 3 Sonnet model. They were able to extract a vast number of interpretable features, some of which appeared to be safety-relevant (e.g., related to detecting harmful content). This work underscores that dictionary learning is not merely a theoretical construct but a technique that scales and can yield meaningful insights even in state-of-the-art LLMs.
+
 ## Conclusion
 
 The superposition hypothesis offers a critical insight into the workings of neural networks, explaining how they efficiently represent numerous features by encoding them as directions in activation space, rather than assigning them to individual neurons. This leads to the phenomenon of polysemanticity, where single neurons respond to multiple unrelated concepts, complicating direct interpretation.
@@ -223,3 +227,5 @@ Next, in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})
 -   **Olah, C.** (2022). [Mechanistic Interpretability, Variables, and the Importance of Interpretable Bases](https://distill.pub/2022/mechanistic-interpretability-scope/). *Distill*. (Discusses the concept of features as directions).
 -   **Sharkey, L., Nanda, N., Pieler, M., Dosovitskiy, A., & Olah, C.** (2022). [Taking features out of superposition with sparse autoencoders](https://transformer-circuits.pub/2022/toy_models/index.html#appendix-autoencoders). *Transformer Circuits Thread*. (Appendix to Toy Models, directly relevant to autoencoders).
 -   **Bricken, T., et al.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html). *Transformer Circuits Thread*.
+-   **Templeton, A., et al.** (2024). [Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet](https://transformer-circuits.pub/2024/scaling-monosemanticity/). *Transformer Circuits Thread*.
+-   **Elhage, N., et al.** (2023). [Privileged Bases in the Transformer Residual Stream](https://transformer-circuits.pub/2023/privileged-bases/). *Transformer Circuits Thread*.
