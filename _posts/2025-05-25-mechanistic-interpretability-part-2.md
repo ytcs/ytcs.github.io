@@ -47,10 +47,94 @@ This is polysemanticity from a geometric viewpoint: a neuron is active not becau
 -   **Difficulty of Direct Interpretation:** Looking at individual neuron activations becomes misleading. A highly active neuron doesn't necessarily mean one specific, interpretable concept is strongly present.
 -   **Need for Advanced Techniques:** To find the true, monosemantic features, we need techniques that can look beyond individual neuron activations and identify these underlying feature directions. This motivates methods like dictionary learning using sparse autoencoders (covered in [Part 4]({% post_url 2025-05-25-mechanistic-interpretability-part-4 %})).
 
-## Theoretical Support and Evidence
+## Deeper Dive: A Toy Model of Superposition
 
--   **Toy Models:** Researchers have created small, controlled neural networks (toy models) where they can explicitly set the number of features to be learned and the dimensionality of the layers. These models demonstrate that when the number of features exceeds the layer dimension, the networks indeed learn to superpose them, and individual neurons become polysemantic. These models also show how factors like feature sparsity and geometry (e.g., how orthogonal features are) influence how superposition occurs.
--   **Empirical Findings in Large Models:** While harder to prove definitively, evidence from probing and dictionary learning in large language models suggests that superposition is a widespread phenomenon.
+To make the concept of superposition more concrete, let's explore a simplified toy model based on the work of Elhage et al. (2022). This model helps illustrate how non-linearities enable superposition, which is typically not optimal in purely linear systems.
+
+**Assumptions:**
+- We have $$N$$ distinct features we want the model to represent.
+- These features are encoded in a hidden layer of dimensionality $$D$$.
+- For simplicity, features are **sparse**: only one feature is active at any given time. (We'll discuss relaxing this later).
+- Each feature $$k$$ is represented by a vector $$\mathbf{f}_k \in \mathbb{R}^D$$ in the hidden layer.
+- The model tries to reconstruct which feature is active. If feature $k$ is active (input $$x_k=1$$, others $$x_j=0$$), the hidden state is $$\mathbf{h} = \mathbf{f}_k$$.
+- A linear decoder with weights (matching the encoder vectors) $\mathbf{f}_j$ for each feature $$j$$ attempts to reconstruct the input. So, the reconstructed activity for feature $$j$$ is 
+
+$$\hat{x}_j = \text{activation_function}(\mathbf{f}_j \cdot \mathbf{h} + b_j)$$
+
+, where $$b_j$$ is a bias term.
+
+The goal of the model is to minimize reconstruction error. If feature $$k$$ is active, we want $$\hat{x}_k \approx 1$$ and $$\hat{x}_j \approx 0$$ for $$j \neq k$$. The loss function, assuming feature $k$ is active, would be:
+
+$$ L_k = (1 - \hat{x}_k)^2 + \sum_{j \neq k} (0 - \hat{x}_j)^2 $$
+
+The total loss is the average over all possible active features: 
+
+$$L = \mathbb{E}_k [L_k]$$.
+
+
+**1. The Linear Case (No Superposition)**
+
+If the activation function is linear (i.e., identity, $$\text{activation_function}(z)=z$$) and we set biases $$b_j=0$$ for simplicity, the reconstruction is $$\hat{x}_j = \mathbf{f}_j \cdot \mathbf{h}$$.
+When feature $$k$$ is active, $$\mathbf{h} = \mathbf{f}_k$$. So, $$\hat{x}_j = \mathbf{f}_j \cdot \mathbf{f}_k$$.
+The loss for active feature $$k$$ becomes:
+
+$$ L_k^{\text{linear}} = (1 - \mathbf{f}_k \cdot \mathbf{f}_k)^2 + \sum_{j \neq k} (\mathbf{f}_j \cdot \mathbf{f}_k)^2 $$
+
+$$ L_k^{\text{linear}} = (1 - \|\mathbf{f}_k\|^2)^2 + \sum_{j \neq k} (\mathbf{f}_j \cdot \mathbf{f}_k)^2 $$
+
+To minimize this loss, the model will try to:
+1. Make $$\|\mathbf{f}_k\|^2 \approx 1$$ for all features $$k$$ it represents (so they have unit norm).
+2. Make $$\mathbf{f}_j \cdot \mathbf{f}_k \approx 0$$ for all $$j \neq k$$ (so feature representations are orthogonal).
+
+If the number of features $$N$$ is greater than the hidden dimensionality $$D$$ ($$N > D$$), it's impossible for all $$N$$ feature vectors $$\mathbf{f}_k \in \mathbb{R}^D$$ to be orthogonal and have unit norm. A linear model will optimally select $$D$$ features, make their representations $$\{\mathbf{f}_1, \dots, \mathbf{f}_D\}$$ orthogonal unit vectors (forming a basis for $$\mathbb{R}^D$$), and effectively ignore the remaining $$N-D$$ features by setting their representation norms $$\|\mathbf{f}_k\|$$ to zero. Thus, **linear models typically do not exhibit superposition**; they learn a subset of features that fit orthogonally into the available dimensions.
+
+**2. The Non-Linear Case (with ReLU) Enables Superposition**
+
+Now, let's introduce a non-linearity, specifically ReLU: $$\text{activation_function}(z) = \text{ReLU}(z) = \max(0, z)$$.
+The reconstruction for feature $$j$$, when feature $$k$$ is active ($$\mathbf{h}=\mathbf{f}_k$$), is 
+
+$$\hat{x}_j = \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j)$$.
+
+The loss for active feature $$k$$ is:
+
+$$ L_k^{\text{ReLU}} = (1 - \text{ReLU}(\mathbf{f}_k \cdot \mathbf{f}_k + b_k))^2 + \sum_{j \neq k} (0 - \text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j))^2 $$
+
+To minimize this loss, the network needs to satisfy two conditions for each active feature $$k$$:
+1.  **Correctly identify active feature:** $$\text{ReLU}(\|\mathbf{f}_k\|^2 + b_k) \approx 1$$. This means $$\|\mathbf{f}_k\|^2 + b_k \approx 1$$.
+2.  **Suppress inactive features:** $$\text{ReLU}(\mathbf{f}_j \cdot \mathbf{f}_k + b_j) \approx 0$$ for $$j \neq k$$. This means $$\mathbf{f}_j \cdot \mathbf{f}_k + b_j \le 0$$.
+
+The crucial difference is the condition $$\mathbf{f}_j \cdot \mathbf{f}_k + b_j \le 0$$. Unlike the linear case requiring strict orthogonality ($$\mathbf{f}_j \cdot \mathbf{f}_k = 0$$), the ReLU allows for some non-zero dot product (interference) as long as it's pushed below zero by the bias $$b_j$$ before passing through the ReLU. This flexibility is key to superposition.
+
+**Example: 2 Features in 1 Dimension ($$N=2, D=1$$)**
+
+Let $$f_1$$ and $$f_2$$ be scalar representations since $$D=1$$.
+-   **Linear Model:** The loss involves terms like $$(1-f_1^2)^2$$, $$(1-f_2^2)^2$$, and $$(f_1 f_2)^2$$. This is minimized if, say, $$f_1 = \pm 1$$ and $$f_2 = 0$$. Only one feature is learned.
+-   **ReLU Model:** Can we represent both features? Let's try $$f_1 = 1$$ and $$f_2 = -1$$. This is an "antipodal pair".
+    Let's choose a bias $$b_1 = b_2 = b = 0$$ (a common finding is that optimal biases are often near zero for sparse features).
+
+    *   If feature 1 is active ($$\mathbf{h} = f_1 = 1$$):
+        *   $$\hat{x}_1 = \text{ReLU}(f_1 \cdot f_1 + b) = \text{ReLU}(1 \cdot 1 + 0) = \text{ReLU}(1) = 1$$. (Correct)
+        *   $$\hat{x}_2 = \text{ReLU}(f_2 \cdot f_1 + b) = \text{ReLU}(-1 \cdot 1 + 0) = \text{ReLU}(-1) = 0$$. (Correct)
+        The loss terms are zero.
+
+    *   If feature 2 is active ($$\mathbf{h} = f_2 = -1$$):
+        *   $$\hat{x}_1 = \text{ReLU}(f_1 \cdot f_2 + b) = \text{ReLU}(1 \cdot (-1) + 0) = \text{ReLU}(-1) = 0$$. (Correct)
+        *   $$\hat{x}_2 = \text{ReLU}(f_2 \cdot f_2 + b) = \text{ReLU}(-1 \cdot (-1) + 0) = \text{ReLU}(1) = 1$$. (Correct)
+        The loss terms are zero.
+
+With $$f_1=1, f_2=-1, b=0$$, the ReLU model successfully represents two features in a single dimension. The features are "superposed". The neuron in this 1D space would activate for feature 1 and (with opposite sign in its pre-activation) for feature 2. If we only looked at its activation magnitude, it might seem polysemantic.
+
+**The Role of Sparsity**
+
+The toy model above assumed only one feature is active at a time. What if multiple features are co-active? For example, if $$f_1=1, f_2=-1$$ and both are active, the combined hidden state (assuming linear aggregation) would be $$\mathbf{h} = f_1 + f_2 = 1 + (-1) = 0$$.
+Then $$\hat{x}_1 = \text{ReLU}(f_1 \cdot 0 + 0) = 0$$ and $$\hat{x}_2 = \text{ReLU}(f_2 \cdot 0 + 0) = 0$$. Both are incorrectly reconstructed as inactive.
+This is **interference**. Superposition relies heavily on the assumption that features are **sparse**—i.e., only a small number of features are active simultaneously.
+- If features are sparse, simultaneous activations are rare.
+- When they do co-occur, the ReLU can help filter out *small* amounts of interference. If many features are co-active, the interference can overwhelm the signal.
+
+More generally, in higher dimensions ($$D > 1$$), features can arrange themselves in geometric configurations (like vertices of a polytope) to minimize interference while packing many features into the space. The ReLU (or other non-linearities) and biases then work to "carve up" the activation space so that different combinations of true features map to distinct, decodable regions.
+
+This toy model demonstrates that the combination of non-linear activation functions and optimized biases allows neural networks to learn superposed representations, effectively packing more features into fewer dimensions than a linear system could, provided the features exhibit sparsity. This provides a mathematical basis for understanding the polysemanticity observed in neurons and motivates the search for these underlying, monosemantic feature directions.
 
 ## Conclusion
 
