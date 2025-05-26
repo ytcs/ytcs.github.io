@@ -20,9 +20,9 @@ The superposition hypothesis, prominently discussed in the context of Transforme
 
 If a model has $$d_{\text{model}}$$ neurons in a layer, it has a $$d_{\text{model}}$$-dimensional space of possible activation vectors. The hypothesis states:
 
-1.  **Features as Directions:** True, underlying conceptual features ($$\mathbf{f}_1, \mathbf{f}_2, \dots, \mathbf{f}_N$$) correspond to specific vector directions in this $$d_{\text{model}}$$-dimensional space.
+1.  **Features as Directions:** True, underlying conceptual features ($$\mathbf{f}_1, \mathbf{f}_2, \dots, \mathbf{f}_N$$) correspond to specific vector directions in this $$d_{\text{model}}$$-dimensional space. These are the *feature vectors*.
 2.  **Linear Encoding (Locally):** When a set of these features $$\mathcal{S} = \{\mathbf{f}_{i_1}, \mathbf{f}_{i_2}, \dots, \mathbf{f}_{i_k}\}$$ are simultaneously present or active in the input, the model's activation vector $$\mathbf{a} \in \mathbb{R}^{d_{\text{model}}}$$ in that layer is approximately a linear combination of these feature vectors:
-    $$\mathbf{a} \approx c_1 \mathbf{f}_{i_1} + c_2 \mathbf{f}_{i_2} + \dots + c_k \mathbf{f}_{i_k}$$
+    $$\mathbf{a} \approx \sum_{j=1}^{k} c_j \mathbf{f}_{i_j} = c_1 \mathbf{f}_{i_1} + c_2 \mathbf{f}_{i_2} + \dots + c_k \mathbf{f}_{i_k}$$
     where $$c_j$$ are scalar coefficients representing the intensity or presence of feature $$\mathbf{f}_{i_j}$$.
 3.  **Non-Privileged Basis (Neuron Basis vs. Feature Basis):** The crucial insight is that these feature directions $$\mathbf{f}_j$$ are generally *not* aligned with the standard basis vectors of the activation space (i.e., the directions corresponding to individual neurons firing). The neuron basis is an accident of architecture; the feature basis is what the network learns is useful.
 
@@ -84,7 +84,7 @@ $$ L_k^{\text{linear}} = (1 - \|\mathbf{f}_k\|^2)^2 + \sum_{j \neq k} (\mathbf{f
 
 To minimize this loss, the model will try to:
 1. Make $$\|\mathbf{f}_k\|^2 \approx 1$$ for all features $$k$$ it represents (so they have unit norm).
-2. Make $$\mathbf{f}_j \cdot \mathbf{f}_k \approx 0$$ for all $$j \neq k$$ (so feature representations are orthogonal).
+2. Make $$\sum_{j \neq k} (\mathbf{f}_j \cdot \mathbf{f}_k)^2 \approx 0$$, which implies making individual dot products $$\mathbf{f}_j \cdot \mathbf{f}_k \approx 0$$ for all $$j \neq k$$ (so feature representations are orthogonal).
 
 If the number of features $$N$$ is greater than the hidden dimensionality $$D$$ ($$N > D$$), it's impossible for all $$N$$ feature vectors $$\mathbf{f}_k \in \mathbb{R}^D$$ to be orthogonal and have unit norm. A linear model will optimally select $$D$$ features, make their representations $$\{\mathbf{f}_1, \dots, \mathbf{f}_D\}$$ orthogonal unit vectors (forming a basis for $$\mathbb{R}^D$$), and effectively ignore the remaining $$N-D$$ features by setting their representation norms $$\|\mathbf{f}_k\|$$ to zero. Thus, **linear models typically do not exhibit superposition**; they learn a subset of features that fit orthogonally into the available dimensions.
 
@@ -122,7 +122,7 @@ Let $$f_1$$ and $$f_2$$ be scalar representations since $$D=1$$.
         *   $$\hat{x}_2 = \text{ReLU}(f_2 \cdot f_2 + b) = \text{ReLU}(-1 \cdot (-1) + 0) = \text{ReLU}(1) = 1$$. (Correct)
         The loss terms are zero.
 
-With $$f_1=1, f_2=-1, b=0$$, the ReLU model successfully represents two features in a single dimension. The features are "superposed". The neuron in this 1D space would activate for feature 1 and (with opposite sign in its pre-activation) for feature 2. If we only looked at its activation magnitude, it might seem polysemantic.
+With $$f_1=1, f_2=-1, b=0$$, the ReLU model successfully represents two features in a single dimension, incurring zero loss for these single-feature activations. The features are "superposed". The neuron in this 1D space would activate for feature 1 and (with opposite sign in its pre-activation) for feature 2. If we only looked at its activation magnitude, it might seem polysemantic.
 
 **The Role of Sparsity**
 
@@ -146,62 +146,62 @@ If a neuron activates for multiple, seemingly unrelated concepts (polysemanticit
 
 A sparse autoencoder is an unsupervised neural network trained to reconstruct its input while keeping its internal hidden activations sparse. It consists of an encoder and a decoder:
 
--   **Encoder:** Maps the input activation vector $$\\mathbf{x} \\in \\mathbb{R}^{d_{\\text{model}}}$$ (e.g., from a Transformer's residual stream or MLP layer) to a higher-dimensional hidden representation $$\\mathbf{f} \\in \\mathbb{R}^{d_{\\text{dict}}}$$, where $$d_{\\text{dict}} \\gg d_{\\text{model}}$$. This is often called an **overcomplete dictionary**.
+-   **Encoder:** Maps the input activation vector $$\mathbf{x} \in \mathbb{R}^{d_{\text{model}}}$$ (e.g., from a Transformer's residual stream or MLP layer) to a higher-dimensional hidden representation $$\mathbf{f} \in \mathbb{R}^{d_{\text{dict}}}$$, where $$d_{\text{dict}} \gg d_{\text{model}}$$. This is often called an **overcomplete dictionary**.
 
-    $$\\mathbf{f} = \\text{ReLU}(\\mathbf{W}_e (\\mathbf{x} - \\mathbf{b}_p))$$
+    $$\mathbf{f} = \text{ReLU}(\mathbf{W}_e (\mathbf{x} - \mathbf{b}_p))$$
 
-    where $$\\mathbf{W}_e \\in \\mathbb{R}^{d_{\\text{dict}} \\times d_{\\text{model}}}$$ are the encoder weights (which learn to project the input onto the dictionary features) and $$\\mathbf{b}_p$$ is an optional pre-encoder bias (sometimes called a "pre-shaping bias"). The ReLU (Rectified Linear Unit) ensures that the learned feature activations $$f_i$$ in $$\\mathbf{f}$$ are non-negative, which is a common (though not strictly essential for all sparse coding) choice for promoting interpretability, as features are often conceptualized as being present or absent, or having an intensity.
+    where $$\mathbf{W}_e \in \mathbb{R}^{d_{\text{dict}} \times d_{\text{model}}}$$ are the encoder weights (which learn to project the input onto the dictionary features) and $$\mathbf{b}_p$$ is an optional pre-encoder bias (sometimes called a "pre-shaping bias"). The ReLU (Rectified Linear Unit) ensures that the learned feature activations $$f_i$$ in $$\mathbf{f}$$ are non-negative, which is a common (though not strictly essential for all sparse coding) choice for promoting interpretability, as features are often conceptualized as being present or absent, or having an intensity.
 
--   **Decoder:** Reconstructs the input $$\\hat{\\mathbf{x}}$$ from the sparse feature activations $$\\mathbf{f}$$:
+-   **Decoder:** Reconstructs the input $$\hat{\mathbf{x}}$$ from the sparse feature activations $$\mathbf{f}$$:
 
-    $$\\hat{\\mathbf{x}} = \\mathbf{W}_d \\mathbf{f} + \\mathbf{b}_d$$
+    $$\hat{\mathbf{x}} = \mathbf{W}_d \mathbf{f} + \mathbf{b}_d$$
 
-    where $$\\mathbf{W}_d \\in \\mathbb{R}^{d_{\\text{model}} \\times d_{\\text{dict}}}$$ are the decoder weights and $$\\mathbf{b}_d$$ is an optional decoder bias. The columns of $$\\mathbf{W}_d$$ are the **dictionary elements** or **basis vectors** for the learned features. Each column $$\\mathbf{d}_j = (\\mathbf{W}_d)_{:,j}$$ is a vector in the original $$d_{\\text{model}}$$-dimensional space representing one learned feature. The reconstruction $$\\hat{\\mathbf{x}}$$ is thus a linear combination of these dictionary elements, weighted by the feature activations $$f_j$$. For better interpretability of the feature activations $$f_j$$ as direct measures of feature intensity, the dictionary elements (columns of $$\\mathbf{W}_d$$) are often constrained or normalized (e.g., to have unit L2 norm).
+    where $$\mathbf{W}_d \in \mathbb{R}^{d_{\text{model}} \times d_{\text{dict}}}$$ are the decoder weights and $$\mathbf{b}_d$$ is an optional decoder bias. The columns of $$\mathbf{W}_d$$ are the **dictionary elements** or **basis vectors** for the learned features. Each column $$\mathbf{d}_j = (\mathbf{W}_d)_{:,j}$$ is a vector in the original $$d_{\text{model}}$$-dimensional space representing one learned feature. The reconstruction $$\hat{\mathbf{x}}$$ is thus a linear combination of these dictionary elements, weighted by the feature activations $$f_j$$. For better interpretability of the feature activations $$f_j$$ as direct measures of feature intensity, the dictionary elements (columns of $$\mathbf{W}_d$$) are often constrained or normalized (e.g., to have unit L2 norm).
 
 #### The Objective Function
 
 The autoencoder is trained to minimize a loss function comprising two main terms:
 
-1.  **Reconstruction Loss:** Ensures that the decoded representation $$\\hat{\\mathbf{x}}$$ is close to the original input $$\\mathbf{x}$$. Typically Mean Squared Error (MSE) is used:
+1.  **Reconstruction Loss:** Ensures that the decoded representation $$\hat{\mathbf{x}}$$ is close to the original input $$\mathbf{x}$$. Typically Mean Squared Error (MSE) is used:
 
-    $$L_{\\text{recon}} = ||\\mathbf{x} - \\hat{\\mathbf{x}}||_2^2$$
+    $$L_{\text{recon}} = ||\mathbf{x} - \hat{\mathbf{x}}||_2^2$$
 
-    This is the squared Euclidean distance (or squared L2 norm of the difference vector) between the original input vector $$\\mathbf{x}$$ and its reconstruction $$\\hat{\\mathbf{x}}$$. Minimizing this term forces the autoencoder to learn a dictionary $$\\mathbf{W}_d$$ and an encoding process that captures as much information as possible about $$\\mathbf{x}$$ in the feature activations $$\\mathbf{f}$$.
+    This is the squared Euclidean distance (or squared L2 norm of the difference vector) between the original input vector $$\mathbf{x}$$ and its reconstruction $$\hat{\mathbf{x}}$$. Minimizing this term forces the autoencoder to learn a dictionary $$\mathbf{W}_d$$ and an encoding process that captures as much information as possible about $$\mathbf{x}$$ in the feature activations $$\mathbf{f}$$.
 
-2.  **Sparsity Penalty:** Encourages the hidden activations $$\\mathbf{f}$$ to be sparse, meaning most elements of $$\\mathbf{f}$$ should be zero (or very close to zero) for any given input $$\\mathbf{x}$$. The L1 norm is a common choice for this penalty:
+2.  **Sparsity Penalty:** Encourages the hidden activations $$\mathbf{f}$$ to be sparse, meaning most elements of $$\mathbf{f}$$ should be zero (or very close to zero) for any given input $$\mathbf{x}$$. The L1 norm is a common choice for this penalty:
 
-    $$L_{\\text{sparse}} = \\lambda ||\\mathbf{f}||_1 = \\lambda \\sum_i |f_i|$$
+    $$L_{\text{sparse}} = \lambda ||\mathbf{f}||_1 = \lambda \sum_i |f_i|$$
 
-    where $$\\lambda$$ is a hyperparameter controlling the strength of the sparsity regularization. The L1 norm sums the absolute values of the feature activations $$f_i$$. This penalty is crucial for learning disentangled and interpretable features. Unlike the L2 norm (which penalizes large activations but tends to spread energy across many small activations), the L1 norm is known to promote true sparsity, meaning it encourages many $$f_i$$ to become exactly zero. Geometrically, in the context of minimizing loss subject to a constraint on the norm of $$\\mathbf{f}$$, the L1 ball (e.g., a diamond in 2D, an octahedron in 3D) has sharp corners along the axes. Optimization procedures often find solutions at these corners, where some components of $$\\mathbf{f}$$ are zero. This is in contrast to the L2 ball (a circle/sphere), which is smooth and tends to yield solutions where components are small but non-zero. The L1 penalty is effectively the closest convex relaxation to the non-convex L0 norm (which directly counts non-zero elements).
+    where $$\lambda$$ is a hyperparameter controlling the strength of the sparsity regularization. The L1 norm sums the absolute values of the feature activations $$f_i$$. This penalty is crucial for learning disentangled and interpretable features. Unlike the L2 norm (which penalizes large activations but tends to spread energy across many small activations), the L1 norm is known to promote true sparsity, meaning it encourages many $$f_i$$ to become exactly zero. Geometrically, in the context of minimizing loss subject to a constraint on the norm of $$\mathbf{f}$$, the L1 ball (e.g., a diamond in 2D, an octahedron in 3D) has sharp corners along the axes. Optimization procedures often find solutions at these corners, where some components of $$\mathbf{f}$$ are zero. This is in contrast to the L2 ball (a circle/sphere), which is smooth and tends to yield solutions where components are small but non-zero. The L1 penalty is effectively the closest convex relaxation to the non-convex L0 norm (which directly counts non-zero elements).
 
-The total loss is: $$L = L_{\\text{recon}} + L_{\\text{sparse}}$$
+The total loss is: $$L = L_{\text{recon}} + L_{\text{sparse}}$$
 
 #### Theoretical Intuition: Recovering Ground Truth Features
 
-Consider a simplified scenario where an activation vector $$\\mathbf{x}$$ is a linear combination of a small number of "true" underlying monosemantic features $$\\mathbf{s}_j$$ from a ground truth feature set $$\\mathcal{S} = \\{\\mathbf{s}_1, \\dots, \\mathbf{s}_M\\}$$: 
+Consider a simplified scenario where an activation vector $$\mathbf{x}$$ is a linear combination of a small number of "true" underlying monosemantic features $$\mathbf{s}_j$$ from a ground truth feature set $$\mathcal{S} = \{\mathbf{s}_1, \dots, \mathbf{s}_M\}$$: 
 
-$$\\mathbf{x} = \\sum_{j \\in \\text{ActiveSet}} c_j \\mathbf{s}_j$$. 
+$$\mathbf{x} = \sum_{j \in \text{ActiveSet}} c_j \mathbf{s}_j$$. 
 
-If we can train a sparse autoencoder such that its dictionary elements (columns of $$\\mathbf{W}_d$$) align with these true features $$\\mathbf{s}_j$$, then the encoder will learn to identify which features are active and the sparse code $$\\mathbf{f}$$ will ideally have non-zero entries only for those active features. The L1 penalty encourages solutions where few dictionary elements are used to reconstruct $$\\mathbf{x}$$, pushing the autoencoder to find the most compact (and hopefully, most meaningful) representation.
+If we can train a sparse autoencoder such that its dictionary elements (columns of $$\mathbf{W}_d$$) align with these true features $$\mathbf{s}_j$$, then the encoder will learn to identify which features are active and the sparse code $$\mathbf{f}$$ will ideally have non-zero entries only for those active features. The L1 penalty encourages solutions where few dictionary elements are used to reconstruct $$\mathbf{x}$$, pushing the autoencoder to find the most compact (and hopefully, most meaningful) representation.
 
-Mathematically, if $$\\mathbf{x} = \\mathbf{D}^* \\mathbf{a}^*$$ where $$\\mathbf{D}^*$$ is the matrix of true features and $$\\mathbf{a}^*$$ is a sparse vector of activations, the goal is for the learned dictionary $$\\mathbf{W}_d$$ to approximate $$\\mathbf{D}^*$$ (up to permutation and scaling) and for $$\\mathbf{f}$$ to approximate $$\\mathbf{a}^*$$. Theoretical results from sparse coding and dictionary learning suggest that this recovery is possible under certain conditions, such as when the true dictionary $$\\mathbf{D}^*$$ has incoherent columns (low dot products between different features) and the activations $$\\mathbf{a}^*$$ are sufficiently sparse.
+Mathematically, if $$\mathbf{x} = \mathbf{D}^* \mathbf{a}^*$$ where $$\mathbf{D}^*$$ is the matrix of true features (each column is a feature vector) and $$\mathbf{a}^*$$ is a sparse vector of their activations, the goal is for the learned dictionary $$\mathbf{W}_d$$ to approximate $$\mathbf{D}^*$$ (up to permutation and scaling of columns) and for the learned feature activations $$\mathbf{f}$$ to approximate $$\mathbf{a}^*$$. Theoretical results from sparse coding and dictionary learning suggest that this recovery is possible under certain conditions, such as when the true dictionary $$\mathbf{D}^*$$ has incoherent columns (low dot products between different features) and the activations $$\mathbf{a}^*$$ are sufficiently sparse.
 
 ### Interpreting Dictionary Elements
 
-If training is successful, each learned dictionary element (a column of $$\\mathbf{W}_d$$ or a row of $$\\mathbf{W}_e$$ depending on formulation) ideally corresponds to a monosemantic feature. We can then interpret what a model is representing by looking at which dictionary features activate for given inputs. For example, in a language model, one dictionary feature might activate strongly for inputs related to "masculine pronouns," another for "programming concepts," and so on. This provides a much more granular and interpretable view than looking at raw polysemantic neuron activations.
+If training is successful, each learned dictionary element (a column of $$\mathbf{W}_d$$ or a row of $$\mathbf{W}_e$$ depending on formulation) ideally corresponds to a monosemantic feature. We can then interpret what a model is representing by looking at which dictionary features activate for given inputs. For example, in a language model, one dictionary feature might activate strongly for inputs related to "masculine pronouns," another for "programming concepts," and so on. This provides a much more granular and interpretable view than looking at raw polysemantic neuron activations.
 
 ### Insights from "Toy Models of Superposition" (Relevance to Dictionary Learning)
 
 The Anthropic paper "Toy Models of Superposition" provides crucial theoretical insights into how and why superposition occurs, and how dictionary learning might overcome it. Key takeaways include:
 
 1.  **Privileged Basis:** Neural networks often learn features that are not aligned with the standard basis (e.g., individual neurons). Instead, features exist as directions in activation space.
-2.  **Geometry of Features:** When the number of learnable features ($$N$$) exceeds the dimensionality of the representation space ($$d_{\\text{model}}$$), the model is forced to superpose them. The geometry of these features (e.g., whether they are orthogonal, form a simplex, or have other structures) affects how they are superposed and how easily they can be recovered.
+2.  **Geometry of Features:** When the number of learnable features ($$N$$) exceeds the dimensionality of the representation space ($$d_{\text{model}}$$), the model is forced to superpose them. The geometry of these features (e.g., whether they are orthogonal, form a simplex, or have other structures) affects how they are superposed and how easily they can be recovered.
     *   If features are nearly orthogonal and sparse, superposition might involve assigning multiple features to activate a single neuron weakly, or distributing a single feature across multiple neurons.
     *   The "simplex" configuration, where features are as far apart as possible, is an efficient way to pack many features into a lower-dimensional space.
 3.  **Sparsity is Key:** The ability to recover features from superposition critically depends on the sparsity of feature activations. If features are dense (many are active simultaneously for any given input), distinguishing them becomes much harder, even with an overcomplete dictionary.
 4.  **Phase Changes:** The paper identifies phase transitions where, as the number of features or their sparsity changes, the model abruptly shifts its representation strategy (e.g., from representing features in a privileged basis to a superposed one).
 
-Sparse autoencoders attempt to learn a basis (the dictionary $$\\mathbf{W}_d$$) that aligns with these underlying feature directions. The overcompleteness ($$d_{\\text{dict}} > d_{\\text{model}}$$) provides enough representational capacity to assign individual dictionary elements to individual features, and the L1 penalty encourages the selection of the sparsest explanation for any given activation $$\\mathbf{x}$$.
+Sparse autoencoders attempt to learn a basis (the dictionary $$\mathbf{W}_d$$) that aligns with these underlying feature directions. The overcompleteness ($$d_{\text{dict}} > d_{\text{model}}$$) provides enough representational capacity to assign individual dictionary elements to individual features, and the L1 penalty encourages the selection of the sparsest explanation for any given activation $$\mathbf{x}$$.
 
 ## Conclusion
 
@@ -222,4 +222,4 @@ Next, in [Part 3]({% post_url 2025-05-25-mechanistic-interpretability-part-3 %})
 -   **Elhage, N., Hume, T., Olsson, C., Nanda, N., Joseph, N., Henighan, T., ... & Olah, C.** (2022). [Softmax Linear Units](https://transformer-circuits.pub/2022/solu/index.html). *Transformer Circuits Thread* (related to feature representation).
 -   **Olah, C.** (2022). [Mechanistic Interpretability, Variables, and the Importance of Interpretable Bases](https://distill.pub/2022/mechanistic-interpretability-scope/). *Distill*. (Discusses the concept of features as directions).
 -   **Sharkey, L., Nanda, N., Pieler, M., Dosovitskiy, A., & Olah, C.** (2022). [Taking features out of superposition with sparse autoencoders](https://transformer-circuits.pub/2022/toy_models/index.html#appendix-autoencoders). *Transformer Circuits Thread*. (Appendix to Toy Models, directly relevant to autoencoders).
--   **Bricken, T., et al.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://arxiv.org/abs/2310.01889). *Anthropic*.
+-   **Bricken, T., et al.** (2023). [Towards Monosemanticity: Decomposing Language Models With Dictionary Learning](https://transformer-circuits.pub/2023/monosemantic-features/index.html). *Transformer Circuits Thread*.

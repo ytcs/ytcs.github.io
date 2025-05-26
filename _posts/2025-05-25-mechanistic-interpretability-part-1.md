@@ -29,7 +29,7 @@ Let $$\mathbf{a}^{(l)}(\mathbf{x})$$ be the activation vector of layer $$l$$ for
 
 $$f(\mathbf{x}) = \mathbf{d}^T \mathbf{a}^{(l)}(\mathbf{x})$$
 
-In the simplest scenario, $$\mathbf{d}$$ could be a standard basis vector, meaning the feature corresponds directly to the activation of a single neuron. However, the claim is more general: features can be represented by linear combinations of neuron activations within a layer.
+In the simplest scenario, $$\mathbf{d}$$ could be a standard basis vector (e.g., $$\mathbf{e}_k$$ for the $$k$$-th neuron), meaning the feature corresponds directly to the activation of a single neuron. However, the claim is more general: features can be represented by linear combinations of neuron activations within a layer.
 
 A feature is deemed "meaningful" or "interpretable" if it consistently responds to a semantically coherent property of the input that can be articulated in human-understandable terms. This could range from concrete visual elements like "vertical edges" or "curves of a certain radius" in vision models, to more abstract concepts like "negation" or "references to a specific entity" in language models.
 
@@ -45,9 +45,7 @@ A circuit $$\mathcal{C}$$ can be conceptualized as a graph $$(V, E, W)$$, where:
 -   $$E \subseteq V \times V$$ is a set of directed edges representing connections between features, typically in adjacent or connected layers.
 -   $$W: E \rightarrow \mathbb{R}$$ assigns weights to these edges, derived from the network's parameters.
 
-If feature $$f_i$$ (with direction $$\mathbf{d}_i$$ in layer $$l$$) connects to feature $$f_j$$ (with direction $$\mathbf{d}_j$$ in layer $$l+1$$), the effective weight of this connection within the circuit can be expressed in terms of the network's weight matrix $$\mathbf{W}^{(l,l+1)}$$ connecting these layers:
-
-$$W(f_i, f_j) \propto \mathbf{d}_j^T \mathbf{W}^{(l,l+1)} \mathbf{d}_i$$
+If feature $$f_i$$ (with direction $$\mathbf{d}_i$$ in layer $$l$$) connects to feature $$f_j$$ (with direction $$\mathbf{d}_j$$ in layer $$l+1$$), the effective weight of this connection within the circuit can be expressed in terms of the network's weight matrix $$\mathbf{W}^{(l,l+1)}$$ connecting layer $$l$$ to $$l+1$$. Analyzing the computation pre-activation at layer $$l+1$$, the contribution of feature $$f_i$$ to feature $$f_j$$ is proportional to $$\mathbf{d}_j^T \mathbf{W}^{(l,l+1)} (\mathbf{d}_i f_i(\mathbf{x})) $$. Thus, the effective strength or weight $$W(f_i, f_j)$$ can be considered proportional to $$\mathbf{d}_j^T \mathbf{W}^{(l,l+1)} \mathbf{d}_i$$. More precise formulations depend on whether one considers the impact on the pre-activation of $$f_j$$ or its actual activation $$f_j(\mathbf{x})$$, and the specific activation functions involved.
 (The exact formulation can vary depending on normalizations and specific circuit definitions).
 
 These circuits can range in scale:
@@ -68,11 +66,13 @@ Empirical evidence for universality involves identifying analogous features (e.g
 
 Embracing mechanistic interpretability means adopting a rigorous scientific methodology. Interpretability claims are not merely subjective descriptions; they are testable hypotheses about the internal workings of a model.
 
-**Falsifiability:** A core tenet, following Karl Popper, is that scientific claims must be falsifiable. An explanation for a circuit's function should lead to specific, testable predictions about how the network will behave under certain interventions or on novel inputs. If these predictions fail, the hypothesis is revised or rejected.
+**Falsifiability:** A core tenet, following Karl Popper, is that scientific claims must be falsifiable. An explanation for a circuit's function should lead to specific, testable predictions about how the network will behave under certain interventions or on novel inputs. If these predictions fail, the hypothesis is revised or rejected. This requires that claims are precise enough that contradictory evidence can be clearly identified.
 
-**Operational Definitions:** Concepts like "feature" or "circuit" must be operationally defined in measurable terms. For example, claiming a feature "detects sadness" requires specifying quantifiable activation conditions related to inputs expressing sadness.
+**Operational Definitions:** Concepts like "feature" or "circuit" must be operationally defined in measurable terms. For example, claiming a feature "detects sadness" requires specifying quantifiable activation conditions related to inputs expressing sadness, and how "detection" is measured (e.g., activation strength, correlation with behavioral outputs). These definitions should be clear, consistent, and allow for empirical verification.
 
-**Intervention-Based Validation:** The gold standard for establishing causality is intervention. If we hypothesize that a particular circuit implements a certain function, we should be able to demonstrate that directly manipulating that circuit (e.g., by ablating a feature or modifying a weight) produces predictable changes in the network's output. This moves beyond mere correlation to causal understanding.
+**Intervention-Based Validation:** The gold standard for establishing causality is intervention. If we hypothesize that a particular circuit implements a certain function, we should be able to demonstrate that directly manipulating that circuit (e.g., by ablating a feature, modifying a weight, or patching activations from another input) produces predictable changes in the network's output or internal state. This moves beyond mere correlation (observing that feature X activates when Y occurs) to causal understanding (demonstrating that activating X *causes* Y).
+
+**Controlled Experiments:** Where possible, hypotheses should be tested using controlled experiments, such as presenting the model with synthetic stimuli designed to isolate the specific property a feature is thought to detect, while varying other factors. This helps disentangle confounds and confirm the feature's precise selectivity.
 
 The journey of mechanistic interpretability is akin to the early days of biology when the microscope first allowed scientists to peer into the cell. Initial observations were qualitative and taxonomic, gradually leading to a deeper understanding of cellular machinery and eventually to fundamental theories. Similarly, by "zooming in" on the components of neural networks, we hope to uncover the principles of their learned algorithms.
 
