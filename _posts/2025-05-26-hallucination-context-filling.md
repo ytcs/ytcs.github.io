@@ -118,17 +118,17 @@ This final equation is quite revealing. It tells us how the expected variance (o
 1.  **Independent Features ($$\bar{\rho} = 0$$):**
     If the influences from different contextual features are effectively uncorrelated ($$\bar{\rho} = 0$$), then $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p/N$$.
 
-    *Interpretation:* The logit variance shrinks proportionally to $$1/N$$. If new information is entirely "fresh" and unrelated to what the model has already processed, its primary effect is to reduce the logit spread, making the logits cluster more tightly.
+    *Interpretation:* The logit variance shrinks proportionally to $$1/N$$. If new information is entirely "fresh" and unrelated to what the model has already processed, its primary effect is to reduce the logit spread. While the logits themselves become more concentrated around their mean, this doesn't mean the model becomes more certain about a single token. Rather, as we'll see when connecting to softmax, this reduced variance across the set of all logits leads to them being more similar to *each other*, resulting in a flatter probability distribution and thus greater uncertainty.
 
 2.  **Positively Correlated Features ($$0 < \bar{\rho} < 1$$):**
     The variance still decreases as $$N$$ grows, thanks to the $$(1-\bar{\rho})/N$$ term which still pushes it down. However, as $$N$$ gets very large, the variance doesn't go to zero. Instead, it approaches a floor: $$\lim_{N\to\infty} \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p \bar{\rho}$$.
 
-    *Interpretation:* Shared or redundant information (positive correlation) limits how much the $$1/N$$ scaling can smooth out the logits. Even with tons of information, if much of it is saying similar things, the logit spread won't completely vanish.
+    *Interpretation:* Shared or redundant information (positive correlation) limits how much the $$1/N$$ scaling can reduce logit variance. While the variance still decreases with $$N$$ (as long as $$\bar{\rho} < 1$$), it approaches a floor of $$V_p \bar{\rho}$$. This means that even with a large amount of information, if it's partially correlated, the logits won't become as similar to each other (their differences won't shrink as much) as they would with purely independent information. The resulting softmax distribution, while potentially becoming flatter and indicating more uncertainty compared to small $$N$$ (if initial $$V_p$$ was high), will not flatten indefinitely as it does when $$\bar{\rho}=0$$.
 
 3.  **Perfectly Correlated Features ($$\bar{\rho} = 1$$):**
     If all contextual influences are perfectly correlated in their effect on logit spread ($$\bar{\rho} = 1$$), then $$\mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right] = V_p$$.
     
-    *Interpretation:* The $$1/N$$ scaling offers no reduction in variance if all it's doing is scaling (effectively) the same piece of information repeatedly. The logit spread remains the same as if there were only one piece of information.
+    *Interpretation:* If all contextual influences are perfectly correlated ($$\bar{\rho} = 1$$), the expected logit variance $$ \mathbb{E}\left[\mathrm{Var}_i(L_i^{(N)})\right]$$ remains constant at $$V_p$$, regardless of $$N$$. The $$1/N$$ scaling, in this scenario, effectively processes the same underlying signal repeatedly. The logit spread (and thus the similarity between logits) doesn't change from the single-feature case. This implies that adding more, perfectly redundant information neither increases nor decreases the model's certainty or uncertainty (as reflected by the flatness of the softmax distribution) compared to having just one piece of that information.
 
 The takeaway is this: as long as new contextual features bring at least *some* new, uncorrelated influence ($$\bar{\rho} < 1$$), our $$1/N$$ scaling mechanism will cause the expected variance of the logits to decrease as context richness $$N$$ grows.
 
@@ -136,15 +136,15 @@ The takeaway is this: as long as new contextual features bring at least *some* n
 
 So, we've seen that more information ($$N$$) tends to make the logits less spread out (lower variance), assuming the information isn't perfectly redundant. How does this connect to the model's certainty and potential for hallucination? We can use a concentration inequality to make this link clearer.
 
-1.  **Focus on Logit Differences:** Instead of looking at individual logits, let's look at the difference between any two of them: $$D_{ij}^{(N)} = L_i^{(N)} - L_j^{(N)}$$. Since we assumed individual influences $$\mathbf{p}_k$$ have zero mean, so do our final logits $$L_i^{(N)}$$. Thus, the expected difference is also zero: $$\mathbb{E}[D_{ij}^{(N)}] = 0$$.
+1.  **Focus on Logit Differences:** Instead of looking at individual logits $$L_i^{(N)}$$, let's look at the difference between any two of them, which also depends on $$N$$: $$D_{ij}^{(N)} = L_i^{(N)} - L_j^{(N)}$$. Since we assumed individual influences $$\mathbf{p}_k$$ have zero mean, so do our final logits $$L_i^{(N)}$$. Thus, the expected difference is also zero: $$\mathbb{E}[D_{ij}^{(N)}] = 0$$.
 
-2.  **Variance of Logit Differences:** The variance of this difference, $$\sigma_{D_{ij}}^2(N) = \mathrm{Var}(D_{ij}^{(N)})$$, is given by the standard formula:
+2.  **Variance of Logit Differences:** The variance of this difference, which we denote as $$\sigma_{D_{ij}}^2(N)$$ to explicitly show its dependence on $$N$$, is given by the standard formula:
 
     $$
     \sigma_{D_{ij}}^2(N) = \mathrm{Var}(L_i^{(N)}) + \mathrm{Var}(L_j^{(N)}) - 2\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})
     $$
 
-    These terms $$\mathrm{Var}(L_i^{(N)})$$ and $$\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})$$ are just the diagonal and off-diagonal entries of the overall logit covariance matrix $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ we found earlier:
+    These terms $$\mathrm{Var}(L_i^{(N)})$$ and $$\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})$$ are just the diagonal and off-diagonal entries of the overall logit covariance matrix $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ (which itself depends on $$N$$) we found earlier:
 
     $$
     \mathbf{\Sigma}_{\mathbf{L}^{(N)}} = \frac{1}{N^2} \left( N \mathbf{\Sigma}_p + \sum_{k \neq l} \mathbf{C}_{kl} \right)
@@ -152,15 +152,15 @@ So, we've seen that more information ($$N$$) tends to make the logits less sprea
 
     As $$N$$ increases, the $$1/N^2$$ factor (and the $$N/N^2 = 1/N$$ factor for the first term) generally causes the elements of $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ to decrease (or approach a floor if $$\bar{\rho}$$ is large and positive). Consequently, $$\sigma_{D_{ij}}^2(N)$$, the variance of the difference between any two logits, will also tend to decrease with $$N$$.
 
-3.  **Applying Chebyshev's Inequality:** Now for the concentration part, we can use [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality). For our logit difference $$D_{ij}^{(N)}$$ (with mean 0 and variance $$\sigma_{D_{ij}}^2(N)$$), it states that for any threshold $$\epsilon > 0$$:
+3.  **Applying Chebyshev's Inequality:** Now for the concentration part, we can use [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality). For our N-dependent logit difference $$D_{ij}^{(N)}$$ (with mean 0 and variance $$\sigma_{D_{ij}}^2(N)$$), it states that for any threshold $$\epsilon > 0$$:
 
     $$
     P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \le \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
     $$
 
-    This tells us the probability that the absolute difference between two logits is *large* (at least $$\epsilon$$) is small if their variance $$\sigma_{D_{ij}}^2(N)$$ is small compared to $$\epsilon^2$$.
+    This tells us the probability that the absolute difference between two logits is *large* (at least $$\epsilon$$) is small if their N-dependent variance $$\sigma_{D_{ij}}^2(N)$$ is small compared to $$\epsilon^2$$.
 
-4.  **Probability of Logits Being Close:** We can flip this around to say something about the probability that two logits are *close* to each other:
+4.  **Probability of Logits Being Close:** We can flip this around to say something about the probability that two logits are *close* to each other, again highlighting the N-dependence:
 
     $$
     P\left(|D_{ij}^{(N)}| < \epsilon\right) = 1 - P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \ge 1 - \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
@@ -168,11 +168,11 @@ So, we've seen that more information ($$N$$) tends to make the logits less sprea
 
     For this lower bound to be meaningful (i.e., greater than 0), we need our chosen threshold $$\epsilon$$ to be such that $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$.
 
-5.  **Implication of Decreasing Variance:** Here's the punchline: as $$N$$ (context richness) increases, we've argued that $$\sigma_{D_{ij}}^2(N)$$ (the variance of logit differences) tends to decrease. If it decreases enough, we can pick a small $$\epsilon$$ such that the condition $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$ holds. In this situation, the lower bound $$1 - \sigma_{D_{ij}}^2(N)/\epsilon^2$$ gets closer to 1. This means that as context richness $$N$$ grows, the probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are very close to each other (within $$\epsilon$$) *increases*.
+5.  **Implication of Decreasing Variance with N:** Here's the punchline: as $$N$$ (context richness) increases, we've argued that $$\sigma_{D_{ij}}^2(N)$$ (the variance of logit differences) tends to decrease. If $$\sigma_{D_{ij}}^2(N)$$ decreases enough as $$N$$ grows, we can pick a small $$\epsilon$$ such that the condition $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$ holds. In this situation, the lower bound $$1 - \sigma_{D_{ij}}^2(N)/\epsilon^2$$ gets closer to 1. This means that as context richness $$N$$ grows, the probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are very close to each other (within $$\epsilon$$) *increases*. The strength of this increase is tied to how quickly $$\sigma_{D_{ij}}^2(N)$$ diminishes with $$N$$.
 
-6.  **Link to Softmax Flatness:** When most pairs of logits are very close, their resulting softmax probabilities also become similar. Remember, the ratio of two probabilities in the softmax output is $$p_i / p_j = \exp(L_i^{(N)} - L_j^{(N)}) = \exp(D_{ij}^{(N)})$$. If $$D_{ij}^{(N)}$$ is small (close to zero), then $$\exp(D_{ij}^{(N)})$$ is close to $$\exp(0) = 1$$, meaning $$p_i \approx p_j$$. If this happens for many pairs of vocabulary items $$i$$ and $$j$$, the whole probability distribution $$p_1, \dots, p_V$$ becomes flatter, or more uniform.
+6.  **Link to Softmax Flatness (N-dependent):** When most pairs of logits are very close, their resulting softmax probabilities also become similar. Remember, the ratio of two probabilities in the softmax output is $$p_i / p_j = \exp(L_i^{(N)} - L_j^{(N)}) = \exp(D_{ij}^{(N)})$$. If $$D_{ij}^{(N)}$$ is small (close to zero), which becomes more probable as $$N$$ increases (because its variance $$\sigma_{D_{ij}}^2(N)$$ decreases), then $$\exp(D_{ij}^{(N)})$$ is close to $$\exp(0) = 1$$, meaning $$p_i \approx p_j$$. If this happens for many pairs of vocabulary items $$i$$ and $$j$$ due to increasing $$N$$, the whole probability distribution $$p_1, \dots, p_V$$ becomes flatter, or more uniform.
 
-This concentration argument forges a clearer path: more (not perfectly redundant) information leads to less spread-out logits, which in turn means a higher chance that logits are numerically close, leading to a flatter softmax distribution.
+This concentration argument shows that more (not perfectly redundant) information (larger $$N$$) leads to less spread-out logits (lower $$\sigma_{D_{ij}}^2(N)$$), which in turn means a higher chance that logits are numerically close, leading to a flatter softmax probability distribution. The scaling with $$N$$ is primarily driven by how $$\sigma_{D_{ij}}^2(N)$$ decreases, which is influenced by the $$ (1 - \bar{\rho})/N + \bar{\rho} $$ term in the variance of the logits themselves.
 
 ## Link to Hallucination
 
