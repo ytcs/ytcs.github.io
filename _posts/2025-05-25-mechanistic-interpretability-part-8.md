@@ -37,7 +37,7 @@ For any given input $$\mathbf{X}$$ and a target output $$Y$$ (e.g., the logit fo
 Let's outline a plausible methodology for **"Circuit Tracing: Revealing Computational Graphs in Language Models" (Ameisen et al., March 2025)**. Such a method would likely combine forward computation with a backward attribution or influence-quantification pass.
 
 1.  **Forward Pass & Activation Cache:**
-    Execute a standard forward pass for input $$\mathbf{X}$$, caching all intermediate activations: $$ \mathcal{A} = \{ \mathbf{r}^{(l)}_t, \mathbf{q}^{(l,h)}_t, \mathbf{k}^{(l,h)}_j, \mathbf{v}^{(l,h)}_j, \alpha^{(l,h)}_{tj}, \text{MLP}_{\text{pre}}^{(l,k)}_t, \text{MLP}_{\text{post}}^{(l,k)}_t, \dots \} $$. Each activation is a tensor, indexed by layer, token position, head number (if applicable), and feature dimension.
+    Execute a standard forward pass for input $$\mathbf{X}$$, caching all intermediate activations: $$ \mathcal{A} = \{ \mathbf{r}^{(l)}_t, \mathbf{q}^{(l,h)}_t, \mathbf{k}^{(l,h)}_j, \mathbf{v}^{(l,h)}_j, \alpha^{(l,h)}_{tj}, (\text{MLP}_{\text{pre}})^{(l,k)}_t, (\text{MLP}_{\text{post}})^{(l,k)}_t, \dots \} $$. Each activation is a tensor, indexed by layer, token position, head number (if applicable), and feature dimension.
 
 2.  **Influence Attribution (Path-Specific):**
     The core is to quantify the "influence" or "contribution" of upstream activations to downstream activations, particularly towards the target output $$Y$$.
@@ -67,9 +67,9 @@ A trace might highlight:
 2.  **Head 2 (Induction Head @ `___`):**
     *   Query formation: $$ \mathbf{q}^{(H2)}_{\_\_\_} = (\mathbf{r}^{(l'-1)}_{P2} + \Delta \mathbf{r}^{(l)}_{P2} + \dots) \mathbf{W}_Q^{(H2)} $$. The trace shows that the component $$ \Delta \mathbf{r}^{(l)}_{P2} \mathbf{W}_Q^{(H2)}$$ is significant for $$\mathbf{q}^{(H2)}_{\_\_\_} $$.
     *   Key formation for TokenP1: $$ \mathbf{k}^{(H2)}_{P1} = (\mathbf{r}^{(l'-1)}_{P1} + \text{earlier } \Delta \mathbf{r}^{(l)}_{P2} \text{ if H1 acts globally or P1 is P2} + \dots) \mathbf{W}_K^{(H2)} $$. The term $$ \Delta \mathbf{r}^{(l)}_{P2} \mathbf{W}_K^{(H2)} $$ strongly shapes this key if K-composition is from the *current* P2's features influencing *past* keys. (More accurately, P2's features are in the query stream, affecting attention to P1's key).
-    *   High score for P1 and shift to Q1: The trace reveals that $$s_{___, Q1}$$ (attention from `___` to TokenQ1) is high. This is because the QK circuit of H2, $$ (\mathbf{q}^{(H2)}_{\_\_\_}) (\mathbf{k}^{(H2)}_{Q1})^T$$, is maximized. The composition ensures $$\mathbf{q}^{(H2)}_{\_\_\_} $$ is seeking keys from tokens following an earlier P-like token. The specific structure of $$\mathbf{W}_Q^{(H2)}\mathbf{W}_K^{(H2)T}$$ combined with relative positional encodings allows the matching of $$V_{P2}$$ in the query to select the context of P1, then shift to Q1.
+    *   High score for P1 and shift to Q1: The trace reveals that $$s_{\_\_\_, Q1}$$ (attention from `___` to TokenQ1) is high. This is because the QK circuit of H2, $$ (\mathbf{q}^{(H2)}_{\_\_\_}) (\mathbf{k}^{(H2)}_{Q1})^T$$, is maximized. The composition ensures $$\mathbf{q}^{(H2)}_{\_\_\_} $$ is seeking keys from tokens following an earlier P-like token. The specific structure of $$\mathbf{W}_Q^{(H2)}\mathbf{W}_K^{(H2)T}$$ combined with relative positional encodings allows the matching of $$V_{P2}$$ in the query to select the context of P1, then shift to Q1.
     *   Value Copying: $$ \mathbf{v}^{(H2)}_{Q1} = \mathbf{r}^{(l'-1)}_{Q1} \mathbf{W}_V^{(H2)} $$.
-    *   $$ \Delta \mathbf{r}^{(l')}_{\_\_\_} = (\alpha_{___,Q1} \mathbf{v}^{(H2)}_{Q1}) \mathbf{W}_O^{(H2)} $$. This output carries features of TokenQ1.
+    *   $$ \Delta \mathbf{r}^{(l')}_{\_\_\_} = (\alpha_{\_\_\_,Q1} \mathbf{v}^{(H2)}_{Q1}) \mathbf{W}_O^{(H2)} $$. This output carries features of TokenQ1.
     *   This $$ \Delta \mathbf{r}^{(l')}_{\_\_\_}$$ has a large projection onto $$(\mathbf{W}_U)_{:,Q1} $$, boosting the logit for TokenQ1.
 
 ### Algorithmic and Mathematical Insights
@@ -146,8 +146,14 @@ The ultimate goal remains the development of a comprehensive, causal understandi
 
 ## VI. References
 
-(This section would collate all previously mentioned papers and add):
-*   Ameisen, E., et al. (2025, hypothetical). *Circuit Tracing: Revealing Computational Graphs in Language Models*. Transformer Circuits Thread.
-*   Templeton, A., et al. (2024). *Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet*. Transformer Circuits Thread.
-*   Lindsey, J., et al. (2025, hypothetical). *On the Biology of a Large Language Model: Mechanisms in Claude 3.5 Haiku*. Transformer Circuits Thread.
-*   Anthropic Interpretability Team. (Various Dates). *Circuits Updates*. Transformer Circuits Thread. (Specifically citing updates for Jan 2025, Sept/Oct/July/June/April 2024, Feb 2025).
+*   [Ameisen, E., et al. (2025). *Circuit Tracing: Revealing Computational Graphs in Language Models*](https://transformer-circuits.pub/2025/circuit-tracing/index.html). Transformer Circuits Thread.
+*   [Templeton, A., et al. (2024). *Scaling Monosemanticity: Extracting Interpretable Features from Claude 3 Sonnet*](https://transformer-circuits.pub/2024/scaling-monosemanticity/index.html). Transformer Circuits Thread.
+*   [Lindsey, J., et al. (2025). *On the Biology of a Large Language Model: Mechanisms in Claude 3.5 Haiku*](https://transformer-circuits.pub/2025/llm-biology/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (April 2025). *Circuits Updates — April 2025*](https://transformer-circuits.pub/2025/updates-april/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (February 2025). *Insights on Crosscoder Model Diffing*](https://transformer-circuits.pub/2025/crosscoder-diffing/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (January 2025). *Circuits Updates — January 2025*](https://transformer-circuits.pub/2025/updates-january/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (October 2024). *Sparse Crosscoders for Cross-Layer Features and Model Diffing*](https://transformer-circuits.pub/2024/sparse-crosscoders/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (October 2024). *Using Dictionary Learning Features as Classifiers*](https://transformer-circuits.pub/2024/dictionary-classifiers/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (July 2024). *Circuits Updates — July 2024*](https://transformer-circuits.pub/2024/updates-july/index.html). Transformer Circuits Thread.
+*   [Anthropic Interpretability Team. (June 2024). *Circuits Updates — June 2024*](https://transformer-circuits.pub/2024/updates-june/index.html). Transformer Circuits Thread.
+*   [Elhage, N., et al. (2021). *A Mathematical Framework for Transformer Circuits*](https://transformer-circuits.pub/2021/framework/index.html). Transformer Circuits Thread.
