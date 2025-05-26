@@ -36,7 +36,9 @@ Let's define some terms:
 
 If component $$C_I$$ outputs $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$ to the stream, and component $$C_J$$ (in the next layer or a later component in the same layer reading from the updated stream) uses an input projection $$\mathbf{W}_{in-proj}^{(C_J)}$$, the part of $$C_J$$'s projected input that comes from $$X$$ via $$C_I$$ is $$ (X \mathbf{M}_{out}^{(C_I)}) \mathbf{W}_{in-proj}^{(C_J)} $$.
 The **direct virtual weight matrix** $$\mathbf{W}_{\text{virtual}}^{(C_I \rightarrow C_J)}$$ mapping the input $$X$$ (that fed into $$C_I$$) to this specific contribution at $$C_J$$'s input projection is:
+
 $$\mathbf{W}_{\text{virtual, direct}}^{(C_I \rightarrow C_J)} = \mathbf{M}_{out}^{(C_I)} \mathbf{W}_{in-proj}^{(C_J)}$$
+
 For example, the virtual weight from the input of Head $$H_a$$'s OV circuit (matrix $$\mathbf{W}_V^{(Ha)}\mathbf{W}_O^{(Ha)}$$) to the Query input projection of Head $$H_b$$ (matrix $$\mathbf{W}_Q^{(Hb)}$$) in an immediately subsequent processing step is $$(\mathbf{W}_V^{(Ha)}\mathbf{W}_O^{(Ha)}) \mathbf{W}_Q^{(Hb)}$$. This resulting matrix has dimensions $$d_{\text{model}} \times d_{\text{head}}^{(Hb)}$$.
 
 **2. Virtual Weight Across Intermediate Layers:**
@@ -48,7 +50,9 @@ Let $$T_k = (\mathbf{I} + \sum_m \mathbf{M}^{(k,m)})$$ be this full linear trans
 The output contribution $$O_{C_I} = X \mathbf{M}_{out}^{(C_I)}$$ from component $$C_I$$ (where $$X$$ was its input from the stream) becomes $$ (X \mathbf{M}_{out}^{(C_I)}) \cdot T_{L_I+1} \cdot T_{L_I+2} \cdot \ldots \cdot T_{L_J-1} $$ by the time it reaches the input of layer $$L_J$$.
 This transformed signal is then processed by $$C_J$$'s input projection $$\mathbf{W}_{in-proj}^{(C_J)}$$.
 Thus, the **full virtual weight matrix** from the input $$X$$ of component $$C_I$$ to the specific projected input of component $$C_J$$ is:
+
 $$\mathbf{W}_{\text{virtual}}^{(C_I \rightarrow C_J)} = \mathbf{M}_{out}^{(C_I)} \left( \prod_{k=L_I+1}^{L_J-1} T_k \right) \mathbf{W}_{in-proj}^{(C_J)}$$
+
 If there are no intermediate layers ($$L_J = L_I+1$$), the product term is empty (or an identity matrix), reducing to the direct case.
 This concept is crucial for understanding how non-adjacent layers and components influence each other, effectively forming long-range circuits by composing these linear transformations.
 
@@ -59,6 +63,7 @@ The attention mechanism is the heart of the Transformer. It dynamically routes i
 Mathematically, for a single attention head, given input token representations $$\mathbf{x}_1, \dots, \mathbf{x}_N \in \mathbb{R}^{d_{\text{model}}}$$, the head first projects these into Query ($$\mathbf{q}_i$$), Key ($$\mathbf{k}_j$$), and Value ($$\mathbf{v}_j$$) vectors for each token $$i$$ (query) and $$j$$ (key/value source) using weight matrices $$\mathbf{W}_Q, \mathbf{W}_K, \mathbf{W}_V \in \mathbb{R}^{d_{\text{model}} \times d_{\text{head}}}$$:
 
 $$\mathbf{q}_i = \mathbf{x}_i \mathbf{W}_Q, \quad \mathbf{k}_j = \mathbf{x}_j \mathbf{W}_K, \quad \mathbf{v}_j = \mathbf{x}_j \mathbf{W}_V$$
+
 (Note: $$\mathbf{q}_i, \mathbf{k}_j, \mathbf{v}_j$$ are row vectors of dimension $$d_{\text{head}}$$.)
 
 Attention scores are computed as the dot product of a query vector with a key vector, scaled by $$\sqrt{d_{\text{head}}}$$:
@@ -68,11 +73,16 @@ These scores are then normalized via Softmax across all source positions $$j$$ t
 This mechanism can be decomposed into two key conceptual circuits:
 
 1.  **Query-Key (QK) Circuit:** Determines *where to attend*. The QK circuit computes the attention scores $$e_{ij}$$ (before softmax). The core of this computation is the term $$\mathbf{q}_i \mathbf{k}_j^T$$. Let's derive its form in terms of the original residual stream vectors $$\mathbf{x}_i$$ and $$\mathbf{x}_j$$:
+
     $$\mathbf{q}_i \mathbf{k}_j^T = (\mathbf{x}_i \mathbf{W}_Q) (\mathbf{x}_j \mathbf{W}_K)^T$$
+
     Using the matrix transpose property $$(AB)^T = B^T A^T$$, we have $$( \mathbf{x}_j \mathbf{W}_K )^T = \mathbf{W}_K^T \mathbf{x}_j^T$$.
     Substituting this back, we get:
+
     $$\mathbf{q}_i \mathbf{k}_j^T = \mathbf{x}_i \mathbf{W}_Q \mathbf{W}_K^T \mathbf{x}_j^T$$
+
     This expression shows that the unnormalized attention score between token $$i$$ and token $$j$$ is a bilinear form $$\mathbf{x}_i (\mathbf{W}_Q \mathbf{W}_K^T) \mathbf{x}_j^T$$.
+
     The matrix $$\mathbf{W}_{\text{eff-QK}} = \mathbf{W}_Q \mathbf{W}_K^T$$ is an effective $$d_{\text{model}} \times d_{\text{model}}$$ matrix that defines how pairs of token representations in the residual stream are compared to produce attention scores. Since $$\mathbf{W}_Q$$ is $$d_{\text{model}} \times d_{\text{head}}$$ and $$\mathbf{W}_K^T$$ is $$d_{\text{head}} \times d_{\text{model}}$$, the rank of $$\mathbf{W}_{\text{eff-QK}}$$ is at most $$d_{\text{head}}$$, which is typically much smaller than $$d_{\text{model}}$$. This low-rank structure implies that the QK circuit is specialized in comparing specific types of information.
 
 2.  **Output-Value (OV) Circuit:** Determines *what information to move* from the attended positions and how it's transformed. Once attention weights $$\alpha_{ij}$$ are computed, the OV circuit processes the value vectors. The full transformation from an original token representation $$\mathbf{x}_j$$ (at a source position $$j$$) to its potential contribution to the output (if fully attended, i.e., $$\alpha_{ij}=1$$) is $$\mathbf{x}_j \mathbf{W}_V \mathbf{W}_O$$.
@@ -88,12 +98,22 @@ The overall computation of a Transformer can be viewed as a sum over all possibl
 For an attention-only transformer, the output logit for a token $$c$$ given a previous token (position $$pos$$) can be written as:
 
 $$\text{Logits}(c | pos) = \mathbf{U}[c,:] \left( \mathbf{E}[pos,:] + \sum_{l,h} \text{OutputContribution}_{l,h} \right)$$
+
 where $$\mathbf{E}$$ is the token embedding matrix (row per token, $$d_{vocab} \times d_{model}$$), $$\mathbf{U}$$ is the unembedding matrix (often $$\mathbf{E}^T$$, so $$d_{model} \times d_{vocab}$$), and $$\text{OutputContribution}_{l,h}$$ is the output vector added to the residual stream by head $$h$$ in layer $$l$$.
+
 This can be expanded. For instance, the output contribution of head $$(l,h)$$ acting on the stream input $$\mathbf{S}^{(l-1)}$$ (output of layer $$l-1$$) is $$ ( \sum_j \alpha_{pos,j}^{(l,h)} ( \mathbf{S}_j^{(l-1)}\mathbf{W}_V^{(l,h)} ) ) \mathbf{W}_O^{(l,h)} $$.
 
 The simplest paths are:
--   **Zero-Layer Path:** The direct connection from embedding to unembedding. If $$X_{pos} = \mathbf{E}[pos,:] $$, then $$\text{Logits}(c | pos)_{\text{0-layer}} = X_{pos} \mathbf{U}[:,c]$$. This path effectively captures token co-occurrence statistics similar to bigrams if $$\mathbf{U} \approx \mathbf{E}^T$$. (Assuming row vectors for embeddings and logits, this should be $$\mathbf{E}[pos,:] \mathbf{U}[c,:]^T$$ or $$\mathbf{E}[pos,:] \mathbf{U}_{:,c}$$ if U is $$d_m \times d_v$$ and we take a column). The current text: $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ suggests $$\mathbf{U}$$ is $$d_v \times d_m$$ and $$\mathbf{E}$$ is $$d_m \times d_v$$, with results being scalars, or an interpretation issue. Let's assume embeddings $$\mathbf{E}$$ map token indices to $$d_m$$ vectors, and $$\mathbf{U}$$ maps $$d_m$$ vectors to logit vectors. If $$\mathbf{E}_{pos}$$ is the embedding for the token at `pos`, then the 0-layer contribution to logits is $$\mathbf{E}_{pos} \mathbf{W}_U$$, where $$\mathbf{W}_U$$ is the unembedding weight matrix. The existing notation $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ suggests that $$\mathbf{E}[pos,:]$$ is a row vector, and $$\mathbf{U}[c,:]$$ is also a row vector representing the c-th logit's projection. This implies an element-wise product then sum, or perhaps $$\mathbf{E}[pos,:]$$ is a column vector here. For clarity, let $$X_{pos}$$ be the embedding vector. The direct path term for logit of token $$c$$ is $$X_{pos} \cdot \mathbf{w}_{U,c}$$, where $$\mathbf{w}_{U,c}$$ is the vector for token $$c$$ in the unembedding matrix. The formulation $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ is fine if we interpret $$\mathbf{U}[c,:]$$ as the *row* of the unembedding matrix that gives the logit for token c, and $$\mathbf{E}[pos,:]$$ is the *column* vector for the embedding. Or, more standardly, if $$\mathbf{E}[pos,:]$$ is a row vector and $$\mathbf{W}_U$$ is the unembedding matrix ($$d_m \times d_v$$), then logits are $$\mathbf{E}[pos,:] \mathbf{W}_U$$, and $$\text{Logits}(c|pos) = ( \mathbf{E}[pos,:] \mathbf{W}_U )_c$$.
-    The current text: $$\text{Logits}(c | pos) = \underbrace{\mathbf{U}[c,:] \mathbf{E}[pos,:]}_{\text{Direct Path (0-layer)}} + \sum_{l,h} \underbrace{\mathbf{U}[c,:] \text{Head}_{l,h}(\mathbf{E}[pos,:])}_{\text{1-layer paths}} + \dots$$
+-   **Zero-Layer Path:** The direct connection from embedding to unembedding. If $$X_{pos} = \mathbf{E}[pos,:] $$, then $$\text{Logits}(c | pos)_{\text{0-layer}} = X_{pos} \mathbf{U}[:,c]$$. This path effectively captures token co-occurrence statistics similar to bigrams if $$\mathbf{U} \approx \mathbf{E}^T$$. (Assuming row vectors for embeddings and logits, this should be $$\mathbf{E}[pos,:] \mathbf{U}[c,:]^T$$ or $$\mathbf{E}[pos,:] \mathbf{U}_{:,c}$$ if U is $$d_m \times d_v$$ and we take a column). 
+The current text: $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ suggests $$\mathbf{U}$$ is $$d_v \times d_m$$ and $$\mathbf{E}$$ is $$d_m \times d_v$$, with results being scalars, or an interpretation issue. 
+
+Let's assume embeddings $$\mathbf{E}$$ map token indices to $$d_m$$ vectors, and $$\mathbf{U}$$ maps $$d_m$$ vectors to logit vectors. If $$\mathbf{E}_{pos}$$ is the embedding for the token at `pos`, then the 0-layer contribution to logits is $$\mathbf{E}_{pos} \mathbf{W}_U$$, where $$\mathbf{W}_U$$ is the unembedding weight matrix. The existing notation $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ suggests that $$\mathbf{E}[pos,:]$$ is a row vector, and $$\mathbf{U}[c,:]$$ is also a row vector representing the c-th logit's projection. This implies an element-wise product then sum, or perhaps $$\mathbf{E}[pos,:]$$ is a column vector here. 
+
+For clarity, let $$X_{pos}$$ be the embedding vector. The direct path term for logit of token $$c$$ is $$X_{pos} \cdot \mathbf{w}_{U,c}$$, where $$\mathbf{w}_{U,c}$$ is the vector for token $$c$$ in the unembedding matrix. The formulation $$\mathbf{U}[c,:] \mathbf{E}[pos,:]$$ is fine if we interpret $$\mathbf{U}[c,:]$$ as the *row* of the unembedding matrix that gives the logit for token c, and $$\mathbf{E}[pos,:]$$ is the *column* vector for the embedding. Or, more standardly, if $$\mathbf{E}[pos,:]$$ is a row vector and $$\mathbf{W}_U$$ is the unembedding matrix ($$d_m \times d_v$$), then logits are $$\mathbf{E}[pos,:] \mathbf{W}_U$$, and $$\text{Logits}(c|pos) = ( \mathbf{E}[pos,:] \mathbf{W}_U )_c$$.
+    The current text: 
+    
+    $$\text{Logits}(c | pos) = \underbrace{\mathbf{U}[c,:] \mathbf{E}[pos,:]}_{\text{Direct Path (0-layer)}} + \sum_{l,h} \underbrace{\mathbf{U}[c,:] \text{Head}_{l,h}(\mathbf{E}[pos,:])}_{\text{1-layer paths}} + \dots$$
+    
     This structure assumes $$\mathbf{U}[c,:]$$ is a linear functional applied to the final residual stream state. This is fine.
 
 -   **One-Layer Paths:** Paths passing through a single attention head. The term $$\mathbf{U}[c,:] \text{Head}_{l,h}(\mathbf{E}[pos,:]) $$ describes the influence of head $$(l,h)$$ acting on the initial embedding $$\mathbf{E}[pos,:]$$ (if it's in the first layer) on the logit for token $$c$$. This can implement more complex statistics like skip-trigrams.

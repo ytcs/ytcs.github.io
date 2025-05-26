@@ -30,7 +30,9 @@ We adapt a validation framework emphasizing multiple, conceptually distinct line
 **Conceptual Basis:** If a feature direction $$\mathbf{d}$$ in a given layer $$\ell$$ (e.g., from the decoder of a sparse autoencoder, $$\mathbf{d} = (\mathbf{W}_d)_{:,j}$$ for feature $$j$$) truly represents a specific concept, then inputs embodying that concept should lead to high activation of the feature. The activation $$a_j = \mathbf{d}^T \mathbf{x}^{(\ell)}$$ (or $$a_j = f_j$$ if using the autoencoder's feature activation directly) measures the projection of the layer's activation vector $$\mathbf{x}^{(\ell)}$$ onto the feature direction $$\mathbf{d}$$.
 
 **Methodology:** We seek an input $$\mathbf{x}^*$$ that maximizes this activation:
+
 $$\mathbf{x}^* = \arg\max_{\mathbf{x}} (\mathbf{d}^T \mathbf{a}^{(\ell)}(\mathbf{x})) - \mathcal{R}(\mathbf{x})$$
+
 where $$\mathbf{a}^{(\ell)}(\mathbf{x})$$ is the activation vector of layer $$\ell$$ in response to input $$\mathbf{x}$$, and $$\mathcal{R}(\mathbf{x})$$ is a crucial regularization term.
 
 **The Role of Regularization ($$\mathcal{R}(\mathbf{x})$$):**
@@ -82,9 +84,11 @@ Dataset example analysis provides evidence about a feature's behavior on realist
 *   **Hypothesis-Driven Design:** The design of synthetic stimuli should be guided by precise hypotheses about the feature's role. For example, if a feature is thought to respond to subject-verb number agreement, stimuli would vary number for subjects and verbs while keeping other sentence aspects (lexical items, overall meaning where possible) constant.
 *   **Factorial Designs & Dose-Response:** More complex designs can explore interactions between multiple factors (e.g., how does the feature respond to property $$P_1$$ in the presence vs. absence of property $$P_2$$?) or graded responses to varying intensity of a property (a "dose-response curve," e.g., increasing levels of negativity in sentiment analysis).
     The general form for a factorial design might explore responses like:
+
     $$\text{Response}(\mathbf{x}) = \beta_0 + \beta_1 \text{Factor}_1 + \beta_2 \text{Factor}_2 + \beta_{12} \text{Factor}_1 \times \text{Factor}_2 + \epsilon$$
     
     And for a dose-response to stimulus strength $$\theta$$:
+
     $$\text{Response}(\theta) = g(\theta) + \epsilon$$
     
     where $$g$$ is some function (e.g., linear, sigmoid) describing the response curve.
@@ -195,7 +199,9 @@ In neural networks, we can approximate such interventions by directly setting or
 Let $$\mathbf{a}^{(\ell)}(\mathbf{x})$$ be the activation vector at layer $$\ell$$ for input $$\mathbf{x}$$. Let $$\mathbf{d}_f$$ be the direction corresponding to feature $$f$$. The activation of feature $$f$$ is $$a_f(\mathbf{x}) = \mathbf{d}_f^T \mathbf{a}^{(\ell)}(\mathbf{x})$$ (or simply the relevant autoencoder feature activation).
 
 When processing $$\mathbf{x}_{\text{base}}$$, we run the model up to layer $$\ell$$. We then compute the activation vector $$\mathbf{a}^{(\ell)}(\mathbf{x}_{\text{base}})$$. We want to modify this vector such that the component corresponding to feature $$f$$ matches its activation from $$\mathbf{x}_{\text{source}}$$. The original component of $$\mathbf{a}^{(\ell)}(\mathbf{x}_{\text{base}})$$ along $$\mathbf{d}_f$$ is $$a_f(\mathbf{x}_{\text{base}}) \mathbf{d}_f$$ (assuming $$\mathbf{d}_f$$ is a unit vector). The new component should be $$a_f(\mathbf{x}_{\text{source}}) \mathbf{d}_f$$. Thus, the modified activation vector at layer $$\ell$$, $$\mathbf{a}^{(\ell)}_{\text{patched}}$$, can be constructed by taking $$\mathbf{a}^{(\ell)}(\mathbf{x}_{\text{base}})$$, removing its projection onto $$\mathbf{d}_f$$, and adding the projection of $$\mathbf{a}^{(\ell)}(\mathbf{x}_{\text{source}})$$ onto $$\mathbf{d}_f$$:
+
 $$\mathbf{a}^{(\ell)}_{\text{patched}} = \mathbf{a}^{(\ell)}(\mathbf{x}_{\text{base}}) - (\mathbf{d}_f^T \mathbf{a}^{(\ell)}(\mathbf{x}_{\text{base}})) \mathbf{d}_f + (\mathbf{d}_f^T \mathbf{a}^{(\ell)}(\mathbf{x}_{\text{source}})) \mathbf{d}_f$$
+
 More simply, if we are directly intervening on the scalar activation value $$a_f$$ of a dictionary feature whose vector is $$\mathbf{d}_f$$, and this feature contributes $$a_f \mathbf{d}_f$$ to the model's activation vector $$\mathbf{x}$$ (e.g. if $$\mathbf{x}$$ is reconstructed by an autoencoder), we can replace $$a_f(\mathbf{x}_{\text{base}})$$ with $$a_f(\mathbf{x}_{\text{source}})$$ in the computation that generates this contribution, and then continue the forward pass.
 
 The model then continues its forward pass from layer $$\ell$$ using $$\mathbf{a}^{(\ell)}_{\text{patched}}$$. The downstream consequences (e.g., changes in output probabilities, internal states of later layers) are then measured.
@@ -233,7 +239,11 @@ A significant degradation in performance or a specific change in output behavior
 **Conceptual Basis:** If feature $$f$$ is causally sufficient to produce (or strongly influence) an effect $$E$$, then artificially boosting $$f$$ (even on inputs where it might normally be low) should lead to the appearance or enhancement of $$E$$. This is the converse of ablation: instead of removing the feature to see if an effect disappears, we enhance it to see if the effect appears or strengthens.
 
 **Methodology:**
-*   **Global Enhancement:** Artificially increase the activation of feature $$f$$ by a positive amount $$\beta$$: $$a_{f, \text{enhanced}} = a_{f, \text{original}} + \beta $$. Or, set it to a high value representative of its typical maximum activation.
+*   **Global Enhancement:** Artificially increase the activation of feature $$f$$ by a positive amount $$\beta$$: 
+
+$$a_{f, \text{enhanced}} = a_{f, \text{original}} + \beta $$. 
+
+Or, set it to a high value representative of its typical maximum activation.
 *   **Directional Steering:** If the feature is part of a more complex representation, one might want to modify the activation vector $$\mathbf{a}$$ in a specific direction $$\mathbf{d}_{\text{target}}$$ (which could be aligned with the feature itself, or a related concept): $$\mathbf{a}_{\text{steered}} = \mathbf{a}_{\text{original}} + \gamma \mathbf{d}_{\text{target}}$$.
 *   **Conditional Steering:** Modifying the feature only under specific input conditions to test context-dependent causal effects.
 
