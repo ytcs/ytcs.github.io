@@ -87,7 +87,7 @@ Induction heads stand as a compelling and illuminating example of a non-trivial,
 
 This discovery has been pivotal in advancing the field of mechanistic interpretability. It serves as a powerful proof-of-concept that we can, with rigorous analysis and the right conceptual tools, move beyond mere performance evaluation to achieve a detailed, mechanistic understanding of the internal algorithms learned by these complex computational systems. The elucidation of induction heads has not only provided a concrete answer to how Transformers might perform a basic form of ICL but has also laid groundwork and provided inspiration for uncovering further circuits and computational mechanisms within neural networks.
 
-The next installment, [Part 8 - Advanced Mechanistic Interpretability: Circuit Tracing and Insights from SOTA Models]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %}), will explore cutting-edge methodologies like Circuit Tracing and discuss the application of these interpretability techniques to State-of-the-Art models, pushing the boundaries of our understanding of the most complex AI systems.
+The next installment, [Part 8 - Circuit Tracing and Insights from SOTA Models]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %}), will explore cutting-edge methodologies like Circuit Tracing and discuss the application of these interpretability techniques to State-of-the-Art models, pushing the boundaries of our understanding of the most complex AI systems.
 
 ---
 

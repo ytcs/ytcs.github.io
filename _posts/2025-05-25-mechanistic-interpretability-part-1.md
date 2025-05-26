@@ -87,7 +87,7 @@ The subsequent parts of this series will delve deeper into the challenges and br
 -   **[Part 5]({% post_url 2025-05-25-mechanistic-interpretability-part-5 %})**: Validating Learned Features and Circuits – Rigorous methodologies for ensuring our interpretations are grounded in robust evidence.
 -   **[Part 6]({% post_url 2025-05-25-mechanistic-interpretability-part-6 %})**: Neural Network Circuits: Taxonomy and Attention Patterns – A comprehensive exploration of circuit types and specialized attention mechanisms in Transformers.
 -   **[Part 7]({% post_url 2025-05-25-mechanistic-interpretability-part-7 %})**: Induction Heads: The Mechanics of In-Context Learning – Detailed analysis of the remarkable circuits that enable Transformers to learn from context examples.
--   **[Part 8]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %})**: Advanced Mechanistic Interpretability: Circuit Tracing and Insights from SOTA Models – Exploring cutting-edge methods and their application to state-of-the-art AI systems.
+-   **[Part 8]({% post_url 2025-05-25-mechanistic-interpretability-part-8 %})**: Circuit Tracing and Insights from SOTA Models – Exploring cutting-edge methods and their application to state-of-the-art AI systems.
 
 ---
 

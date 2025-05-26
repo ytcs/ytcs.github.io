@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Mechanistic Interpretability: Part 8 - Advanced Mechanistic Interpretability: Circuit Tracing and Insights from SOTA Models"
+title: "Mechanistic Interpretability: Part 8 - Circuit Tracing and Insights from SOTA Models"
 categories: machine-learning
 date: 2025-05-25
 ---
