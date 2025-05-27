@@ -8,8 +8,8 @@ baseurl: ""
 
 # Background music settings
 background_music:
-  youtube_video_id: "3yaab2_EEHM"  
-  start_timestamp: 89  # Start playing from 30 seconds into the video
+  youtube_video_id: "I7Rq_OgBZSc"  
+  start_timestamp: 0  # Start playing from 30 seconds into the video
   enabled: true
 
 # Lava lamp background effect settings
