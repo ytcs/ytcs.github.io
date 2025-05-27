@@ -95,6 +95,24 @@
 
     {%- include footer.html -%}
 
+    <!-- Theme Toggle Controls -->
+    <div class="theme-toggle-container">
+      <div class="toggle-row">
+        <label class="toggle-switch">
+          <input type="checkbox" id="dark-mode-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <label for="dark-mode-toggle">Dark</label>
+      </div>
+      <div class="toggle-row">
+        <label class="toggle-switch">
+          <input type="checkbox" id="lava-lamp-toggle">
+          <span class="toggle-slider"></span>
+        </label>
+        <label for="lava-lamp-toggle">Lava</label>
+      </div>
+    </div>
+
     <script>
       function filterPosts(category) {
         const posts = document.querySelectorAll('.post-list li');
@@ -185,6 +203,7 @@
     
     <script src="{{ '/assets/js/youtube-audio-player.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/lava-lamp.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/theme-toggle.js' | relative_url }}"></script>
   </body>
 
 </html> 

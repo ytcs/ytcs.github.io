@@ -10,5 +10,38 @@
     {%- include google-analytics.html -%}
   {%- endif -%}
 
+  <!-- Detect system preference for dark mode -->
+  <script>
+    // Check for system color scheme preference and set initial dark mode
+    function setInitialColorScheme() {
+      // Helper function to get cookie
+      function getCookie(name) {
+        const cookieName = name + "=";
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i].trim();
+          if (cookie.indexOf(cookieName) === 0) {
+            return cookie.substring(cookieName.length, cookie.length);
+          }
+        }
+        return "";
+      }
+      
+      // Check both localStorage and cookies
+      const darkModeLS = localStorage.getItem('darkMode');
+      const darkModeCookie = getCookie('darkMode');
+      
+      if (darkModeLS === 'true' || darkModeCookie === 'true') {
+        document.body.classList.add('dark-mode');
+      } else if (darkModeLS === null && darkModeCookie === "" && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // If no preference set but system prefers dark mode
+        document.body.classList.add('dark-mode');
+      }
+    }
+    
+    // Run immediately to prevent flash of wrong theme
+    setInitialColorScheme();
+  </script>
+
   <script src="{{ "/assets/js/image-modal.js" | relative_url }}" defer></script>
 </head> 
