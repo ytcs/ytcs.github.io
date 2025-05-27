@@ -14,6 +14,7 @@ function initFloatingControlsVisibility() {
     // Set initial state
     floatingControls.forEach(control => {
         control.classList.add('control-visible');
+        control.classList.remove('control-hidden');
         control.dataset.visible = 'true';
     });
     
@@ -48,7 +49,7 @@ function initFloatingControlsVisibility() {
     
     // Check if mouse is near the corners or edges
     function isMouseNearEdge(x, y) {
-        const edgeThreshold = 50; // pixels from edge
+        const edgeThreshold = 70; // pixels from edge (increased for better detection)
         const width = window.innerWidth;
         const height = window.innerHeight;
         
@@ -68,7 +69,7 @@ function initFloatingControlsVisibility() {
         } else {
             // If mouse is directly over a control, don't hide it
             const isOverControl = floatingControls.some(control => 
-                control.matches(':hover')
+                control && control.contains && control.contains(document.elementFromPoint(e.clientX, e.clientY))
             );
             
             if (!isOverControl) {
@@ -79,11 +80,13 @@ function initFloatingControlsVisibility() {
         }
     });
     
-    // Start the initial timer
+    // Initial hide after delay
     timeout = setTimeout(hideControls, visibilityDelay);
     
     // Handle hovering over controls
     floatingControls.forEach(control => {
+        if (!control) return;
+        
         control.addEventListener('mouseenter', function() {
             clearTimeout(timeout);
             showControls();
@@ -101,4 +104,9 @@ function initFloatingControlsVisibility() {
             }
         });
     });
+    
+    // Make sure controls appear when scrolling
+    document.addEventListener('scroll', function() {
+        showControls();
+    }, { passive: true });
 } 
