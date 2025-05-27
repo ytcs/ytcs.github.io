@@ -15,10 +15,8 @@
 
     {% if site.background_music.enabled %}
     <div class="music-controls">
-      <button id="music-toggle" class="music-toggle-btn">Play Music</button>
-      <div class="volume-container">
-        <input type="range" id="volume-control" min="0" max="100" step="1" class="volume-slider">
-      </div>
+      <button id="music-toggle" class="music-btn">▶</button>
+      <button id="mute-toggle" class="music-btn">🔊</button>
     </div>
     {% endif %}
 
@@ -129,62 +127,33 @@
         bottom: 20px;
         right: 20px;
         z-index: 1000;
-        background-color: rgba(74, 74, 74, 0.7);
-        padding: 10px;
+        background-color: rgba(74, 74, 74, 0.5);
+        padding: 8px;
         border-radius: 5px;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 8px;
+        gap: 12px;
       }
       
-      .music-toggle-btn {
-        padding: 8px 12px;
-        background-color: #4a4a4a;
+      .music-btn {
+        background: none;
         color: white;
         border: none;
-        border-radius: 4px;
         cursor: pointer;
         opacity: 0.9;
         transition: opacity 0.3s;
-        width: 100%;
+        font-size: 18px;
+        padding: 0;
+        min-width: 24px;
+        min-height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       
-      .music-toggle-btn:hover {
+      .music-btn:hover {
         opacity: 1;
-      }
-      
-      .volume-container {
-        width: 100%;
-      }
-      
-      .volume-slider {
-        width: 100%;
-        height: 5px;
-        -webkit-appearance: none;
-        appearance: none;
-        background: #d3d3d3;
-        outline: none;
-        border-radius: 5px;
-      }
-      
-      .volume-slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: white;
-        cursor: pointer;
-      }
-      
-      .volume-slider::-moz-range-thumb {
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: white;
-        cursor: pointer;
-        border: none;
       }
     </style>
     
