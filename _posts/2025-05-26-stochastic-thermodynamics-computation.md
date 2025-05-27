@@ -162,34 +162,34 @@ Let $$X$$ be a random variable with probability distribution $$p(x)$$.
 
 *   **Shannon Entropy**: As introduced earlier, the Shannon entropy measures the uncertainty or average information content associated with the random variable $$X$$:
     
-$$ S(X) = S(p) = - \sum_x p(x) \ln p(x) $$
+    $$ S(X) = S(p) = - \sum_x p(x) \ln p(x) $$
 
     It quantifies the number of bits (if using log base 2) needed on average to describe the outcome of $$X$$.
 
 *   **Joint Entropy**: For two random variables $$X$$ and $$Y$$ with joint distribution $$p(x,y)$$, the joint entropy is:
     
-$$ S(X,Y) = - \sum_{x,y} p(x,y) \ln p(x,y) $$
+    $$ S(X,Y) = - \sum_{x,y} p(x,y) \ln p(x,y) $$
 
 
 *   **Conditional Entropy**: The entropy of $$X$$ given $$Y$$ is:
     
-$$ S(X\vert Y) = S(X,Y) - S(Y) = - \sum_{x,y} p(x,y) \ln p(x\vert Y) $$
+    $$ S(X\vert Y) = S(X,Y) - S(Y) = - \sum_{x,y} p(x,y) \ln p(x\vert Y) $$
 
     It measures the remaining uncertainty in $$X$$ when $$Y$$ is known.
 
 *   **Kullback-Leibler (KL) Divergence**: Also known as relative entropy, the KL divergence measures the dissimilarity between two probability distributions $$p(x)$$ and $$q(x)$$ over the same variable $$X$$:
     
-$$ D(p \vert\vert q) = \sum_x p(x) \ln \frac{p(x)}{q(x)} $$
+    $$ D(p \vert\vert q) = \sum_x p(x) \ln \frac{p(x)}{q(x)} $$
 
     It is always non-negative ($$D(p\vert\vert q) \ge 0$$) and equals zero if and only if $$p=q$$. Note that it is not symmetric, i.e., $$D(p\vert\vert q) \neq D(q\vert\vert p)$$ in general.
 
 *   **Mutual Information**: This quantity measures the amount of information that one random variable contains about another. For variables $$X$$ and $$Y$$, it is defined as:
     
-$$ I(X;Y) = S(X) - S(X\vert Y) = S(Y) - S(Y\vert x) = S(X) + S(Y) - S(X,Y) $$
+    $$ I(X;Y) = S(X) - S(X\vert Y) = S(Y) - S(Y\vert x) = S(X) + S(Y) - S(X,Y) $$
 
     It can also be expressed using KL divergence:
     
-$$ I(X;Y) = D(p(x,y) \vert\vert p(x)p(y)) $$
+    $$ I(X;Y) = D(p(x,y) \vert\vert p(x)p(y)) $$
 
     Mutual information is non-negative and symmetric. It quantifies the reduction in uncertainty about $$X$$ due to knowing $$Y$$, or vice-versa, and also measures the degree of statistical dependence between $$X$$ and $$Y$$.
 
