@@ -134,54 +134,46 @@ The takeaway is this: as long as new contextual features bring at least *some* n
 
 ## Connecting to Hallucination Probability
 
-So, we've seen that more information ($$N$$) tends to make the logits less spread out (lower variance), assuming the information isn't perfectly redundant. How does this connect to the model's certainty and potential for hallucination? We can use a concentration inequality to make this link clearer.
+We focus on the common scenario of **partially correlated features** ($$0 < \bar{\rho}_{eff} < 1$$) to see how increasing context richness ($$N$$) can lead to a flatter softmax distribution, potentially increasing hallucination. Recall that $$\bar{\rho}_{eff}$$ is the effective average correlation influencing logit differences.
 
-1.  **Focus on Logit Differences:** Instead of looking at individual logits $$L_i^{(N)}$$, let's look at the difference between any two of them, which also depends on $$N$$: $$D_{ij}^{(N)} = L_i^{(N)} - L_j^{(N)}$$. Since we assumed individual influences $$\mathbf{p}_k$$ have zero mean, so do our final logits $$L_i^{(N)}$$. Thus, the expected difference is also zero: $$\mathbb{E}[D_{ij}^{(N)}] = 0$$.
+1.  **Focus on Logit Differences:** We consider the difference between any two logits, $$D_{ij}^{(N)} = L_i^{(N)} - L_j^{(N)}$$, with $$\mathbb{E}[D_{ij}^{(N)}] = 0$$.
 
-2.  **Variance of Logit Differences:** The variance of this difference, which we denote as $$\sigma_{D_{ij}}^2(N)$$ to explicitly show its dependence on $$N$$, is given by the standard formula:
+2.  **Variance of Logit Differences:**
+    As established, for partially correlated features, the variance of logit differences, $$\sigma_{D_{ij}}^2(N)$$, scales with $$N$$ as:
+    $$ \sigma_{D_{ij}}^2(N) \approx \frac{C_2}{N} + C_1 $$
+    where $$C_1 = K_{D,ij} \bar{\rho}_{eff} > 0$$ is a constant floor approached for very large $$N$$, and $$C_2 = K_{D,ij} (1 - \bar{\rho}_{eff}) > 0$$ governs the decay. As $$N$$ increases, $$\sigma_{D_{ij}}^2(N)$$ decreases towards $$C_1$$.
 
-    $$
-    \sigma_{D_{ij}}^2(N) = \mathrm{Var}(L_i^{(N)}) + \mathrm{Var}(L_j^{(N)}) - 2\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})
-    $$
+3.  **Chebyshev's Inequality:**
+    For the logit difference $$D_{ij}^{(N)}$$, Chebyshev's inequality states that for any threshold $$\epsilon > 0$$:
+    $$ P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \le \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2} \approx \frac{1}{\epsilon^2} \left( \frac{C_2}{N} + C_1 \right) $$
+    As $$N$$ increases, this upper bound on the probability of logit differences being large decreases from $$ (C_1+C_2)/\epsilon^2$$ (for N=1) towards $$C_1/\epsilon^2$$.
 
-    These terms $$\mathrm{Var}(L_i^{(N)})$$ and $$\mathrm{Cov}(L_i^{(N)}, L_j^{(N)})$$ are just the diagonal and off-diagonal entries of the overall logit covariance matrix $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ (which itself depends on $$N$$) we found earlier:
+4.  **Probability of Logits Being Close:**
+    Consequently, the probability that two logits are *close* to each other (within $$\epsilon$$) has a lower bound:
+    $$ P\left(|D_{ij}^{(N)}| < \epsilon\right) = 1 - P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \gtrsim 1 - \frac{1}{\epsilon^2} \left( \frac{C_2}{N} + C_1 \right) $$
+    For this lower bound to be meaningful (e.g., > 0), we need $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$. As $$N$$ increases, this lower bound increases, approaching $$1 - C_1/\epsilon^2$$ (assuming $$\epsilon^2 > C_1$$).
 
-    $$
-    \mathbf{\Sigma}_{\mathbf{L}^{(N)}} = \frac{1}{N^2} \left( N \mathbf{\Sigma}_p + \sum_{k \neq l} \mathbf{C}_{kl} \right)
-    $$
+5.  **Implication of Decreasing Variance with N:**
+    As $$N$$ (context richness) increases, $$\sigma_{D_{ij}}^2(N)$$ decreases towards $$C_1$$ due to the $$\frac{C_2}{N}$$ term. If $$\epsilon$$ is chosen appropriately (e.g., $$\epsilon^2 > C_1$$ and initially $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$), the lower bound for $$P\left(|D_{ij}^{(N)}| < \epsilon\right)$$ increases. This signifies an increased probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are numerically close to each other as $$N$$ grows (up to a point dictated by $$C_1$$).
 
-    As $$N$$ increases, the $$1/N^2$$ factor (and the $$N/N^2 = 1/N$$ factor for the first term) generally causes the elements of $$\mathbf{\Sigma}_{\mathbf{L}^{(N)}}$$ to decrease (or approach a floor if $$\bar{\rho}$$ is large and positive). Consequently, $$\sigma_{D_{ij}}^2(N)$$, the variance of the difference between any two logits, will also tend to decrease with $$N$$.
+6.  **Flatness of Final Distribution:**
+    When most pairs of logits are very close, their resulting softmax probabilities also become similar. The ratio is $$p_i / p_j = \exp(D_{ij}^{(N)})$$. If $$D_{ij}^{(N)}$$ is small (close to zero), which becomes more probable as $$N$$ increases (as $$P\left(|D_{ij}^{(N)}| < \epsilon\right)$$ increases), then $$\exp(D_{ij}^{(N)}) \approx \exp(0) = 1$$, meaning $$p_i \approx p_j$$. If this occurs for many pairs $$(i,j)$$ due to increasing $$N$$, the entire probability distribution $$p_1, \dots, p_V$$ becomes flatter (more uniform), though this flattening effect saturates as $$\sigma_{D_{ij}}^2(N)$$ approaches its floor $$C_1$$.
 
-3.  **Applying Chebyshev's Inequality:** Now for the concentration part, we can use [Chebyshev's inequality](https://en.wikipedia.org/wiki/Chebyshev%27s_inequality). For our N-dependent logit difference $$D_{ij}^{(N)}$$ (with mean 0 and variance $$\sigma_{D_{ij}}^2(N)$$), it states that for any threshold $$\epsilon > 0$$:
+    To quantify this flattening more directly, we can consider the expected Chi-Squared distance, $$\mathbb{E}[\chi^2(P,U)]$$, between the model's softmax output distribution $$P=(p_1, \dots, p_V)$$ and a perfectly uniform distribution $$U=(1/V, \dots, 1/V)$$. When the logits $$L_k^{(N)}$$ are relatively small (which occurs when their variance is small, as for large $$N$$), we can approximate $$p_k(N) - 1/V \approx (L_k^{(N)} - \bar{L}^{(N)})/V$$. This leads to:
+    
+    $$ \chi^2(P,U) = V \sum_{k=1}^V (p_k - 1/V)^2 \approx V \sum_{k=1}^V \left( \frac{L_k^{(N)} - \bar{L}^{(N)}}{V} \right)^2 = \mathrm{Var}_k(L_k^{(N)}) $$
+    
+    Thus, the expected deviation from a uniform distribution scales with the expected variance of the logits themselves:
+    
+    $$ \mathbb{E}[\chi^2(P,U)] \approx \mathbb{E}[\mathrm{Var}_k(L_k^{(N)})] = V_p \left( \frac{1 - \bar{\rho}}{N} + \bar{\rho} \right) $$
+    
+    For the partially correlated case ($$0 < \bar{\rho} < 1$$), this means:
+    
+    $$ \mathbb{E}[\chi^2(P,U)] \approx \frac{V_p(1-\bar{\rho})}{N} + V_p\bar{\rho} $$
+    
+    A smaller $$\mathbb{E}[\chi^2(P,U)]$$ indicates that $$P$$ is closer to uniform (flatter). As $$N$$ increases, this value decreases (if $$\bar{\rho} < 1$$), signifying a flatter distribution and thus higher model uncertainty, approaching a limit set by $$V_p\bar{\rho}$$.
 
-    $$
-    P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \le \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
-    $$
-
-    This tells us the probability that the absolute difference between two logits is *large* (at least $$\epsilon$$) is small if their N-dependent variance $$\sigma_{D_{ij}}^2(N)$$ is small compared to $$\epsilon^2$$.
-
-4.  **Probability of Logits Being Close:** We can flip this around to say something about the probability that two logits are *close* to each other, again highlighting the N-dependence:
-
-    $$
-    P\left(|D_{ij}^{(N)}| < \epsilon\right) = 1 - P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \ge 1 - \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2}
-    $$
-
-    For this lower bound to be meaningful (i.e., greater than 0), we need our chosen threshold $$\epsilon$$ to be such that $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$.
-
-5.  **Implication of Decreasing Variance with N:** Here's the punchline: as $$N$$ (context richness) increases, we've argued that $$\sigma_{D_{ij}}^2(N)$$ (the variance of logit differences) tends to decrease. If $$\sigma_{D_{ij}}^2(N)$$ decreases enough as $$N$$ grows, we can pick a small $$\epsilon$$ such that the condition $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$ holds. In this situation, the lower bound $$1 - \sigma_{D_{ij}}^2(N)/\epsilon^2$$ gets closer to 1. This means that as context richness $$N$$ grows, the probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are very close to each other (within $$\epsilon$$) *increases*. The strength of this increase is tied to how quickly $$\sigma_{D_{ij}}^2(N)$$ diminishes with $$N$$.
-
-6.  **Link to Softmax Flatness (N-dependent):** When most pairs of logits are very close, their resulting softmax probabilities also become similar. Remember, the ratio of two probabilities in the softmax output is $$p_i / p_j = \exp(L_i^{(N)} - L_j^{(N)}) = \exp(D_{ij}^{(N)})$$. If $$D_{ij}^{(N)}$$ is small (close to zero), which becomes more probable as $$N$$ increases (because its variance $$\sigma_{D_{ij}}^2(N)$$ decreases), then $$\exp(D_{ij}^{(N)})$$ is close to $$\exp(0) = 1$$, meaning $$p_i \approx p_j$$. If this happens for many pairs of vocabulary items $$i$$ and $$j$$ due to increasing $$N$$, the whole probability distribution $$p_1, \dots, p_V$$ becomes flatter, or more uniform.
-
-This concentration argument shows that more (not perfectly redundant) information (larger $$N$$) leads to less spread-out logits (lower $$\sigma_{D_{ij}}^2(N)$$), which in turn means a higher chance that logits are numerically close, leading to a flatter softmax probability distribution. The scaling with $$N$$ is primarily driven by how $$\sigma_{D_{ij}}^2(N)$$ decreases, which is influenced by the $$ (1 - \bar{\rho})/N + \bar{\rho} $$ term in the variance of the logits themselves.
-
-## Link to Hallucination
-
-Now, let's directly connect this to hallucination. A lower variance among logit values, leading to those logits being more similar to each other, has a crucial consequence for the softmax probability distribution used to pick the next token:
-
-*   **Flatter Distribution:** As we just saw, similar logit values result in a more uniform (flatter) probability distribution over the entire vocabulary. The model becomes less "opinionated" about which word should come next.
-*   **Increased Entropy:** A flatter probability distribution inherently has higher Shannon entropy ($$H = -\sum p_i \log p_i$$). Higher entropy signifies greater uncertainty from the model's perspective.
-
-This state of increased uncertainty—where the model is less "peaked" or confident in any particular next token choice—is what we hypothesize increases the likelihood of it sampling less coherent, factually ungrounded, or simply nonsensical tokens. These are the hallmarks of hallucination. By applying the $$1/N$$ scaling to many contextual signals (especially if their average correlation $$\bar{\rho}$$ is low, meaning they are diverse), the model might "average out" strong individual signals, leaving it in a muddled, uncertain state where it's easier to pick a "wrong" path.
+This argument shows that for partially correlated features, increasing context richness ($$N$$) causes the variance of logit differences to decrease (due to the $$\sim C_2/N$$ term), increasing the likelihood of logits being numerically close. This, in turn, leads to a flatter softmax probability distribution, indicating higher model uncertainty, although the extent of this flattening is limited by the non-zero correlation (via $$C_1$$).
 
 ## Conclusion
 
