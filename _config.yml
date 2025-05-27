@@ -6,6 +6,12 @@ description: Personal site of To Chin Yu
 url: "https://ytcs.github.io"
 baseurl: ""
 
+# Background music settings
+background_music:
+  youtube_video_id: "3yaab2_EEHM"  # lofi hip hop radio - beats to relax/study to
+  start_timestamp: 88  # Start playing from 30 seconds into the video
+  enabled: true
+
 # Build settings
 markdown: kramdown
 plugins:

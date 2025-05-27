@@ -7,6 +7,21 @@
 
     {%- include header.html -%}
 
+    <!-- YouTube Background Music Player (hidden) -->
+    <div id="youtube-container" 
+         data-video-id="{{ site.background_music.youtube_video_id }}" 
+         data-start-time="{{ site.background_music.start_timestamp | default: 0 }}" 
+         style="position: absolute; top: -9999px; left: -9999px;"></div>
+
+    {% if site.background_music.enabled %}
+    <div class="music-controls">
+      <button id="music-toggle" class="music-toggle-btn">Play Music</button>
+      <div class="volume-container">
+        <input type="range" id="volume-control" min="0" max="100" step="1" class="volume-slider">
+      </div>
+    </div>
+    {% endif %}
+
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
         {%- if page.layout == 'home' or page.url == '/' -%}
@@ -28,9 +43,9 @@
             {%- if categories.size > 0 -%}
             <div class="category-filter" style="margin-bottom: 20px;">
               <span style="font-size: 0.9em; font-weight: bold;">Filter by category:</span>
-              <a href="javascript:void(0);" class="category-link active" onclick="filterPosts('all')" style="font-size: 0.8em; margin-left: 5px;">All</a>
+              <a href="javascript:void(0);" class="category-link active" data-category="all" style="font-size: 0.8em; margin-left: 5px;">All</a>
               {%- for category in categories -%}
-                <a href="javascript:void(0);" class="category-link" onclick='filterPosts("{{ category | join: "" | slugify | escape }}")' style="font-size: 0.8em; margin-left: 5px;">{{ category | join: "" | escape }}</a>
+                <a href="javascript:void(0);" class="category-link" data-category="{{ category | join: '' | slugify | escape }}" style="font-size: 0.8em; margin-left: 5px;">{{ category | join: "" | escape }}</a>
               {%- endfor -%}
             </div>
             {%- endif -%}
@@ -79,7 +94,7 @@
         
         links.forEach(link => {
           link.classList.remove('active');
-          if (link.getAttribute('onclick') === `filterPosts('${category}')`) {
+          if (link.getAttribute('data-category') === category) {
             link.classList.add('active');
           }
         });
@@ -93,13 +108,87 @@
           }
         });
       }
+
+      // Add event listeners to category links
+      document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.category-link').forEach(link => {
+          link.addEventListener('click', function() {
+            filterPosts(this.getAttribute('data-category'));
+          });
+        });
+      });
     </script>
     <style>
       .category-link.active {
         font-weight: bold;
         text-decoration: underline;
       }
+      
+      .music-controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: rgba(74, 74, 74, 0.7);
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .music-toggle-btn {
+        padding: 8px 12px;
+        background-color: #4a4a4a;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.9;
+        transition: opacity 0.3s;
+        width: 100%;
+      }
+      
+      .music-toggle-btn:hover {
+        opacity: 1;
+      }
+      
+      .volume-container {
+        width: 100%;
+      }
+      
+      .volume-slider {
+        width: 100%;
+        height: 5px;
+        -webkit-appearance: none;
+        appearance: none;
+        background: #d3d3d3;
+        outline: none;
+        border-radius: 5px;
+      }
+      
+      .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+      }
+      
+      .volume-slider::-moz-range-thumb {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: white;
+        cursor: pointer;
+        border: none;
+      }
     </style>
+    
+    <script src="{{ '/assets/js/youtube-audio-player.js' | relative_url }}"></script>
   </body>
 
 </html> 
