@@ -514,6 +514,96 @@ blockquote {
   }
 }
 
+/* Table of Contents */
+.post-toc-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.post-toc {
+  position: sticky;
+  top: 20px;
+  background-color: var(--background-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  max-width: 250px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: block;
+  float: left;
+  margin-right: 2rem;
+}
+
+.toc-header {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-weight: 600;
+  margin-bottom: 0.7rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--primary-color);
+}
+
+.toc-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.toc-list ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin-top: 0.3rem;
+}
+
+.toc-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.toc-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.toc-link:hover {
+  color: var(--accent-color);
+}
+
+.toc-link.active {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+/* On narrow screens, make TOC horizontal at the top */
+@media (max-width: 1024px) {
+  .post-toc {
+    float: none;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 2rem;
+    position: relative;
+    top: 0;
+  }
+  
+  .post-content {
+    clear: both;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
 /* Print styles */
 @media print {
   .site-header,
