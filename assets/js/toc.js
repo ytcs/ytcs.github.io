@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const tocContainer = document.querySelector('.post-toc-container');
+    
+    // Check if there's a post content and TOC container before proceeding
+    if (!document.querySelector('.post-content') || !tocContainer) return;
+    
+    // Try to generate TOC, if no headings are found it will hide the TOC container
     generateTableOfContents();
     setupTOCScrollSpy();
 });
@@ -9,15 +15,19 @@ function generateTableOfContents() {
     if (!postContent) return;
 
     const headings = postContent.querySelectorAll('h2, h3, h4');
-    if (headings.length === 0) {
-        document.querySelector('.post-toc-container')?.classList.add('hidden');
+    const tocContainer = document.querySelector('.post-toc-container');
+    
+    // If no headings or no TOC container, hide TOC and exit
+    if (headings.length === 0 || !tocContainer) {
+        if (tocContainer) {
+            tocContainer.style.display = 'none';
+        }
         return;
     }
+    
+    // Ensure TOC is visible if we found headings
+    tocContainer.style.display = 'block';
 
-    const tocContainer = document.getElementById('table-of-contents');
-    if (!tocContainer) return;
-
-    // Create the list
     const tocList = document.createElement('ul');
     tocList.className = 'toc-list';
     
@@ -69,7 +79,11 @@ function generateTableOfContents() {
         currentList.appendChild(listItem);
     });
     
-    tocContainer.appendChild(tocList);
+    const tableOfContents = document.getElementById('table-of-contents');
+    if (tableOfContents) {
+        tableOfContents.innerHTML = ''; // Clear any existing content
+        tableOfContents.appendChild(tocList);
+    }
 }
 
 function setupTOCScrollSpy() {
@@ -77,6 +91,7 @@ function setupTOCScrollSpy() {
     if (headings.length === 0) return;
     
     const tocLinks = document.querySelectorAll('.toc-link');
+    if (tocLinks.length === 0) return; // No TOC links, so no need to set up scroll spy
     
     // Offset for highlighting (slightly before the heading)
     const offset = 100;
