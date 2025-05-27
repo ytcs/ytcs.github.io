@@ -1,7 +1,6 @@
 // YouTube IFrame API player
 let player;
 let isPlayerReady = false;
-let lastVolumeBeforeMute = 30; // Store the volume level before muting
 
 // Load YouTube IFrame API
 function loadYouTubeAPI() {
@@ -58,15 +57,7 @@ function onPlayerReady(event) {
     
     // Set default volume (30%)
     const defaultVolume = 30;
-    
-    // Get saved values from session storage
-    const wasMuted = sessionStorage.getItem('youtubePlayerMuted') === 'true';
-    const savedVolume = parseInt(sessionStorage.getItem('youtubeVolume') || defaultVolume);
-    lastVolumeBeforeMute = wasMuted ? savedVolume : defaultVolume;
-    
-    // Set volume based on saved values
-    player.setVolume(wasMuted ? 0 : savedVolume);
-    updateMuteButton(wasMuted);
+    player.setVolume(defaultVolume);
     
     // Check if music was playing before page navigation
     if (sessionStorage.getItem('youtubePlayerPlaying') === 'true') {
@@ -107,13 +98,6 @@ function updateToggleButton(text) {
     }
 }
 
-function updateMuteButton(isMuted) {
-    const muteToggle = document.getElementById('mute-toggle');
-    if (muteToggle) {
-        muteToggle.textContent = isMuted ? '🔇' : '🔊';
-    }
-}
-
 function togglePlayback() {
     if (!isPlayerReady) return;
     
@@ -125,35 +109,12 @@ function togglePlayback() {
     }
 }
 
-function toggleMute() {
-    if (!isPlayerReady) return;
-    
-    const currentVolume = player.getVolume();
-    const isMuted = currentVolume === 0;
-    
-    if (isMuted) {
-        // Unmute - restore previous volume
-        player.setVolume(lastVolumeBeforeMute);
-        sessionStorage.setItem('youtubeVolume', lastVolumeBeforeMute);
-        sessionStorage.setItem('youtubePlayerMuted', false);
-    } else {
-        // Mute - save current volume first
-        lastVolumeBeforeMute = currentVolume;
-        player.setVolume(0);
-        sessionStorage.setItem('youtubeVolume', lastVolumeBeforeMute);
-        sessionStorage.setItem('youtubePlayerMuted', true);
-    }
-    
-    updateMuteButton(!isMuted);
-}
-
 // Save player state before navigating away
 function savePlayerState() {
     if (!isPlayerReady) return;
     
     sessionStorage.setItem('youtubePlayerPlaying', player.getPlayerState() === YT.PlayerState.PLAYING);
     sessionStorage.setItem('youtubePlayerTime', player.getCurrentTime());
-    // Mute state and volume are saved when they change
 }
 
 // Initialize when document is ready
@@ -165,13 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (musicToggle) {
         musicToggle.addEventListener('click', togglePlayback);
         musicToggle.textContent = '▶';
-    }
-    
-    // Add mute button event listener
-    const muteToggle = document.getElementById('mute-toggle');
-    if (muteToggle) {
-        muteToggle.addEventListener('click', toggleMute);
-        // Initial state will be set in onPlayerReady
     }
     
     // Save state before navigating away
