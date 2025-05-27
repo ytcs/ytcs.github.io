@@ -12,6 +12,19 @@ background_music:
   start_timestamp: 89  # Start playing from 30 seconds into the video
   enabled: true
 
+# Lava lamp background effect settings
+lava_lamp:
+  enabled: true
+  num_blobs: 6
+  opacity: 0.4
+  colors:
+    - "#C5B4E3" # Soft lavender
+    - "#B4E3C5" # Pastel mint
+    - "#E3C5B4" # Soft peach
+    - "#B4C5E3" # Pastel sky blue
+    - "#E3B4C5" # Soft rose
+    - "#D0E3B4" # Pastel lime
+
 # Build settings
 markdown: kramdown
 plugins:

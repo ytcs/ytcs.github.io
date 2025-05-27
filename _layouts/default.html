@@ -3,7 +3,12 @@
 
   {%- include head.html -%}
 
-  <body>
+  <body {% if site.lava_lamp.enabled != true %}data-lava-lamp="disabled"{% endif %}
+        {% if site.lava_lamp.enabled %}
+        data-lava-num-blobs="{{ site.lava_lamp.num_blobs }}"
+        data-lava-opacity="{{ site.lava_lamp.opacity }}"
+        data-lava-colors='{{ site.lava_lamp.colors | jsonify }}'
+        {% endif %}>
 
     {%- include header.html -%}
 
@@ -179,6 +184,7 @@
     </style>
     
     <script src="{{ '/assets/js/youtube-audio-player.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/lava-lamp.js' | relative_url }}"></script>
   </body>
 
 </html> 
