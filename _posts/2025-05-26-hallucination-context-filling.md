@@ -132,46 +132,25 @@ This final equation is quite revealing. It tells us how the expected variance (o
 
 The takeaway is this: as long as new contextual features bring at least *some* new, uncorrelated influence ($$\bar{\rho} < 1$$), our $$1/N$$ scaling mechanism will cause the expected variance of the logits to decrease as context richness $$N$$ grows.
 
-## Connecting to Hallucination Probability
+## Quantifying Flatness of Final Distribution
 
 We focus on the common scenario of **partially correlated features** ($$0 < \bar{\rho}_{eff} < 1$$) to see how increasing context richness ($$N$$) can lead to a flatter softmax distribution, potentially increasing hallucination. Recall that $$\bar{\rho}_{eff}$$ is the effective average correlation influencing logit differences.
 
-1.  **Focus on Logit Differences:** We consider the difference between any two logits, $$D_{ij}^{(N)} = L_i^{(N)} - L_j^{(N)}$$, with $$\mathbb{E}[D_{ij}^{(N)}] = 0$$.
+To quantify this flattening more directly, we can consider the expected Chi-Squared distance, $$\mathbb{E}[\chi^2(P,U)]$$, between the model's softmax output distribution $$P=(p_1, \dots, p_V)$$ and a perfectly uniform distribution $$U=(1/V, \dots, 1/V)$$. 
 
-2.  **Variance of Logit Differences:**
-    As established, for partially correlated features, the variance of logit differences, $$\sigma_{D_{ij}}^2(N)$$, scales with $$N$$ as:
-    $$ \sigma_{D_{ij}}^2(N) \approx \frac{C_2}{N} + C_1 $$
-    where $$C_1 = K_{D,ij} \bar{\rho}_{eff} > 0$$ is a constant floor approached for very large $$N$$, and $$C_2 = K_{D,ij} (1 - \bar{\rho}_{eff}) > 0$$ governs the decay. As $$N$$ increases, $$\sigma_{D_{ij}}^2(N)$$ decreases towards $$C_1$$.
+When the logits $$L_k^{(N)}$$ are relatively small (which occurs when their variance is small, as for large $$N$$), we can approximate $$p_k(N) - 1/V \approx (L_k^{(N)} - \bar{L}^{(N)})/V$$. This leads to:
 
-3.  **Chebyshev's Inequality:**
-    For the logit difference $$D_{ij}^{(N)}$$, Chebyshev's inequality states that for any threshold $$\epsilon > 0$$:
-    $$ P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \le \frac{\sigma_{D_{ij}}^2(N)}{\epsilon^2} \approx \frac{1}{\epsilon^2} \left( \frac{C_2}{N} + C_1 \right) $$
-    As $$N$$ increases, this upper bound on the probability of logit differences being large decreases from $$ (C_1+C_2)/\epsilon^2$$ (for N=1) towards $$C_1/\epsilon^2$$.
+$$ \chi^2(P,U) = V \sum_{k=1}^V (p_k - 1/V)^2 \approx V \sum_{k=1}^V \left( \frac{L_k^{(N)} - \bar{L}^{(N)}}{V} \right)^2 = \mathrm{Var}_k(L_k^{(N)}) $$
 
-4.  **Probability of Logits Being Close:**
-    Consequently, the probability that two logits are *close* to each other (within $$\epsilon$$) has a lower bound:
-    $$ P\left(|D_{ij}^{(N)}| < \epsilon\right) = 1 - P\left(|D_{ij}^{(N)}| \ge \epsilon\right) \gtrsim 1 - \frac{1}{\epsilon^2} \left( \frac{C_2}{N} + C_1 \right) $$
-    For this lower bound to be meaningful (e.g., > 0), we need $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$. As $$N$$ increases, this lower bound increases, approaching $$1 - C_1/\epsilon^2$$ (assuming $$\epsilon^2 > C_1$$).
+Thus, the expected deviation from a uniform distribution scales with the expected variance of the logits themselves:
 
-5.  **Implication of Decreasing Variance with N:**
-    As $$N$$ (context richness) increases, $$\sigma_{D_{ij}}^2(N)$$ decreases towards $$C_1$$ due to the $$\frac{C_2}{N}$$ term. If $$\epsilon$$ is chosen appropriately (e.g., $$\epsilon^2 > C_1$$ and initially $$\epsilon^2 > \sigma_{D_{ij}}^2(N)$$), the lower bound for $$P\left(|D_{ij}^{(N)}| < \epsilon\right)$$ increases. This signifies an increased probability that any two randomly chosen logits $$L_i^{(N)}$$ and $$L_j^{(N)}$$ are numerically close to each other as $$N$$ grows (up to a point dictated by $$C_1$$).
+$$ \mathbb{E}[\chi^2(P,U)] \approx \mathbb{E}[\mathrm{Var}_k(L_k^{(N)})] = V_p \left( \frac{1 - \bar{\rho}}{N} + \bar{\rho} \right) $$
 
-6.  **Flatness of Final Distribution:**
-    When most pairs of logits are very close, their resulting softmax probabilities also become similar. The ratio is $$p_i / p_j = \exp(D_{ij}^{(N)})$$. If $$D_{ij}^{(N)}$$ is small (close to zero), which becomes more probable as $$N$$ increases (as $$P\left(|D_{ij}^{(N)}| < \epsilon\right)$$ increases), then $$\exp(D_{ij}^{(N)}) \approx \exp(0) = 1$$, meaning $$p_i \approx p_j$$. If this occurs for many pairs $$(i,j)$$ due to increasing $$N$$, the entire probability distribution $$p_1, \dots, p_V$$ becomes flatter (more uniform), though this flattening effect saturates as $$\sigma_{D_{ij}}^2(N)$$ approaches its floor $$C_1$$.
+For the partially correlated case ($$0 < \bar{\rho} < 1$$), this means:
 
-    To quantify this flattening more directly, we can consider the expected Chi-Squared distance, $$\mathbb{E}[\chi^2(P,U)]$$, between the model's softmax output distribution $$P=(p_1, \dots, p_V)$$ and a perfectly uniform distribution $$U=(1/V, \dots, 1/V)$$. When the logits $$L_k^{(N)}$$ are relatively small (which occurs when their variance is small, as for large $$N$$), we can approximate $$p_k(N) - 1/V \approx (L_k^{(N)} - \bar{L}^{(N)})/V$$. This leads to:
-    
-    $$ \chi^2(P,U) = V \sum_{k=1}^V (p_k - 1/V)^2 \approx V \sum_{k=1}^V \left( \frac{L_k^{(N)} - \bar{L}^{(N)}}{V} \right)^2 = \mathrm{Var}_k(L_k^{(N)}) $$
-    
-    Thus, the expected deviation from a uniform distribution scales with the expected variance of the logits themselves:
-    
-    $$ \mathbb{E}[\chi^2(P,U)] \approx \mathbb{E}[\mathrm{Var}_k(L_k^{(N)})] = V_p \left( \frac{1 - \bar{\rho}}{N} + \bar{\rho} \right) $$
-    
-    For the partially correlated case ($$0 < \bar{\rho} < 1$$), this means:
-    
-    $$ \mathbb{E}[\chi^2(P,U)] \approx \frac{V_p(1-\bar{\rho})}{N} + V_p\bar{\rho} $$
-    
-    A smaller $$\mathbb{E}[\chi^2(P,U)]$$ indicates that $$P$$ is closer to uniform (flatter). As $$N$$ increases, this value decreases (if $$\bar{\rho} < 1$$), signifying a flatter distribution and thus higher model uncertainty, approaching a limit set by $$V_p\bar{\rho}$$.
+$$ \mathbb{E}[\chi^2(P,U)] \approx \frac{V_p(1-\bar{\rho})}{N} + V_p\bar{\rho} $$
+
+A smaller $$\mathbb{E}[\chi^2(P,U)]$$ indicates that $$P$$ is closer to uniform (flatter). As $$N$$ increases, this value decreases (if $$\bar{\rho} < 1$$), signifying a flatter distribution and thus higher model uncertainty, approaching a limit set by $$V_p\bar{\rho}$$.
 
 This argument shows that for partially correlated features, increasing context richness ($$N$$) causes the variance of logit differences to decrease (due to the $$\sim C_2/N$$ term), increasing the likelihood of logits being numerically close. This, in turn, leads to a flatter softmax probability distribution, indicating higher model uncertainty, although the extent of this flattening is limited by the non-zero correlation (via $$C_1$$).
 
