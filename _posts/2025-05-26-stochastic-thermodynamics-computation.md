@@ -1,8 +1,9 @@
 ---
+published: true
 layout: post
 title: "The Energetic Cost of Computation: A Stochastic Thermodynamics Primer"
 categories: physics
-mathjax: true
+date: 2025-05-26
 ---
 
 ## Introduction
