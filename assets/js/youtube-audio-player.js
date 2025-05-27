@@ -17,6 +17,12 @@ function onYouTubeIframeAPIReady() {
     const videoId = youtubeContainer.dataset.videoId;
     const startTime = parseInt(youtubeContainer.dataset.startTime || 0);
     
+    // Set thumbnail image if container exists
+    const thumbnailContainer = document.getElementById('youtube-thumbnail');
+    if (thumbnailContainer) {
+        thumbnailContainer.style.backgroundImage = `url(https://img.youtube.com/vi/${videoId}/mqdefault.jpg)`;
+    }
+    
     player = new YT.Player('youtube-container', {
         height: '0',
         width: '0',
@@ -66,6 +72,7 @@ function onPlayerReady(event) {
         player.seekTo(startTime, true);
         player.playVideo();
         updateToggleButton('Pause Music');
+        showThumbnail(true);
     }
 }
 
@@ -73,8 +80,17 @@ function onPlayerStateChange(event) {
     // Update play/pause button based on player state
     if (event.data === YT.PlayerState.PLAYING) {
         updateToggleButton('Pause Music');
+        showThumbnail(true);
     } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
         updateToggleButton('Play Music');
+        showThumbnail(false);
+    }
+}
+
+function showThumbnail(show) {
+    const thumbnailContainer = document.getElementById('youtube-thumbnail');
+    if (thumbnailContainer) {
+        thumbnailContainer.style.display = show ? 'block' : 'none';
     }
 }
 
