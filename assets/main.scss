@@ -95,7 +95,7 @@ a:hover {
 /* Header */
 .site-header {
   position: relative;
-  background: linear-gradient(90deg, #f9f7f1 0%, #e8e6e0 100%);
+  background: #ffffff;
   overflow: hidden;
   border-bottom: 1px solid var(--border-light);
   padding: 1rem 0;
@@ -103,12 +103,7 @@ a:hover {
 }
 
 .site-header::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0; right: 0; bottom: -1px; height: 40px;
-  background: url('data:image/svg+xml;utf8,<svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,20 Q50,40 100,20 L100,40 L0,40 Z" fill="%23e8e6e0"/></svg>') no-repeat bottom center/100% 100%;
-  pointer-events: none;
+  display: none;
 }
 
 .site-header .wrapper {
@@ -118,12 +113,13 @@ a:hover {
 }
 
 .site-title {
-  font-family: 'Crimson Text', Georgia, serif;
+  font-family: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
   font-size: 1.6rem;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--primary-color);
   text-decoration: none;
   transition: var(--transition);
+  text-transform: lowercase;
 }
 
 .site-title:hover {
@@ -455,9 +451,10 @@ blockquote {
   }
   
   .site-header .wrapper {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 1rem;
-    text-align: center;
+    text-align: left;
   }
   
   .site-nav {
