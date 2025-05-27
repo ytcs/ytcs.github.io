@@ -249,7 +249,7 @@ This fundamental equation shows that the total heat dissipated (per unit tempera
 
 ### Mismatch Cost and Intrinsic Dissipation
 
-The total entropy production $$\mathcal{E}_{proc}(p)$$ for a given physical realization of the map $$\pi$$ (denoted by `proc`) acting on an initial distribution $$p$$ can be decomposed into two main non-negative components. This decomposition, established within stochastic thermodynamics (Wolpert, 2019, citing further foundational work in Wolpert, 2018, arXiv:1802.05051), is:
+The total entropy production $$\mathcal{E}_{proc}(p)$$ for a given physical realization of the map $$\pi$$ (denoted by `proc`) acting on an initial distribution $$p$$ can be decomposed into two main non-negative components. This decomposition, established within stochastic thermodynamics is:
 
 $$ 
 \mathcal{E}_{proc}(p) = \mathcal{M}_{proc}(p) + \mathcal{E}_{res;proc}(p) 
