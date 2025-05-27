@@ -521,14 +521,14 @@ blockquote {
 
 .post-toc-container {
   position: absolute;
-  left: -280px;
+  left: -300px;
   top: 0;
-  width: 250px;
+  width: 280px;
   z-index: 10;
 }
 
 .post-toc {
-  position: sticky;
+  position: fixed;
   top: 20px;
   background-color: var(--background-subtle);
   border: 1px solid var(--border-light);
@@ -536,7 +536,7 @@ blockquote {
   padding: 1rem;
   max-height: calc(100vh - 40px);
   overflow-y: auto;
-  width: 100%;
+  width: 280px;
   font-size: 0.9rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
@@ -601,6 +601,7 @@ blockquote {
     max-width: 100%;
     position: relative;
     top: 0;
+    width: 100%; /* Full width on mobile */
   }
 }
 

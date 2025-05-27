@@ -60,7 +60,7 @@ function generateTableOfContents() {
         const listItem = document.createElement('li');
         const link = document.createElement('a');
         link.href = `#${heading.id}`;
-        link.textContent = heading.textContent;
+        link.innerHTML = heading.innerHTML;
         link.className = 'toc-link';
         link.setAttribute('data-target', heading.id);
         listItem.appendChild(link);
