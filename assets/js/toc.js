@@ -33,17 +33,13 @@ function initTableOfContents() {
     tocHeader.className = 'toc-header';
     tocHeader.textContent = 'Table of Contents';
     
-    // Create the TOC content
-    const tocContent = document.createElement('div');
-    tocContent.className = 'toc-content';
-    
-    // Generate the TOC list
+    // Generate the TOC list directly in the wrapper
     const tocList = generateTOCList(headings);
-    tocContent.appendChild(tocList);
+    tocList.className = 'toc-content toc-list'; // Combined class
     
     // Assemble the TOC structure
     tocWrapper.appendChild(tocHeader);
-    tocWrapper.appendChild(tocContent);
+    tocWrapper.appendChild(tocList);
     
     // Clear existing content and add new structure
     tocContainer.innerHTML = '';
@@ -71,7 +67,6 @@ function initTableOfContents() {
 
 function generateTOCList(headings) {
     const tocList = document.createElement('ul');
-    tocList.className = 'toc-list';
     
     // For maintaining hierarchy
     let currentLevel = 0;
@@ -116,7 +111,9 @@ function generateTOCList(headings) {
         link.href = `#${heading.id}`;
         link.className = 'toc-link';
         link.setAttribute('data-target', heading.id);
-        link.textContent = heading.textContent;
+        
+        // Use innerHTML instead of textContent to preserve math formatting
+        link.innerHTML = heading.innerHTML;
         
         listItem.appendChild(link);
         currentList.appendChild(listItem);
