@@ -142,7 +142,7 @@ Giving us the desired decomposition: $$ \frac{dS(p_t)}{dt} = \mathcal{Q}_t + \ma
 
     If any $$A_{xx'}$$ or $$B_{xx'}$$ is zero, careful consideration of limits is needed, but generally, if $$A_{xx'} > 0$$ and $$B_{xx'} = 0$$, the term is effectively infinite unless the forward rate $$K_t(x|x')$$ is zero. However, for physical transitions, rates are typically positive. 
     
-    Assuming all $$A_{xx'}, B_{xx'} > 0$$, each term $$(A_{xx'} - B_{xx'}) \ln (A_{xx'}/B_{xx'}) \ge 0$$. Therefore, their sum $$\mathcal{E}_t \ge 0$$. This inequality is related to the non-negativity of the Kullback-Leibler divergence. For instance, we can write it as $$\sum_{x,x'} B_{xx'} D(A_{xx'} \|\| B_{xx'})$$ if we define $$D(a||b) = (a/b) \ln(a/b) - a/b + 1$$ for $$a,b > 0$$, which is not standard but shows the structure. 
+    Assuming all $$A_{xx'}, B_{xx'} > 0$$, each term $$(A_{xx'} - B_{xx'}) \ln (A_{xx'}/B_{xx'}) \ge 0$$. Therefore, their sum $$\mathcal{E}_t \ge 0$$. This inequality is related to the non-negativity of the Kullback-Leibler divergence. For instance, we can write it as $$\sum_{x,x'} B_{xx'} D(A_{xx'} \vert \vert  B_{xx'})$$ if we define $$D(a||b) = (a/b) \ln(a/b) - a/b + 1$$ for $$a,b > 0$$, which is not standard but shows the structure. 
     
     More simply, using the inequality $$x \ln x - x \ge -1$$ or $$x-1 \ge \ln x$$, let $$x = A/B$$. Then $$(A-B)\ln(A/B) = B((A/B)-1)\ln(A/B)$$. 
     
