@@ -23,6 +23,12 @@ function onYouTubeIframeAPIReady() {
         thumbnailContainer.style.backgroundImage = `url(https://img.youtube.com/vi/${videoId}/mqdefault.jpg)`;
     }
     
+    // Set link URL for the thumbnail
+    const youtubeLink = document.getElementById('youtube-link');
+    if (youtubeLink) {
+        youtubeLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+    }
+    
     player = new YT.Player('youtube-container', {
         height: '0',
         width: '0',
