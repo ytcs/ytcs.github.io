@@ -5,14 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!document.querySelector('.post-content') || !tocContainer) return;
     
     // Try to generate TOC, if no headings are found it will hide the TOC container
-    generateTableOfContents();
-    setupTOCScrollSpy();
+    const hasTOC = generateTableOfContents();
+    if (hasTOC) {
+        setupTOCScrollSpy();
+        setupTOCToggle();
+    }
 });
 
 function generateTableOfContents() {
     // Get all headings in the post content
     const postContent = document.querySelector('.post-content');
-    if (!postContent) return;
+    if (!postContent) return false;
 
     const headings = postContent.querySelectorAll('h2, h3, h4');
     const tocContainer = document.querySelector('.post-toc-container');
@@ -22,7 +25,7 @@ function generateTableOfContents() {
         if (tocContainer) {
             tocContainer.style.display = 'none';
         }
-        return;
+        return false;
     }
     
     // Ensure TOC is visible if we found headings
@@ -84,6 +87,8 @@ function generateTableOfContents() {
         tableOfContents.innerHTML = ''; // Clear any existing content
         tableOfContents.appendChild(tocList);
     }
+    
+    return true;
 }
 
 function setupTOCScrollSpy() {
@@ -137,4 +142,43 @@ function setupTOCScrollSpy() {
             }
         });
     });
+}
+
+function setupTOCToggle() {
+    const tocContainer = document.querySelector('.post-toc-container');
+    if (!tocContainer) return;
+    
+    // Create toggle button
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'toc-toggle-btn';
+    toggleButton.innerHTML = '<span class="toc-toggle-icon"></span>';
+    toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
+    toggleButton.setAttribute('title', 'Toggle Table of Contents');
+    
+    // Insert toggle button into DOM
+    const postToc = document.querySelector('.post-toc');
+    if (postToc) {
+        const tocHeader = postToc.querySelector('.toc-header');
+        if (tocHeader) {
+            tocHeader.appendChild(toggleButton);
+        }
+    }
+    
+    // Get saved state
+    const isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
+    
+    // Apply initial state
+    if (isCollapsed) {
+        tocContainer.classList.add('toc-collapsed');
+    }
+    
+    // Toggle function
+    function toggleTOC() {
+        tocContainer.classList.toggle('toc-collapsed');
+        const isNowCollapsed = tocContainer.classList.contains('toc-collapsed');
+        localStorage.setItem('toc-collapsed', isNowCollapsed);
+    }
+    
+    // Add event listener
+    toggleButton.addEventListener('click', toggleTOC);
 } 

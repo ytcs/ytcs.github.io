@@ -525,6 +525,37 @@ blockquote {
   top: 0;
   width: 280px;
   z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+/* Collapsed state */
+.post-toc-container.toc-collapsed {
+  transform: translateX(-230px);
+}
+
+.post-toc-container.toc-collapsed .post-toc {
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.post-toc-container.toc-collapsed .toc-toggle-icon {
+  transform: rotate(180deg);
+}
+
+.post-toc-container.toc-collapsed .toc-list,
+.post-toc-container.toc-collapsed .toc-header {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* When hovering over collapsed TOC, show it again */
+.post-toc-container.toc-collapsed:hover {
+  transform: translateX(0);
+}
+
+.post-toc-container.toc-collapsed:hover .toc-list,
+.post-toc-container.toc-collapsed:hover .toc-header {
+  opacity: 1;
+  visibility: visible;
 }
 
 .post-toc {
@@ -548,12 +579,45 @@ blockquote {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-light);
   color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.toc-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.toc-toggle-btn:hover {
+  opacity: 1;
+}
+
+.toc-toggle-icon {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid var(--primary-color);
+  border-right: 2px solid var(--primary-color);
+  transform: rotate(-135deg);
+  transition: transform 0.3s ease;
 }
 
 .toc-list {
   list-style: none;
   padding-left: 0;
   margin-bottom: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .toc-list ul {
@@ -595,6 +659,17 @@ blockquote {
     left: 0;
     width: 100%;
     margin-bottom: 2rem;
+    transform: none !important;
+  }
+
+  .post-toc-container.toc-collapsed {
+    transform: none !important;
+  }
+  
+  .post-toc-container.toc-collapsed .toc-list,
+  .post-toc-container.toc-collapsed .toc-header {
+    opacity: 1;
+    visibility: visible;
   }
   
   .post-toc {
@@ -602,6 +677,14 @@ blockquote {
     position: relative;
     top: 0;
     width: 100%; /* Full width on mobile */
+  }
+  
+  .toc-toggle-icon {
+    transform: rotate(45deg);
+  }
+  
+  .post-toc-container.toc-collapsed .toc-toggle-icon {
+    transform: rotate(225deg);
   }
 }
 
