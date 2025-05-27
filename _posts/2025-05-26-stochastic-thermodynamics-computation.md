@@ -268,7 +268,7 @@ Let's break down these components:
     *   The term $$D(p \vert\vert q^{proc})$$ quantifies the initial "surprise" or inefficiency when the process, expecting $$q^{proc}$$, receives $$p$$ instead. It measures how distinguishable the actual input $$p$$ is from the designed-for input $$q^{proc}$$.
     *   The term $$D(\pi p \vert\vert \pi q^{proc})$$ quantifies the corresponding "surprise" or inefficiency at the output level. It measures how distinguishable the actual output $$\pi p$$ is from the output $$\pi q^{proc}$$ that would have resulted if the input had indeed been $$q^{proc}$$.
     
-    The mismatch cost $$\mathcal{M}_{proc}(p)$$ is the net portion of the initial input mismatch (as measured by KL divergence) that is converted into entropy production. It represents the thermodynamic penalty for the device operating on an input distribution it wasn't specifically designed for. By the [data processing inequality](https://en.wikipedia.org/wiki/Data_processing_inequality) for KL divergence ($D(p \vert\vert q^{proc}) \ge D(\pi p \vert\vert \pi q^{proc})$$), the mismatch cost is always non-negative ($\mathcal{M}_{proc}(p) \ge 0$$). The mismatch cost is zero if $$p = q^{proc}$$, or, in some specific cases, if the map $$\pi$$ perfectly "transmits" the distinguishability (e.g., if $$\pi$$ is an identity map or a simple permutation and no new information about the mismatch is lost or gained during processing).
+    The mismatch cost $$\mathcal{M}_{proc}(p)$$ is the net portion of the initial input mismatch (as measured by KL divergence) that is converted into entropy production. It represents the thermodynamic penalty for the device operating on an input distribution it wasn't specifically designed for. By the [data processing inequality](https://en.wikipedia.org/wiki/Data_processing_inequality) for KL divergence ($$D(p \vert\vert q^{proc}) \ge D(\pi p \vert\vert \pi q^{proc})$$), the mismatch cost is always non-negative ($$\mathcal{M}_{proc}(p) \ge 0$$). The mismatch cost is zero if $$p = q^{proc}$$, or, in some specific cases, if the map $$\pi$$ perfectly "transmits" the distinguishability (e.g., if $$\pi$$ is an identity map or a simple permutation and no new information about the mismatch is lost or gained during processing).
 
 2.  **Residual Entropy Production ($$\mathcal{E}_{res;proc}(p)$$)**: 
     This component represents the entropy production that occurs even if the input distribution perfectly matches the designed-for prior (i.e., if $$p = q^{proc}$$, which makes $$\mathcal{M}_{proc}(p) = 0$$). It quantifies the intrinsic irreversibility of the specific physical process chosen to implement the map $$\pi$$. This cost arises from factors like finite-time operation, friction, non-ideal control protocols, or suboptimal physical construction of the device. 
@@ -373,12 +373,12 @@ This can be shown to be equal to the change in mutual information between A and 
 
 $$ \text{Landauer Loss} = I_{p_0}(A;B) - I_{\pi p_0}(A;B) $$
 
-To derive this, let $$p_0$$ be the initial joint distribution over $$(A,B)$$ and $$p_1 = \pi p_0$$ be the final joint distribution after the subsystem processes $\pi^A$ and $\pi^B$ act, i.e., $$p_1(a,b) = p(\pi^A(a), \pi^B(b))$$. 
+To derive this, let $$p_0$$ be the initial joint distribution over $$(A,B)$$ and $$p_1 = \pi p_0$$ be the final joint distribution after the subsystem processes $$\pi^A$$ and $$\pi^B$$ act, i.e., $$p_1(a,b) = p(\pi^A(a), \pi^B(b))$$. 
 Recall the definitions:
 
 *   Landauer cost for subsystem A: $$\mathcal{L}_A = S(p_0(A)) - S(p_1(A))$$
 *   Landauer cost for subsystem B: $$\mathcal{L}_B = S(p_0(B)) - S(p_1(B))$$
-*   Landauer cost for the combined system (A,B) if processed by an AO device implementing the same overall map $\pi$: $$\mathcal{L}_{A,B} = S(p_0(A,B)) - S(p_1(A,B))$$
+*   Landauer cost for the combined system (A,B) if processed by an AO device implementing the same overall map $$\pi$$: $$\mathcal{L}_{A,B} = S(p_0(A,B)) - S(p_1(A,B))$$
 *   Mutual Information: $$I(X;Y) = S(X) + S(Y) - S(X,Y)$$
 
 Starting with the definition of Landauer Loss:
@@ -395,7 +395,7 @@ Thus,
 
 $$ \text{Landauer Loss} = I_{p_0}(A;B) - I_{p_1}(A;B) = I_{p_0}(A;B) - I_{\pi p_0}(A;B) $$
 
-where $$p_0$$ is the initial joint distribution and $$\pi p_0$$ is the final one. If the independent evolution of A and B destroys correlations between them (i.e., $$I_{\pi p_0}(A;B) < I_{p_0}(A;B)$$), there is a positive Landauer Loss, meaning the constrained system dissipates more heat than an equivalent AO device, even if each subsystem process $\pi^A$ and $\pi^B$ is thermodynamically reversible.
+where $$p_0$$ is the initial joint distribution and $$\pi p_0$$ is the final one. If the independent evolution of A and B destroys correlations between them (i.e., $$I_{\pi p_0}(A;B) < I_{p_0}(A;B)$$), there is a positive Landauer Loss, meaning the constrained system dissipates more heat than an equivalent AO device, even if each subsystem process $$\pi^A$$ and $$\pi^B$$ is thermodynamically reversible.
 
 For a straight-line circuit, the total dissipated heat will be the sum of Landauer costs of individual gates $$\sum_g \mathcal{L}_g$$, plus their mismatch costs $$\sum_g \mathcal{M}_g$$ and residual EPs $$\sum_g \mathcal{E}_{res,g}$$. The **Circuit Landauer Loss** is the amount by which $$\sum_g \mathcal{L}_g$$ (the sum of *local* Landauer costs) exceeds the *global* Landauer cost $$\mathcal{L}(p(X^{IN}), \pi_{\mathcal{C}})$$:
 
@@ -417,11 +417,11 @@ The key insight is that the very structure of a computational device—how it is
 
 The framework of stochastic thermodynamics offers powerful tools to analyze the energetic costs of computation, but many fascinating questions and complex systems remain topics of ongoing research. While we have focused on foundational concepts and straight-line circuits, the principles discussed extend to a broader range of computational paradigms, each with its own unique thermodynamic considerations.
 
-*   **Finite Automata (FA) and Transducers**: Section 12 of Wolpert (2019) discusses the entropy dynamics of FAs, which, unlike circuits, can handle inputs of arbitrary length and involve cycles and memory. Analyzing FAs often involves considering their steady-state behavior or the thermodynamics of processing sequences of symbols. Early work by Ganesh et al. (2013) and Chu et al. (2018) explores these aspects, for example, by using time-homogeneous rate matrices and energy landscapes to drive FA transitions.
+*   **Finite Automata (FA) and Transducers**: Section 12 of Wolpert (2019) discusses the entropy dynamics of FAs, which, unlike circuits, can handle inputs of arbitrary length and involve cycles and memory. Analyzing FAs often involves considering their steady-state behavior or the thermodynamics of processing sequences of symbols. Early work by Chu et al. (2018) ([arXiv:1806.04875](https://arxiv.org/abs/1806.04875)) explores these aspects, for example, by using time-homogeneous rate matrices and energy landscapes to drive FA transitions.
 
 *   **Turing Machines (TMs) and Kolmogorov Complexity**: While TMs represent the canonical model of universal computation, a full thermodynamic analysis is exceptionally complex. The connection between TMs and Kolmogorov complexity (the length of the shortest program to produce a given output, Sec 4.5 of Wolpert) hints at deep links between minimal program length and minimal thermodynamic cost, but formalizing this is a major challenge. How do the costs of running a Universal Turing Machine, or the costs associated with halting (or not halting), manifest thermodynamically?
 
-*   **Information Ratchets**: These devices, discussed in Section 13 of Wolpert (2019), operate by rectifying thermal fluctuations to perform work or process information, often in response to a stream of inputs that may be non-Markovian or have long-range correlations. Their continuous operation and interaction with input/output streams pose unique analytical challenges. The "Information Processing Second Law (IPSL)" by Boyd et al. (2016) relates entropy flow per iteration to differences in Kolmogorov-Sinai entropy rates of input and output streams, offering one perspective on their costs.
+*   **Information Ratchets**: These devices, discussed in Section 13 of Wolpert (2019), operate by rectifying thermal fluctuations to perform work or process information, often in response to a stream of inputs that may be non-Markovian or have long-range correlations. Their continuous operation and interaction with input/output streams pose unique analytical challenges.
 
 *   **Logically Reversible Computing Revisited**: While the Landauer cost of a logically reversible operation is zero, Section 11 of Wolpert (2019) delves into the subtleties that arise when considering the full cycle of computation, including initializing ancillary bits and, crucially, *re-initializing* the copied input and control bits back to a standard state for reuse. When these unavoidable re-initialization costs are factored in, the purported thermodynamic advantages of reversible computing over optimally designed irreversible AO devices are often diminished or eliminated, especially concerning the fundamental Landauer cost of the overall input-output transformation.
 
