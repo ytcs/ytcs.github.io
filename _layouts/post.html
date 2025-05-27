@@ -21,15 +21,17 @@ layout: default
     </p>
   </header>
 
-  <div class="post-toc-container">
-    <div class="post-toc">
-      <div class="toc-header">Table of Contents</div>
-      <div id="table-of-contents"></div>
+  <div class="post-with-toc">
+    <div class="post-toc-container">
+      <div class="post-toc">
+        <div class="toc-header">Table of Contents</div>
+        <div id="table-of-contents"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
+    </div>
   </div>
 
   <nav class="post-nav">

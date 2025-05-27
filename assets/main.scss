@@ -515,10 +515,17 @@ blockquote {
 }
 
 /* Table of Contents */
+.post-with-toc {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  position: relative;
+}
+
 .post-toc-container {
   position: relative;
-  width: 100%;
-  margin-bottom: 2rem;
+  flex-shrink: 0;
+  max-width: 250px;
 }
 
 .post-toc {
@@ -528,16 +535,16 @@ blockquote {
   border: 1px solid var(--border-light);
   border-radius: 6px;
   padding: 1rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
   max-height: calc(100vh - 40px);
   overflow-y: auto;
-  max-width: 250px;
+  width: 250px;
   font-size: 0.9rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  display: block;
-  float: left;
-  margin-right: 2rem;
+}
+
+.post-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .toc-header {
@@ -583,20 +590,22 @@ blockquote {
   font-weight: 500;
 }
 
-/* On narrow screens, make TOC horizontal at the top */
+/* On narrow screens, make TOC above content */
 @media (max-width: 1024px) {
-  .post-toc {
-    float: none;
-    max-width: 100%;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 2rem;
-    position: relative;
-    top: 0;
+  .post-with-toc {
+    flex-direction: column;
   }
   
-  .post-content {
-    clear: both;
+  .post-toc-container {
+    max-width: 100%;
+    margin-bottom: 2rem;
+  }
+  
+  .post-toc {
+    position: relative;
+    top: 0;
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -781,4 +790,27 @@ input:checked + .toggle-slider:before {
   .theme-toggle-container {
     padding: 5px;
   }
+}
+
+/* Floating controls visibility */
+.post-toc,
+.theme-toggle-container,
+.music-controls {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.control-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.control-hidden {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+/* When hovering near a hidden control, allow interaction again */
+.control-hidden:hover {
+  opacity: 1;
+  pointer-events: auto;
 } 
