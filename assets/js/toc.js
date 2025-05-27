@@ -1,66 +1,105 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const tocContainer = document.querySelector('.post-toc-container');
-    
-    // Check if there's a post content and TOC container before proceeding
-    if (!document.querySelector('.post-content') || !tocContainer) return;
-    
-    // Try to generate TOC, if no headings are found it will hide the TOC container
-    const hasTOC = generateTableOfContents();
-    if (hasTOC) {
-        setupTOCScrollSpy();
-        setupTOCToggle();
-    }
+    initTableOfContents();
 });
 
-function generateTableOfContents() {
+function initTableOfContents() {
     // Get all headings in the post content
     const postContent = document.querySelector('.post-content');
-    if (!postContent) return false;
+    if (!postContent) return;
 
     const headings = postContent.querySelectorAll('h2, h3, h4');
-    const tocContainer = document.querySelector('.post-toc-container');
-    
-    // If no headings or no TOC container, hide TOC and exit
-    if (headings.length === 0 || !tocContainer) {
-        if (tocContainer) {
-            tocContainer.style.display = 'none';
-        }
-        return false;
+    if (headings.length === 0) {
+        // No headings, no TOC needed
+        document.querySelector('.post-toc-container')?.remove();
+        return;
     }
-    
-    // Ensure TOC is visible if we found headings
-    tocContainer.style.display = 'block';
 
+    // Get or create TOC container
+    let tocContainer = document.querySelector('.post-toc-container');
+    if (!tocContainer) return;
+
+    // Create the toggle button (initially showing '>' to expand)
+    const toggleButton = document.createElement('button');
+    toggleButton.className = 'toc-toggle';
+    toggleButton.setAttribute('aria-label', 'Expand Table of Contents');
+    toggleButton.innerHTML = '<span class="toc-toggle-icon">›</span>';
+    
+    // Create the TOC wrapper
+    const tocWrapper = document.createElement('div');
+    tocWrapper.className = 'toc-wrapper';
+    
+    // Create the TOC header
+    const tocHeader = document.createElement('div');
+    tocHeader.className = 'toc-header';
+    tocHeader.textContent = 'Table of Contents';
+    
+    // Create the TOC content
+    const tocContent = document.createElement('div');
+    tocContent.className = 'toc-content';
+    
+    // Generate the TOC list
+    const tocList = generateTOCList(headings);
+    tocContent.appendChild(tocList);
+    
+    // Assemble the TOC structure
+    tocWrapper.appendChild(tocHeader);
+    tocWrapper.appendChild(tocContent);
+    
+    // Clear existing content and add new structure
+    tocContainer.innerHTML = '';
+    tocContainer.appendChild(toggleButton);
+    tocContainer.appendChild(tocWrapper);
+    
+    // Add the collapsed class by default
+    tocContainer.classList.add('toc-collapsed');
+    
+    // Set up toggle functionality
+    toggleButton.addEventListener('click', function() {
+        tocContainer.classList.toggle('toc-collapsed');
+        if (tocContainer.classList.contains('toc-collapsed')) {
+            toggleButton.setAttribute('aria-label', 'Expand Table of Contents');
+            toggleButton.querySelector('.toc-toggle-icon').textContent = '›';
+        } else {
+            toggleButton.setAttribute('aria-label', 'Collapse Table of Contents');
+            toggleButton.querySelector('.toc-toggle-icon').textContent = '‹';
+        }
+    });
+    
+    // Set up scrollspy
+    setupScrollSpy(headings);
+}
+
+function generateTOCList(headings) {
     const tocList = document.createElement('ul');
     tocList.className = 'toc-list';
     
-    // Track headings for nesting
+    // For maintaining hierarchy
     let currentLevel = 0;
     let currentList = tocList;
     let listStack = [tocList];
-
+    
     headings.forEach((heading, index) => {
-        // Get heading level (h2 = 2, h3 = 3, etc.)
-        const level = parseInt(heading.tagName.substring(1));
+        // Get heading level
+        const level = parseInt(heading.tagName.charAt(1));
         
         // Add an ID to the heading if it doesn't have one
         if (!heading.id) {
             heading.id = `heading-${index}`;
         }
         
-        // Handle nesting based on heading level
+        // Handle hierarchy
         if (currentLevel === 0) {
-            // First heading - establish baseline
+            // First heading, establish baseline
             currentLevel = level;
         } else if (level > currentLevel) {
-            // Deeper level - create a nested list
+            // Going deeper
             const nestedList = document.createElement('ul');
             listStack[listStack.length - 1].lastElementChild.appendChild(nestedList);
             listStack.push(nestedList);
             currentList = nestedList;
             currentLevel = level;
         } else if (level < currentLevel) {
-            // Go back up to appropriate level
+            // Going back up
             while (listStack.length > 1 && currentLevel > level) {
                 listStack.pop();
                 currentLevel--;
@@ -69,40 +108,31 @@ function generateTableOfContents() {
             currentLevel = level;
         }
         
-        // Create list item with link
+        // Create list item
         const listItem = document.createElement('li');
+        
+        // Create link
         const link = document.createElement('a');
         link.href = `#${heading.id}`;
-        link.innerHTML = heading.innerHTML;
         link.className = 'toc-link';
         link.setAttribute('data-target', heading.id);
-        listItem.appendChild(link);
+        link.textContent = heading.textContent;
         
-        // Add to current list
+        listItem.appendChild(link);
         currentList.appendChild(listItem);
     });
     
-    const tableOfContents = document.getElementById('table-of-contents');
-    if (tableOfContents) {
-        tableOfContents.innerHTML = ''; // Clear any existing content
-        tableOfContents.appendChild(tocList);
-    }
-    
-    return true;
+    return tocList;
 }
 
-function setupTOCScrollSpy() {
-    const headings = document.querySelectorAll('.post-content h2, .post-content h3, .post-content h4');
-    if (headings.length === 0) return;
-    
+function setupScrollSpy(headings) {
     const tocLinks = document.querySelectorAll('.toc-link');
-    if (tocLinks.length === 0) return; // No TOC links, so no need to set up scroll spy
+    if (!tocLinks.length) return;
     
     // Offset for highlighting (slightly before the heading)
     const offset = 100;
     
-    // Function to update active TOC item
-    function updateTOC() {
+    function updateActiveTOCItem() {
         let activeHeading = null;
         
         // Find the heading that's currently in view
@@ -123,15 +153,28 @@ function setupTOCScrollSpy() {
     }
     
     // Update on scroll
-    window.addEventListener('scroll', updateTOC);
+    window.addEventListener('scroll', updateActiveTOCItem);
     
     // Initial update
-    updateTOC();
+    updateActiveTOCItem();
     
     // Smooth scroll to heading when TOC link is clicked
     tocLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
+            
+            // Collapse TOC on mobile after clicking a link
+            const tocContainer = document.querySelector('.post-toc-container');
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile && tocContainer) {
+                tocContainer.classList.add('toc-collapsed');
+                const toggleBtn = tocContainer.querySelector('.toc-toggle');
+                if (toggleBtn) {
+                    toggleBtn.setAttribute('aria-label', 'Expand Table of Contents');
+                    toggleBtn.querySelector('.toc-toggle-icon').textContent = '›';
+                }
+            }
+            
             const targetId = this.getAttribute('data-target');
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
@@ -142,43 +185,4 @@ function setupTOCScrollSpy() {
             }
         });
     });
-}
-
-function setupTOCToggle() {
-    const tocContainer = document.querySelector('.post-toc-container');
-    if (!tocContainer) return;
-    
-    // Create toggle button
-    const toggleButton = document.createElement('button');
-    toggleButton.className = 'toc-toggle-btn';
-    toggleButton.innerHTML = '<span class="toc-toggle-icon"></span>';
-    toggleButton.setAttribute('aria-label', 'Toggle Table of Contents');
-    toggleButton.setAttribute('title', 'Toggle Table of Contents');
-    
-    // Insert toggle button into DOM
-    const postToc = document.querySelector('.post-toc');
-    if (postToc) {
-        const tocHeader = postToc.querySelector('.toc-header');
-        if (tocHeader) {
-            tocHeader.appendChild(toggleButton);
-        }
-    }
-    
-    // Get saved state
-    const isCollapsed = localStorage.getItem('toc-collapsed') === 'true';
-    
-    // Apply initial state
-    if (isCollapsed) {
-        tocContainer.classList.add('toc-collapsed');
-    }
-    
-    // Toggle function
-    function toggleTOC() {
-        tocContainer.classList.toggle('toc-collapsed');
-        const isNowCollapsed = tocContainer.classList.contains('toc-collapsed');
-        localStorage.setItem('toc-collapsed', isNowCollapsed);
-    }
-    
-    // Add event listener
-    toggleButton.addEventListener('click', toggleTOC);
 } 
