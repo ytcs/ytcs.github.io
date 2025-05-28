@@ -361,8 +361,6 @@ This pronounced difference in scaling behavior demonstrates why principled lingu
 
 The MDL implication is that **the most efficient compression of a natural language corpus will necessarily discover and exploit these underlying linguistic abstractions.** Categories and rules are not just theoretical constructs; they are information-theoretically optimal ways to encode linguistic complexity.
 
-This principle has profound implications for how we understand modern language models, which we'll explore next.
-
 ## 5. Large Language Models (LLMs) as Efficient Compressors
 
 LLMs are trained to predict the next token, which is mathematically equivalent to minimizing the negative log-likelihood (NLL) of the training corpus. This NLL is a direct measure of the bits needed to encode the corpus using the model's probability distribution.
