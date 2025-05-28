@@ -226,14 +226,14 @@ The MM would theoretically attempt to move $$S_T$$ from $$S_T^n$$ towards $$S_{\
 
 ## 6. Deriving a Market Observable for $$S_{\text{MM}}^*$$ and Manipulation Indicator
 
-To make this operational, we assume a single (monopolist) MM whose sold quantities $$Q_k$$ correspond to the total market open interest (OI) for each option strike $$K_k$$.
+Can we leverage this behavior somewhat using only observable data in the market? To make this operational, we assume a single (monopolist) MM whose sold quantities $$Q_k$$ correspond to the total market open interest (OI) for each option strike $$K_k$$.
 - $$Q_k^{\text{call}} = \text{OI}_{\text{C}}(K_k)$$ (Open Interest for calls at strike $$K_k$$)
 - $$Q_k^{\text{put}} = \text{OI}_{\text{P}}(K_k)$$ (Open Interest for puts at strike $$K_k$$)
 
 The MM's optimal expiration price $$S_{\text{MM}}^*$$ is where their hedge $$H_{\text{last}}$$ approximately equals their Net Delta Obligation $$\text{NDO}(S_{\text{MM}}^*)$$. For practical observability, we estimate the MM's current hedge quantity based on current market conditions.
 
 ### MM's Estimated Current Delta Hedge ($$H_{\text{est}}(S_c, \sigma)$$)
-We can proxy $$S_c$$ with the current underlying price. The time to expiration $$\tau_c$$ is very close to zero for 0DTE options.
+We proxy $$S_{\text{last}}$$ with the current underlying price $$S_c$$ (or can be picked by the trader in real applications). The time to expiration $$\tau_c$$ is close to zero for expiring options.
 The MM's current total delta hedge, for the purpose of creating an observable indicator, is estimated as $$H_{\text{est}}$$, using current option open interests and Black-Scholes deltas calculated at $$S_c$$ and an estimated 0DTE implied volatility $$\sigma$$:
 
 $$
