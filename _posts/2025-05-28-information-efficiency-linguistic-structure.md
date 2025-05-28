@@ -54,10 +54,10 @@ Having established our toy language, we can now explore how different modeling a
 ## 2. Comparing Models with Minimum Description Length (MDL)
 
 The MDL principle provides a formal framework for model comparison based on information efficiency. It states that the best model for a set of data is the one that minimizes the sum of:
-1. The description length of the model itself ($$L(Model)$$)
-2. The description length of the data when encoded using the model ($$L(Data \mid Model)$$)
+1. The description length of the model itself ($$L(\text{Model})$$)
+2. The description length of the data when encoded using the model ($$L(\text{Data} \mid \text{Model})$$)
 
-For our comparison, we'll examine models that perfectly generate our 6 sentences, meaning $$L(Data \mid Model) = 0$$. This allows us to directly compare $$L(Model)$$ for different approaches.
+For our comparison, we'll examine models that perfectly generate our 6 sentences, meaning $$L(\text{Data} \mid \text{Model}) = 0$$. This allows us to directly compare $$L(\text{Model})$$ for different approaches.
 
 Assume our four linguistic tokens (A, B, C, D) can each be uniquely identified with 2 bits (e.g., A=00, B=01, C=10, D=11).
 
@@ -70,10 +70,10 @@ This model describes the set of 6 permissible sentences by simply listing them w
 -   Thus:
 
 $$
-L(Model_0) = L(\text{Rote List}) \approx 32 \text{ (tokens)} + 12 \text{ (lengths)} = 44 \text{ bits}
+L(\text{Model}_0) = L(\text{Rote List}) \approx 32 \text{ (tokens)} + 12 \text{ (lengths)} = 44 \text{ bits}
 $$
 
-This $$L(Model_0)$$ is the cost of specifying *which particular* six strings (out of all possible short strings from A, B, C, and D) are the permissible ones, using a direct listing approach.
+This $$L(\text{Model}_0)$$ is the cost of specifying *which particular* six strings (out of all possible short strings from A, B, C, and D) are the permissible ones, using a direct listing approach.
 
 ### 2.2 Model 1: N-gram Statistical Model
 
@@ -93,7 +93,7 @@ For bigrams, we need:
 
 After removing duplicates, we have 11 unique bigrams: `<s> A`, `<s> B`, `A C`, `A D`, `A </s>`, `B C`, `B D`, `B </s>`, `C A`, `C B`, `D </s>`.
 
-To calculate $$L(Model_1)$$:
+To calculate $$L(\text{Model}_1)$$:
 1. **Vocabulary cost**: We need to encode our vocabulary (A, B, C, D, `<s>`, `</s>`). That's 6 symbols, requiring $$\lceil\log_2 6\rceil = 3$$ bits each (we need 3 bits because $$2^2 = 4$$ is insufficient to encode 6 distinct symbols, while $$2^3 = 8$$ is sufficient). Total: $$6 \times 3 = 18$$ bits for the vocabulary list.
 2. **Bigram specification**: For each unique bigram, we need to specify:
    - The first token (3 bits)
@@ -106,16 +106,16 @@ To calculate $$L(Model_1)$$:
 Thus:
 
 $$
-L(Model_1) = L(\text{N-gram}) = 18 \text{ (vocabulary)} + 77 \text{ (bigrams)} + 2 \text{ (model type)} = 97 \text{ bits}
+L(\text{Model}_1) = L(\text{N-gram}) = 18 \text{ (vocabulary)} + 77 \text{ (bigrams)} + 2 \text{ (model type)} = 97 \text{ bits}
 $$
 
 This model is less efficient than rote enumeration for our small example because of the overhead of specifying the vocabulary and bigram structure. However, it captures local sequential dependencies in a way that can generalize beyond the training data. Like Model 0, it doesn't recognize abstract categories like "Proper Noun" or "Verb," but it does capture some statistical regularities (e.g., "C" is only followed by "A" or "B").
 
 ### 2.3 Model 2: Finite State Automaton (Prefix Sharing)
 
-While the previous approaches work, we can improve efficiency by identifying shared structures. Model 2 uses a Deterministic Finite Automaton (DFA) that directly encodes the six permissible sentences by leveraging shared prefixes. For example, sentences "Alice Dances" (A D) and "Alice Calls Bob" (A C B) share the prefix "Alice" (A). The DFA would have states and transitions that capture these shared initial sequences. Like Models 0 and 1, this DFA perfectly generates the 6 sentences, so $$L(Data \mid Model_2) = 0$$.
+While the previous approaches work, we can improve efficiency by identifying shared structures. Model 2 uses a Deterministic Finite Automaton (DFA) that directly encodes the six permissible sentences by leveraging shared prefixes. For example, sentences "Alice Dances" (A D) and "Alice Calls Bob" (A C B) share the prefix "Alice" (A). The DFA would have states and transitions that capture these shared initial sequences. Like Models 0 and 1, this DFA perfectly generates the 6 sentences, so $$L(\text{Data} \mid \text{Model}_2) = 0$$.
 
-To calculate $$L(Model_2)$$:
+To calculate $$L(\text{Model}_2)$$:
 1.  **Tree Shape**: The prefix tree for the 6 sentences is a binary tree with 6 leaves (corresponding to the 6 sentences) and consequently $$6-1=5$$ internal branching nodes. The number of distinct shapes for such a binary tree is given by the 5th Catalan number, $$C_5 = \frac{1}{5+1}\binom{2 \times 5}{5} = 42$$. The cost to select one of these 42 shapes is $$\lceil\log_2 42\rceil = 6$$ bits.
 2.  **Edge Token Labels**: The binary tree (with 5 internal nodes, each having two outgoing edges) has exactly 10 edges. Each edge must be labeled with one of the 4 linguistic tokens (A, B, C, D). Specifying the token for each of these 10 edges costs $$10 \text{ edges} \times 2 \text{ bits/token} = 20$$ bits.
 3.  **Sentence Endings**: We need to specify which of the 10 edges in the prefix tree, when traversed as the final edge in a path from the root, completes a valid sentence. There are 6 such sentence-terminating edges (leading to the 6 leaves). A 10-bit mask (1 bit per edge, in a canonical order) can precisely specify these. Cost: $$10$$ bits.
@@ -123,14 +123,14 @@ To calculate $$L(Model_2)$$:
 Thus:
 
 $$
-L(Model_2) = L(\text{FSA}) = 6 \text{ (shape)} + 20 \text{ (edge labels)} + 10 \text{ (endings)} = 36 \text{ bits}
+L(\text{Model}_2) = L(\text{FSA}) = 6 \text{ (shape)} + 20 \text{ (edge labels)} + 10 \text{ (endings)} = 36 \text{ bits}
 $$
 
 This model is an abstraction that captures sequential regularities (allowed token sequences) more compactly than n-grams or rote listing if there's redundancy (shared prefixes). However, it doesn't explicitly use abstract categories like "Proper Noun" or syntactic rules defined over those categories. This leads us to consider a more linguistically-informed approach.
 
 ### 2.4 Model 3: Principled Linguistic Encoding (Layered Abstraction)
 
-This model encodes the sentences by first defining categories and then syntactic rules. $$L(Data \mid Model_3) = 0$$ as it also perfectly generates the 6 sentences.
+This model encodes the sentences by first defining categories and then syntactic rules. $$L(\text{Data} \mid \text{Model}_3) = 0$$ as it also perfectly generates the 6 sentences.
 
 **Layer 1: Lexical-Conceptual Abstraction**
 This maps raw tokens to abstract categories (PN, IV, TV).
@@ -175,7 +175,7 @@ $$
 **Total for Model 3:**
 
 $$
-L(Model_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic}) = 10 + 23 = 33 \text{ bits}
+L(\text{Model}_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic}) = 10 + 23 = 33 \text{ bits}
 $$
 
 ### 2.5 Comparison: The Efficiency of Different Abstractions
@@ -183,22 +183,22 @@ $$
 Now that we've quantified the description length of each model, we can directly compare their efficiency:
 
 $$
-L(Model_0 \text{ - Rote Enumeration}) = 44 \text{ bits}
+L(\text{Model}_0 \text{ - Rote Enumeration}) = 44 \text{ bits}
 $$
 
 $$
-L(Model_1 \text{ - N-gram Statistical}) = 97 \text{ bits}
+L(\text{Model}_1 \text{ - N-gram Statistical}) = 97 \text{ bits}
 $$
 
 $$
-L(Model_2 \text{ - Finite State Automaton}) = 36 \text{ bits}
+L(\text{Model}_2 \text{ - Finite State Automaton}) = 36 \text{ bits}
 $$
 
 $$
-L(Model_3 \text{ - Principled Linguistic}) = 33 \text{ bits}
+L(\text{Model}_3 \text{ - Principled Linguistic}) = 33 \text{ bits}
 $$
 
-For our toy example, the models rank in efficiency as: $$L(Model_3) < L(Model_2) < L(Model_0) < L(Model_1)$$. The principled linguistic model (Model 3), with its layers of lexical categorization and syntactic rules, provides the most compressed description. Model 2, using a Finite State Automaton to share common prefixes, offers the second best compression. Interestingly, for this small example, the n-gram model (Model 1) is the least efficient due to its overhead in storing all bigram transitions, but it becomes more competitive as the language scales (as we'll see in Section 4.1).
+For our toy example, the models rank in efficiency as: $$L(\text{Model}_3) < L(\text{Model}_2) < L(\text{Model}_0) < L(\text{Model}_1)$$. The principled linguistic model (Model 3), with its layers of lexical categorization and syntactic rules, provides the most compressed description. Model 2, using a Finite State Automaton to share common prefixes, offers the second best compression. Interestingly, for this small example, the n-gram model (Model 1) is the least efficient due to its overhead in storing all bigram transitions, but it becomes more competitive as the language scales (as we'll see in Section 4.1).
 
 The efficiency gains of Model 3 arise from different ways of capturing regularities:
 -   Model 3 achieves the best compression by using:
@@ -248,7 +248,7 @@ Let $$V$$ be the total number of unique tokens in the lexicon (e.g., $$V = V_{PN
 Let's rigorously analyze the asymptotic scaling behavior of each model using Big O notation. To enable direct comparison, we'll make a simplifying assumption that all category sizes grow proportionally with the total vocabulary size—that is, $$V_{PN} \propto V$$, $$V_{IV} \propto V$$, and $$V_{TV} \propto V$$.
 
 **Model 0: Unstructured Statistical Enumeration**
-The cost $$L(Model_0)$$ has two components:
+The cost $$L(\text{Model}_0)$$ has two components:
 1. Token specification: $$(\text{Total tokens in all sentences}) \times \lceil\log_2 V\rceil$$
 2. Sentence delimitation: $$N_S \times \lceil\log_2 (\text{max sentence length})\rceil$$
 
@@ -263,7 +263,7 @@ The number of sentences $$N_S = \Theta(V^2) + \Theta(V^3) = \Theta(V^3)$$, and d
 Thus:
 
 $$
-L(Model_0) = \Theta(V^3 \log V) + \Theta(V^3 \log \log V) = \Theta(V^3 \log V)
+L(\text{Model}_0) = \Theta(V^3 \log V) + \Theta(V^3 \log \log V) = \Theta(V^3 \log V)
 $$
 
 **Model 1: N-gram Statistical Model**
@@ -283,13 +283,13 @@ In total, we have $$\Theta(V^2)$$ unique bigrams. Each bigram requires $$\Theta(
 Therefore, for bigrams:
 
 $$
-L(Model_1) = \Theta(V \log V) + \Theta(V^2 \log V) = \Theta(V^2 \log V)
+L(\text{Model}_1) = \Theta(V \log V) + \Theta(V^2 \log V) = \Theta(V^2 \log V)
 $$
 
 For general n-grams where n ≥ 3, the scaling becomes $$\Theta(V^n \log V)$$.
 
 **Model 2: Finite State Automaton (Prefix Sharing)**
-The cost $$L(Model_2)$$ has three main components:
+The cost $$L(\text{Model}_2)$$ has three main components:
 1. Tree shape specification: $$\lceil\log_2 \text{Catalan}(N_S-1)\rceil \approx \Theta(N_S)$$
 2. Edge labels: $$(2N_S-2) \times \lceil\log_2 V\rceil = \Theta(N_S \log V)$$
 3. Sentence endings: $$\Theta(N_S)$$
@@ -297,11 +297,11 @@ The cost $$L(Model_2)$$ has three main components:
 With $$N_S = \Theta(V^3)$$, we get:
 
 $$
-L(Model_2) = \Theta(V^3) + \Theta(V^3 \log V) + \Theta(V^3) = \Theta(V^3 \log V)
+L(\text{Model}_2) = \Theta(V^3) + \Theta(V^3 \log V) + \Theta(V^3) = \Theta(V^3 \log V)
 $$
 
 **Model 3: Principled Linguistic Encoding**
-$$L(Model_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic})$$.
+$$L(\text{Model}_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic})$$.
 
 1. **$$L(\text{Lexical-Conceptual})$$**:
    - Category count specification: $$\Theta(\log N_{cat})$$
@@ -326,7 +326,7 @@ $$L(Model_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic})$$.
 Therefore:
 
 $$
-L(Model_3) = \Theta(V \log \log V) + \Theta(\log V \log \log V) = \Theta(V \log \log V)
+L(\text{Model}_3) = \Theta(V \log \log V) + \Theta(\log V \log \log V) = \Theta(V \log \log V)
 $$
 
 **Asymptotic Ordering of Model Complexities**
@@ -334,14 +334,14 @@ $$
 As vocabulary size $$V$$ approaches infinity, the model complexities can be ordered as follows:
 
 $$
-L(Model_3) \ll L(Model_{1, bigram}) < L(Model_0) \approx L(Model_2) < L(Model_{1, trigram}) < L(Model_1_{4-gram}) < ...
+L(\text{Model}_3) \ll L(\text{Model}_{1, bigram}) < L(\text{Model}_0) \approx L(\text{Model}_2) < L(\text{Model}_{1, trigram}) < L(\text{Model}_1_{4-gram}) < ...
 $$
 
 More precisely:
-- $$L(Model_3) = \Theta(V \log \log V)$$ 
-- $$L(Model_{1, bigram}) = \Theta(V^2 \log V)$$
-- $$L(Model_0) = L(Model_2) = \Theta(V^3 \log V)$$
-- $$L(Model_1_{n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 3$$
+- $$L(\text{Model}_3) = \Theta(V \log \log V)$$ 
+- $$L(\text{Model}_{1, bigram}) = \Theta(V^2 \log V)$$
+- $$L(\text{Model}_0) = L(\text{Model}_2) = \Theta(V^3 \log V)$$
+- $$L(\text{Model}_1_{n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 3$$
 
 This asymptotic analysis reveals why principled linguistic encoding (Model 3) is not just marginally better but *fundamentally* more efficient than the alternatives. The difference between $$\Theta(V \log \log V)$$ and $$\Theta(V^3 \log V)$$ is not just a constant factor—it's a qualitative shift in how the complexity grows with vocabulary size.
 
@@ -368,7 +368,7 @@ $$
 L(\text{Corpus} \mid \text{Model}) \propto NLL(\text{Corpus} \mid \text{Model})
 $$
 
-The MDL principle seeks to minimize $$L(Model) + L(Data \mid Model)$$. So, an LLM that better compresses data (lower NLL) by finding a compact model $$L(Model)$$ makes better predictions.
+The MDL principle seeks to minimize $$L(\text{Model}) + L(\text{Data} \mid \text{Model})$$. So, an LLM that better compresses data (lower NLL) by finding a compact model $$L(\text{Model})$$ makes better predictions.
 
 The drive for predictive accuracy under complexity constraints (e.g., model size) pushes LLMs to discover efficient, principled representations. Evidence suggests LLMs do learn:
 -   Representations corresponding to syntactic hierarchies (e.g., parse trees and constituent structures). Studies analyzing internal model features, like attention patterns or activations, suggest these are learned even without explicit syntactic supervision.
