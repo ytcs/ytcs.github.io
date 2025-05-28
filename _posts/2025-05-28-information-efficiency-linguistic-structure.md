@@ -286,7 +286,7 @@ $$
 L(\text{Model}_1) = \Theta(V \log V) + \Theta(V^2 \log V) = \Theta(V^2 \log V)
 $$
 
-For general n-grams where n ≥ 3, the scaling becomes $$\Theta(V^n \log V)$$.
+For general n-grams where n ≥ 2, the scaling becomes $$\Theta(V^n \log V)$$.
 
 **Model 2: Finite State Automaton (Prefix Sharing)**
 The cost $$L(\text{Model}_2)$$ has three main components:
@@ -341,7 +341,7 @@ More precisely:
 - $$L(\text{Model}_3) = \Theta(V \log \log V)$$ 
 - $$L(\text{Model}_{1, bigram}) = \Theta(V^2 \log V)$$
 - $$L(\text{Model}_0) = L(\text{Model}_2) = \Theta(V^3 \log V)$$
-- $$L(\text{Model}_{1, n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 3$$
+- $$L(\text{Model}_{1, n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 2$$
 
 This asymptotic analysis reveals why principled linguistic encoding (Model 3) is not just marginally better but *fundamentally* more efficient than the alternatives. The difference between $$\Theta(V \log \log V)$$ and $$\Theta(V^3 \log V)$$ is not just a constant factor—it's a qualitative shift in how the complexity grows with vocabulary size.
 
