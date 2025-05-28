@@ -142,28 +142,28 @@ This P&L is largely a sunk cost by the time the MM evaluates their position at $
 
 ## 4. MM P&L Profile with a "Last" Hedge into Expiration
 
-Having arrived at a price $$S_c$$ with a hedge $$H_{\text{last}}$$ that is no longer perfectly optimal (or perhaps was the result of a recent, best-effort re-hedge), the MM faces the final moments to expiration. The P&L incurred due to prior gamma exposure (as discussed in Section 3) is now a sunk cost. The critical question is how their P&L will behave from this point ($$S_c$$ with hedge $$H_{\text{last}}$$) until the final expiration price $$S_T$$. We will denote $$H_{\text{last}}$$ as $$H_c$$ for the current hedge quantity.
+Having arrived at a price $$S_c$$ with a hedge $$H_{\text{last}}$$ that is no longer perfectly optimal (or perhaps was the result of a recent, best-effort re-hedge), the MM faces the final moments to expiration. The P&L incurred due to prior gamma exposure (as discussed in Section 3) is now a sunk cost. The critical question is how their P&L will behave from this point ($$S_c$$ with hedge $$H_{\text{last}}$$) until the final expiration price $$S_T$$.
 
-For the remainder of the 0DTE period (from $$S_c$$ with hedge $$H_c$$ until expiration at price $$S_T$$), the MM is effectively "stuck" with their existing options book (quantities $$Q_k$$) and its inherent gamma profile, alongside their current hedge $$H_c$$. Let $$O_k(S_c, K_k)$$ be the market value of option $$k$$ (per unit) at price $$S_c$$ when this evaluation is made. The P&L from this point until expiration is:
+For the remainder of the 0DTE period (from $$S_c$$ with hedge $$H_{\text{last}}$$ until expiration at price $$S_T$$), the MM is effectively "stuck" with their existing options book (quantities $$Q_k$$) and its inherent gamma profile, alongside their current hedge $$H_{\text{last}}$$. Let $$O_k(S_c, K_k)$$ be the market value of option $$k$$ (per unit) at price $$S_c$$ when this evaluation is made. The P&L from this point until expiration is:
 
 $$
-\text{P\&L}_{S_c \to S_T}(S_T) = \sum_k Q_k \left[O_k(S_c, K_k) - \text{Payoff}_k(S_T, K_k)\right] + H_c (S_T - S_c)
+\text{P\&L}_{S_c \to S_T}(S_T) = \sum_k Q_k \left[O_k(S_c, K_k) - \text{Payoff}_k(S_T, K_k)\right] + H_{\text{last}} (S_T - S_c)
 $$
 
 Here, $$Q_k$$ represents the quantity of option $$k$$ sold by the MM (so $$Q_k > 0$$ for short positions). $$\text{Payoff}_k(S_T, K_k)$$ is the final payoff of option $$k$$ at expiration if the underlying price is $$S_T$$. For example, for a call option, $$\text{Payoff}_k(S_T, K_k) = \max(0, S_T - K_k)$$.
 This P&L can be rewritten to separate terms dependent on $$S_T$$:
 
 $$
-\text{P\&L}_{S_c \to S_T}(S_T) = \left( \sum_k Q_k O_k(S_c, K_k) - H_c S_c \right) + H_c S_T - \sum_k Q_k \text{Payoff}_k(S_T, K_k)
+\text{P\&L}_{S_c \to S_T}(S_T) = \left( \sum_k Q_k O_k(S_c, K_k) - H_{\text{last}} S_c \right) + H_{\text{last}} S_T - \sum_k Q_k \text{Payoff}_k(S_T, K_k)
 $$
 
-The term in parentheses, $$\left( \sum_k Q_k O_k(S_c, K_k) - H_c S_c \right)$$, is constant with respect to the final expiration price $$S_T$$. The payoff functions $$\text{Payoff}_k(S_T, K_k)$$ are piecewise linear with kinks at their respective strikes $$K_k$$. Therefore, $$\text{P\&L}_{S_c \to S_T}(S_T)$$ is also piecewise linear in $$S_T$$.
+The term in parentheses, $$\left( \sum_k Q_k O_k(S_c, K_k) - H_{\text{last}} S_c \right)$$, is constant with respect to the final expiration price $$S_T$$. The payoff functions $$\text{Payoff}_k(S_T, K_k)$$ are piecewise linear with kinks at their respective strikes $$K_k$$. Therefore, $$\text{P\&L}_{S_c \to S_T}(S_T)$$ is also piecewise linear in $$S_T$$.
 
 ### Optimal Expiration Price ($$S_{\text{MM}}^*$$) for the MM
-The MM, having established the hedge $$H_c$$, seeks to maximize $$\text{P\&L}_{S_c \to S_T}(S_T)$$ with respect to the unknown expiration price $$S_T$$. The optimal expiration price for the MM, $$S_{\text{MM}}^*$$, can be found by examining the derivative of this P&L with respect to $$S_T$$:
+The MM, having established the hedge $$H_{\text{last}}$$, seeks to maximize $$\text{P\&L}_{S_c \to S_T}(S_T)$$ with respect to the unknown expiration price $$S_T$$. The optimal expiration price for the MM, $$S_{\text{MM}}^*$$, can be found by examining the derivative of this P&L with respect to $$S_T$$:
 
 $$
-m(S_T) = \frac{d \text{P\&L}_{S_c \to S_T}(S_T)}{d S_T} = H_c - \sum_k Q_k \frac{d \text{Payoff}_k(S_T, K_k)}{d S_T}
+m(S_T) = \frac{d \text{P\&L}_{S_c \to S_T}(S_T)}{d S_T} = H_{\text{last}} - \sum_k Q_k \frac{d \text{Payoff}_k(S_T, K_k)}{d S_T}
 $$
 
 Let $$\Delta_k^{\text{exp}}(S_T, K_k) = \frac{d \text{Payoff}_k(S_T, K_k)}{d S_T}$$ be the option's delta at expiration. This delta is:
@@ -174,28 +174,28 @@ The sum $$\sum_k Q_k \Delta_k^{\text{exp}}(S_T, K_k)$$ represents the Net Delta 
 So, the slope of the P&L function is:
 
 $$
-m(S_T) = H_c - \text{NDO}(S_T)
+m(S_T) = H_{\text{last}} - \text{NDO}(S_T)
 $$
 
-Since $$H_c = \sum_k Q_k \Delta_k(S_c, K_k)$$ (the aggregate delta of the options book valued at $$S_c$$), we have:
+Since $$H_{\text{last}} = \sum_k Q_k \Delta_k(S_{\text{last}}, K_k)$$ (the aggregate delta of the options book valued at $$S_{\text{last}}$$, the price at which the last hedge was made), we have:
 
 $$
-m(S_T) = \sum_k Q_k \Delta_k(S_c, K_k) - \text{NDO}(S_T)
+m(S_T) = \sum_k Q_k \Delta_k(S_{\text{last}}, K_k) - \text{NDO}(S_T)
 $$
 
-The function $$m(S_T)$$ is piecewise constant and changes values only at the strike prices $$K_k$$. The optimal expiration price $$S_{\text{MM}}^*$$ for the MM is typically a strike price $$K_k$$ where $$m(S_{\text{MM}}^*) \approx 0$$, or more precisely, where $$m(S_T)$$ changes sign from positive (for $$S_T < S_{\text{MM}}^*$$) to negative (for $$S_T > S_{\text{MM}}^*$$) for a local maximum. This condition $$H_c \approx \text{NDO}(S_{\text{MM}}^*)$$ means that the MM's hedge $$H_c$$ (taken at $$S_c$$) most closely matches the net shares needed for settlement at expiration if $$S_T = S_{\text{MM}}^*$$.
+The function $$m(S_T)$$ is piecewise constant and changes values only at the strike prices $$K_k$$. The optimal expiration price $$S_{\text{MM}}^*$$ for the MM is typically a strike price $$K_k$$ where $$m(S_{\text{MM}}^*) \approx 0$$, or more precisely, where $$m(S_T)$$ changes sign from positive (for $$S_T < S_{\text{MM}}^*$$) to negative (for $$S_T > S_{\text{MM}}^*$$) for a local maximum. This condition $$H_{\text{last}} \approx \text{NDO}(S_{\text{MM}}^*)$$ means that the MM's hedge $$H_{\text{last}}$$ (taken at $$S_{\text{last}}$$) most closely matches the net shares needed for settlement at expiration if $$S_T = S_{\text{MM}}^*$$.
 
 ## 5. Potential for Price Manipulation by the MM
 
-The challenges of maintaining a perfect hedge near expiration, as detailed in Section 2.2, often lead to a scenario where continuous, high-frequency re-hedging becomes prohibitively costly, operationally fraught, and practically ineffective in the face of extreme gamma. The MM, consequently, is often left holding a hedge, $$H_c$$, that is 'stuck' or significantly imperfect relative to the true delta of their options book.
+The challenges of maintaining a perfect hedge near expiration, as detailed in Section 2.2, often lead to a scenario where continuous, high-frequency re-hedging becomes prohibitively costly, operationally fraught, and practically ineffective in the face of extreme gamma. The MM, consequently, is often left holding a hedge, $$H_{\text{last}}$$, that is 'stuck' or significantly imperfect relative to the true delta of their options book at the current price $$S_c$$.
 
-In these final moments, rather than attempting numerous, potentially futile and very expensive micro-adjustments to their stock hedge, the MM might evaluate a more decisive, albeit still costly, alternative: influencing the final settlement price $$S_T$$. This approach shifts from a strategy of continuous risk mitigation (which is breaking down) to a 'one-shot' attempt to optimize the P&L outcome of their substantial, existing options portfolio, given their fixed hedge $$H_c$$. One potential strategy in this context is to influence the final settlement price $$S_T$$ away from its anticipated "natural" level $$S_T^n$$ (which could be proxied by the current market price $$S_c$$) towards a manipulated price $$S_T^m$$ that is more favorable given their specific options book and the fixed hedge $$H_c$$.
+In these final moments, rather than attempting numerous, potentially futile and very expensive micro-adjustments to their stock hedge, the MM might evaluate a more decisive, albeit still costly, alternative: influencing the final settlement price $$S_T$$. This approach shifts from a strategy of continuous risk mitigation (which is breaking down) to a 'one-shot' attempt to optimize the P&L outcome of their substantial, existing options portfolio, given their fixed hedge $$H_{\text{last}}$$. One potential strategy in this context is to influence the final settlement price $$S_T$$ away from its anticipated "natural" level $$S_T^n$$ (which could be proxied by the current market price $$S_c$$) towards a manipulated price $$S_T^m$$ that is more favorable given their specific options book and the fixed hedge $$H_{\text{last}}$$.
 
 Such an action to influence the price is not without significant cost. Let $$a$$ be the marginal cost for the MM to move the price by 1 dollar. This cost, $$a$$, arises from the very same market frictions that complicate continuous hedging: transaction fees, the market impact of their trades (which can move the price against them as they attempt to execute large orders), and potentially thin liquidity, especially for the volumes needed to influence the price as expiration looms. Thus, while the factors in Section 2.2 make perfect hedging difficult, they also make price manipulation inherently costly. This $$a$$ is a simplification, as actual manipulation costs are complex, nonlinear, and highly dependent on market conditions.
 
 It is also crucial to note that this manipulation cost, $$a$$, is likely not static. It tends to be significantly lower as the moment of expiration draws very near. Influencing the closing price for a few minutes, or even seconds, requires less capital and market effort than maintaining an artificial price for an extended period. The market's mean-reverting tendencies have less time to act against a short-term price push at the very end, making manipulation potentially more effective and less costly per dollar of price movement, thereby increasing the likelihood that the condition for manipulation is met.
 
-Despite these costs, manipulation might become an economically rational choice when the potential P&L benefit from steering the settlement price for their *entire existing options book* outweighs the costs of this *single, larger intervention*. The marginal P&L gain for the MM from moving $$S_T$$ is given by $$m(S_T) = H_c - \text{NDO}(S_T)$$. Manipulation becomes attractive if this marginal P&L gain from the options book (due to the price change) exceeds the marginal cost $$a$$ of effecting that price change.
+Despite these costs, manipulation might become an economically rational choice when the potential P&L benefit from steering the settlement price for their *entire existing options book* outweighs the costs of this *single, larger intervention*. The marginal P&L gain for the MM from moving $$S_T$$ is given by $$m(S_T) = H_{\text{last}} - \text{NDO}(S_T)$$. Manipulation becomes attractive if this marginal P&L gain from the options book (due to the price change) exceeds the marginal cost $$a$$ of effecting that price change.
 The condition for initiating manipulation is then:
 
 $$
@@ -205,13 +205,13 @@ $$
 Substituting the expression for $$m(S_T^n)$$:
 
 $$
-\vert H_c - \text{NDO}(S_T^n) \vert > a
+\vert H_{\text{last}} - \text{NDO}(S_T^n) \vert > a
 $$
 
-The term $$H_c - \text{NDO}(S_T^n)$$ represents the MM's "excess hedge" (if positive) or "hedge deficit" (if negative) relative to what would be needed if the price expires at $$S_T^n$$.
+The term $$H_{\text{last}} - \text{NDO}(S_T^n)$$ represents the MM's "excess hedge" (if positive) or "hedge deficit" (if negative) relative to what would be needed if the price expires at $$S_T^n$$.
 
-- If $$H_c - \text{NDO}(S_T^n) > a$$: The MM is over-hedged for $$S_T^n$$ (has more shares than needed if price stays at $$S_T^n$$) and benefits from $$S_T$$ rising. They have an incentive to push the price up towards $$S_{\text{MM}}^*$$.
-- If $$H_c - \text{NDO}(S_T^n) < -a$$: The MM is under-hedged for $$S_T^n$$ (has fewer shares than needed) and benefits from $$S_T$$ falling. They have an incentive to push the price down towards $$S_{\text{MM}}^*$$.
+- If $$H_{\text{last}} - \text{NDO}(S_T^n) > a$$: The MM is over-hedged for $$S_T^n$$ (has more shares than needed if price stays at $$S_T^n$$) and benefits from $$S_T$$ rising. They have an incentive to push the price up towards $$S_{\text{MM}}^*$$.
+- If $$H_{\text{last}} - \text{NDO}(S_T^n) < -a$$: The MM is under-hedged for $$S_T^n$$ (has fewer shares than needed) and benefits from $$S_T$$ falling. They have an incentive to push the price down towards $$S_{\text{MM}}^*$$.
 
 The MM would theoretically attempt to move $$S_T$$ towards $$S_{\text{MM}}^*$$ as long as the marginal benefit $$\vert m(S_T) \vert$$ exceeds the marginal cost $$a$$.
 
@@ -221,48 +221,39 @@ To make this operational, we assume a single (monopolist) MM whose sold quantiti
 - $$Q_k^{\text{call}} = \text{OI}_{\text{C}}(K_k)$$ (Open Interest for calls at strike $$K_k$$)
 - $$Q_k^{\text{put}} = \text{OI}_{\text{P}}(K_k)$$ (Open Interest for puts at strike $$K_k$$)
 
-The MM's optimal expiration price $$S_{\text{MM}}^*$$ is where their hedge $$H_c$$ approximately equals their Net Delta Obligation $$\text{NDO}(S_{\text{MM}}^*)$$.
+The MM's optimal expiration price $$S_{\text{MM}}^*$$ is where their hedge $$H_{\text{last}}$$ approximately equals their Net Delta Obligation $$\text{NDO}(S_{\text{MM}}^*)$$. For practical observability, we estimate the MM's current hedge quantity based on current market conditions.
 
-### MM's Estimated Current Delta Hedge ($$H_{\text{MM}}(S_c, \sigma)$$)
+### MM's Estimated Current Delta Hedge ($$H_{\text{est}}(S_c, \sigma)$$)
 We can proxy $$S_c$$ with the current underlying price. The time to expiration $$\tau_c$$ is very close to zero for 0DTE options.
-The MM's current total delta hedge, $$H_{\text{MM}}$$, can be estimated using current option open interests and Black-Scholes deltas calculated at $$S_c$$ and an estimated 0DTE implied volatility $$\sigma$$:
+The MM's current total delta hedge, for the purpose of creating an observable indicator, is estimated as $$H_{\text{est}}$$, using current option open interests and Black-Scholes deltas calculated at $$S_c$$ and an estimated 0DTE implied volatility $$\sigma$$:
 
 $$
-H_{\text{MM}}(S_c, \sigma) = \sum_{K_k} \text{OI}_{\text{C}}(K_k) \Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c) + \sum_{K_k} \text{OI}_{\text{P}}(K_k) \Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)
+H_{\text{est}}(S_c, \sigma) = \sum_{K_k} \text{OI}_{\text{C}}(K_k) \Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c) + \sum_{K_k} \text{OI}_{\text{P}}(K_k) \Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)
 $$
 
-Where $$\Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c)$$ and $$\Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)$$ are the deltas of call and put options, respectively, at strike $$K_k$$, given current price $$S_c$$, volatility $$\sigma$$, and near-zero time to expiry $$\tau_c$$.
-
-### Net Delta Obligation at Expiration ($$\text{NDO}(S_T)$$)
-The Net Delta Obligation at expiration $$S_T$$ depends on which options expire in-the-money:
-
-$$
-\text{NDO}(S_T) = \sum_{K_k < S_T} \text{OI}_{\text{C}}(K_k) \cdot (1) - \sum_{K_k > S_T} \text{OI}_{\text{P}}(K_k) \cdot (1)
-$$
-
-This formula assumes the MM is short calls (owes 1 share per ITM call) and short puts (receives 1 share per ITM put, which is a negative obligation for shares to *deliver*, or effectively reduces the number of shares they need to be long).
+Where $$\Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c)$$ and $$\Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)$$ are the deltas of call and put options, respectively, at strike $$K_k$$, given current price $$S_c$$, volatility $$\sigma$$, and near-zero time to expiry $$\tau_c$$. This $$H_{\text{est}}(S_c, \sigma)$$ serves as a practical proxy for the theoretically "stuck" hedge $$H_{\text{last}}$$ when evaluating the situation from the current price $$S_c$$.
 
 ### Observable $$S_{\text{MM}}^*$$ Calculation
 An observable estimate for $$S_{\text{MM}}^*$$ can be calculated as follows:
 1.  Collect current open interest data: $$\text{OI}_{\text{C}}(K_k)$$ and $$\text{OI}_{\text{P}}(K_k)$$ for all relevant strikes $$K_k$$.
-2.  Use the current underlying price $$S_c$$ as a proxy for $$S_c$$.
-3.  Calculate the MM's estimated current total delta hedge $$H_{\text{MM}}(S_c, \sigma)$$.
+2.  Use the current underlying price for $$S_c$$.
+3.  Calculate the MM's estimated current total delta hedge $$H_{\text{est}}(S_c, \sigma)$$.
 4.  For each strike price $$K_j$$ in the option chain, calculate the Net Delta Obligation $$\text{NDO}(K_j)$$ that would occur if $$S_T = K_j$$.
-5.  $$S_{\text{MM}}^*$$ is the strike $$K_j$$ for which $$\text{NDO}(K_j)$$ is closest to $$H_{\text{MM}}(S_c, \sigma)$$. That is, $$S_{\text{MM}}^*$$ is the $$K_j$$ that minimizes $$\vert H_{\text{MM}}(S_c, \sigma) - \text{NDO}(K_j) \vert$$. This is the strike where the MM's P&L slope $$m(K_j)$$ is closest to zero.
+5.  $$S_{\text{MM}}^*$$ is the strike $$K_j$$ for which $$\text{NDO}(K_j)$$ is closest to $$H_{\text{est}}(S_c, \sigma)$$. That is, $$S_{\text{MM}}^*$$ is the $$K_j$$ that minimizes $$\vert H_{\text{est}}(S_c, \sigma) - \text{NDO}(K_j) \vert$$. This is the strike where the MM's P&L slope $$m(K_j)$$, using $$H_{\text{est}}$$ as the hedge, is closest to zero.
 
 ### 6.1. An Indicator for Predicting Price Manipulation
-Let $$S_c$$ be the current market price, taken as a proxy for $$S_T^n$$. The MM's current delta hedge is approximated as $$H_c \approx H_{\text{MM}}(S_c, \sigma)$$.
+Let $$S_c$$ be the current market price, taken as a proxy for $$S_T^n$$ (the "natural" expiration price if no manipulation occurs). The MM's current effective hedge is proxied by $$H_{\text{est}}(S_c, \sigma)$$.
 The **Current Delta Imbalance (CDI)** at $$S_c$$ is defined as:
 
 $$
-\text{CDI}(S_c) = H_{\text{MM}}(S_c, \sigma) - \text{NDO}(S_c)
+\text{CDI}(S_c) = H_{\text{est}}(S_c, \sigma) - \text{NDO}(S_c)
 $$
 
-This $$\text{CDI}(S_c)$$ represents the slope $$m(S_c)$$ of the MM's P&L function $$\text{P\&L}_{S_c \to S_T}(S_T)$$ evaluated at the current price $$S_c$$. It indicates the MM's exposure per dollar change in $$S_T$$ from $$S_c$$.
+This $$\text{CDI}(S_c)$$ represents the slope $$m(S_c)$$ of the MM's P&L function $$\text{P\&L}_{S_c \to S_T}(S_T)$$ evaluated at the current price $$S_c$$, assuming their hedge is $$H_{\text{est}}(S_c, \sigma)$$. It indicates the MM's exposure per dollar change in $$S_T$$ from $$S_c$$.
 
 A **Manipulation Indicator** can be formulated: Price manipulation by the MM is predicted if $$\vert \text{CDI}(S_c) \vert > a$$, where $$a$$ is some threshold value we choose that represents the marginal cost of manipulation.
-- If $$\text{CDI}(S_c) > a$$: The MM is over-hedged at $$S_c$$ and has an incentive to push the price upward, towards $$S_{\text{MM}}^*$$ (which would likely be greater than $$S_c$$).
-- If $$\text{CDI}(S_c) < -a$$: The MM is under-hedged at $$S_c$$ and has an incentive to push the price downward, towards $$S_{\text{MM}}^*$$ (which would likely be less than $$S_c$$).
+- If $$\text{CDI}(S_c) > a$$: The MM is (effectively) over-hedged at $$S_c$$ and has an incentive to push the price upward, towards $$S_{\text{MM}}^*$$ (which would likely be greater than $$S_c$$).
+- If $$\text{CDI}(S_c) < -a$$: The MM is (effectively) under-hedged at $$S_c$$ and has an incentive to push the price downward, towards $$S_{\text{MM}}^*$$ (which would likely be less than $$S_c$$).
 
 **Interpretation**:
-This theoretical framework outlines how a market maker's hedging activities, particularly in the high-gamma environment of 0DTE options, can lead to specific P&L profiles and potential incentives to influence the market's expiration price. The increasing difficulty of perfect hedging as expiration approaches can lead to an effectively "stuck" hedge. This current hedge, when evaluated against the potential share obligations at different expiration prices, creates a P&L landscape where the MM may have a preferred expiration point ($$S_{\text{MM}}^*$$). The concept of $$S_{\text{MM}}^*$$, the MM's optimal expiration price given their current hedge, and the Current Delta Imbalance (CDI) provide a basis for understanding potential "pinning" pressures around certain strikes. While simplified, particularly in its assumptions about a monopolist MM and manipulation costs, this model offers insights into the complex dynamics market makers face and potentially induce in 0DTE markets when their ability to continuously and cost-effectively re-hedge is compromised by the extreme nature of near-expiry options.
+This theoretical framework outlines how a market maker's hedging activities, particularly in the high-gamma environment of 0DTE options, can lead to specific P&L profiles and potential incentives to influence the market's expiration price. The increasing difficulty of perfect hedging as expiration approaches can lead to an effectively "stuck" hedge ($$H_{\text{last}}$$). This "stuck" hedge, when evaluated against the potential share obligations at different expiration prices ($$S_T$$), creates a P&L landscape where the MM may have a preferred expiration point ($$S_{\text{MM}}^*$$). The concept of $$S_{\text{MM}}^*$$, the MM's optimal expiration price given their "stuck" hedge, and the Current Delta Imbalance (CDI) (using $$H_{\text{est}}$$ as a proxy for $$H_{\text{last}}$$) provide a basis for understanding potential "pinning" pressures around certain strikes. While simplified, particularly in its assumptions about a monopolist MM and manipulation costs, this model offers insights into the complex dynamics market makers face and potentially induce in 0DTE markets when their ability to continuously and cost-effectively re-hedge is compromised by the extreme nature of near-expiry options.
