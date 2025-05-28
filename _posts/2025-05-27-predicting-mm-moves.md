@@ -82,6 +82,7 @@ $$
 
 In Black-Scholes, $$(dS)^2 = S^2 \sigma^2 dt$$. Let $$\Theta = \frac{\partial V}{\partial t}$$, $$\Delta_V = \frac{\partial V}{\partial S}$$, and $$\Gamma_V = \frac{\partial^2 V}{\partial S^2}$$.
 Then, $$dV$$ can be written as:
+
 $$
 dV = \Theta dt + \Delta_V dS + \frac{1}{2} \Gamma_V S^2 \sigma^2 dt
 $$
