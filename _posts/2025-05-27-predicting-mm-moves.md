@@ -111,13 +111,13 @@ At time $$t_0$$, the MM is delta-neutral, with the underlying asset priced at $$
 A rapid price dislocation occurs, moving the underlying price from $$S_0$$ to $$S_1$$ at time $$t_1$$. This move is assumed to happen faster than the MM can adjust their hedge $$H_0$$. The change in the MM's portfolio value due to this unhedged price move represents the P&L from the dislocation:
 
 $$
-\text{P&L}_{\text{dislocation}} = \left[-V(S_1, t_1) + H_0 S_1\right] - \left[-V(S_0, t_0) + H_0 S_0\right]
+\text{P\&L}_{\text{dislocation}} = \left[-V(S_1, t_1) + H_0 S_1\right] - \left[-V(S_0, t_0) + H_0 S_0\right]
 $$
 
 Rearranging terms:
 
 $$
-\text{P&L}_{\text{dislocation}} = -\left(V(S_1, t_1) - V(S_0, t_0)\right) + H_0 (S_1 - S_0)
+\text{P\&L}_{\text{dislocation}} = -\left(V(S_1, t_1) - V(S_0, t_0)\right) + H_0 (S_1 - S_0)
 $$
 
 We assume that the time interval $$t_1 - t_0$$ is very small, so $$t_1 \approx t_0$$. The primary impact on option value comes from the change in $$S$$, not time decay. We can approximate $$V(S_1, t_1)$$ using a Taylor series expansion of $$V(S, t_0)$$ around $$S_0$$:
@@ -133,46 +133,46 @@ $$
 V(S_1, t_1) - V(S_0, t_0) \approx H_0 (S_1 - S_0) + \frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2
 $$
 
-Now, substitute this back into the $$\text{P&L}_{\text{dislocation}}$$ equation:
+Now, substitute this back into the $$\text{P\&L}_{\text{dislocation}}$$ equation:
 
 $$
-\text{P&L}_{\text{dislocation}} \approx -\left( H_0 (S_1 - S_0) + \frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2 \right) + H_0 (S_1 - S_0)
-$$
-
-$$
-\text{P&L}_{\text{dislocation}} \approx -H_0 (S_1 - S_0) - \frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2 + H_0 (S_1 - S_0)
+\text{P\&L}_{\text{dislocation}} \approx -\left( H_0 (S_1 - S_0) + \frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2 \right) + H_0 (S_1 - S_0)
 $$
 
 $$
-\text{P&L}_{\text{dislocation}} \approx -\frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2
+\text{P\&L}_{\text{dislocation}} \approx -H_0 (S_1 - S_0) - \frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2 + H_0 (S_1 - S_0)
 $$
 
-If the MM is net short options (e.g., selling calls and puts), their book $$V$$ typically has positive gamma ($$\Gamma_V(S_0) > 0$$, as individual options have positive gamma). The MM's overall portfolio is therefore short gamma (portfolio gamma $$\approx -\Gamma_V(S_0) < 0$$). Consequently, any significant price movement $$(S_1 - S_0)^2 > 0$$ results in a negative $$\text{P&L}_{\text{dislocation}}$$, representing the realized cost of the mishedge due to being short gamma.
+$$
+\text{P\&L}_{\text{dislocation}} \approx -\frac{1}{2} \Gamma_V(S_0) (S_1 - S_0)^2
+$$
+
+If the MM is net short options (e.g., selling calls and puts), their book $$V$$ typically has positive gamma ($$\Gamma_V(S_0) > 0$$, as individual options have positive gamma). The MM's overall portfolio is therefore short gamma (portfolio gamma $$\approx -\Gamma_V(S_0) < 0$$). Consequently, any significant price movement $$(S_1 - S_0)^2 > 0$$ results in a negative $$\text{P\&L}_{\text{dislocation}}$$, representing the realized cost of the mishedge due to being short gamma.
 
 ## 4. MM Re-hedging and Subsequent P&L Profile
 
-At price $$S_1$$ (and time $$t_1$$), the MM immediately acts to restore delta neutrality. The options book (composed of quantities $$Q_k$$ of options with strike $$K_k$$) now has a total delta $$\Delta_{\text{book}}(S_1) = \sum_k Q_k \Delta_k(S_1, K_k)$$, where $$\Delta_k(S_1, K_k)$$ is the delta of option $$k$$ at price $$S_1$$. The MM adjusts their hedge from $$H_0$$ to $$H_1 = \Delta_{\text{book}}(S_1)$$ by trading $$(H_1 - H_0)$$ shares at price $$S_1$$. The $$\text{P&L}_{\text{dislocation}}$$ is now a sunk cost (or gain).
+At price $$S_1$$ (and time $$t_1$$), the MM immediately acts to restore delta neutrality. The options book (composed of quantities $$Q_k$$ of options with strike $$K_k$$) now has a total delta $$\Delta_{\text{book}}(S_1) = \sum_k Q_k \Delta_k(S_1, K_k)$$, where $$\Delta_k(S_1, K_k)$$ is the delta of option $$k$$ at price $$S_1$$. The MM adjusts their hedge from $$H_0$$ to $$H_1 = \Delta_{\text{book}}(S_1)$$ by trading $$(H_1 - H_0)$$ shares at price $$S_1$$. The $$\text{P\&L}_{\text{dislocation}}$$ is now a sunk cost (or gain).
 
 For the remainder of the 0DTE period (from $$S_1$$ until expiration at price $$S_T$$), the MM is delta-neutralized based on the conditions at $$S_1$$ but remains "stuck" with their existing options book (quantities $$Q_k$$) and its inherent gamma profile. Let $$O_k(S_1, K_k)$$ be the market value of option $$k$$ (per unit) at price $$S_1$$ when the new hedge $$H_1$$ is established. The P&L from this point until expiration is:
 
 $$
-\text{P&L}_{S_1 \to S_T}(S_T) = \sum_k Q_k \left[O_k(S_1, K_k) - \text{Payoff}_k(S_T, K_k)\right] + H_1 (S_T - S_1)
+\text{P\&L}_{S_1 \to S_T}(S_T) = \sum_k Q_k \left[O_k(S_1, K_k) - \text{Payoff}_k(S_T, K_k)\right] + H_1 (S_T - S_1)
 $$
 
 Here, $$Q_k$$ represents the quantity of option $$k$$ sold by the MM (so $$Q_k > 0$$ for short positions). $$\text{Payoff}_k(S_T, K_k)$$ is the final payoff of option $$k$$ at expiration if the underlying price is $$S_T$$. For example, for a call option, $$\text{Payoff}_k(S_T, K_k) = \max(0, S_T - K_k)$$.
 This P&L can be rewritten to separate terms dependent on $$S_T$$:
 
 $$
-\text{P&L}_{S_1 \to S_T}(S_T) = \left( \sum_k Q_k O_k(S_1, K_k) - H_1 S_1 \right) + H_1 S_T - \sum_k Q_k \text{Payoff}_k(S_T, K_k)
+\text{P\&L}_{S_1 \to S_T}(S_T) = \left( \sum_k Q_k O_k(S_1, K_k) - H_1 S_1 \right) + H_1 S_T - \sum_k Q_k \text{Payoff}_k(S_T, K_k)
 $$
 
-The term in parentheses, $$\left( \sum_k Q_k O_k(S_1, K_k) - H_1 S_1 \right)$$, is constant with respect to the final expiration price $$S_T$$. The payoff functions $$\text{Payoff}_k(S_T, K_k)$$ are piecewise linear with kinks at their respective strikes $$K_k$$. Therefore, $$\text{P&L}_{S_1 \to S_T}(S_T)$$ is also piecewise linear in $$S_T$$.
+The term in parentheses, $$\left( \sum_k Q_k O_k(S_1, K_k) - H_1 S_1 \right)$$, is constant with respect to the final expiration price $$S_T$$. The payoff functions $$\text{Payoff}_k(S_T, K_k)$$ are piecewise linear with kinks at their respective strikes $$K_k$$. Therefore, $$\text{P\&L}_{S_1 \to S_T}(S_T)$$ is also piecewise linear in $$S_T$$.
 
 ### Optimal Expiration Price ($$S_{\text{MM}}^*$$) for the MM
-The MM, having established the hedge $$H_1$$, seeks to maximize $$\text{P&L}_{S_1 \to S_T}(S_T)$$ with respect to the unknown expiration price $$S_T$$. The optimal expiration price for the MM, $$S_{\text{MM}}^*$$, can be found by examining the derivative of this P&L with respect to $$S_T$$:
+The MM, having established the hedge $$H_1$$, seeks to maximize $$\text{P\&L}_{S_1 \to S_T}(S_T)$$ with respect to the unknown expiration price $$S_T$$. The optimal expiration price for the MM, $$S_{\text{MM}}^*$$, can be found by examining the derivative of this P&L with respect to $$S_T$$:
 
 $$
-m(S_T) = \frac{d \text{P&L}_{S_1 \to S_T}(S_T)}{d S_T} = H_1 - \sum_k Q_k \frac{d \text{Payoff}_k(S_T, K_k)}{d S_T}
+m(S_T) = \frac{d \text{P\&L}_{S_1 \to S_T}(S_T)}{d S_T} = H_1 - \sum_k Q_k \frac{d \text{Payoff}_k(S_T, K_k)}{d S_T}
 $$
 
 Let $$\Delta_k^{\text{exp}}(S_T, K_k) = \frac{d \text{Payoff}_k(S_T, K_k)}{d S_T}$$ be the option's delta at expiration. This delta is:
@@ -263,7 +263,7 @@ $$
 \text{CDI}(S_c) = H_{\text{MM}}(S_c, \sigma) - \text{NDO}(S_c)
 $$
 
-This $$\text{CDI}(S_c)$$ represents the slope $$m(S_c)$$ of the MM's P&L function $$\text{P&L}_{S_1 \to S_T}(S_T)$$ evaluated at the current price $$S_c$$. It indicates the MM's exposure per $$1 change in $$S_T$$ from $$S_c$$.
+This $$\text{CDI}(S_c)$$ represents the slope $$m(S_c)$$ of the MM's P&L function $$\text{P\&L}_{S_1 \to S_T}(S_T)$$ evaluated at the current price $$S_c$$. It indicates the MM's exposure per $$1 change in $$S_T$$ from $$S_c$$.
 
 A **Manipulation Indicator** can be formulated: Price manipulation by the MM is predicted if $$\vert \text{CDI}(S_c) \vert > a$$, where $$a$$ is the marginal cost of manipulation.
 - If $$\text{CDI}(S_c) > a$$: The MM is over-hedged at $$S_c$$ and has an incentive to push the price upward, towards $$S_{\text{MM}}^*$$ (which would likely be greater than $$S_c$$).
@@ -271,8 +271,6 @@ A **Manipulation Indicator** can be formulated: Price manipulation by the MM is 
 
 **Interpretation**:
 $$S_{\text{MM}}^*$$ is the MM's preferred expiration price for their book after their most recent significant re-hedge. The $$\text{CDI}(S_c)$$ quantifies the P&L incentive per dollar move from the current price $$S_c$$. Manipulation towards $$S_{\text{MM}}^*$$ becomes plausible if this incentive overcomes the costs of influencing the price, and if the current price $$S_c$$ is not already at or very near $$S_{\text{MM}}^*$$. If $$S_{\text{MM}}^* \approx S_c$$, then $$\text{CDI}(S_c) \approx 0$$, and no significant manipulation pressure from this mechanism would be expected.
-
-## Conclusion
 
 This theoretical framework outlines how a market maker's hedging activities, particularly in the high-gamma environment of 0DTE options, can lead to specific P&L profiles and potential incentives to influence the market's expiration price. A mishedge resulting from a rapid price move can fix a certain P&L outcome for that event, and the subsequent re-hedging creates a new P&L landscape for the MM leading into expiration. The concept of $$S_{\text{MM}}^*$$, the MM's optimal expiration price post-rehedge, and the Current Delta Imbalance (CDI) provide a basis for understanding potential "pinning" pressures around certain strikes. While simplified, particularly in its assumptions about a monopolist MM and manipulation costs, this model offers insights into the complex dynamics market makers face and potentially induce in 0DTE markets.
 --- 
