@@ -243,22 +243,22 @@ To truly appreciate the efficiency of principled linguistic structure, let's con
 1.  **Increasing Lexical Size**: Adding more tokens to existing categories (e.g., more Proper Nouns like "Charlie", "Diana"; more Verbs like "Sees", "Helps").
 2.  **Increasing Categorical/Structural Complexity**: Adding new categories (e.g., Adjectives, Adverbs) and new syntactic rules to use them.
 
-Let $V$ be the total number of unique tokens in the lexicon (e.g., $V = V_{PN} + V_{IV} + V_{TV}$ in our simple case). Let $N_{cat}$ be the number of lexical categories, and $N_R$ be the number of syntactic rules. The number of unique permissible sentences, $N_S$, depends on these. For our toy grammar with rules $S \rightarrow PN \, IV$ and $S \rightarrow PN \, TV \, PN$, if we have $V_{PN}$ proper nouns, $V_{IV}$ intransitive verbs, and $V_{TV}$ transitive verbs, then the number of sentences is $N_S = (V_{PN} \times V_{IV}) + (V_{PN}^2 \times V_{TV})$.
+Let $$V$$ be the total number of unique tokens in the lexicon (e.g., $$V = V_{PN} + V_{IV} + V_{TV}$$ in our simple case). Let $$N_{cat}$$ be the number of lexical categories, and $$N_R$$ be the number of syntactic rules. The number of unique permissible sentences, $$N_S$$, depends on these. For our toy grammar with rules $$S \rightarrow PN \, IV$$ and $$S \rightarrow PN \, TV \, PN$$, if we have $$V_{PN}$$ proper nouns, $$V_{IV}$$ intransitive verbs, and $$V_{TV}$$ transitive verbs, then the number of sentences is $$N_S = (V_{PN} \times V_{IV}) + (V_{PN}^2 \times V_{TV})$$.
 
-Let's rigorously analyze the asymptotic scaling behavior of each model using Big O notation. To enable direct comparison, we'll make a simplifying assumption that all category sizes grow proportionally with the total vocabulary size—that is, $V_{PN} \propto V$, $V_{IV} \propto V$, and $V_{TV} \propto V$.
+Let's rigorously analyze the asymptotic scaling behavior of each model using Big O notation. To enable direct comparison, we'll make a simplifying assumption that all category sizes grow proportionally with the total vocabulary size—that is, $$V_{PN} \propto V$$, $$V_{IV} \propto V$$, and $$V_{TV} \propto V$$.
 
 **Model 0: Unstructured Statistical Enumeration**
-The cost $L(Model_0)$ has two components:
-1. Token specification: $(\text{Total tokens in all sentences}) \times \lceil\log_2 V\rceil$
-2. Sentence delimitation: $N_S \times \lceil\log_2 (\text{max sentence length})\rceil$
+The cost $$L(Model_0)$$ has two components:
+1. Token specification: $$(\text{Total tokens in all sentences}) \times \lceil\log_2 V\rceil$$
+2. Sentence delimitation: $$N_S \times \lceil\log_2 (\text{max sentence length})\rceil$$
 
-The total number of tokens is $(2 \times V_{PN} \times V_{IV}) + (3 \times V_{PN}^2 \times V_{TV})$. Under our proportional growth assumption:
-- $V_{PN} \times V_{IV} = \Theta(V^2)$
-- $V_{PN}^2 \times V_{TV} = \Theta(V^3)$
+The total number of tokens is $$(2 \times V_{PN} \times V_{IV}) + (3 \times V_{PN}^2 \times V_{TV})$$. Under our proportional growth assumption:
+- $$V_{PN} \times V_{IV} = \Theta(V^2)$$
+- $$V_{PN}^2 \times V_{TV} = \Theta(V^3)$$
 
-Therefore, the total tokens scale as $\Theta(V^3)$, and token specification requires $\Theta(V^3 \log V)$ bits.
+Therefore, the total tokens scale as $$\Theta(V^3)$$, and token specification requires $$\Theta(V^3 \log V)$$ bits.
 
-The number of sentences $N_S = \Theta(V^2) + \Theta(V^3) = \Theta(V^3)$, and delimitation requires $\Theta(V^3 \log \log V)$ bits (since max sentence length is logarithmic in $V$).
+The number of sentences $$N_S = \Theta(V^2) + \Theta(V^3) = \Theta(V^3)$$, and delimitation requires $$\Theta(V^3 \log \log V)$$ bits (since max sentence length is logarithmic in $$V$$).
 
 Thus:
 
@@ -268,17 +268,17 @@ $$
 
 **Model 1: N-gram Statistical Model**
 For an n-gram model, we need to consider:
-1. Vocabulary specification: $\Theta(V \log V)$ bits
-2. N-gram specification: $(\text{Number of unique n-grams}) \times (\text{bits per n-gram})$
+1. Vocabulary specification: $$\Theta(V \log V)$$ bits
+2. N-gram specification: $$(\text{Number of unique n-grams}) \times (\text{bits per n-gram})$$
 
 For bigrams (n=2), the number of unique bigrams observed in valid sentences is:
-- Starting bigrams: $\Theta(V_{PN}) = \Theta(V)$
-- PN-IV bigrams: $\Theta(V_{PN} \times V_{IV}) = \Theta(V^2)$
-- PN-TV bigrams: $\Theta(V_{PN} \times V_{TV}) = \Theta(V^2)$
-- TV-PN bigrams: $\Theta(V_{TV} \times V_{PN}) = \Theta(V^2)$
-- Ending bigrams: $\Theta(V_{PN} + V_{IV}) = \Theta(V)$
+- Starting bigrams: $$\Theta(V_{PN}) = \Theta(V)$$
+- PN-IV bigrams: $$\Theta(V_{PN} \times V_{IV}) = \Theta(V^2)$$
+- PN-TV bigrams: $$\Theta(V_{PN} \times V_{TV}) = \Theta(V^2)$$
+- TV-PN bigrams: $$\Theta(V_{TV} \times V_{PN}) = \Theta(V^2)$$
+- Ending bigrams: $$\Theta(V_{PN} + V_{IV}) = \Theta(V)$$
 
-In total, we have $\Theta(V^2)$ unique bigrams. Each bigram requires $\Theta(\log V)$ bits to specify, plus a constant number of bits for its probability.
+In total, we have $$\Theta(V^2)$$ unique bigrams. Each bigram requires $$\Theta(\log V)$$ bits to specify, plus a constant number of bits for its probability.
 
 Therefore, for bigrams:
 
@@ -286,38 +286,38 @@ $$
 L(Model_1) = \Theta(V \log V) + \Theta(V^2 \log V) = \Theta(V^2 \log V)
 $$
 
-For general n-grams where n ≥ 3, the scaling becomes $\Theta(V^n \log V)$.
+For general n-grams where n ≥ 3, the scaling becomes $$\Theta(V^n \log V)$$.
 
 **Model 2: Finite State Automaton (Prefix Sharing)**
-The cost $L(Model_2)$ has three main components:
-1. Tree shape specification: $\lceil\log_2 \text{Catalan}(N_S-1)\rceil \approx \Theta(N_S)$
-2. Edge labels: $(2N_S-2) \times \lceil\log_2 V\rceil = \Theta(N_S \log V)$
-3. Sentence endings: $\Theta(N_S)$
+The cost $$L(Model_2)$$ has three main components:
+1. Tree shape specification: $$\lceil\log_2 \text{Catalan}(N_S-1)\rceil \approx \Theta(N_S)$$
+2. Edge labels: $$(2N_S-2) \times \lceil\log_2 V\rceil = \Theta(N_S \log V)$$
+3. Sentence endings: $$\Theta(N_S)$$
 
-With $N_S = \Theta(V^3)$, we get:
+With $$N_S = \Theta(V^3)$$, we get:
 
 $$
 L(Model_2) = \Theta(V^3) + \Theta(V^3 \log V) + \Theta(V^3) = \Theta(V^3 \log V)
 $$
 
 **Model 3: Principled Linguistic Encoding**
-$L(Model_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic})$.
+$$L(Model_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic})$$.
 
-1. **$L(\text{Lexical-Conceptual})$**:
-   - Category count specification: $\Theta(\log N_{cat})$
-   - Token-to-category mapping: $V \times \Theta(\log N_{cat})$
+1. **$$L(\text{Lexical-Conceptual})$$**:
+   - Category count specification: $$\Theta(\log N_{cat})$$
+   - Token-to-category mapping: $$V \times \Theta(\log N_{cat})$$
    
-   In natural languages, $N_{cat}$ grows much slower than $V$. If we assume $N_{cat} = \Theta(\log V)$, which is generous, then:
+   In natural languages, $$N_{cat}$$ grows much slower than $$V$$. If we assume $$N_{cat} = \Theta(\log V)$$, which is generous, then:
    
    $$
    L(\text{Lexical-Conceptual}) = \Theta(\log \log V) + \Theta(V \log \log V) = \Theta(V \log \log V)
    $$
 
-2. **$L(\text{Syntactic})$**:
-   - Grammar symbols specification: $\Theta(N_{cat} \log N_{cat}) = \Theta(\log V \log \log V)$
-   - Rule specification: $\Theta(N_R \times \text{avg_rule_length} \times \log N_{cat})$
+2. **$$L(\text{Syntactic})$$**:
+   - Grammar symbols specification: $$\Theta(N_{cat} \log N_{cat}) = \Theta(\log V \log \log V)$$
+   - Rule specification: $$\Theta(N_R \times \text{avg_rule_length} \times \log N_{cat})$$
    
-   If we assume $N_R = \Theta(N_{cat})$ and average rule length is constant, then:
+   If we assume $$N_R = \Theta(N_{cat})$$ and average rule length is constant, then:
    
    $$
    L(\text{Syntactic}) = \Theta(\log V \log \log V) + \Theta(\log V \log \log V) = \Theta(\log V \log \log V)
@@ -331,28 +331,28 @@ $$
 
 **Asymptotic Ordering of Model Complexities**
 
-As vocabulary size $V$ approaches infinity, the model complexities can be ordered as follows:
+As vocabulary size $$V$$ approaches infinity, the model complexities can be ordered as follows:
 
 $$
 L(Model_3) \ll L(Model_1_{bigram}) < L(Model_0) \approx L(Model_2) < L(Model_1_{trigram}) < L(Model_1_{4-gram}) < ...
 $$
 
 More precisely:
-- $L(Model_3) = \Theta(V \log \log V)$ 
-- $L(Model_1_{bigram}) = \Theta(V^2 \log V)$
-- $L(Model_0) = L(Model_2) = \Theta(V^3 \log V)$
-- $L(Model_1_{n-gram}) = \Theta(V^n \log V)$ for $n \geq 3$
+- $$L(Model_3) = \Theta(V \log \log V)$$ 
+- $$L(Model_1_{bigram}) = \Theta(V^2 \log V)$$
+- $$L(Model_0) = L(Model_2) = \Theta(V^3 \log V)$$
+- $$L(Model_1_{n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 3$$
 
-This asymptotic analysis reveals why principled linguistic encoding (Model 3) is not just marginally better but *fundamentally* more efficient than the alternatives. The difference between $\Theta(V \log \log V)$ and $\Theta(V^3 \log V)$ is not just a constant factor—it's a qualitative shift in how the complexity grows with vocabulary size.
+This asymptotic analysis reveals why principled linguistic encoding (Model 3) is not just marginally better but *fundamentally* more efficient than the alternatives. The difference between $$\Theta(V \log \log V)$$ and $$\Theta(V^3 \log V)$$ is not just a constant factor—it's a qualitative shift in how the complexity grows with vocabulary size.
 
 **Comparative Scaling and Why Abstraction Wins**
 The difference in scaling is stark:
 -   Models 0, 1, and 2 have costs tied to the number of sentences or n-grams, which grow polynomially or exponentially with vocabulary size:
-    -   Model 0 (Rote List): $\Theta(V^3 \log V)$ - explodes with vocabulary
-    -   Model 1 (N-gram): $\Theta(V^n \log V)$ where $n$ is the n-gram order - explodes even with modest vocabulary increases
-    -   Model 2 (FSA): $\Theta(V^3 \log V)$ - also explodes with vocabulary
+    -   Model 0 (Rote List): $$\Theta(V^3 \log V)$$ - explodes with vocabulary
+    -   Model 1 (N-gram): $$\Theta(V^n \log V)$$ where $$n$$ is the n-gram order - explodes even with modest vocabulary increases
+    -   Model 2 (FSA): $$\Theta(V^3 \log V)$$ - also explodes with vocabulary
 
--   Model 3's cost, in contrast, scales primarily as $\Theta(V \log \log V)$, which is dramatically more efficient. Even with a vocabulary of billions of words, this function grows almost linearly with $V$.
+-   Model 3's cost, in contrast, scales primarily as $$\Theta(V \log \log V)$$, which is dramatically more efficient. Even with a vocabulary of billions of words, this function grows almost linearly with $$V$$.
 
 This pronounced difference in scaling behavior demonstrates why principled linguistic abstractions (categories and rules) are not just theoretically elegant but practically *necessary* for efficiently representing and learning something as complex and vast as a natural language. The combinatorial explosion of raw sentences is tamed by factoring out shared properties (categories) and shared structures (rules). Model 3 achieves this factorization, allowing its description length to grow much more gracefully with the scale and complexity of the language. This is the essence of why such structures are fundamental to language's inherent information efficiency.
 
