@@ -334,12 +334,12 @@ $$
 As vocabulary size $$V$$ approaches infinity, the model complexities can be ordered as follows:
 
 $$
-L(Model_3) \ll L(Model_1_{bigram}) < L(Model_0) \approx L(Model_2) < L(Model_1_{trigram}) < L(Model_1_{4-gram}) < ...
+L(Model_3) \ll L(Model_{1, bigram}) < L(Model_0) \approx L(Model_2) < L(Model_{1, trigram}) < L(Model_1_{4-gram}) < ...
 $$
 
 More precisely:
 - $$L(Model_3) = \Theta(V \log \log V)$$ 
-- $$L(Model_1_{bigram}) = \Theta(V^2 \log V)$$
+- $$L(Model_{1, bigram}) = \Theta(V^2 \log V)$$
 - $$L(Model_0) = L(Model_2) = \Theta(V^3 \log V)$$
 - $$L(Model_1_{n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 3$$
 
