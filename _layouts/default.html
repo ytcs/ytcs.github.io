@@ -126,7 +126,9 @@
 
         posts.forEach(post => {
           const postCategories = post.getAttribute('data-categories').split(' ');
-          if (category === 'all' || postCategories.includes(category)) {
+          if (category === 'all') {
+            post.style.removeProperty('display');
+          } else if (postCategories.includes(category)) {
             post.style.display = 'list-item';
           } else {
             post.style.display = 'none';
