@@ -240,7 +240,7 @@ $$
 H_{\text{est}}(S_c, \sigma) = \sum_{K_k} \text{OI}_{\text{C}}(K_k) \Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c) + \sum_{K_k} \text{OI}_{\text{P}}(K_k) \Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)
 $$
 
-Where $$\Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c)$$ and $$\Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)$$ are the deltas of call and put options, respectively, at strike $$K_k$$, given current price $$S_c$$, volatility $$\sigma$$, and near-zero time to expiry $$\tau_c$$. This $$H_{\text{est}}(S_c, \sigma)$$ serves as a practical proxy for the theoretically "stuck" hedge $$H_{\text{last}}$$ when evaluating the situation from the current price $$S_c$$.
+Where $$\Delta_{\text{C}}(S_c, K_k, \sigma, \tau_c)$$ and $$\Delta_{\text{P}}(S_c, K_k, \sigma, \tau_c)$$ are the deltas of call and put options, respectively, at strike $$K_k$$, given current price $$S_c$$, volatility $$\sigma$$, and time to expiry $$\tau_c$$. This $$H_{\text{est}}(S_c, \sigma)$$ serves as a practical proxy for the theoretically "stuck" hedge $$H_{\text{last}}$$ when evaluating the situation from the current price $$S_c$$.
 
 ### Observable $$S_{\text{MM}}^*$$ Calculation
 An observable estimate for $$S_{\text{MM}}^*$$ can be calculated as follows:
