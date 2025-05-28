@@ -98,9 +98,9 @@ Under Black-Scholes assumptions (and if $$V$$ represents a long option position)
 ### 2.2. 0DTE Hedging: Challenges and Inevitable Discrepancies
 Perfect, continuous delta hedging is a theoretical ideal. For 0DTE options, practical challenges are significantly amplified:
 -   **Extreme Gamma**: As noted, ATM Gamma skyrockets as $$\tau \to 0$$. Delta changes explosively with minor price moves in $$S$$, demanding extremely frequent, precise, and potentially large re-hedges.
--   **Transaction Costs & Market Impact**: Frequent re-hedging incurs substantial transaction costs and can exert market impact, affecting execution prices.
+-   **Transaction Costs & Market Impact**: Frequent re-hedging incurs substantial transaction costs. Furthermore, the large volumes required, especially when re-hedging rapidly due to high gamma, can exert significant market impact, pushing execution prices away from the MM and increasing hedging costs.
 -   **System Latency & Execution Risk**: A finite time lag invariably exists between detecting a delta change requirement and executing the hedge. The underlying price $$S$$ can move significantly within this lag.
--   **Liquidity Fluctuations**: 0DTE liquidity can be volatile, especially for out-of-the-money strikes, making it difficult to hedge at desired prices or in required sizes.
+-   **Execution Challenges with Large Volumes**: Even if the underlying stock is generally liquid, the sheer size and rapid succession of hedging trades required to manage extreme gamma can strain market absorptive capacity. This can lead to increased slippage, difficulty in sourcing liquidity for very large orders without further adverse price movements, and challenges in executing hedges at desired prices or in the required timeframe.
 
 These factors mean an MM's hedge can easily become mismatched from the true current delta of their options book. As expiration draws nearer, the rapidly increasing gamma and escalating transaction costs can make continuous, perfect re-hedging practically unattainable, leading to a situation where the MM's established hedge becomes effectively "stuck" or, at best, imperfectly managed relative to the fast-changing ideal.
 
@@ -187,11 +187,14 @@ The function $$m(S_T)$$ is piecewise constant and changes values only at the str
 
 ## 5. Potential for Price Manipulation by the MM
 
-The MM, now holding a hedge of $$H_c$$ shares based on the price $$S_c$$, might consider influencing the final settlement price $$S_T$$ away from its "natural" level $$S_T^n$$ (which might be proxied by the current market price $$S_c$$) towards a manipulated price $$S_T^m$$.
-Let $$a$$ be the marginal cost for the MM to move the price by 1 dollar (e.g., $$a$$ dollars per dollar price move per share involved in pushing). This is a simplification, as actual manipulation costs are complex and nonlinear.
+The challenges of maintaining a perfect hedge near expiration, as detailed in Section 2.2, often lead to a scenario where continuous, high-frequency re-hedging becomes prohibitively costly, operationally fraught, and practically ineffective in the face of extreme gamma. The MM, consequently, is often left holding a hedge, $$H_c$$, that is 'stuck' or significantly imperfect relative to the true delta of their options book.
 
-The marginal P&L gain for the MM from moving $$S_T$$ is given by $$m(S_T) = H_c - \text{NDO}(S_T)$$. Manipulation becomes attractive if this marginal P&L exceeds the marginal cost $$a$$.
-The condition for initiating manipulation is:
+In these final moments, rather than attempting numerous, potentially futile and very expensive micro-adjustments to their stock hedge, the MM might evaluate a more decisive, albeit still costly, alternative: influencing the final settlement price $$S_T$$. This approach shifts from a strategy of continuous risk mitigation (which is breaking down) to a 'one-shot' attempt to optimize the P&L outcome of their substantial, existing options portfolio, given their fixed hedge $$H_c$$. One potential strategy in this context is to influence the final settlement price $$S_T$$ away from its anticipated "natural" level $$S_T^n$$ (which could be proxied by the current market price $$S_c$$) towards a manipulated price $$S_T^m$$ that is more favorable given their specific options book and the fixed hedge $$H_c$$.
+
+Such an action to influence the price is not without significant cost. Let $$a$$ be the marginal cost for the MM to move the price by 1 dollar. This cost, $$a$$, arises from the very same market frictions that complicate continuous hedging: transaction fees, the market impact of their trades (which can move the price against them as they attempt to execute large orders), and potentially thin liquidity, especially for the volumes needed to influence the price as expiration looms. Thus, while the factors in Section 2.2 make perfect hedging difficult, they also make price manipulation inherently costly. This $$a$$ is a simplification, as actual manipulation costs are complex, nonlinear, and highly dependent on market conditions.
+
+Despite these costs, manipulation might become an economically rational choice when the potential P&L benefit from steering the settlement price for their *entire existing options book* outweighs the costs of this *single, larger intervention*. The marginal P&L gain for the MM from moving $$S_T$$ is given by $$m(S_T) = H_c - \text{NDO}(S_T)$$. Manipulation becomes attractive if this marginal P&L gain from the options book (due to the price change) exceeds the marginal cost $$a$$ of effecting that price change.
+The condition for initiating manipulation is then:
 
 $$
 \vert m(S_T^n) \vert > a
