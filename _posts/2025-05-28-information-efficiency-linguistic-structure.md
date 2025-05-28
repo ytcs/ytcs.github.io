@@ -315,7 +315,7 @@ $$L(\text{Model}_3) = L(\text{Lexical-Conceptual}) + L(\text{Syntactic})$$.
 
 2. **$$L(\text{Syntactic})$$**:
    - Grammar symbols specification: $$\Theta(N_{cat} \log N_{cat}) = \Theta(\log V \log \log V)$$
-   - Rule specification: $$\Theta(N_R \times \text{avg_rule_length} \times \log N_{cat})$$
+   - Rule specification: $$\Theta(N_R \times \text{avg rule length} \times \log N_{cat})$$
    
    If we assume $$N_R = \Theta(N_{cat})$$ and average rule length is constant, then:
    
