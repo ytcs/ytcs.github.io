@@ -44,14 +44,14 @@ $$
 
 ### Key Greeks
 The "Greeks" are sensitivities of the option price to changes in underlying parameters.
-- **Delta ($$\Delta$$)**: Measures the rate of change of the option price with respect to a $1 change in the underlying asset's price.
+- **Delta ($$\Delta$$)**: Measures the rate of change of the option price with respect to a dollar change in the underlying asset's price.
 
   $$
   \Delta = \frac{\partial V}{\partial S}
   $$
 
   where $$V$$ is the option price. For calls, $$\Delta_C = N(d_1)$$, and for puts, $$\Delta_P = N(d_1) - 1 = -N(-d_1)$$.
-- **Gamma ($$\Gamma$$)**: Measures the rate of change of Delta with respect to a $1 change in the underlying asset's price.
+- **Gamma ($$\Gamma$$)**: Measures the rate of change of Delta with respect to a dollar change in the underlying asset's price.
 
   $$
   \Gamma = \frac{\partial^2 V}{\partial S^2}
@@ -197,7 +197,7 @@ The function $$m(S_T)$$ is piecewise constant and changes values only at the str
 ## 5. Potential for Price Manipulation by the MM
 
 The MM, now holding a hedge of $$H_1$$ shares based on the price $$S_1$$, might consider influencing the final settlement price $$S_T$$ away from its "natural" level $$S_T^n$$ (which might be proxied by the current market price $$S_c$$) towards a manipulated price $$S_T^m$$.
-Let $$a$$ be the marginal cost for the MM to move the price by $1 (e.g., $$a$$ dollars per $1 price move per share involved in pushing). This is a simplification, as actual manipulation costs are complex and nonlinear.
+Let $$a$$ be the marginal cost for the MM to move the price by 1 dollar (e.g., $$a$$ dollars per dollar price move per share involved in pushing). This is a simplification, as actual manipulation costs are complex and nonlinear.
 
 The marginal P&L gain for the MM from moving $$S_T$$ is given by $$m(S_T) = H_1 - \text{NDO}(S_T)$$. Manipulation becomes attractive if this marginal P&L exceeds the marginal cost $$a$$.
 The condition for initiating manipulation is:
@@ -262,7 +262,7 @@ $$
 \text{CDI}(S_c) = H_{\text{MM}}(S_c, \sigma) - \text{NDO}(S_c)
 $$
 
-This $$\text{CDI}(S_c)$$ represents the slope $$m(S_c)$$ of the MM's P&L function $$\text{P\&L}_{S_1 \to S_T}(S_T)$$ evaluated at the current price $$S_c$$. It indicates the MM's exposure per $1 change in $$S_T$$ from $$S_c$$.
+This $$\text{CDI}(S_c)$$ represents the slope $$m(S_c)$$ of the MM's P&L function $$\text{P\&L}_{S_1 \to S_T}(S_T)$$ evaluated at the current price $$S_c$$. It indicates the MM's exposure per dollar change in $$S_T$$ from $$S_c$$.
 
 A **Manipulation Indicator** can be formulated: Price manipulation by the MM is predicted if $$\vert \text{CDI}(S_c) \vert > a$$, where $$a$$ is some threshold value we choose that represents the marginal cost of manipulation.
 - If $$\text{CDI}(S_c) > a$$: The MM is over-hedged at $$S_c$$ and has an incentive to push the price upward, towards $$S_{\text{MM}}^*$$ (which would likely be greater than $$S_c$$).
