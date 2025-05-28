@@ -104,45 +104,45 @@ Perfect, continuous delta hedging is a theoretical ideal. For 0DTE options, prac
 
 These factors mean an MM's hedge can easily become mismatched from the true current delta of their options book. As expiration draws nearer, the rapidly increasing gamma and escalating transaction costs can make continuous, perfect re-hedging practically unattainable, leading to a situation where the MM's established hedge becomes effectively "stuck" or, at best, imperfectly managed relative to the fast-changing ideal.
 
-## 3. P&L Consequences of a "Stuck" Hedge Near Expiration
+## 3. P&L Consequences of a "Last" Hedge Near Expiration
 
-As established, market makers (MMs) face escalating difficulties in maintaining a perfect delta hedge for 0DTE options as expiration nears. Extreme gamma, transaction costs, and liquidity constraints can lead to a situation where the MM's hedge, let's call it $$H_{\text{stuck}}$$, was established based on a previous market price $$S_{\text{ref}}$$ and market conditions, but is no longer perfectly aligned with the current underlying price $$S_{\text{current}}$$.
+As established, market makers (MMs) face escalating difficulties in maintaining a perfect delta hedge for 0DTE options as expiration nears. Extreme gamma, transaction costs, and liquidity constraints can lead to a situation where the MM's hedge, let's call it $$H_{\text{last}}$$, was established based on a previous market price $$S_{\text{last}}$$ and market conditions, but is no longer perfectly aligned with the current underlying price $$S_c$$.
 
-Consider the MM's portfolio just before expiration. They hold an options book (net short value $$V(S,t)$$) and their effectively "stuck" hedge $$H_{\text{stuck}}$$. Suppose the underlying price moves from $$S_{\text{ref}}$$ (where the hedge $$H_{\text{stuck}} = \Delta_V(S_{\text{ref}})$$, the delta of the short book at $$S_{\text{ref}}$$, was appropriate) to a new price $$S_{\text{current}}$$ over a short period where the hedge could not be perfectly adjusted. The change in the MM's portfolio value due to this unhedged component of price movement is:
+Consider the MM's portfolio just before expiration. They hold an options book (net short value $$V(S,t)$$) and their effectively "stuck" hedge $$H_{\text{last}}$$. Suppose the underlying price moves from $$S_{\text{last}}$$ (where the hedge $$H_{\text{last}} = \Delta_V(S_{\text{last}})$$, the delta of the short book at $$S_{\text{last}}$$, was appropriate) to a new price $$S_c$$ over a short period where the hedge could not be perfectly adjusted. The change in the MM's portfolio value due to this unhedged component of price movement is:
 
 $$
-{\text{P\&L}}_{\text{gamma\_exposure}} = \left[-V(S_{\text{current}}, t_1) + H_{\text{stuck}} S_{\text{current}}\right] - \left[-V(S_{\text{ref}}, t_0) + H_{\text{stuck}} S_{\text{ref}}\right]
+{\text{P\&L}}_{\text{gamma\_exposure}} = \left[-V(S_c, t_1) + H_{\text{last}} S_c\right] - \left[-V(S_{\text{last}}, t_0) + H_{\text{last}} S_{\text{last}}\right]
 $$
 
 Rearranging terms:
 
 $$
-{\text{P\&L}}_{\text{gamma\_exposure}} = -\left(V(S_{\text{current}}, t_1) - V(S_{\text{ref}}, t_0)\right) + H_{\text{stuck}} (S_{\text{current}} - S_{\text{ref}})
+{\text{P\&L}}_{\text{gamma\_exposure}} = -\left(V(S_c, t_1) - V(S_{\text{last}}, t_0)\right) + H_{\text{last}} (S_c - S_{\text{last}})
 $$
 
-Assuming the time interval $$t_1 - t_0$$ is very small, so $$t_1 \approx t_0$$, and the primary impact on option value comes from the change in $$S$$. We approximate $$V(S_{\text{current}}, t_1)$$ using a Taylor series expansion of $$V(S, t_0)$$ around $$S_{\text{ref}}$$, and recalling that $$H_{\text{stuck}} = \Delta_V(S_{\text{ref}})$$, the delta of the short options book at $$S_{\text{ref}}$$. Letting $$\Gamma_V(S_{\text{ref}})$$ be the gamma of the short options book at $$S_{\text{ref}}$$, the expansion gives:
+Assuming the time interval $$t_1 - t_0$$ is very small, so $$t_1 \approx t_0$$, and the primary impact on option value comes from the change in $$S$$. We approximate $$V(S_c, t_1)$$ using a Taylor series expansion of $$V(S, t_0)$$ around $$S_{\text{last}}$$, and recalling that $$H_{\text{last}} = \Delta_V(S_{\text{last}})$$, the delta of the short options book at $$S_{\text{last}}$$. Letting $$\Gamma_V(S_{\text{last}})$$ be the gamma of the short options book at $$S_{\text{last}}$$, the expansion gives:
 
 $$
-V(S_{\text{current}}, t_1) - V(S_{\text{ref}}, t_0) \approx H_{\text{stuck}} (S_{\text{current}} - S_{\text{ref}}) + \frac{1}{2} \Gamma_V(S_{\text{ref}}) (S_{\text{current}} - S_{\text{ref}})^2
+V(S_c, t_1) - V(S_{\text{last}}, t_0) \approx H_{\text{last}} (S_c - S_{\text{last}}) + \frac{1}{2} \Gamma_V(S_{\text{last}}) (S_c - S_{\text{last}})^2
 $$
 
 Substituting this back into the $$ {\text{P\&L}}_{\text{gamma\_exposure}} $$ equation:
 
 $$
-{\text{P\&L}}_{\text{gamma\_exposure}} \approx -\left( H_{\text{stuck}} (S_{\text{current}} - S_{\text{ref}}) + \frac{1}{2} \Gamma_V(S_{\text{ref}}) (S_{\text{current}} - S_{\text{ref}})^2 \right) + H_{\text{stuck}} (S_{\text{current}} - S_{\text{ref}})
+{\text{P\&L}}_{\text{gamma\_exposure}} \approx -\left( H_{\text{last}} (S_c - S_{\text{last}}) + \frac{1}{2} \Gamma_V(S_{\text{last}}) (S_c - S_{\text{last}})^2 \right) + H_{\text{last}} (S_c - S_{\text{last}})
 $$
 
 $$
-{\text{P\&L}}_{\text{gamma\_exposure}} \approx -\frac{1}{2} \Gamma_V(S_{\text{ref}}) (S_{\text{current}} - S_{\text{ref}})^2
+{\text{P\&L}}_{\text{gamma\_exposure}} \approx -\frac{1}{2} \Gamma_V(S_{\text{last}}) (S_c - S_{\text{last}})^2
 $$
 
-If the MM is net short options, their book $$V$$ typically has positive gamma ($$\Gamma_V(S_{\text{ref}}) > 0$$). The MM's overall portfolio is therefore short gamma. Consequently, any significant unhedged price movement $$(S_{\text{current}} - S_{\text{ref}})^2 > 0$$ results in a negative $$ {\text{P\&L}}_{\text{gamma\_exposure}} $$. This represents the realized cost due to the combination of being short gamma and the inability to perfectly adjust the hedge $$H_{\text{stuck}}$$ during the price movement.
+If the MM is net short options, their book $$V$$ typically has positive gamma ($$\Gamma_V(S_{\text{last}}) > 0$$). The MM's overall portfolio is therefore short gamma. Consequently, any significant unhedged price movement $$(S_c - S_{\text{last}})^2 > 0$$ results in a negative $$ {\text{P\&L}}_{\text{gamma\_exposure}} $$. This represents the realized cost due to the combination of being short gamma and the inability to perfectly adjust the hedge $$H_{\text{last}}$$ during the price movement.
 
-This P&L is largely a sunk cost by the time the MM evaluates their position at $$S_{\text{current}}$$. The key takeaway is that due to hedging frictions near expiration, such gamma-driven P&L events are likely. Following such an event, or simply acknowledging the current "stuck" nature of their hedge, the MM must manage their position into expiration.
+This P&L is largely a sunk cost by the time the MM evaluates their position at $$S_c$$. The key takeaway is that due to hedging frictions near expiration, such gamma-driven P&L events are likely. Following such an event, or simply acknowledging the current "stuck" nature of their hedge, the MM must manage their position into expiration.
 
-## 4. MM P&L Profile with a "Stuck" Hedge into Expiration
+## 4. MM P&L Profile with a "Last" Hedge into Expiration
 
-Having arrived at a price $$S_{\text{current}}$$ (let's call this $$S_c$$ for current price) with a hedge $$H_{\text{stuck}}$$ that is no longer perfectly optimal (or perhaps was the result of a recent, best-effort re-hedge), the MM faces the final moments to expiration. The P&L incurred due to prior gamma exposure (as discussed in Section 3) is now a sunk cost. The critical question is how their P&L will behave from this point ($$S_c$$ with hedge $$H_{\text{stuck}}$$) until the final expiration price $$S_T$$. We will denote $$H_{\text{stuck}}$$ as $$H_c$$ for the current hedge quantity.
+Having arrived at a price $$S_c$$ with a hedge $$H_{\text{last}}$$ that is no longer perfectly optimal (or perhaps was the result of a recent, best-effort re-hedge), the MM faces the final moments to expiration. The P&L incurred due to prior gamma exposure (as discussed in Section 3) is now a sunk cost. The critical question is how their P&L will behave from this point ($$S_c$$ with hedge $$H_{\text{last}}$$) until the final expiration price $$S_T$$. We will denote $$H_{\text{last}}$$ as $$H_c$$ for the current hedge quantity.
 
 For the remainder of the 0DTE period (from $$S_c$$ with hedge $$H_c$$ until expiration at price $$S_T$$), the MM is effectively "stuck" with their existing options book (quantities $$Q_k$$) and its inherent gamma profile, alongside their current hedge $$H_c$$. Let $$O_k(S_c, K_k)$$ be the market value of option $$k$$ (per unit) at price $$S_c$$ when this evaluation is made. The P&L from this point until expiration is:
 
@@ -219,7 +219,7 @@ To make this operational, we assume a single (monopolist) MM whose sold quantiti
 The MM's optimal expiration price $$S_{\text{MM}}^*$$ is where their hedge $$H_c$$ approximately equals their Net Delta Obligation $$\text{NDO}(S_{\text{MM}}^*)$$.
 
 ### MM's Estimated Current Delta Hedge ($$H_{\text{MM}}(S_c, \sigma)$$)
-We can proxy $$S_c$$ (the price at which the last major re-hedge $$H_c$$ occurred) with the current underlying price $$S_c$$. The time to expiration $$\tau_c$$ is very close to zero for 0DTE options.
+We can proxy $$S_c$$ with the current underlying price. The time to expiration $$\tau_c$$ is very close to zero for 0DTE options.
 The MM's current total delta hedge, $$H_{\text{MM}}$$, can be estimated using current option open interests and Black-Scholes deltas calculated at $$S_c$$ and an estimated 0DTE implied volatility $$\sigma$$:
 
 $$
