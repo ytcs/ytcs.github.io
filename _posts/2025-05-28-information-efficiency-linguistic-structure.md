@@ -334,16 +334,19 @@ $$
 As vocabulary size $$V$$ approaches infinity, the model complexities can be ordered as follows:
 
 $$
-L(\text{Model}_3) \ll L(\text{Model}_{1, bigram}) < L(\text{Model}_0) \approx L(\text{Model}_2) < L(\text{Model}_{1, trigram}) < L(\text{Model}_1_{4-gram}) < ...
+L(\text{Model}_3) \ll L(\text{Model}_{1, bigram}) < L(\text{Model}_0) \approx L(\text{Model}_2) < L(\text{Model}_{1, trigram}) < L(\text{Model}_{1, 4-gram}) < ...
 $$
 
 More precisely:
 - $$L(\text{Model}_3) = \Theta(V \log \log V)$$ 
 - $$L(\text{Model}_{1, bigram}) = \Theta(V^2 \log V)$$
 - $$L(\text{Model}_0) = L(\text{Model}_2) = \Theta(V^3 \log V)$$
-- $$L(\text{Model}_{1, n-gram}) = \Theta(V^n \log V)$$ for $$n \geq 2$$
+- $$L(\text{Model}_{1, n-gram}) = \Theta(V^n \log V) \text{ for } n \geq 2$$
 
 This asymptotic analysis reveals why principled linguistic encoding (Model 3) is not just marginally better but *fundamentally* more efficient than the alternatives. The difference between $$\Theta(V \log \log V)$$ and $$\Theta(V^3 \log V)$$ is not just a constant factor—it's a qualitative shift in how the complexity grows with vocabulary size.
+
+![Comparison of Scaling Laws](/assets/img/vocab_scaling_laws_comparison.png)
+*Figure 1: Comparison of surface scaling ($$\Theta(V^3 \log V)$$) vs. deep scaling ($$\Theta(V \log \log V)$$).*
 
 **Comparative Scaling and Why Abstraction Wins**
 The difference in scaling is stark:
@@ -379,11 +382,14 @@ An LLM's "understanding" can be seen as its success in developing efficient inte
 
 Interestingly, LLMs evolved from simpler neural language models that were essentially implementing Model 1 (n-gram statistics) with neural networks. Classic neural language models like early RNNs were learning to predict the next word based on a fixed window of previous words, similar to n-grams but with dense vector representations. Over time, these models evolved to capture more sophisticated patterns (like those in Model 3) through deeper architectures, attention mechanisms, and transformer designs that could model long-range dependencies and hierarchical structure. This evolution aligns with our scaling analysis: as language models become more powerful, they naturally move toward representations that capture the kind of abstractions present in the principled linguistic model.
 
-This information-theoretic view suggests:
-1.  Fundamental linguistic principles (ontological categories, compositionality) are also information-theoretic optima.
-2.  Ontology and syntax can be seen as emergent features of efficient coding.
-3.  LLM "understanding" can be framed as the development of efficient internal models mirroring linguistic structure.
+This information-theoretic view reveals a profound principle: deeper levels of abstraction enable qualitatively more efficient information packing. This principle extends far beyond language:
 
-The structure of meaningful language appears elegantly optimized for learnability and communication. Powerful learning algorithms, like those in LLMs, seem to replicate this optimization by discovering these efficient structures from data. This doesn't imply human-like consciousness in LLMs, but it does argue against viewing them as mere stochastic parrots. To compress and predict language so well, they must capture its deep, abstract, and principled regularities.
+1. **Information Efficiency Through Abstraction**: The exponential efficiency gains we see in Model 3 (principled linguistic structure) compared to surface-level models demonstrate that higher levels of abstraction are not merely convenient organizational tools—they are information-theoretically optimal compression strategies. 
 
-The convergence of philosophical linguistics, information theory, and AI offers a powerful lens: the very fabric of language is shaped by the drive towards efficiency, a drive now mirrored in our most advanced computational models. 
+2. **Hierarchical Compression**: By factoring information into layers of abstraction (lexical categories, syntactic rules), we achieve compression rates that are qualitatively superior to flat, surface-level encodings. Each layer of abstraction compounds the efficiency gains.
+
+3. **Emergence of Structure**: The dramatic scaling advantage of structured representations suggests that any sufficiently powerful learning system under information constraints will naturally discover and exploit these abstractions. This explains why LLMs, despite not being explicitly designed with linguistic theory, appear to develop internal representations that capture deep linguistic regularities.
+
+The fundamental insight is that the universe of possible utterances is vastly more efficiently represented through a hierarchical system of abstractions than through any surface-level statistical approach. This provides a compelling information-theoretic explanation for why our brains might have evolved to process language using hierarchical, structured representations but because it is fundamentally the most efficient way to encode and process the complexities of natural language.
+
+This convergence of information theory, linguistics, and machine learning suggests that the drive toward deeper levels of abstraction is not just a human cognitive bias but a fundamental principle of efficient information processing. As our AI systems grow more sophisticated, we should expect them to discover and leverage increasingly abstract representations—not because we programmed them to do so, but because deeper abstraction is the path to greater information efficiency.
