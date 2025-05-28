@@ -89,14 +89,16 @@ dV = \Theta_V dt + \Delta_V dS + \frac{1}{2} \Gamma_V S^2 \sigma^2 dt
 $$
 
 If the MM maintains a delta-neutral hedge, $$H = \Delta_V$$. So, the change in the MM's portfolio value is:
+
 $$
 d\Pi = -(\Theta_V dt + \Delta_V dS + \frac{1}{2} \Gamma_V S^2 \sigma^2 dt) + \Delta_V dS
 $$
+
 $$
 d\Pi = -\left(\Theta_V + \frac{1}{2} \Gamma_V S^2 \sigma^2\right) dt
 $$
 
-Since an option holder (long $$V$$) experiences time decay (typically $$\Theta_V < 0$$) and benefits from convexity ($\Gamma_V > 0$), the MM, by being short $$V$$, collects theta ($$-\Theta_V dt > 0$$) but pays for being short gamma ($$-(\frac{1}{2} \Gamma_V S^2 \sigma^2) dt < 0$$). This $$d\Pi$$ represents the MM's P&L from decay and gamma exposure under perfect hedging.
+Since an option holder (long $$V$$) experiences time decay (typically $$\Theta_V < 0$$) and benefits from convexity ($$\Gamma_V > 0$$), the MM, by being short $$V$$, collects theta ($$-\Theta_V dt > 0$$) but pays for being short gamma ($$-(\frac{1}{2} \Gamma_V S^2 \sigma^2) dt < 0$$). This $$d\Pi$$ represents the MM's P&L from decay and gamma exposure under perfect hedging.
 
 ### 2.2. 0DTE Hedging: Challenges and Inevitable Discrepancies
 Perfect, continuous delta hedging is a theoretical ideal. For 0DTE options, practical challenges are significantly amplified:
@@ -127,7 +129,9 @@ Assuming the time interval $$t_1 - t_0$$ is very small, so $$t_1 \approx t_0$$, 
 $$
 V(S_c, t_1) - V(S_{\text{last}}, t_0) \approx \Delta_V(S_{\text{last}}) (S_c - S_{\text{last}}) + \frac{1}{2} \Gamma_V(S_{\text{last}}) (S_c - S_{\text{last}})^2
 $$
+
 Since $$H_{\text{last}} = \Delta_V(S_{\text{last}})$$, we can write:
+
 $$
 V(S_c, t_1) - V(S_{\text{last}}, t_0) \approx H_{\text{last}} (S_c - S_{\text{last}}) + \frac{1}{2} \Gamma_V(S_{\text{last}}) (S_c - S_{\text{last}})^2
 $$
