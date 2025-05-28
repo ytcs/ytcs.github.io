@@ -250,10 +250,9 @@ This formula assumes the MM is short calls (owes 1 share per ITM call) and short
 An observable estimate for $$S_{\text{MM}}^*$$ can be calculated as follows:
 1.  Collect current open interest data: $$\text{OI}_{\text{C}}(K_k)$$ and $$\text{OI}_{\text{P}}(K_k)$$ for all relevant strikes $$K_k$$.
 2.  Use the current underlying price $$S_c$$ as a proxy for $$S_1$$.
-3.  Estimate a suitable 0DTE implied volatility $$\sigma$$.
-4.  Calculate the MM's estimated current total delta hedge $$H_{\text{MM}}(S_c, \sigma)$$.
-5.  For each strike price $$K_j$$ in the option chain, calculate the Net Delta Obligation $$\text{NDO}(K_j)$$ that would occur if $$S_T = K_j$$.
-6.  $$S_{\text{MM}}^*$$ is the strike $$K_j$$ for which $$\text{NDO}(K_j)$$ is closest to $$H_{\text{MM}}(S_c, \sigma)$$. That is, $$S_{\text{MM}}^*$$ is the $$K_j$$ that minimizes $$\vert H_{\text{MM}}(S_c, \sigma) - \text{NDO}(K_j) \vert$$. This is the strike where the MM's P&L slope $$m(K_j)$$ is closest to zero.
+3.  Calculate the MM's estimated current total delta hedge $$H_{\text{MM}}(S_c, \sigma)$$.
+4.  For each strike price $$K_j$$ in the option chain, calculate the Net Delta Obligation $$\text{NDO}(K_j)$$ that would occur if $$S_T = K_j$$.
+5.  $$S_{\text{MM}}^*$$ is the strike $$K_j$$ for which $$\text{NDO}(K_j)$$ is closest to $$H_{\text{MM}}(S_c, \sigma)$$. That is, $$S_{\text{MM}}^*$$ is the $$K_j$$ that minimizes $$\vert H_{\text{MM}}(S_c, \sigma) - \text{NDO}(K_j) \vert$$. This is the strike where the MM's P&L slope $$m(K_j)$$ is closest to zero.
 
 ### 6.1. An Indicator for Predicting Price Manipulation
 Let $$S_c$$ be the current market price, taken as a proxy for $$S_T^n$$. The MM's current delta hedge is approximated as $$H_1 \approx H_{\text{MM}}(S_c, \sigma)$$.
