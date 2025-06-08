@@ -209,6 +209,7 @@ The following is a step-by-step protocol to estimate a model's critical reasonin
 - **Prompt Template:**
     > Here is the current state with $$n_s$$ registers: R1=[val1], R2=[val2], ..., Rn=[valn]. The values are three-digit integers. What is the value in register Rk?
 - **Calculation:** The first estimate of the critical load, $$\mathcal{L}_S$$, is the maximum state information the model can handle.
+
     $$
     \mathcal{L}_S = S_{\text{max}} = n_{s, \text{max}} \times \log_2(1000) \approx 9.97 \times n_{s, \text{max}}
     $$
@@ -226,6 +227,7 @@ The following is a step-by-step protocol to estimate a model's critical reasonin
     > ...
     > Rule $$n_c$$: If X+Y is [condition], then [action].
 - **Calculation:** The second estimate, $$\mathcal{L}_C$$, is the load produced by applying $$C_{\text{max}} = n_{c, \text{max}}$$ rules to the minimal state required for the task. This state holds two variables (values 0-99), so its information content is $$S_{\text{base}} = \log_2(100^2) \approx 13.3$$ bits.
+
     $$
     \mathcal{L}_C = S_{\text{base}} \times C_{\text{max}} \approx 13.3 \times n_{c, \text{max}}
     $$
@@ -240,6 +242,7 @@ The following is a step-by-step protocol to estimate a model's critical reasonin
 - **Prompt Template:**
     > The initial value of register R1 is [val1]. Perform the following sequence of $$n_d$$ operations on R1: [Op1], [Op2], ..., [Op $$n_d$$]. What is the final value of R1?
 - **Calculation:** The third estimate, $$\mathcal{L}_D$$, is the load from performing $$D_{\text{max}} = n_{d, \text{max}}$$ operations on a minimal state. The state holds one three-digit number, so $$S_{\text{base}} = \log_2(1000) \approx 10$$ bits.
+
     $$
     \mathcal{L}_D = S_{\text{base}} \times D_{\text{max}} \approx 10 \times n_{d, \text{max}}
     $$
@@ -249,9 +252,11 @@ The following is a step-by-step protocol to estimate a model's critical reasonin
 
 - **Rationale:** The central hypothesis is that the three load values measured at the breaking point for each probe ($$\mathcal{L}_S, \mathcal{L}_C, \mathcal{L}_D$$) are all estimates of the same underlying cognitive limit.
 - **Calculation:** Average the three values to obtain the final critical load threshold.
+
     $$
     \mathcal{L}_{\text{crit}} \approx \text{mean}(\mathcal{L}_S, \mathcal{L}_C, \mathcal{L}_D)
     $$
+
 This protocol provides a fast and resource-efficient method to calibrate the Cognitive Load framework for any LLM, turning it into a powerful predictive tool.
 
 ## Conclusion
