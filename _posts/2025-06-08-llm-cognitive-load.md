@@ -208,7 +208,7 @@ This probe tests the model's "working memory" by asking it to recall a value fro
 - **Variable:** $$n_s$$, the number of registers.
 - **Fixed Components:** $$C_{\text{base}}=1$$ (one rule: recall), $$D_{\text{base}}=1$$ (one step).
 - **Prompt Template:**
-  > You are a test machine. Here is the current state with $$n_s$$ registers: R1=[val1], R2=[val2], ..., Rn=[valn]. The values are three-digit integers. What is the value in register Rk?
+  > Here is the current state with $$n_s$$ registers: R1=[val1], R2=[val2], ..., Rn=[valn]. The values are three-digit integers. What is the value in register Rk?
 - **Procedure:** We test for increasing $$n_s$$. The largest value for which the model is consistently correct is $$n_{s, \text{max}}$$.
 - **Calculation:** The state space is $$1000^{n_s}$$ (for 3-digit integers).
 
@@ -223,7 +223,7 @@ This probe tests the model's ability to apply a set of logical rules.
 - **Variable:** $$n_c$$, the number of rules.
 - **Fixed Components:** Minimal state ($$S_{\text{base}} \approx \log_2(100^2) \approx 13.3$$ for two variables from 0-99), $$D_{\text{base}}=1$$.
 - **Prompt Template:**
-  > You are a test machine. Initial state: X=[val1], Y=[val2]. Apply all of the following $$n_c$$ rules simultaneously to the initial state and provide the final state of X and Y.
+  > Initial state: X=[val1], Y=[val2]. Apply all of the following $$n_c$$ rules simultaneously to the initial state and provide the final state of X and Y.
   > Rule 1: If X is [condition], then [action].
   > Rule 2: If Y is [condition], then [action].
   > ...
@@ -242,7 +242,7 @@ This probe tests the model's ability to maintain state across a sequence of oper
 - **Variable:** $$n_d$$, the number of steps in the sequence.
 - **Fixed Components:** Minimal state ($$S_{\text{base}} \approx \log_2(1000) \approx 10$$), one simple rule ($$C_{\text{base}}=1$$).
 - **Prompt Template:**
-  > You are a test machine. The initial value of register R1 is [val1]. Perform the following sequence of $$n_d$$ operations on R1: [Op1], [Op2], ..., [Op $$n_d$$]. What is the final value of R1?
+  > The initial value of register R1 is [val1]. Perform the following sequence of $$n_d$$ operations on R1: [Op1], [Op2], ..., [Op $$n_d$$]. What is the final value of R1?
 - **Procedure:** We test for increasing $$n_d$$. The largest value for which the model is consistently correct is $$n_{d, \text{max}}$$.
 - **Calculation:** Each operation is one step in the path.
 
