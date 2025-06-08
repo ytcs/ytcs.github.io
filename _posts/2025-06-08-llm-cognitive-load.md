@@ -274,9 +274,3 @@ This protocol provides a fast and resource-efficient method to calibrate the Cog
 The Cognitive Load framework provides a structured way to think about and quantify the difficulty of reasoning tasks for LLMs. By breaking down the problem into State, Constraint, and Path complexity, we get a metric that is both theoretically sound and seems to work in practice when applied to existing research data.
 
 It gives us a unified scale to predict model performance and diagnose why a model might be failing. With the SCAP protocol, it also becomes a practical tool for measuring the core reasoning capacity ($$\mathcal{L}_{\text{crit}}$$) of any model.
-
-Ultimately, this work helps build a more rigorous science of AI reasoning, allowing us to better understand the limits of today's models and, hopefully, build more capable and robust systems in the future.
-
----
-
-Shojaee, P., et al. (2024). *The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity*. [https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf) 
