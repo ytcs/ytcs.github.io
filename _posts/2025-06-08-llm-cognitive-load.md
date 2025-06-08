@@ -29,61 +29,57 @@ This is a constraint satisfaction puzzle involving $$n$$ "actors" and their corr
 #### Blocks World
 This block-stacking puzzle requires rearranging blocks from an initial configuration to a specified goal state. The objective is to find the minimum number of moves. Valid moves are restricted to the topmost block of any stack, which can be placed either on an empty space to start a new stack or on top of another block. The complexity is controlled by the number of blocks. While part of the original study, this puzzle was excluded from our main analysis due to its stochastic nature, which introduces significant noise into the performance data.
 
-## The Postulate of Computational Work
+## The Cognitive Load Framework
 
-Our approach starts with a simple idea: total work is the product of the effort per step and the number of steps. However, we must be precise about what a "step" is. An LLM's solution is a long sequence of tokens, but not every token requires the same computational work. Some are part of a simple, learned pattern, while others represent critical decision points.
-
-Our framework refines this postulate by focusing on these high-effort steps, which we call **deliberative operations**.
-
-*The total computational work, $$W_{\text{total}}$$, is proportional to the average work per deliberative operation, $$W_{\text{op}}$$, multiplied by the number of such operations in the solution's reasoning chain, $$N_{\text{ops}}$$.*
+To create a single, unified metric for reasoning difficulty, we must start from a fundamental principle of computational work. The "true" cognitive load of a task is the sum of the work done at every deliberative step of its solution. The work at each step depends on the complexity of the rules being applied ($$C$$) and the size of the state information ($$S_i$$) relevant at that specific step.
 
 $$
-W_{\text{total}} \propto W_{\text{op}} \times N_{\text{ops}}
+W_{\text{total}} \approx C \times \sum_{i=1}^{N_{\text{steps}}} S_i
 $$
 
-This refinement is key. The Cognitive Load, $$\mathcal{L}$$, is our measure of this total work. The three components of our framework are direct measures of the terms in this more precise equation.
-
-## The Three Components of Cognitive Load
-
-The total work can be broken down into three interacting components.
-
-#### Component 1: Solution Path Complexity ($$D$$) - The Number of Deliberative Operations
-The number of deliberative operations, $$N_{\text{ops}}$$, is the length of the core reasoning chain. This is what we define as Solution Path Complexity ($$D$$). It measures how many major logical hurdles the model must clear to find the solution.
-
-It is crucial to distinguish $$D$$ from the raw number of moves or tokens in the final output. An algorithm might require only a few high-level strategic decisions to generate a very long sequence of actions.
-
-**Definition:** The Solution Path Complexity, $$D(I)$$, for a problem instance $$I$$ is the number of sequential deliberative operations in the most efficient known algorithm for solving it.
-$$
-D(I) = N_{\text{ops}}
-$$
-The Tower of Hanoi is the classic example of this distinction. Solving it for `n=7` disks produces a 127-move solution. However, the recursive algorithm to *find* this solution only involves `n=7` core deliberative steps (one for each disk's primary placement). Therefore, for Tower of Hanoi, $$D(n)=n$$, not $$2^n-1$$. This correctly identifies that the algorithmic complexity, not the output length, drives this part of the cognitive load.
-
-#### Components 2 & 3: State ($$S$$) and Constraints ($$C$$) - The Work per Operation
-The average work per deliberative operation, $$W_{\text{op}}$$, is the effort needed to figure out what to do at each of these critical steps. We propose this work is determined by two factors: the amount of information the model must track (the state) and the complexity of the rules it must apply (the constraints).
-
-**Definition (State Information Density, $$S$$):** The State Information Density, $$S(I)$$, is the Shannon entropy of the state space for instance $$I$$, measured in bits. For a uniform distribution over possible states, it is the logarithm of the size of the state space, $$\vert \Sigma(I)\vert $$.
+While this summation represents the ground truth, it can be unnecessarily complex to calculate. We therefore propose a more practical and operational model that approximates this work:
 
 $$
-S(I) = \log_2(\vert \Sigma(I)\vert )
+\mathcal{L}(I) = S_{\text{max}}(I) \times C(P) \times D(I)
 $$
 
-**Definition (Constraint Complexity, $$C$$):** The Constraint Complexity, $$C(P)$$, for a puzzle class $$P$$ is the number of fundamental logical or relational predicates required to express the algorithm that validates a single step or move.
+In this formula, $$S_{\text{max}}$$ is the *peak* state complexity encountered, $$C$$ is the constant constraint complexity, and $$D$$ is a scaling factor that characterizes the structure of the algorithm's solution path. The power of this model is that it generalizes well across different types of algorithms, as we will now show.
+
+### The Three Components of the Model
+
+#### 1. State Information Density ($$S_{\text{max}}$$)
+This component quantifies the maximum working memory required at any single point during the problem-solving process.
+
+**Definition:** The State Information Density, $$S_{\text{max}}(I)$$, is the Shannon entropy of the largest state space the model must consider to execute its algorithm for instance $$I$$.
+
+#### 2. Constraint Complexity ($$C$$)
+This component quantifies the complexity of the puzzle's ruleset.
+
+**Definition:** The Constraint Complexity, $$C(P)$$, is the number of fundamental, atomic logical or relational predicates required to express the algorithm that validates a single move.
+
+#### 3. Solution Path Complexity ($$D$$)
+This is a structural scaling factor that depends on the class of algorithm used to solve the puzzle. It accounts for how the state information changes over the course of the solution.
+
+**Case A: Iterative Algorithms**
+-   **Examples:** River Crossing, Checker Jumping.
+-   **Method:** These problems are solved by exploring a state-space graph one step at a time. The relevant state information, $$S_i$$, is constant throughout this search and is equal to $$S_{\text{max}}$$.
+-   **Justification:** The true work sum becomes $$C \times \sum S_{\text{max}} = C \times S_{\text{max}} \times N_{\text{steps}}$$. Our model, $$L = S_{\text{max}} \times C \times D$$, is therefore an exact representation if we define $$D$$ as the number of steps in the solution path.
+-   **Calculation of $$D$$:** $$D$$ is the length of the shortest known solution path, $$m(n)$$.
+
+**Case B: Recursive Algorithms**
+-   **Example:** Tower of Hanoi.
+-   **Method:** These problems are solved by breaking them down into smaller sub-problems. The state information the model must focus on, $$S_i$$, is smaller for the sub-problems than for the main problem. The "true work" sum resolves to be proportional to $$C \times n^2$$.
+-   **Justification:** Our model uses $$S_{\text{max}}$$ (the state of the full n-disk problem) and a scaling factor $$D$$. For $$L = S_{\text{max}} \times C \times D$$ to match the true $$n^2$$ scaling, $$D$$ must be proportional to $$n$$. This corresponds perfectly to the algorithm's recursion depth. Our model is thus a well-justified approximation that correctly captures the problem's scaling behavior.
+-   **Calculation of $$D$$:** $$D$$ is the maximum recursion depth of the algorithm.
+
+### The Cognitive Load Formula
+The final formula provides a concrete method for calculating a single, unified difficulty score for any discrete reasoning task.
 
 $$
-C(P) = \text{Number of atomic predicates in the logical definition of the ruleset}
+\mathcal{L}(I) = S_{\text{max}}(I) \times C(P) \times D(I)
 $$
 
-## Synthesis: The Cognitive Load Formula
-
-The key idea here is that these components interact multiplicatively. The effort to apply the rules isn't separate from the effort of holding the state in memory; the rules must be applied *to* the state. So, the work per operation is proportional to the product of state and constraint complexity.
-$$
-W_{\text{op}} \propto S(I) \times C(P)
-$$
-Putting this all together, we can substitute our definitions back into the refined postulate to get the final formula for Cognitive Load:
-$$
-\mathcal{L}(I) = S(I) \times C(P) \times D(I)
-$$
-This formula provides a concrete method for calculating a single, unified difficulty score for any discrete reasoning task.
+## Case Studies: The Framework in Action
 
 Let's apply this formula to the three puzzles mentioned earlier to see how it works in practice.
 
