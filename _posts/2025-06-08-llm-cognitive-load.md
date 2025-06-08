@@ -9,11 +9,11 @@ math: true
 
 ## Toward a Universal Measure of Reasoning Difficulty
 
-As Large Language Models (LLMs) get better at complex reasoning, we need better ways to measure the difficulty of the tasks we give them. A fascinating paper from researchers at Apple, ["The Illusion of Thinking"](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf), systematically tested models like Claude 3.7 Sonnet on various puzzles. They measured complexity using straightforward metrics like the problem size (`N`) or the number of moves in the solution.
+As Large Language Models (LLMs) get better at complex reasoning, we need better ways to measure the difficulty of the tasks we give them. A fascinating paper from researchers at Apple, ["The Illusion of Thinking"](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf), systematically tested models like Claude 3.7 Sonnet on various puzzles. They measured complexity using straightforward metrics like the problem size ($$n$$) or the number of moves in the solution.
 
 Their findings revealed an interesting inconsistency: models could solve a Tower of Hanoi puzzle requiring over 100 moves, yet fail on a River Crossing puzzle that needs only a dozen. This suggests that simple metrics like "number of moves" don't provide a universal measure of difficulty. Different puzzles stress a model's capabilities in different ways.
 
-This post introduces a framework to normalize the concept of task difficulty into a single, unified metric: **Cognitive Load ($\mathcal{L}$)**. By defining difficulty in terms of the underlying computational work a model must perform, we can explain why some seemingly simple problems are incredibly hard for LLMs and predict when their performance will start to degrade.
+This post introduces a framework to normalize the concept of task difficulty into a single, unified metric: **Cognitive Load ($$\mathcal{L}$$)**. By defining difficulty in terms of the underlying computational work a model must perform, we can explain why some seemingly simple problems are incredibly hard for LLMs and predict when their performance will start to degrade.
 
 ## A Look at the Puzzles
 
@@ -176,12 +176,12 @@ Let's apply this formula to the three puzzles mentioned earlier to see how it wo
 
 ## The Payoff: A Unified Performance Curve
 
-The Apple paper provides accuracy data for Claude 3.7 Sonnet across these puzzles. When we re-analyze their data, not against problem size `N` but against our calculated Cognitive Load, something remarkable happens. The performance data from all these different puzzles, which looked inconsistent before, now collapses onto a single, predictable curve.
+The Apple paper provides accuracy data for Claude 3.7 Sonnet across these puzzles. When we re-analyze their data, not against problem size $$n$$ but against our calculated Cognitive Load, something remarkable happens. The performance data from all these different puzzles, which looked inconsistent before, now collapses onto a single, predictable curve.
 
 By fitting a single sigmoid function (which describes a sharp transition) to the combined data from both puzzles, we can identify a unified critical threshold. The fit gives a consistent critical load of **$$\mathcal{L}_{\text{crit}} \approx 254$$**.
 
 ![Cognitive Load Plot](/assets/img/cognitive_load_plot.png)
-*Figure 1: Side-by-side comparison of Claude 3.7 Sonnet's performance. **Left:** Plotting accuracy against problem size `n` shows two completely different performance curves. **Right:** Plotting accuracy against the unified Cognitive Load ($$\mathcal{L}$$) metric aligns the data from both puzzles onto a single curve. The grey dashed line shows a single sigmoid curve fitted to all data points, revealing a consistent critical threshold of ~254.*
+*Figure 1: Side-by-side comparison of Claude 3.7 Sonnet's performance. **Left:** Plotting accuracy against problem size $$n$$ shows two completely different performance curves. **Right:** Plotting accuracy against the unified Cognitive Load ($$\mathcal{L}$$) metric aligns the data from both puzzles onto a single curve. The grey dashed line shows a single sigmoid curve fitted to all data points, revealing a consistent critical threshold of ~254.*
 
 This curve reveals a unified **critical load threshold ($$\mathcal{L}_{\text{crit}}$$)** for the model. Based on our analysis of the published data, this threshold for Claude 3.7 Sonnet appears to be around **$$\mathcal{L}_{\text{crit}} \approx 254$$**.
 
