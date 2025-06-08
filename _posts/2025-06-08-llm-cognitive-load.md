@@ -195,82 +195,65 @@ The true power of this framework lies not just in explaining performance but in 
 
 The framework's predictions align perfectly with the observed results. The model succeeds when the task is below its cognitive limit and fails when the task exceeds it. This demonstrates how Cognitive Load provides a more robust and predictive measure of task difficulty than simple metrics like the number of moves. This also helps explain the paper's finding that models' reasoning effort (measured in token usage) declines at high complexity; once the cognitive load is past the critical threshold, the model effectively gives up.
 
-## The Standardized Cognitive Assessment Probe (SCAP)
+## A Practical Toolkit: The Standardized Cognitive Assessment Probe (SCAP)
 
-A key predictive challenge is to determine a model's $$\mathcal{L}_{\text{crit}}$$ without exhaustively testing it on numerous complex puzzles. To solve this, we propose a simple, efficient phenomenological testing suite: the **Standardized Cognitive Assessment Probe (SCAP)**. SCAP uses a series of targeted, synthetic prompts to measure the maximum capacity of each cognitive component in isolation.
+The following is a step-by-step protocol to estimate a model's critical reasoning threshold ($$\mathcal{L}_{\text{crit}}$$). The procedure is designed to be fully self-contained and reproducible.
 
-The protocol involves three probes. For each, we start at a low level of the variable parameter ($$n_s, n_c, n_d$$) and increase it until the model's accuracy on the task reliably falls below 90%. This point defines the maximum capacity for that component.
+### Step 1: Measure Maximum State Capacity ($$S_{\text{max}}$$)
+**Objective:** Find the maximum amount of state information the model can reliably hold in working memory.
 
-### Probe 1: Measuring Maximum State Capacity ($$S_{\text{max}}$$)
-This probe tests the model's "working memory" by asking it to recall a value from a defined state.
-
-- **Task:** Hold and retrieve information.
-- **Variable:** $$n_s$$, the number of registers.
-- **Fixed Components:** $$C_{\text{base}}=1$$ (one rule: recall), $$D_{\text{base}}=1$$ (one step).
+- **Procedure:**
+    1. Use the prompt template below. Start with a small number of registers (e.g., $$n_s=5$$).
+    2. Incrementally increase $$n_s$$ and test the model repeatedly for each value.
+    3. The largest value of $$n_s$$ for which the model consistently provides the correct answer is its maximum state channel capacity, $$n_{s, \text{max}}$$.
 - **Prompt Template:**
-  > Here is the current state with $$n_s$$ registers: R1=[val1], R2=[val2], ..., Rn=[valn]. The values are three-digit integers. What is the value in register Rk?
-- **Procedure:** We test for increasing $$n_s$$. The largest value for which the model is consistently correct is $$n_{s, \text{max}}$$.
-- **Calculation:** The state space is $$1000^{n_s}$$ (for 3-digit integers).
+    > Here is the current state with $$n_s$$ registers: R1=[val1], R2=[val2], ..., Rn=[valn]. The values are three-digit integers. What is the value in register Rk?
+- **Calculation:** The first estimate of the critical load, $$\mathcal{L}_S$$, is the maximum state information the model can handle.
+    $$
+    \mathcal{L}_S = S_{\text{max}} = n_{s, \text{max}} \times \log_2(1000) \approx 9.97 \times n_{s, \text{max}}
+    $$
 
-  $$
-  S_{\text{max}} = \log_2(1000^{n_{s, \text{max}}}) = n_{s, \text{max}} \log_2(1000) \approx 9.97 n_{s, \text{max}}
-  $$
+### Step 2: Measure Maximum Constraint Capacity ($$C_{\text{max}}$$)
+**Objective:** Find the maximum number of logical rules the model can apply simultaneously in a single step.
 
-### Probe 2: Measuring Maximum Constraint Capacity ($$C_{\text{max}}$$)
-This probe tests the model's ability to apply a set of logical rules.
-
-- **Task:** Apply a list of conditional rules to an initial state.
-- **Variable:** $$n_c$$, the number of rules.
-- **Fixed Components:** Minimal state ($$S_{\text{base}} \approx \log_2(100^2) \approx 13.3$$ for two variables from 0-99), $$D_{\text{base}}=1$$.
+- **Procedure:**
+    1. Use the prompt template below. Start with a small number of rules (e.g., $$n_c=3$$).
+    2. Incrementally increase $$n_c$$ and test the model.
+    3. The largest value of $$n_c$$ for which the model consistently calculates the correct final state is its maximum constraint capacity, $$n_{c, \text{max}}$$.
 - **Prompt Template:**
-  > Initial state: X=[val1], Y=[val2]. Apply all of the following $$n_c$$ rules simultaneously to the initial state and provide the final state of X and Y.
-  > Rule 1: If X is [condition], then [action].
-  > Rule 2: If Y is [condition], then [action].
-  > ...
-  > Rule $$n_c$$: If X+Y is [condition], then [action].
-- **Procedure:** We test for increasing $$n_c$$. The largest value for which the model is consistently correct is $$n_{c, \text{max}}$$.
-- **Calculation:** Each rule is an atomic predicate.
+    > Initial state: X=[val1], Y=[val2]. Apply all of the following $$n_c$$ rules simultaneously to the initial state and provide the final state of X and Y.
+    > Rule 1: If X is [condition], then [action].
+    > ...
+    > Rule $$n_c$$: If X+Y is [condition], then [action].
+- **Calculation:** The second estimate, $$\mathcal{L}_C$$, is the load produced by applying $$C_{\text{max}} = n_{c, \text{max}}$$ rules to the minimal state required for the task. This state holds two variables (values 0-99), so its information content is $$S_{\text{base}} = \log_2(100^2) \approx 13.3$$ bits.
+    $$
+    \mathcal{L}_C = S_{\text{base}} \times C_{\text{max}} \approx 13.3 \times n_{c, \text{max}}
+    $$
 
-  $$
-  C_{\text{max}} = n_{c, \text{max}}
-  $$
+### Step 3: Measure Maximum Path Capacity ($$D_{\text{max}}$$)
+**Objective:** Find the maximum number of sequential operations the model can track.
 
-### Probe 3: Measuring Maximum Path Capacity ($$D_{\text{max}}$$)
-This probe tests the model's ability to maintain state across a sequence of operations.
-
-- **Task:** Perform a sequence of calculations.
-- **Variable:** $$n_d$$, the number of steps in the sequence.
-- **Fixed Components:** Minimal state ($$S_{\text{base}} \approx \log_2(1000) \approx 10$$), one simple rule ($$C_{\text{base}}=1$$).
+- **Procedure:**
+    1. Use the prompt template below. Start with a short sequence (e.g., $$n_d=5$$).
+    2. Incrementally increase $$n_d$$ and test the model.
+    3. The largest value of $$n_d$$ for which the model consistently provides the correct final value is its maximum path capacity, $$n_{d, \text{max}}$$.
 - **Prompt Template:**
-  > The initial value of register R1 is [val1]. Perform the following sequence of $$n_d$$ operations on R1: [Op1], [Op2], ..., [Op $$n_d$$]. What is the final value of R1?
-- **Procedure:** We test for increasing $$n_d$$. The largest value for which the model is consistently correct is $$n_{d, \text{max}}$$.
-- **Calculation:** Each operation is one step in the path.
+    > The initial value of register R1 is [val1]. Perform the following sequence of $$n_d$$ operations on R1: [Op1], [Op2], ..., [Op $$n_d$$]. What is the final value of R1?
+- **Calculation:** The third estimate, $$\mathcal{L}_D$$, is the load from performing $$D_{\text{max}} = n_{d, \text{max}}$$ operations on a minimal state. The state holds one three-digit number, so $$S_{\text{base}} = \log_2(1000) \approx 10$$ bits.
+    $$
+    \mathcal{L}_D = S_{\text{base}} \times D_{\text{max}} \approx 10 \times n_{d, \text{max}}
+    $$
 
-  $$
-  D_{\text{max}} = n_{d, \text{max}}
-  $$
+### Step 4: Synthesize the Final Critical Load ($$\mathcal{L}_{\text{crit}}$$)
+**Objective:** Combine the three independent measurements into a single, robust estimate of the model's reasoning limit.
 
-### Synthesizing the Critical Load Threshold
-SCAP assumes that a model's reasoning fails when any single cognitive faculty is overwhelmed. Therefore, the critical load can be estimated from the breaking point of each probe. We calculate the load for each maximal test:
-
-$$
-\begin{align}
-\mathcal{L}_S &= S_{\text{max}} \times C_{\text{base}} \times D_{\text{base}} \
-\mathcal{L}_C &= S_{\text{base}} \times C_{\text{max}} \times D_{\text{base}} \
-\mathcal{L}_D &= S_{\text{base}} \times C_{\text{base}} \times D_{\text{max}}
-\end{align}
-$$
-
-The hypothesis of an interchangeable, multiplicative load suggests these three values should be of a similar magnitude. We can therefore estimate the model's general threshold, $$\mathcal{L}_{\text{crit}}$$, as the average of these measurements.
-
-$$
-\mathcal{L}_{\text{crit}} \approx \text{mean}(\mathcal{L}_S, \mathcal{L}_C, \mathcal{L}_D)
-$$
-
+- **Rationale:** The central hypothesis is that the three load values measured at the breaking point for each probe ($$\mathcal{L}_S, \mathcal{L}_C, \mathcal{L}_D$$) are all estimates of the same underlying cognitive limit.
+- **Calculation:** Average the three values to obtain the final critical load threshold.
+    $$
+    \mathcal{L}_{\text{crit}} \approx \text{mean}(\mathcal{L}_S, \mathcal{L}_C, \mathcal{L}_D)
+    $$
 This protocol provides a fast and resource-efficient method to calibrate the Cognitive Load framework for any LLM, turning it into a powerful predictive tool.
 
 ## Conclusion
 
 The Cognitive Load framework provides a structured way to think about and quantify the difficulty of reasoning tasks for LLMs. By breaking down the problem into State, Constraint, and Path complexity, we get a metric that is both theoretically sound and seems to work in practice when applied to existing research data.
-
-It gives us a unified scale to predict model performance and diagnose why a model might be failing. With the SCAP protocol, it also becomes a practical tool for measuring the core reasoning capacity ($$\mathcal{L}_{\text{crit}}$$) of any model.
