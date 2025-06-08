@@ -7,8 +7,6 @@ date: 2025-06-08
 math: true
 ---
 
-## Toward a Universal Measure of Reasoning Difficulty
-
 As Large Language Models (LLMs) get better at complex reasoning, we need better ways to measure the difficulty of the tasks we give them. A fascinating paper from researchers at Apple, ["The Illusion of Thinking"](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf), systematically tested models like Claude 3.7 Sonnet on various puzzles. They measured complexity using straightforward metrics like the problem size ($$n$$) or the number of moves in the solution.
 
 Their findings revealed an interesting inconsistency: models could solve a Tower of Hanoi puzzle requiring over 100 moves, yet fail on a River Crossing puzzle that needs only a dozen. This suggests that simple metrics like "number of moves" don't provide a universal measure of difficulty. Different puzzles stress a model's capabilities in different ways.
@@ -31,7 +29,7 @@ This is a constraint satisfaction puzzle involving $$n$$ "actors" and their corr
 #### Blocks World
 This block-stacking puzzle requires rearranging blocks from an initial configuration to a specified goal state. The objective is to find the minimum number of moves. Valid moves are restricted to the topmost block of any stack, which can be placed either on an empty space to start a new stack or on top of another block. The complexity is controlled by the number of blocks. While part of the original study, this puzzle was excluded from our main analysis due to its stochastic nature, which introduces significant noise into the performance data.
 
-## The Postulate of Computational Work
+## The Three Components of Cognitive Load
 
 Our approach starts with a simple idea about how LLMs solve problems:
 
@@ -44,8 +42,6 @@ W_{\text{total}} = W_{\text{step}} \times N_{\text{steps}}
 $$
 
 We start with the hypothesis that an LLM is more likely to fail as this total work increases. To make this useful, we need to connect the terms in this equation to real, measurable properties of a given puzzle.
-
-## The Three Components of Cognitive Load
 
 The total work can be broken down into three interacting components.
 
@@ -94,8 +90,6 @@ $$
 $$
 
 This formula provides a concrete method for calculating a single, unified difficulty score for any discrete reasoning task.
-
-## Case Studies: The Framework in Action
 
 Let's apply this formula to the three puzzles mentioned earlier to see how it works in practice.
 
@@ -174,7 +168,7 @@ Let's apply this formula to the three puzzles mentioned earlier to see how it wo
     \mathcal{L}_{\text{river}}(n) \approx (2n+1) (2n^2 - 2n) m(n)
     $$
 
-## The Payoff: A Unified Performance Curve
+## Unified Performance Curve
 
 The Apple paper provides accuracy data for Claude 3.7 Sonnet across these puzzles. When we re-analyze their data, not against problem size $$n$$ but against our calculated Cognitive Load, something remarkable happens. The performance data from all these different puzzles, which looked inconsistent before, now collapses onto a single, predictable curve.
 
@@ -192,30 +186,88 @@ This threshold acts as a fundamental constraint on the model's reasoning capacit
 The true power of this framework lies not just in explaining performance but in predicting it. We can test this by applying the Cognitive Load formula to the River Crossing problem. The Apple paper reports a sharp performance drop for Claude 3.7 Sonnet on this specific puzzle: from ~80% accuracy for the `n=2` case down to 0% for `n=3`. Let's see if our model predicts this cliff.
 
 -   **Case 1: River Crossing with n=2** (2 pairs, optimal solution has 5 moves)
-    -   **Cognitive Load:** $$\\mathcal{L}_{\\text{river}}(2) \\approx (2 \\cdot 2 + 1)(2 \\cdot 2^2 - 2 \\cdot 2) \\times 5 = 5 \\times 4 \\times 5 = 100$$
+    -   **Cognitive Load:** $$\mathcal{L}_{\text{river}}(2) \approx (2 \cdot 2 + 1)(2 \cdot 2^2 - 2 \cdot 2) \times 5 = 5 \times 4 \times 5 = 100$$
     -   This load is well **below** the critical threshold of ~254, correctly predicting a high likelihood of success.
 
 -   **Case 2: River Crossing with n=3** (3 pairs, optimal solution has 11 moves)
-    -   **Cognitive Load:** $$\\mathcal{L}_{\\text{river}}(3) \\approx (2 \\cdot 3 + 1)(2 \\cdot 3^2 - 2 \\cdot 3) \\times 11 = 7 \\times 12 \\times 11 = 924$$
+    -   **Cognitive Load:** $$\mathcal{L}_{\text{river}}(3) \approx (2 \cdot 3 + 1)(2 \cdot 3^2 - 2 \cdot 3) \times 11 = 7 \times 12 \times 11 = 924$$
     -   This load is nearly four times the critical threshold, correctly predicting catastrophic failure.
 
 The framework's predictions align perfectly with the observed results. The model succeeds when the task is below its cognitive limit and fails when the task exceeds it. This demonstrates how Cognitive Load provides a more robust and predictive measure of task difficulty than simple metrics like the number of moves. This also helps explain the paper's finding that models' reasoning effort (measured in token usage) declines at high complexity; once the cognitive load is past the critical threshold, the model effectively gives up.
 
-## A Practical Toolkit: The Standardized Cognitive Assessment Probe (SCAP)
+## The Standardized Cognitive Assessment Probe (SCAP)
 
-This framework is most useful if we can predict when a model will fail. But how can we find a model's $$\\mathcal{L}_{\\text{crit}}$$ without throwing hundreds of puzzles at it? For this, we developed a simple and efficient testing protocol: the **Standardized Cognitive Assessment Probe (SCAP)**.
+A key predictive challenge is to determine a model's $$\mathcal{L}_{\text{crit}}$$ without exhaustively testing it on numerous complex puzzles. To solve this, we propose a simple, efficient phenomenological testing suite: the **Standardized Cognitive Assessment Probe (SCAP)**. SCAP uses a series of targeted, synthetic prompts to measure the maximum capacity of each cognitive component in isolation.
 
-SCAP uses simple, targeted prompts to measure the limits of a model's capacity for each of the three components—State, Constraints, and Path—in isolation. The protocol has three parts. In each one, we increase a specific variable ($$n_s, n_c, n_d$$) until the model's accuracy consistently drops, pinpointing the breaking point for that component.
+The protocol involves three probes. For each, we start at a low level of the variable parameter ($$n_s, n_c, n_d$$) and increase it until the model's accuracy on the task reliably falls below 90%. This point defines the maximum capacity for that component.
 
-1.  **Probe 1 (State Capacity $$S_{\text{max}}$$)**: Tests working memory by asking the model to recall a value from one of $$n_s$$ registers. $$S_{\text{max}}$$ is calculated from the maximum $$n_s$$ the model can handle.
-2.  **Probe 2 (Constraint Capacity $$C_{\text{max}}$$)**: Tests rule application by giving the model an initial state and $$n_c$$ conditional rules to apply. $$C_{\text{max}}$$ is the maximum $$n_c$$ the model can apply correctly.
-3.  **Probe 3 (Path Capacity $$D_{\text{max}}$$)**: Tests sequential reasoning by asking the model to perform a sequence of $$n_d$$ operations. $$D_{\text{max}}$$ is the maximum number of steps it can track.
+### Probe 1: Measuring Maximum State Capacity ($$S_{\text{max}}$$)
+This probe tests the model's "working memory" by asking it to recall a value from a defined state.
 
-By finding the load at each of these individual breaking points, we can estimate the model's general threshold, $$\mathcal{L}_{\text{crit}}$$, by averaging them. This gives us a fast, resource-efficient way to calibrate the framework for any LLM, turning it into a powerful predictive tool.
+- **Task:** Hold and retrieve information.
+- **Variable:** $$n_s$$, the number of registers.
+- **Fixed Components:** $$C_{\text{base}}=1$$ (one rule: recall), $$D_{\text{base}}=1$$ (one step).
+- **Prompt Template:**
+  > You are a test machine. Here is the current state with $$n_s$$ registers: R1=[val1], R2=[val2], ..., Rn=[valn]. The values are three-digit integers. What is the value in register Rk?
+- **Procedure:** We test for increasing $$n_s$$. The largest value for which the model is consistently correct is $$n_{s, \text{max}}$$.
+- **Calculation:** The state space is $$1000^{n_s}$$ (for 3-digit integers).
+
+  $$
+  S_{\text{max}} = \log_2(1000^{n_{s, \text{max}}}) = n_{s, \text{max}} \log_2(1000) \approx 9.97 n_{s, \text{max}}
+  $$
+
+### Probe 2: Measuring Maximum Constraint Capacity ($$C_{\text{max}}$$)
+This probe tests the model's ability to apply a set of logical rules.
+
+- **Task:** Apply a list of conditional rules to an initial state.
+- **Variable:** $$n_c$$, the number of rules.
+- **Fixed Components:** Minimal state ($$S_{\text{base}} \approx \log_2(100^2) \approx 13.3$$ for two variables from 0-99), $$D_{\text{base}}=1$$.
+- **Prompt Template:**
+  > You are a test machine. Initial state: X=[val1], Y=[val2]. Apply all of the following $$n_c$$ rules simultaneously to the initial state and provide the final state of X and Y.
+  > Rule 1: If X is [condition], then [action].
+  > Rule 2: If Y is [condition], then [action].
+  > ...
+  > Rule $$n_c$$: If X+Y is [condition], then [action].
+- **Procedure:** We test for increasing $$n_c$$. The largest value for which the model is consistently correct is $$n_{c, \text{max}}$$.
+- **Calculation:** Each rule is an atomic predicate.
+
+  $$
+  C_{\text{max}} = n_{c, \text{max}}
+  $$
+
+### Probe 3: Measuring Maximum Path Capacity ($$D_{\text{max}}$$)
+This probe tests the model's ability to maintain state across a sequence of operations.
+
+- **Task:** Perform a sequence of calculations.
+- **Variable:** $$n_d$$, the number of steps in the sequence.
+- **Fixed Components:** Minimal state ($$S_{\text{base}} \approx \log_2(1000) \approx 10$$), one simple rule ($$C_{\text{base}}=1$$).
+- **Prompt Template:**
+  > You are a test machine. The initial value of register R1 is [val1]. Perform the following sequence of $$n_d$$ operations on R1: [Op1], [Op2], ..., [Op $$n_d$$]. What is the final value of R1?
+- **Procedure:** We test for increasing $$n_d$$. The largest value for which the model is consistently correct is $$n_{d, \text{max}}$$.
+- **Calculation:** Each operation is one step in the path.
+
+  $$
+  D_{\text{max}} = n_{d, \text{max}}
+  $$
+
+### Synthesizing the Critical Load Threshold
+SCAP assumes that a model's reasoning fails when any single cognitive faculty is overwhelmed. Therefore, the critical load can be estimated from the breaking point of each probe. We calculate the load for each maximal test:
+
+$$
+\begin{align}
+\mathcal{L}_S &= S_{\text{max}} \times C_{\text{base}} \times D_{\text{base}} \
+\mathcal{L}_C &= S_{\text{base}} \times C_{\text{max}} \times D_{\text{base}} \
+\mathcal{L}_D &= S_{\text{base}} \times C_{\text{base}} \times D_{\text{max}}
+\end{align}
+$$
+
+The hypothesis of an interchangeable, multiplicative load suggests these three values should be of a similar magnitude. We can therefore estimate the model's general threshold, $$\mathcal{L}_{\text{crit}}$$, as the average of these measurements.
 
 $$
 \mathcal{L}_{\text{crit}} \approx \text{mean}(\mathcal{L}_S, \mathcal{L}_C, \mathcal{L}_D)
 $$
+
+This protocol provides a fast and resource-efficient method to calibrate the Cognitive Load framework for any LLM, turning it into a powerful predictive tool.
 
 ## Conclusion
 
@@ -226,5 +278,5 @@ It gives us a unified scale to predict model performance and diagnose why a mode
 Ultimately, this work helps build a more rigorous science of AI reasoning, allowing us to better understand the limits of today's models and, hopefully, build more capable and robust systems in the future.
 
 ---
-### References
-1. Shojaee, P., et al. (2024). *The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity*. [https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf) 
+
+Shojaee, P., et al. (2024). *The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity*. [https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf](https://ml-site.cdn-apple.com/papers/the-illusion-of-thinking.pdf) 
