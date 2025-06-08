@@ -29,47 +29,45 @@ This is a constraint satisfaction puzzle involving $$n$$ "actors" and their corr
 #### Blocks World
 This block-stacking puzzle requires rearranging blocks from an initial configuration to a specified goal state. The objective is to find the minimum number of moves. Valid moves are restricted to the topmost block of any stack, which can be placed either on an empty space to start a new stack or on top of another block. The complexity is controlled by the number of blocks. While part of the original study, this puzzle was excluded from our main analysis due to its stochastic nature, which introduces significant noise into the performance data.
 
+## The Postulate of Computational Work
+
+Our approach starts with a simple idea: total work is the product of the effort per step and the number of steps. However, we must be precise about what a "step" is. An LLM's solution is a long sequence of tokens, but not every token requires the same computational work. Some are part of a simple, learned pattern, while others represent critical decision points.
+
+Our framework refines this postulate by focusing on these high-effort steps, which we call **deliberative operations**.
+
+*The total computational work, $$W_{\text{total}}$$, is proportional to the average work per deliberative operation, $$W_{\text{op}}$$, multiplied by the number of such operations in the solution's reasoning chain, $$N_{\text{ops}}$$.*
+
+$$
+W_{\text{total}} \propto W_{\text{op}} \times N_{\text{ops}}
+$$
+
+This refinement is key. The Cognitive Load, $$\mathcal{L}$$, is our measure of this total work. The three components of our framework are direct measures of the terms in this more precise equation.
+
 ## The Three Components of Cognitive Load
-
-Our approach starts with a simple idea about how LLMs solve problems:
-
-*The total computational work, $$W_{\text{total}}$$, an LLM expends to solve a problem is the product of the average work required per generative step, $$W_{\text{step}}$$, and the number of steps in the solution's reasoning chain, $$N_{\text{steps}}$$.*
-
-This can be expressed with the simple equation:
-
-$$
-W_{\text{total}} = W_{\text{step}} \times N_{\text{steps}}
-$$
-
-We start with the hypothesis that an LLM is more likely to fail as this total work increases. To make this useful, we need to connect the terms in this equation to real, measurable properties of a given puzzle.
 
 The total work can be broken down into three interacting components.
 
-#### Component 1: Solution Path Complexity ($$D$$) - The Length of the Journey
+#### Component 1: Solution Path Complexity ($$D$$) - The Number of Deliberative Operations
+The number of deliberative operations, $$N_{\text{ops}}$$, is the length of the core reasoning chain. This is what we define as Solution Path Complexity ($$D$$). It measures how many major logical hurdles the model must clear to find the solution.
 
-The number of steps, $$N_{\text{steps}}$$, isn't just the final move count. It represents the length of the underlying reasoning chain the model must follow. In the Apple paper, this is referred to as "compositional depth." This corresponds directly to our first component, Solution Path Complexity ($$D$$).
+It is crucial to distinguish $$D$$ from the raw number of moves or tokens in the final output. An algorithm might require only a few high-level strategic decisions to generate a very long sequence of actions.
 
-**Definition:** The Solution Path Complexity, $$D(I)$$, for a problem instance $$I$$ is a measure of the effective number of sequential steps in the most efficient known algorithm for solving it.
-
+**Definition:** The Solution Path Complexity, $$D(I)$$, for a problem instance $$I$$ is the number of sequential deliberative operations in the most efficient known algorithm for solving it.
 $$
-D(I) \approx N_{\text{steps}}
+D(I) = N_{\text{ops}}
 $$
+The Tower of Hanoi is the classic example of this distinction. Solving it for `n=7` disks produces a 127-move solution. However, the recursive algorithm to *find* this solution only involves `n=7` core deliberative steps (one for each disk's primary placement). Therefore, for Tower of Hanoi, $$D(n)=n$$, not $$2^n-1$$. This correctly identifies that the algorithmic complexity, not the output length, drives this part of the cognitive load.
 
-#### Component 2: State Information Density ($$S$$) - The Weight of Memory
+#### Components 2 & 3: State ($$S$$) and Constraints ($$C$$) - The Work per Operation
+The average work per deliberative operation, $$W_{\text{op}}$$, is the effort needed to figure out what to do at each of these critical steps. We propose this work is determined by two factors: the amount of information the model must track (the state) and the complexity of the rules it must apply (the constraints).
 
-The work per step, $$W_{\text{step}}$$, is the effort needed to generate the next correct token. This effort is partly determined by how much information the model has to keep track of—its internal picture of the problem state. We can quantify this using information theory.
-
-**Definition:** The State Information Density, $$S(I)$$, is the Shannon entropy of the state space for instance $$I$$, measured in bits. For a uniform distribution over possible states, it is the logarithm of the size of the state space, $$\vert \Sigma(I)\vert $$.
+**Definition (State Information Density, $$S$$):** The State Information Density, $$S(I)$$, is the Shannon entropy of the state space for instance $$I$$, measured in bits. For a uniform distribution over possible states, it is the logarithm of the size of the state space, $$\vert \Sigma(I)\vert $$.
 
 $$
 S(I) = \log_2(\vert \Sigma(I)\vert )
 $$
 
-#### Component 3: Constraint Complexity ($$C$$) - The Intricacy of the Rules
-
-The work per step also depends on how complex the puzzle's rules are. We approximate this by counting the number of fundamental logical predicates needed to express the rules.
-
-**Definition:** The Constraint Complexity, $$C(P)$$, for a puzzle class $$P$$ is the number of fundamental logical or relational predicates required to express the algorithm that validates a single step or move.
+**Definition (Constraint Complexity, $$C$$):** The Constraint Complexity, $$C(P)$$, for a puzzle class $$P$$ is the number of fundamental logical or relational predicates required to express the algorithm that validates a single step or move.
 
 $$
 C(P) = \text{Number of atomic predicates in the logical definition of the ruleset}
@@ -77,18 +75,14 @@ $$
 
 ## Synthesis: The Cognitive Load Formula
 
-The key idea here is that these components interact multiplicatively. The effort to apply the rules isn't separate from the effort of holding the state in memory; the rules must be applied *to* the state. So, the work per step is proportional to the product of state and constraint complexity.
-
+The key idea here is that these components interact multiplicatively. The effort to apply the rules isn't separate from the effort of holding the state in memory; the rules must be applied *to* the state. So, the work per operation is proportional to the product of state and constraint complexity.
 $$
-W_{\text{step}} \propto S(I) \times C(P)
+W_{\text{op}} \propto S(I) \times C(P)
 $$
-
-Putting this all together, we can substitute our definitions back into the original equation to get the final formula for Cognitive Load:
-
+Putting this all together, we can substitute our definitions back into the refined postulate to get the final formula for Cognitive Load:
 $$
 \mathcal{L}(I) = S(I) \times C(P) \times D(I)
 $$
-
 This formula provides a concrete method for calculating a single, unified difficulty score for any discrete reasoning task.
 
 Let's apply this formula to the three puzzles mentioned earlier to see how it works in practice.
