@@ -24,7 +24,7 @@ This puzzle features three pegs and $$n$$ disks of different sizes stacked on th
 This is a one-dimensional puzzle with red checkers, blue checkers, and a single empty space in a line. The objective is to swap the positions of all red and blue checkers, mirroring the initial configuration. Valid moves include sliding a checker into an adjacent empty space or jumping over exactly one checker of the opposite color to land in an empty space. Checkers cannot move backward. The complexity is controlled by the number of checkers: with $$2n$$ checkers (n of each color), the minimum number of moves is $$(n + 1)^2 - 1$$.
 
 #### River Crossing
-This is a constraint satisfaction puzzle involving $$n$$ "actors" and their corresponding $$n$$ "agents" who must cross a river in a boat. The goal is to transport all $$2n$$ individuals from one bank to the other. The boat has a limited capacity (*k*) and cannot travel empty. The core constraint is that an actor cannot be in the presence of another's agent unless their own agent is also present. For n=2 and n=3, the boat capacity is k=2, and for larger n, k=3.
+This is a constraint satisfaction puzzle involving $$n$$ "actors" and their corresponding $$n$$ "agents" who must cross a river in a boat. The goal is to transport all $$2n$$ individuals from one bank to the other. The boat has a limited capacity ($$k$$) and cannot travel empty. The core constraint is that an actor cannot be in the presence of another's agent unless their own agent is also present. For $$n=2$$ and n=3, the boat capacity is $$k=2$$, and for larger $$n$$, $$k=3$$.
 
 #### Blocks World
 This block-stacking puzzle requires rearranging blocks from an initial configuration to a specified goal state. The objective is to find the minimum number of moves. Valid moves are restricted to the topmost block of any stack, which can be placed either on an empty space to start a new stack or on top of another block. The complexity is controlled by the number of blocks. While part of the original study, this puzzle was excluded from our main analysis due to its stochastic nature, which introduces significant noise into the performance data.
@@ -173,7 +173,7 @@ This threshold acts as a fundamental constraint on the model's reasoning capacit
 
 ## Predicting Performance: A River Crossing Case Study
 
-The true power of this framework lies not just in explaining performance but in predicting it. We can test this by applying the Cognitive Load formula to the River Crossing problem. The Apple paper reports a sharp performance drop for Claude 3.7 Sonnet on this specific puzzle: from ~80% accuracy for the `n=2` case down to 0% for `n=3`. Let's see if our model predicts this cliff.
+The true power of this framework lies not just in explaining performance but in predicting it. We can test this by applying the Cognitive Load formula to the River Crossing problem. The Apple paper reports a sharp performance drop for Claude 3.7 Sonnet on this specific puzzle: from ~80% accuracy for the $$n=2$$ case down to 0% for $$n=3$$. Let's see if our model predicts this cliff.
 
 -   **Case 1: River Crossing with n=2** (2 pairs, optimal solution has 5 moves)
     -   **Cognitive Load:** $$\mathcal{L}_{\text{river}}(2) \approx (2 \cdot 2 + 1)(2 \cdot 2^2 - 2 \cdot 2) \times 5 = 5 \times 4 \times 5 = 100$$
