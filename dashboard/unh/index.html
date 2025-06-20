@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnitedHealth Group (UNH) Valuation Explorer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        :root {
+            --primary-color: #006ba6;
+            --secondary-color: #008cba;
+            --accent-color: #d9534f;
+            --light-color: #f0f4f8;
+            --dark-color: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        
+        .header {
+            background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 25px rgba(0, 107, 166, 0.3);
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header h1 {
+            font-weight: 700;
+        }
+        
+        .header .current-price .h3 {
+            font-weight: 700;
+        }
+        
+        .header .text-muted {
+            color: rgba(255, 255, 255, 0.85) !important;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+            padding: 15px;
+            font-weight: 600;
+        }
+        
+        .mcf-card .card-header {
+            background-color: var(--secondary-color);
+        }
+        
+        .valuation-card .card-header {
+            background-color: var(--primary-color);
+        }
+        
+        .trajectory-option {
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .trajectory-option.active {
+            border-color: var(--primary-color);
+            background-color: rgba(0, 107, 166, 0.1);
+        }
+        
+        .trajectory-option:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .trajectory-option.consensus {
+            border-left: 5px solid #ffc107;
+        }
+        
+        .trajectory-option.bull {
+            border-left: 5px solid #28a745;
+        }
+        
+        .trajectory-option.bear {
+            border-left: 5px solid #dc3545;
+        }
+        
+        .valuation-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .valuation-change {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .positive-change {
+            color: #28a745;
+        }
+        
+        .negative-change {
+            color: #dc3545;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        .nav-pills .nav-link.active {
+            background-color: var(--primary-color);
+        }
+        
+        .nav-pills .nav-link {
+            color: var(--dark-color);
+        }
+        
+        /* Custom slider styling */
+        .custom-range::-webkit-slider-thumb {
+            background: var(--primary-color);
+        }
+        
+        .custom-range::-moz-range-thumb {
+            background: var(--primary-color);
+        }
+        
+        .custom-range::-ms-thumb {
+            background: var(--primary-color);
+        }
+        
+        .trajectory-slider .btn-group {
+            width: 100%;
+            display: flex;
+        }
+        .trajectory-slider .btn {
+            flex: 1;
+            margin: 0 2px;
+            border-radius: 0.25rem !important; /* Straighter edges */
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+        .trajectory-slider .btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+        .trajectory-slider .btn:not(.active):hover {
+            background-color: rgba(0, 107, 166, 0.1);
+        }
+        .trajectory-description {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 5px solid #ccc;
+            transition: border-color 0.3s ease;
+        }
+        .trajectory-description.bear { border-color: #dc3545; }
+        .trajectory-description.consensus { border-color: #ffc107; }
+        .trajectory-description.bull { border-color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="mb-0">UnitedHealth Group (UNH)</h1>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="current-price">
+                        <span class="h3">$<span id="current-price">307.20</span></span>
+                        <span class="text-muted">Current Price</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Company Overview -->
+        <div class="card mb-4">
+            <div class="card-header">
+                Company Overview
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Business Model</h5>
+                        <p>UnitedHealth Group operates through two main business segments:</p>
+                        <ul>
+                            <li><strong>UnitedHealthcare:</strong> Offers health insurance services to individuals, employers, and Medicare/Medicaid beneficiaries.</li>
+                            <li><strong>Optum:</strong> Provides health services, pharmacy benefits management, and care delivery through three sub-segments:
+                                <ul>
+                                    <li>OptumHealth: Care delivery and ambulatory care services</li>
+                                    <li>OptumInsight: Healthcare technology, analytics, and consulting</li>
+                                    <li>OptumRx: Pharmacy care services and PBM operations</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Company Challenges</h5>
+                        <ul>
+                            <li>Leadership changes (CEO Andrew Witty stepped down)</li>
+                            <li>Regulatory scrutiny and antitrust investigations</li>
+                            <li>Change Healthcare cyberattack and aftermath</li>
+                            <li>Public backlash over claim denials and healthcare costs</li>
+                            <li>Competition from other insurers and tech entrants</li>
+                            <li>Medicare Advantage rate adjustments</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="row">
+            <div class="col-md-8">
+                <!-- MCF News Card is removed -->
+                
+                <div id="mcf-container">
+                    <!-- MCF cards will be dynamically inserted here -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Scenario Selection Buttons -->
+                <div class="card mb-4">
+                    <div class="card-body text-center p-2">
+                        <div class="btn-group w-100" role="group">
+                            <button id="best-case-btn" class="btn btn-success">Best</button>
+                            <button id="base-case-btn" class="btn btn-primary">Base</button>
+                            <button id="worst-case-btn" class="btn btn-danger">Worst</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card valuation-card sticky-top" style="top: 20px;">
+                    <div class="card-header">
+                        Valuation Output
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Implied Share Price</h5>
+                        <div class="valuation-value">$<span id="implied-share-price">0.00</span></div>
+                        <div class="valuation-change">
+                            <span id="price-vs-market"></span>
+                        </div>
+                        <hr>
+                        <div class="mb-3">
+                            <label class="form-label">Enterprise Value</label>
+                            <div class="h5">$<span id="enterprise-value">0.00</span>B</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Equity Value</label>
+                            <div class="h5">$<span id="equity-value">0.00</span>B</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">WACC</label>
+                            <div class="h5"><span id="wacc">0.00</span>%</div>
+                        </div>
+                        <hr>
+                        <div class="chart-container">
+                            <canvas id="cashFlowChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script>
+        // Load JSON data
+        let valuationData;
+        let marketData;
+        let currentScenario;
+        let mcfSelections = {};
+
+        // Fetch data and initialize application
+        const fetchValuationData = fetch('final_valuation.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load final_valuation.json: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error loading valuation data:', error);
+                throw error;
+            });
+            
+        const fetchMarketData = fetch('MarketData.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load MarketData.json: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .catch(error => {
+                console.error('Error loading market data:', error);
+                throw error;
+            });
+            
+        Promise.all([fetchValuationData, fetchMarketData])
+            .then(([valData, mktData]) => {
+                console.log('Successfully loaded valuation data and market data');
+                console.log('Valuation data:', valData);
+                console.log('Market data:', mktData);
+                
+                valuationData = valData;
+                marketData = mktData;
+                
+                // Initialize the application
+                initializeApp();
+            })
+            .catch(error => {
+                console.error('Error loading data:', error);
+                document.body.innerHTML = `<div class="alert alert-danger">
+                    <h4>Error loading data</h4>
+                    <p>${error.message || 'Unknown error'}</p>
+                    <p>Please check the browser console for more details.</p>
+                </div>`;
+            });
+
+        const mcfNewsHtml = {
+            'mcf_01': `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h6>CMS Finalizes 2025 Medicare Advantage Rates</h6>
+                        <p>The Centers for Medicare & Medicaid Services announced a 3.7% rate cut for Medicare Advantage plans, lower than the 5% initially proposed but still significant for insurers like UnitedHealth.</p>
+                        <small class="text-muted">April 2025</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>UnitedHealth Reports Slowing Medicare Advantage Enrollment</h6>
+                        <p>Q1 2025 results showed Medicare Advantage enrollment growth of 3.2%, down from 5.8% in the previous year as competition intensifies.</p>
+                        <small class="text-muted">March 2025</small>
+                    </li>
+                </ul>
+            `,
+            'mcf_02': `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h6>DOJ Investigation into UnitedHealth's Optum Acquisitions Expands</h6>
+                        <p>The Department of Justice has expanded its investigation into UnitedHealth's Optum unit, focusing on whether its acquisitions of provider groups have reduced competition.</p>
+                        <small class="text-muted">May 2025</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>Senate Committee Holds Hearings on Vertical Integration in Healthcare</h6>
+                        <p>UnitedHealth executives were called to testify before a Senate committee regarding the impact of vertical integration on healthcare costs and competition.</p>
+                        <small class="text-muted">February 2025</small>
+                    </li>
+                </ul>
+            `,
+            'mcf_03': `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h6>Optum Rx Faces New PBM Transparency Rules</h6>
+                        <p>New federal regulations requiring greater transparency in pharmacy benefit manager operations could impact Optum Rx's business model and profitability.</p>
+                        <small class="text-muted">June 2025</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>OptumHealth Expands Provider Network with Major Acquisition</h6>
+                        <p>OptumHealth announced the acquisition of a large physician group with 2,500 providers across 6 states, continuing its strategy of vertical integration.</p>
+                        <small class="text-muted">April 2025</small>
+                    </li>
+                </ul>
+            `,
+            'mcf_04': `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h6>Change Healthcare Recovery Costs Reach $2.5 Billion</h6>
+                        <p>UnitedHealth Group reported that costs related to the 2024 Change Healthcare cyberattack have reached $2.5 billion, including system restoration and customer compensation.</p>
+                        <small class="text-muted">May 2025</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>UnitedHealth Announces $500M Cybersecurity Investment</h6>
+                        <p>Following the Change Healthcare incident, UnitedHealth announced a $500 million investment in cybersecurity infrastructure and talent over the next three years.</p>
+                        <small class="text-muted">March 2025</small>
+                    </li>
+                </ul>
+            `,
+            'mcf_05': `
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <h6>Amazon Expands Amazon Care to 15 Additional States</h6>
+                        <p>Amazon announced the expansion of its healthcare services to 15 additional states, increasing competition in the primary care and telehealth markets.</p>
+                        <small class="text-muted">June 2025</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6>CVS Health-Aetna Reports Strong Medicare Advantage Growth</h6>
+                        <p>CVS Health reported 8.5% growth in Medicare Advantage enrollment, outpacing UnitedHealth and gaining market share in key regions.</p>
+                        <small class="text-muted">April 2025</small>
+                    </li>
+                </ul>
+            `
+        };
+
+        function updateMcfDisplay(mcfId, trajectoryId) {
+            const mcfCard = document.getElementById(`mcf-card-${mcfId}`);
+            if (!mcfCard) return;
+
+            // Find the trajectory data
+            const mcfData = valuationData.major_current_factors.find(m => m.mcf_id === mcfId);
+            if (!mcfData) return;
+            const trajectory = mcfData.trajectories.find(t => t.trajectory_id === trajectoryId);
+            if (!trajectory) return;
+
+            // Update active button
+            const slider = mcfCard.querySelector('.trajectory-slider');
+            slider.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.trajectoryId === trajectoryId);
+            });
+
+            // Update description panel
+            const descriptionPanel = mcfCard.querySelector('.trajectory-description');
+            const trajLabel = trajectoryId.charAt(0).toUpperCase() + trajectoryId.slice(1) + ' Case';
+            
+            descriptionPanel.className = `trajectory-description ${trajectoryId}`;
+            descriptionPanel.querySelector('h6').innerHTML = `<strong>${trajLabel}</strong>`;
+            descriptionPanel.querySelector('p').textContent = trajectory.narrative;
+            descriptionPanel.querySelector('.small').innerHTML = `<strong>Impact:</strong> ${formatImpact(trajectory.quantitative_impact)}`;
+        }
+
+        function initializeApp() {
+            try {
+                console.log('Initializing application...');
+                
+                if (!valuationData || !marketData) {
+                    console.error('Missing required data:', { valuationData, marketData });
+                    throw new Error('Missing required data for initialization');
+                }
+                
+                // Add event listeners for best/worst case buttons
+                document.getElementById('best-case-btn').addEventListener('click', () => setBulkScenario('bull'));
+                document.getElementById('base-case-btn').addEventListener('click', () => setBulkScenario('consensus'));
+                document.getElementById('worst-case-btn').addEventListener('click', () => setBulkScenario('bear'));
+
+                // Populate MCF cards
+                console.log('Populating MCF cards...');
+                populateMCFCards();
+                
+                // Set default scenario (all consensus)
+                console.log('Setting default scenario...');
+                setScenario("scenario_1");
+                
+                // Initialize charts
+                console.log('Initializing charts...');
+                initializeCharts();
+                
+                console.log('Application initialized successfully');
+            } catch (error) {
+                console.error('Error initializing application:', error);
+                document.body.innerHTML = `
+                    <div class="container mt-5">
+                        <div class="alert alert-danger">
+                            <h4>Error initializing application</h4>
+                            <p>${error.message}</p>
+                            <p>Please check the browser console for more details.</p>
+                            <button class="btn btn-primary mt-3" onclick="location.reload()">Reload Page</button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function populateMCFCards() {
+            const mcfContainer = document.getElementById('mcf-container');
+            mcfContainer.innerHTML = ''; // Clear existing content
+
+            valuationData.major_current_factors.forEach((mcf, index) => {
+                // Store trajectories by ID for easy lookup
+                const trajectories = {};
+                mcf.trajectories.forEach(t => {
+                    trajectories[t.trajectory_id] = t;
+                });
+
+                // Create MCF card
+                const mcfCard = document.createElement('div');
+                mcfCard.className = 'card mcf-card mb-4';
+                mcfCard.id = `mcf-card-${mcf.mcf_id}`;
+
+                // Create card header
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'card-header';
+                let headerText;
+                switch(mcf.mcf_id) {
+                    case 'mcf_01': headerText = 'Medicare Advantage'; break;
+                    case 'mcf_02': headerText = 'Regulatory Environment'; break;
+                    case 'mcf_03': headerText = 'Optum Growth'; break;
+                    case 'mcf_04': headerText = 'Cybersecurity'; break;
+                    case 'mcf_05': headerText = 'Competition'; break;
+                    default: headerText = `Factor ${index + 1}`;
+                }
+                cardHeader.textContent = headerText;
+                cardHeader.setAttribute('data-bs-toggle', 'collapse');
+                cardHeader.setAttribute('data-bs-target', `#collapse-${mcf.mcf_id}`);
+                cardHeader.style.cursor = 'pointer';
+
+                const collapseContainer = document.createElement('div');
+                collapseContainer.id = `collapse-${mcf.mcf_id}`;
+                collapseContainer.className = 'collapse';
+
+                // Create card body
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+                cardBody.innerHTML = `
+                    <div class="trajectory-slider" data-mcf-id="${mcf.mcf_id}">
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-sm" data-trajectory-id="bear">Bear</button>
+                            <button type="button" class="btn btn-sm" data-trajectory-id="consensus">Consensus</button>
+                            <button type="button" class="btn btn-sm" data-trajectory-id="bull">Bull</button>
+                        </div>
+                    </div>
+                    <div class="trajectory-description">
+                        <h6></h6>
+                        <p></p>
+                        <div class="small text-muted"></div>
+                    </div>
+                    <hr>
+                    <p class="mb-0">
+                        <a class="text-decoration-none" data-bs-toggle="collapse" href="#news-${mcf.mcf_id}" role="button" aria-expanded="false" aria-controls="news-${mcf.mcf_id}">
+                            Related News
+                        </a>
+                    </p>
+                    <div class="collapse" id="news-${mcf.mcf_id}">
+                        <div class="card card-body mt-2 p-0 border-0">
+                            ${mcfNewsHtml[mcf.mcf_id]}
+                        </div>
+                    </div>
+                `;
+                
+                collapseContainer.appendChild(cardBody);
+                mcfCard.appendChild(cardHeader);
+                mcfCard.appendChild(collapseContainer);
+                mcfContainer.appendChild(mcfCard);
+
+                // Set initial selection
+                mcfSelections[mcf.mcf_id] = 'consensus';
+                updateMcfDisplay(mcf.mcf_id, 'consensus');
+            });
+
+            // Add single event listener for all sliders
+            mcfContainer.addEventListener('click', function(event) {
+                const button = event.target.closest('.trajectory-slider .btn');
+                if (!button) return;
+
+                const trajectoryId = button.dataset.trajectoryId;
+                const mcfId = button.closest('.trajectory-slider').dataset.mcfId;
+
+                // Update selection
+                mcfSelections[mcfId] = trajectoryId;
+                console.log(`Changed ${mcfId} to ${trajectoryId}`);
+                
+                // Update UI for this specific MCF
+                updateMcfDisplay(mcfId, trajectoryId);
+
+                // Find matching scenario and update valuation
+                updateValuationFromSelections();
+            });
+        }
+
+        function formatImpact(impact) {
+            if (!impact) return 'No impact data available';
+            
+            const parts = [];
+            
+            if (impact.revenue_growth_adjustment) {
+                const val = impact.revenue_growth_adjustment * 100;
+                parts.push(`Revenue Growth: ${val > 0 ? '+' : ''}${val.toFixed(1)}%`);
+            }
+            
+            if (impact.ebitda_margin_adjustment) {
+                const val = impact.ebitda_margin_adjustment * 100;
+                parts.push(`EBITDA Margin: ${val > 0 ? '+' : ''}${val.toFixed(1)}%`);
+            }
+            
+            if (impact.one_time_charges) {
+                parts.push(`One-time Charges: ${impact.one_time_charges}`);
+            }
+            
+            if (impact.ongoing_compliance_costs) {
+                parts.push(`Ongoing Costs: ${impact.ongoing_compliance_costs}`);
+            }
+            
+            if (impact.terminal_growth_rate_adjustment) {
+                const val = impact.terminal_growth_rate_adjustment * 100;
+                parts.push(`Terminal Growth: ${val > 0 ? '+' : ''}${val.toFixed(1)}%`);
+            }
+            
+            if (impact.market_share_change) {
+                parts.push(`Market Share: ${impact.market_share_change}`);
+            }
+            
+            if (impact.segment_revenue_growth) {
+                for (const [segment, growth] of Object.entries(impact.segment_revenue_growth)) {
+                    parts.push(`${segment} Growth: ${(growth * 100).toFixed(1)}%`);
+                }
+            }
+            
+            if (impact.segment_margin_adjustment) {
+                for (const [segment, margin] of Object.entries(impact.segment_margin_adjustment)) {
+                    const val = margin * 100;
+                    parts.push(`${segment} Margin: ${val > 0 ? '+' : ''}${val.toFixed(1)}%`);
+                }
+            }
+            
+            return parts.join(' | ');
+        }
+
+        function clearValuationDisplay() {
+            document.getElementById('implied-share-price').textContent = 'N/A';
+            document.getElementById('enterprise-value').textContent = 'N/A';
+            document.getElementById('equity-value').textContent = 'N/A';
+            document.getElementById('wacc').textContent = 'N/A';
+            
+            const priceVsMarket = document.getElementById('price-vs-market');
+            priceVsMarket.textContent = 'No pre-computed scenario for this combination.';
+            priceVsMarket.className = 'valuation-change text-muted';
+            
+            // Clear chart
+            if (cashFlowChart && cashFlowChart.data) {
+                cashFlowChart.data.labels = [];
+                cashFlowChart.data.datasets[0].data = [];
+                cashFlowChart.update();
+            }
+        }
+
+        function updateValuationFromSelections() {
+            console.log('Looking for scenario with selections:', mcfSelections);
+            
+            // Find matching scenario
+            const scenario = valuationData.valuation_scenarios.find(s => {
+                return s.mcf_choices.every(choice => 
+                    mcfSelections[choice.mcf_id] === choice.trajectory_id
+                );
+            });
+            
+            if (scenario) {
+                console.log('Setting scenario to:', scenario.scenario_id);
+                setScenario(scenario.scenario_id);
+            } else {
+                console.error('No matching scenario found for selections:', mcfSelections);
+                clearValuationDisplay();
+            }
+        }
+
+        function setBulkScenario(caseType) {
+            console.log(`Setting to ${caseType} Case`);
+            valuationData.major_current_factors.forEach(mcf => {
+                mcfSelections[mcf.mcf_id] = caseType;
+                updateMcfDisplay(mcf.mcf_id, caseType);
+            });
+            updateValuationFromSelections();
+        }
+
+        function setScenario(scenarioId) {
+            // Find the scenario
+            currentScenario = valuationData.valuation_scenarios.find(s => s.scenario_id === scenarioId);
+            
+            if (!currentScenario) {
+                console.error('Scenario not found:', scenarioId);
+                clearValuationDisplay();
+                return;
+            }
+            
+            // Update the UI with the scenario data
+            updateValuationDisplay();
+            
+            // Update the MCF selections and their displays
+            currentScenario.mcf_choices.forEach(choice => {
+                mcfSelections[choice.mcf_id] = choice.trajectory_id;
+                updateMcfDisplay(choice.mcf_id, choice.trajectory_id);
+            });
+            
+            // Update charts
+            updateCharts();
+        }
+
+        function updateValuationDisplay() {
+            if (!currentScenario || !marketData) return;
+            
+            // Format numbers
+            const impliedPrice = currentScenario.valuation_output.implied_share_price.toFixed(2);
+            const enterpriseValue = (currentScenario.valuation_output.enterprise_value / 1e9).toFixed(2);
+            const equityValue = (currentScenario.valuation_output.equity_value / 1e9).toFixed(2);
+            const wacc = (currentScenario.valuation_output.wacc * 100).toFixed(2);
+            
+            // Calculate price vs. market
+            const currentPrice = marketData.stock_price;
+            const priceDiff = impliedPrice - currentPrice;
+            const percentDiff = (priceDiff / currentPrice) * 100;
+            const diffText = `${priceDiff >= 0 ? '+' : ''}${priceDiff.toFixed(2)} (${percentDiff >= 0 ? '+' : ''}${percentDiff.toFixed(2)}%) vs. market`;
+            const diffClass = priceDiff >= 0 ? 'positive-change' : 'negative-change';
+            
+            // Update elements
+            document.getElementById('current-price').textContent = currentPrice.toFixed(2);
+            document.getElementById('implied-share-price').textContent = impliedPrice;
+            document.getElementById('enterprise-value').textContent = enterpriseValue;
+            document.getElementById('equity-value').textContent = equityValue;
+            document.getElementById('wacc').textContent = wacc;
+            
+            const priceVsMarket = document.getElementById('price-vs-market');
+            priceVsMarket.textContent = diffText;
+            priceVsMarket.className = 'valuation-change ' + diffClass;
+        }
+
+        // Chart variables
+        let cashFlowChart;
+
+        function initializeCharts() {
+            try {
+                console.log('Initializing charts...');
+                
+                // Initialize cash flow chart
+                const cashFlowCanvas = document.getElementById('cashFlowChart');
+                if (!cashFlowCanvas) {
+                    console.error('Cash flow chart canvas not found');
+                    return;
+                }
+                
+                const cashFlowCtx = cashFlowCanvas.getContext('2d');
+                if (!cashFlowCtx) {
+                    console.error('Could not get 2d context for cash flow chart');
+                    return;
+                }
+                
+                cashFlowChart = new Chart(cashFlowCtx, {
+                    type: 'line',
+                    data: {
+                        labels: [],
+                        datasets: [{
+                            label: 'UFCF ($B)',
+                            data: [],
+                            borderColor: '#006ba6',
+                            backgroundColor: 'rgba(0, 107, 166, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.3
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Projected Cash Flow'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+                console.log('Cash flow chart initialized:', cashFlowChart);
+                
+                // Update charts with initial data
+                console.log('Updating charts with initial data...');
+                updateCharts();
+            } catch (error) {
+                console.error('Error initializing charts:', error);
+                document.body.innerHTML += `
+                    <div class="alert alert-danger">
+                        <h4>Error initializing charts</h4>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function updateCharts() {
+            if (!currentScenario || !valuationData || !marketData) {
+                console.error('Missing required data for charts:', {currentScenario, valuationData, marketData});
+                return;
+            }
+            
+            try {
+                // Check if cash flow chart is properly initialized
+                if (!cashFlowChart) {
+                    console.error('Cash flow chart not initialized properly');
+                    return;
+                }
+                
+                // Update cash flow chart
+                const years = Object.keys(currentScenario.valuation_output.ufcf_forecast);
+                const values = Object.values(currentScenario.valuation_output.ufcf_forecast).map(v => v / 1e9);
+                
+                if (cashFlowChart && cashFlowChart.data) {
+                    cashFlowChart.data.labels = years;
+                    cashFlowChart.data.datasets[0].data = values;
+                    cashFlowChart.update();
+                }
+            } catch (error) {
+                console.error('Error updating charts:', error);
+                document.body.innerHTML += `
+                    <div class="alert alert-warning">
+                        Error updating charts: ${error.message}
+                    </div>
+                `;
+            }
+        }
+    </script>
+</body>
+</html> 
