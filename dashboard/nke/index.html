@@ -300,58 +300,106 @@
     </footer>
 
     <script>
-        // Valuation scenarios data
+        // Complete valuation scenarios data from DCF model (81 scenarios)
         const scenarios = {
-            "traj_01a_traj_02a_traj_03a_traj_04a": {
-                price: 71.61,
-                name: "Base Consensus Scenario",
-                trajectories: {
-                    china: "Consensus Gradual Recovery",
-                    inventory: "Consensus Gradual Optimization", 
-                    digital: "Consensus Gradual DTC Recovery",
-                    innovation: "Consensus Innovation Recovery"
-                }
-            },
-            "traj_01a_traj_02a_traj_03a_traj_04b": {
-                price: 71.61,
-                name: "Base + Optimistic Innovation",
-                trajectories: {
-                    china: "Consensus Gradual Recovery",
-                    inventory: "Consensus Gradual Optimization",
-                    digital: "Consensus Gradual DTC Recovery", 
-                    innovation: "Optimistic Innovation Renaissance"
-                }
-            },
-            "traj_01a_traj_02a_traj_03b_traj_04a": {
-                price: 73.24,
-                name: "Base + Optimistic Digital",
-                trajectories: {
-                    china: "Consensus Gradual Recovery",
-                    inventory: "Consensus Gradual Optimization",
-                    digital: "Optimistic Digital Excellence",
-                    innovation: "Consensus Innovation Recovery"
-                }
-            },
-            "traj_01b_traj_02b_traj_03b_traj_04b": {
-                price: 78.94,
-                name: "Full Optimistic Scenario",
-                trajectories: {
-                    china: "Optimistic Strong Rebound",
-                    inventory: "Optimistic Rapid Improvement",
-                    digital: "Optimistic Digital Excellence",
-                    innovation: "Optimistic Innovation Renaissance"
-                }
-            },
-            "traj_01c_traj_02c_traj_03c_traj_04c": {
-                price: 66.87,
-                name: "Full Pessimistic Scenario",
-                trajectories: {
-                    china: "Pessimistic Prolonged Struggle",
-                    inventory: "Pessimistic Prolonged Inefficiency",
-                    digital: "Pessimistic Channel Conflict",
-                    innovation: "Pessimistic Innovation Lag"
-                }
-            }
+            // MCF_01a (Consensus China) + MCF_02a (Consensus Inventory) combinations
+            "traj_01a_traj_02a_traj_03a_traj_04a": { price: 71.61, name: "Base Consensus" },
+            "traj_01a_traj_02a_traj_03a_traj_04b": { price: 71.61, name: "Base + Optimistic Innovation" },
+            "traj_01a_traj_02a_traj_03a_traj_04c": { price: 71.61, name: "Base + Pessimistic Innovation" },
+            "traj_01a_traj_02a_traj_03b_traj_04a": { price: 73.24, name: "Base + Optimistic Digital" },
+            "traj_01a_traj_02a_traj_03b_traj_04b": { price: 73.24, name: "Base + Opt Digital + Opt Innovation" },
+            "traj_01a_traj_02a_traj_03b_traj_04c": { price: 73.24, name: "Base + Opt Digital + Pess Innovation" },
+            "traj_01a_traj_02a_traj_03c_traj_04a": { price: 70.28, name: "Base + Pessimistic Digital" },
+            "traj_01a_traj_02a_traj_03c_traj_04b": { price: 70.28, name: "Base + Pess Digital + Opt Innovation" },
+            "traj_01a_traj_02a_traj_03c_traj_04c": { price: 70.28, name: "Base + Pess Digital + Pess Innovation" },
+            
+            // MCF_01a (Consensus China) + MCF_02b (Optimistic Inventory) combinations
+            "traj_01a_traj_02b_traj_03a_traj_04a": { price: 74.66, name: "Consensus + Optimistic Inventory" },
+            "traj_01a_traj_02b_traj_03a_traj_04b": { price: 74.66, name: "Consensus + Opt Inventory + Opt Innovation" },
+            "traj_01a_traj_02b_traj_03a_traj_04c": { price: 74.66, name: "Consensus + Opt Inventory + Pess Innovation" },
+            "traj_01a_traj_02b_traj_03b_traj_04a": { price: 76.34, name: "Consensus + Opt Inventory + Opt Digital" },
+            "traj_01a_traj_02b_traj_03b_traj_04b": { price: 76.34, name: "Consensus + Opt Inventory + Opt Digital + Opt Innovation" },
+            "traj_01a_traj_02b_traj_03b_traj_04c": { price: 76.34, name: "Consensus + Opt Inventory + Opt Digital + Pess Innovation" },
+            "traj_01a_traj_02b_traj_03c_traj_04a": { price: 73.28, name: "Consensus + Opt Inventory + Pess Digital" },
+            "traj_01a_traj_02b_traj_03c_traj_04b": { price: 73.28, name: "Consensus + Opt Inventory + Pess Digital + Opt Innovation" },
+            "traj_01a_traj_02b_traj_03c_traj_04c": { price: 73.28, name: "Consensus + Opt Inventory + Pess Digital + Pess Innovation" },
+            
+            // MCF_01a (Consensus China) + MCF_02c (Pessimistic Inventory) combinations
+            "traj_01a_traj_02c_traj_03a_traj_04a": { price: 69.82, name: "Consensus + Pessimistic Inventory" },
+            "traj_01a_traj_02c_traj_03a_traj_04b": { price: 69.82, name: "Consensus + Pess Inventory + Opt Innovation" },
+            "traj_01a_traj_02c_traj_03a_traj_04c": { price: 69.82, name: "Consensus + Pess Inventory + Pess Innovation" },
+            "traj_01a_traj_02c_traj_03b_traj_04a": { price: 71.41, name: "Consensus + Pess Inventory + Opt Digital" },
+            "traj_01a_traj_02c_traj_03b_traj_04b": { price: 71.41, name: "Consensus + Pess Inventory + Opt Digital + Opt Innovation" },
+            "traj_01a_traj_02c_traj_03b_traj_04c": { price: 71.41, name: "Consensus + Pess Inventory + Opt Digital + Pess Innovation" },
+            "traj_01a_traj_02c_traj_03c_traj_04a": { price: 68.51, name: "Consensus + Pess Inventory + Pess Digital" },
+            "traj_01a_traj_02c_traj_03c_traj_04b": { price: 68.51, name: "Consensus + Pess Inventory + Pess Digital + Opt Innovation" },
+            "traj_01a_traj_02c_traj_03c_traj_04c": { price: 68.51, name: "Consensus + Pess Inventory + Pess Digital + Pess Innovation" },
+            
+            // MCF_01b (Optimistic China) + MCF_02a (Consensus Inventory) combinations
+            "traj_01b_traj_02a_traj_03a_traj_04a": { price: 73.35, name: "Optimistic China + Consensus" },
+            "traj_01b_traj_02a_traj_03a_traj_04b": { price: 73.35, name: "Opt China + Consensus + Opt Innovation" },
+            "traj_01b_traj_02a_traj_03a_traj_04c": { price: 73.35, name: "Opt China + Consensus + Pess Innovation" },
+            "traj_01b_traj_02a_traj_03b_traj_04a": { price: 75.01, name: "Opt China + Consensus + Opt Digital" },
+            "traj_01b_traj_02a_traj_03b_traj_04b": { price: 75.01, name: "Opt China + Consensus + Opt Digital + Opt Innovation" },
+            "traj_01b_traj_02a_traj_03b_traj_04c": { price: 75.01, name: "Opt China + Consensus + Opt Digital + Pess Innovation" },
+            "traj_01b_traj_02a_traj_03c_traj_04a": { price: 72.0, name: "Opt China + Consensus + Pess Digital" },
+            "traj_01b_traj_02a_traj_03c_traj_04b": { price: 72.0, name: "Opt China + Consensus + Pess Digital + Opt Innovation" },
+            "traj_01b_traj_02a_traj_03c_traj_04c": { price: 72.0, name: "Opt China + Consensus + Pess Digital + Pess Innovation" },
+            
+            // MCF_01b (Optimistic China) + MCF_02b (Optimistic Inventory) combinations
+            "traj_01b_traj_02b_traj_03a_traj_04a": { price: 76.46, name: "Opt China + Opt Inventory" },
+            "traj_01b_traj_02b_traj_03a_traj_04b": { price: 76.46, name: "Opt China + Opt Inventory + Opt Innovation" },
+            "traj_01b_traj_02b_traj_03a_traj_04c": { price: 76.46, name: "Opt China + Opt Inventory + Pess Innovation" },
+            "traj_01b_traj_02b_traj_03b_traj_04a": { price: 78.18, name: "Best Case Scenario (All Optimistic)" },
+            "traj_01b_traj_02b_traj_03b_traj_04b": { price: 78.18, name: "Best Case + Opt Innovation" },
+            "traj_01b_traj_02b_traj_03b_traj_04c": { price: 78.18, name: "Best Case + Pess Innovation" },
+            "traj_01b_traj_02b_traj_03c_traj_04a": { price: 75.06, name: "Opt China + Opt Inventory + Pess Digital" },
+            "traj_01b_traj_02b_traj_03c_traj_04b": { price: 75.06, name: "Opt China + Opt Inventory + Pess Digital + Opt Innovation" },
+            "traj_01b_traj_02b_traj_03c_traj_04c": { price: 75.06, name: "Opt China + Opt Inventory + Pess Digital + Pess Innovation" },
+            
+            // MCF_01b (Optimistic China) + MCF_02c (Pessimistic Inventory) combinations
+            "traj_01b_traj_02c_traj_03a_traj_04a": { price: 71.52, name: "Opt China + Pess Inventory" },
+            "traj_01b_traj_02c_traj_03a_traj_04b": { price: 71.52, name: "Opt China + Pess Inventory + Opt Innovation" },
+            "traj_01b_traj_02c_traj_03a_traj_04c": { price: 71.52, name: "Opt China + Pess Inventory + Pess Innovation" },
+            "traj_01b_traj_02c_traj_03b_traj_04a": { price: 73.15, name: "Opt China + Pess Inventory + Opt Digital" },
+            "traj_01b_traj_02c_traj_03b_traj_04b": { price: 73.15, name: "Opt China + Pess Inventory + Opt Digital + Opt Innovation" },
+            "traj_01b_traj_02c_traj_03b_traj_04c": { price: 73.15, name: "Opt China + Pess Inventory + Opt Digital + Pess Innovation" },
+            "traj_01b_traj_02c_traj_03c_traj_04a": { price: 70.2, name: "Opt China + Pess Inventory + Pess Digital" },
+            "traj_01b_traj_02c_traj_03c_traj_04b": { price: 70.2, name: "Opt China + Pess Inventory + Pess Digital + Opt Innovation" },
+            "traj_01b_traj_02c_traj_03c_traj_04c": { price: 70.2, name: "Opt China + Pess Inventory + Pess Digital + Pess Innovation" },
+            
+            // MCF_01c (Pessimistic China) + MCF_02a (Consensus Inventory) combinations
+            "traj_01c_traj_02a_traj_03a_traj_04a": { price: 69.91, name: "Pessimistic China + Consensus" },
+            "traj_01c_traj_02a_traj_03a_traj_04b": { price: 69.91, name: "Pess China + Consensus + Opt Innovation" },
+            "traj_01c_traj_02a_traj_03a_traj_04c": { price: 69.91, name: "Pess China + Consensus + Pess Innovation" },
+            "traj_01c_traj_02a_traj_03b_traj_04a": { price: 71.51, name: "Pess China + Consensus + Opt Digital" },
+            "traj_01c_traj_02a_traj_03b_traj_04b": { price: 71.51, name: "Pess China + Consensus + Opt Digital + Opt Innovation" },
+            "traj_01c_traj_02a_traj_03b_traj_04c": { price: 71.51, name: "Pess China + Consensus + Opt Digital + Pess Innovation" },
+            "traj_01c_traj_02a_traj_03c_traj_04a": { price: 68.61, name: "Pess China + Consensus + Pess Digital" },
+            "traj_01c_traj_02a_traj_03c_traj_04b": { price: 68.61, name: "Pess China + Consensus + Pess Digital + Opt Innovation" },
+            "traj_01c_traj_02a_traj_03c_traj_04c": { price: 68.61, name: "Pess China + Consensus + Pess Digital + Pess Innovation" },
+            
+            // MCF_01c (Pessimistic China) + MCF_02b (Optimistic Inventory) combinations
+            "traj_01c_traj_02b_traj_03a_traj_04a": { price: 72.9, name: "Pess China + Opt Inventory" },
+            "traj_01c_traj_02b_traj_03a_traj_04b": { price: 72.9, name: "Pess China + Opt Inventory + Opt Innovation" },
+            "traj_01c_traj_02b_traj_03a_traj_04c": { price: 72.9, name: "Pess China + Opt Inventory + Pess Innovation" },
+            "traj_01c_traj_02b_traj_03b_traj_04a": { price: 74.55, name: "Pess China + Opt Inventory + Opt Digital" },
+            "traj_01c_traj_02b_traj_03b_traj_04b": { price: 74.55, name: "Pess China + Opt Inventory + Opt Digital + Opt Innovation" },
+            "traj_01c_traj_02b_traj_03b_traj_04c": { price: 74.55, name: "Pess China + Opt Inventory + Opt Digital + Pess Innovation" },
+            "traj_01c_traj_02b_traj_03c_traj_04a": { price: 71.54, name: "Pess China + Opt Inventory + Pess Digital" },
+            "traj_01c_traj_02b_traj_03c_traj_04b": { price: 71.54, name: "Pess China + Opt Inventory + Pess Digital + Opt Innovation" },
+            "traj_01c_traj_02b_traj_03c_traj_04c": { price: 71.54, name: "Pess China + Opt Inventory + Pess Digital + Pess Innovation" },
+            
+            // MCF_01c (Pessimistic China) + MCF_02c (Pessimistic Inventory) combinations
+            "traj_01c_traj_02c_traj_03a_traj_04a": { price: 68.16, name: "Pess China + Pess Inventory" },
+            "traj_01c_traj_02c_traj_03a_traj_04b": { price: 68.16, name: "Pess China + Pess Inventory + Opt Innovation" },
+            "traj_01c_traj_02c_traj_03a_traj_04c": { price: 68.16, name: "Pess China + Pess Inventory + Pess Innovation" },
+            "traj_01c_traj_02c_traj_03b_traj_04a": { price: 69.72, name: "Pess China + Pess Inventory + Opt Digital" },
+            "traj_01c_traj_02c_traj_03b_traj_04b": { price: 69.72, name: "Pess China + Pess Inventory + Opt Digital + Opt Innovation" },
+            "traj_01c_traj_02c_traj_03b_traj_04c": { price: 69.72, name: "Pess China + Pess Inventory + Opt Digital + Pess Innovation" },
+            "traj_01c_traj_02c_traj_03c_traj_04a": { price: 66.87, name: "Worst Case Scenario (All Pessimistic)" },
+            "traj_01c_traj_02c_traj_03c_traj_04b": { price: 66.87, name: "Worst Case + Opt Innovation" },
+            "traj_01c_traj_02c_traj_03c_traj_04c": { price: 66.87, name: "Worst Case (All Pessimistic + Pess Innovation)" }
         };
 
         // Sample trajectory data for visualization
@@ -393,26 +441,18 @@
         function calculateValuation() {
             const scenarioKey = getScenarioKey();
             
-            // Find closest match in scenarios
-            let bestMatch = "traj_01a_traj_02a_traj_03a_traj_04a"; // default
-            let matchScore = 0;
+            // Direct lookup in scenarios - all 81 combinations are now available
+            const scenario = scenarios[scenarioKey];
             
-            for (const key in scenarios) {
-                let score = 0;
-                const keyParts = key.split('_');
-                const currentParts = scenarioKey.split('_');
-                
-                for (let i = 0; i < Math.min(keyParts.length, currentParts.length); i++) {
-                    if (keyParts[i] === currentParts[i]) score++;
-                }
-                
-                if (score > matchScore) {
-                    matchScore = score;
-                    bestMatch = key;
-                }
+            if (!scenario) {
+                console.error("Scenario not found:", scenarioKey);
+                // Fallback to base scenario
+                const fallbackScenario = scenarios["traj_01a_traj_02a_traj_03a_traj_04a"];
+                document.getElementById('valuationPrice').textContent = `$${fallbackScenario.price.toFixed(2)}`;
+                document.getElementById('scenarioName').textContent = fallbackScenario.name + " (Fallback)";
+                return;
             }
             
-            const scenario = scenarios[bestMatch];
             const price = scenario.price;
             
             // Update display
