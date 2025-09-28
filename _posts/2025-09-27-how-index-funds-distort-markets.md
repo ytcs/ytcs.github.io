@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: "How Index Funds Distort Markets"
-categories: markets
+categories: finance
 date: 2025-09-27
 math: true
 ---
