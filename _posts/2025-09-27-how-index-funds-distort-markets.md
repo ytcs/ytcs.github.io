@@ -75,6 +75,8 @@ $$
 
 This provides a clear hypothesis: if you plot the log-ratio of observed historical betas against the log-ratio of market caps for pairs of stocks, you should see a straight line. The slope of that line gives you a direct estimate of $$(1-\gamma)$$, telling you the strength of this market-distorting effect.
 
+![Test of the Square-Root Law: Log-ratio of betas vs. log-ratio of market caps for all pairs of stocks in the S&P 500. We use data from Yahoo Finance. This is a noisy measurement as ETF flow is not the only market force that determines the beta. However the square-root law seems to capture the broad trend of the data.](assets\img\square-root-law.png)
+
 ## Implications for Investors
 The theory has direct, actionable implications for all market participants.
 
