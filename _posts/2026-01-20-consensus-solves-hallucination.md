@@ -41,19 +41,49 @@ $$
 
 The structure of this matrix reveals the inevitability of failure.
 
-## The Impossibility Theorem
+## The Impossibility Theorem: A Concrete Lower Bound
 
-As long as $$\beta > 0$$, the probability of eventually being absorbed into the wrong termination state is strictly positive. This is true no matter how good the model is at error correction.
+As long as $$\beta > 0$$, the probability of eventually being absorbed into the wrong termination state is not just positive—we can derive an explicit lower bound.
 
-**Theorem (Impossibility of Single-Path Reliability):** Starting from any initial state, the probability of eventual absorption into $$T_E$$ is strictly positive. Specifically, if the model starts in an erroneous state:
+**Theorem (Single-Path Error Floor):** Starting from an erroneous state $$E$$, the probability of incorrect termination satisfies:
 
 $$
-\Pr[\text{absorb into } T_E \mid X_0 = E] \geq \beta > 0
+\Pr[\text{absorb into } T_E \mid X_0 = E] \geq \frac{\beta}{\beta + (1-\beta)p_{EC} \cdot \frac{\alpha}{1 - (1-\alpha)p_{CC}}}
 $$
 
-The proof follows from standard Markov chain theory. The key insight is that from the erroneous state, there's a race between "correct the error and then terminate correctly" versus "terminate incorrectly right now." Even a single step has probability $$\beta$$ of the wrong outcome—and the absorbing nature of $$T_E$$ means that once you lose this race, you can never recover.
+In the limit where refinement is perfect ($$p_{EC} \to 1$$) and the model never damages correct answers ($$p_{CC} = 1$$), this simplifies to:
 
-This result is structural, not empirical. Even if we made the refinement arbitrarily good ($$p_{EC} \to 1$$), as long as $$\beta > 0$$, failure remains possible. There exists a fundamental error floor that cannot be crossed by single-path refinement strategies.
+$$
+\Pr[\text{absorb into } T_E \mid X_0 = E] \geq \frac{\beta}{\beta + \alpha(1-\beta)}
+$$
+
+**Example:** With $$\alpha = 0.9$$ (90% true positive rate) and $$\beta = 0.1$$ (10% false positive rate), even with *perfect* refinement, the failure probability is bounded below by:
+
+$$
+\frac{0.1}{0.1 + 0.9 \cdot 0.9} = \frac{0.1}{0.91} \approx 11\%
+$$
+
+No amount of refinement iterations can push the error rate below this floor. The key insight is that from the erroneous state, there's a race between "correct the error and then terminate correctly" versus "terminate incorrectly right now." The absorbing nature of $$T_E$$ means that once you lose this race, you can never recover.
+
+## The Convergence Rate Distinction
+
+You might object: "But consensus also has strictly positive failure probability!" True—but the crucial difference is the **rate of convergence to zero**.
+
+**Single-path refinement** has a failure probability that converges to a **constant floor** as the number of iterations $$n \to \infty$$:
+
+$$
+\lim_{n \to \infty} \Pr[\text{failure after } n \text{ iterations}] = \Pr[\text{absorb into } T_E] \geq \frac{\beta}{\beta + \alpha(1-\beta)} > 0
+$$
+
+This floor is determined by the system parameters and cannot be improved by running longer. More iterations just means you're more certain to hit the floor.
+
+**Parallel consensus** has a failure probability that converges to zero **exponentially** in the number of paths $$K$$:
+
+$$
+\Pr[\text{incorrect consensus}] \leq \exp\left(-2K(p - 1/2)^2\right) \xrightarrow{K \to \infty} 0
+$$
+
+The rate of decay is $$\Theta(K)$$ in the exponent—doubling $$K$$ squares the reliability. This is the fundamental qualitative difference: single-path strategies hit a wall; consensus breaks through it.
 
 ## The Parallel Consensus Protocol
 
