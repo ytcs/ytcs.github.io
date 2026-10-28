@@ -258,7 +258,13 @@ $$
 
 in units $$\rho=1$$, while the area of $$\partial B$$ does not change. Theorem 2 therefore holds for sources without gradients, and a first time derivative of the scalar curvature already leaves a residual at linear order.
 
-At the next order in gradients the exponents run up to $$\alpha_A+(d+2)/d$$. The symbol $$\binom{2d+4-d\alpha}{d+2}$$ removes them; in four dimensions its weights are $$(924,-7084,23668,-41416,39808,-19968,4096)$$. With these weights the $$k=3$$ and $$k=4$$ responses above vanish identically in $$d=3$$ and $$d=4$$. Each order in gradients needs new weights. The first exponent that a weighting does not cancel enters with $$\lvert Q_d\rvert\ge1$$, at least as large as in the type-0 count: $$Q_d(\alpha_A+(d+k)/d)=(-1)^d\binom{d+k-1}{d}$$, which is $$\pm1$$ for $$k=1$$.
+At the next order in gradients the exponents run up to $$\alpha_A+(d+2)/d$$. The symbol $$\binom{2d+4-d\alpha}{d+2}$$ removes them; in four dimensions its weights are
+
+$$
+(924,\,-7084,\,23668,\,-41416,\,39808,\,-19968,\,4096).
+$$
+
+With these weights the $$k=3$$ and $$k=4$$ responses above vanish identically in $$d=3$$ and $$d=4$$. Each order in gradients needs new weights. The first exponent that a weighting does not cancel enters with $$\lvert Q_d\rvert\ge1$$, at least as large as in the type-0 count: $$Q_d(\alpha_A+(d+k)/d)=(-1)^d\binom{d+k-1}{d}$$, which is $$\pm1$$ for $$k=1$$.
 
 ### Orientation of the horizon sheet
 

@@ -1,7 +1,7 @@
 ---
 title: A positivity wedge for inflationary non-Gaussianity
 date: 2026-10-28
-order: 2
+order: 5
 description: When the primordial bispectrum comes from tree-level exchange with a unitary heavy hidden sector, the reported equilateral and orthogonal amplitudes lie in a narrow wedge, with negative equilateral and positive orthogonal amplitude. Three hypotheses carry the result, and current data are consistent with it.
 ---
 
