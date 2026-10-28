@@ -81,7 +81,7 @@ $$
 $$
 
 <div class="lemma" markdown="1">
-**Lemma 2** (resonance condition). Under (H1)–(H3), (4) holds on every resonant quartet, normal or Umklapp, at which no exchanged momentum $$k_1-k_3$$, $$k_1-k_4$$ or $$k_1+k_2$$ vanishes.
+**Lemma 2** (resonance condition). Under (H1)–(H3), (4) holds on every resonant quartet, normal or Umklapp, at which all $$k_i\ne0$$ and no exchanged momentum $$k_1-k_3$$, $$k_1-k_4$$ or $$k_1+k_2$$ vanishes.
 </div>
 
 <div class="proof" markdown="1">
