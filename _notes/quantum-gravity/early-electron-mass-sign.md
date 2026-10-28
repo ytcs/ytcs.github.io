@@ -76,16 +76,16 @@ the electron scalar density; it counts free and bound electrons, the latter with
 
 ## 3. The sign rule
 
-We now state what "tracking" means and compare two epochs. A state $$A$$ of the plasma is specified by its temperature, its conserved densities (baryon number, charge, lepton number) and its composition, that is, its ionisation fractions. The composition may be the equilibrium one or, as after recombination, a frozen-out one; by Lemma 1 the argument below is the same in both cases. We write $$\mathcal F_A(\phi)$$ for its free energy density when the masses are evaluated at $$\phi$$, and
+We now state what "tracking" means and compare two epochs. A state $$j$$ of the plasma is specified by its temperature, its conserved densities (baryon number, charge, lepton number) and its composition, that is, its ionisation fractions. The composition may be the equilibrium one or, as after recombination, a frozen-out one; by Lemma 1 the argument below is the same in both cases. We write $$\mathcal F_A(\phi)$$ for its free energy density when the masses are evaluated at $$\phi$$, and
 
 $$
-U_A(\phi)=V(\phi)+\mathcal F_A(\phi)
+U_j(\phi)=V(\phi)+\mathcal F_j(\phi)
 $$
 
-for the effective potential of $$\phi$$ in that state. This treats $$\phi$$ as a background parameter of the plasma, as the finite-temperature effective potential does; the derivative of $$U_A$$ reproduces the source term $$-\partial V/\partial\phi-\sum_in_{{\rm sc},i}\,\partial M_i/\partial\phi$$ in the field equation. Cosmological evolution conserves entropy rather than temperature, but this does not change the stationarity condition: by the same Maxwell relation, $$\partial E/\partial M$$ at fixed entropy and particle number also equals $$n_{\rm sc}$$. Nor does the field's response heat or cool the plasma appreciably, since the photons, which do not couple to $$\phi$$, dominate its heat capacity. The hypotheses are:
+for the effective potential of $$\phi$$ in that state. This treats $$\phi$$ as a background parameter of the plasma, as the finite-temperature effective potential does; the derivative of $$U_j$$ reproduces the source term $$-\partial V/\partial\phi-\sum_in_{{\rm sc},i}\,\partial M_i/\partial\phi$$ in the field equation. Cosmological evolution conserves entropy rather than temperature, but this does not change the stationarity condition: by the same Maxwell relation, $$\partial E/\partial M$$ at fixed entropy and particle number also equals $$n_{\rm sc}$$. Nor does the field's response heat or cool the plasma appreciably, since the photons, which do not couple to $$\phi$$, dominate its heat capacity. The hypotheses are:
 
-- (T1) *Tracking.* In each state $$A$$ that we compare, $$\phi$$ sits at a global minimiser $$\phi_A$$ of $$U_A$$. (Proposition 1 below replaces this by a continuous branch of local minima.)
-- (T2) *SM sources only.* Apart from $$V$$, the only $$\phi$$-dependence of $$U_A$$ comes from SM species whose masses are non-decreasing functions of $$m_e$$. A field that changes only $$m_e$$ qualifies. So does a Higgs portal, which changes all masses through the Higgs vacuum value, provided every mass it affects increases with that value.
+- (T1) *Tracking.* In each state $$j$$ that we compare, $$\phi$$ sits at a global minimiser $$\phi_j$$ of $$U_j$$. (Proposition 1 below replaces this by a continuous branch of local minima.)
+- (T2) *SM sources only.* Apart from $$V$$, the only $$\phi$$-dependence of $$U_j$$ comes from SM species whose masses are non-decreasing functions of $$m_e$$. A field that changes only $$m_e$$ qualifies. So does a Higgs portal, which changes all masses through the Higgs vacuum value, provided every mass it affects increases with that value.
 - (T3) *More matter in the past.* At every $$m$$ between the two values of $$m_e$$ being compared, $$\nu(m)=\partial\mathcal F/\partial m_e$$ is larger in the earlier state than in the later one. For a field that changes only $$m_e$$, $$\nu$$ is the electron scalar density; for a Higgs portal it also contains the scalar densities of the nucleons weighted by $$dM_N/dm_e$$.
 
 <div class="theorem" markdown="1">
@@ -137,7 +137,7 @@ The fits of section 1 place $$\delta=0$$ between $$1.1$$ and $$2.4$$ standard de
 
 Fields that do not track a minimum escape Theorem 1. A light field that is frozen at early times and released later can move in either direction. For such fields the obstruction is different: the field must still reach today's value, and if its coupling to electrons is the same along the way, that value is constrained by tests of the equivalence principle.
 
-Write $$\beta_e\equiv M_P\,d\ln m_e/d\phi$$ evaluated today. If $$\phi$$ is light enough to mediate a force over the size of the Earth, $$m_\phi\lesssim10^{-14}\,$$eV, it produces a composition-dependent acceleration. A body $$A$$ of mass $$M_A$$ containing $$N_A$$ electrons has scalar charge $$Q_A=\partial M_A/\partial\phi=\beta_eN_Am_e/M_P$$, if only the electron rest mass depends on $$\phi$$. Scalar exchange between two bodies gives the attractive force $$Q_AQ_B/(4\pi r^2)$$, while gravity gives $$M_AM_B/(8\pi M_P^2r^2)$$. The ratio is $$2\beta_e^2f_Af_B$$, where $$f_A\equiv N_Am_e/M_A\approx(m_e/m_u)(Z/A)_A$$ is the electron mass fraction. The Eötvös parameter for two test masses falling towards the Earth ($$E$$) is therefore
+Write $$\beta_e\equiv M_P\,d\ln m_e/d\phi$$ evaluated today. If $$\phi$$ is light enough to mediate a force over the size of the Earth, $$m_\phi\lesssim10^{-14}\,$$eV, it produces a composition-dependent acceleration. A body $$b$$ of mass $$M_b$$ containing $$N_b$$ electrons has scalar charge $$Q_b=\partial M_b/\partial\phi=\beta_eN_bm_e/M_P$$, if only the electron rest mass depends on $$\phi$$. Scalar exchange between two bodies $$b$$ and $$c$$ gives the attractive force $$Q_bQ_c/(4\pi r^2)$$, while gravity gives $$M_bM_c/(8\pi M_P^2r^2)$$. The ratio is $$2\beta_e^2f_bf_c$$, where $$f_b\equiv N_bm_e/M_b\approx(m_e/m_u)(Z/A)_b$$ is the electron mass fraction, with $$Z$$ the atomic number and $$A$$ the mass number. The Eötvös parameter for two test masses falling towards the Earth ($$E$$) is therefore
 
 $$
 \eta\simeq2\beta_e^2\,f_E\,(f_{\rm Ti}-f_{\rm Pt}). \tag{3}
@@ -193,7 +193,7 @@ If $$m_e=m_0(1+\phi^2/2M^2)$$ with $$\phi=0$$ today, then $$\beta_e=0$$ and the 
 
 ### Fields also sourced by dark matter
 
-If $$\phi$$ also changes the mass $$m_X$$ of a non-relativistic dark-matter particle, (T2) fails, but under (T1) the inequality (2) still holds. Take both electrons and dark matter non-relativistic and neglect thermal corrections, so that $$\mathcal F_A(\phi)=n_{e,a}\,m_e(\phi)+n_{X,a}\,m_X(\phi)$$ up to $$\phi$$-independent terms, with both densities scaling as $$(1+z)^3$$. Then (2) reads $$\big[(1+z)^3-1\big]\big[n_{e,0}\,\Delta m_e+n_{X,0}\,\Delta m_X\big]\le0$$, where $$\Delta$$ denotes the value at redshift $$z$$ minus that today, so that
+If $$\phi$$ also changes the mass $$m_X$$ of a non-relativistic dark-matter particle, (T2) fails, but under (T1) the inequality (2) still holds. Take both electrons and dark matter non-relativistic and neglect thermal corrections, so that $$\mathcal F_j(\phi)=n_{e,j}\,m_e(\phi)+n_{X,j}\,m_X(\phi)$$ up to $$\phi$$-independent terms, with both densities scaling as $$(1+z)^3$$. Then (2) reads $$\big[(1+z)^3-1\big]\big[n_{e,0}\,\Delta m_e+n_{X,0}\,\Delta m_X\big]\le0$$, where $$\Delta$$ denotes the value at redshift $$z$$ minus that today, so that
 
 $$
 -\frac{\Delta m_X}{m_X}\ \ge\ \delta\,\frac{\rho_{e,0}}{\rho_{X,0}},

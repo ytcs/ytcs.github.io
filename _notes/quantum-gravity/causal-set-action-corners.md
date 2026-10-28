@@ -1,5 +1,5 @@
 ---
-title: A proof of the coth joint conjecture for regions between two achronal polygonal curves
+title: A proof of the coth joint conjecture for regions between two spacelike or null polygonal curves
 date: 2026-10-28
 order: 2
 description: For causal sets sprinkled into a flat two-dimensional region bounded below and above by piecewise-linear spacelike or null curves, or into the product of such a region with a flat plane in four dimensions, the mean Benincasa–Dowker action tends to the hyperbolic cotangent of the boost angle summed over the two joints. The same expansion gives the exact linear-order mean action of a curved two-dimensional causal interval.
@@ -9,7 +9,7 @@ The Benincasa–Dowker action is a proposed action for causal sets. For a causal
 
 In two dimensions the regions are those bounded below and above by piecewise-linear spacelike or null curves that meet only at their two endpoints, convex or not. For them the mean action tends to $$\coth\theta_L+\coth\theta_R$$, the sum over the two joints, with error $$O(\rho^{-1})$$. In four dimensions, for the product of such a region with a flat transverse plane, the mean action is proportional to the transverse area $$A$$ and tends to $$(A/\ell_p^2)(\coth\theta_L+\coth\theta_R)$$ with relative error $$O(\rho^{-1/2})$$. In particular no logarithm of $$\rho$$ appears and the flat spacelike faces contribute nothing. Joints along which $$\theta$$ varies, curved faces, non-product regions in four dimensions and timelike boundaries are not covered.
 
-The same expansion gives a result in curved space. For the two-dimensional metric $$(1+2\phi)\eta$$, at first order in $$\phi$$, every causal interval has mean action $$2+\tfrac12\int R\sqrt{-g}\,d^2x+O(\rho^{-1}\log\rho)$$, whatever the profile of the curvature inside the interval.
+The same expansion gives a result in curved space. For the two-dimensional metric $$(1+2\phi)\eta$$, at first order in $$\phi$$, every causal interval has mean action $$2+\tfrac12\int R\sqrt{-g}\,d^2x$$ up to an error of order $$\phi\,\rho^{-1}\log\rho$$, terms of order $$\phi^2$$ and terms exponentially small in $$\rho$$ times the interval volume, whatever the profile of the curvature inside the interval.
 
 The action was introduced by Benincasa and Dowker [[BD]](#ref-bd). For a causal interval in flat space, Buck, Dowker, Jubb and Surya [[BDJS]](#ref-bdjs) found the mean exactly in two dimensions, $$2(1-e^{-\rho V})$$, and showed for $$d=2,\dots,16$$ that it tends to the volume of the joint in Planck units. Dowker [[D20]](#ref-d20) and Machet and Wang [[MW]](#ref-mw) found the Einstein–Hilbert term plus the joint volume for causal intervals in weakly curved spacetimes, at first order in a curvature that is constant over the interval to the order considered. Dowker, Liu and Lloyd-Jones [[DLLJ]](#ref-dllj) found that a joint between two spacelike boundaries contributes more than its volume and conjectured the weight $$\coth\theta$$ (their Conjecture 1′, eqs. 11 and 68, stated also for curved joints along which $$\theta$$ varies). They computed the mean by integrating over the separation vector of a pair of points, weighted by the "volume of realisation", the volume of the overlap of the region with its translate by minus that vector; they attribute this method to an MSc dissertation of Chevalier (their ref. 25). With it they supported the conjecture with the two-dimensional lozenge and spacelike triangle, evaluated with an enlarged integration region valid at large $$\rho$$, and with $$d$$-dimensional cones of constant $$\theta$$, checked up to $$d=11$$. The overlap function $$K$$ used below is twice their volume of realisation, the factor coming from null coordinates. Our contribution is an exact proof for the classes above, in which the two joints may have different angles, with each joint's contribution obtained as a second derivative of $$K$$ at zero separation (Lemma 2) and with error bounds that exclude logarithmic and face terms. The curved result extends [[D20]](#ref-d20) and [[MW]](#ref-mw) from approximately constant curvature to an arbitrary profile, at linear order.
 
@@ -221,14 +221,14 @@ In the language of [[DLLJ]](#ref-dllj), the four-dimensional joints are the two 
 
 The theorem reproduces the known cases. For the causal diamond both joints are null, and (a) gives $$2$$, the limit of the exact result of [[BDJS]](#ref-bdjs). For the lozenge of [[DLLJ]](#ref-dllj), their eq. (55), with their parameter expressed through $$\theta$$ by their eq. (59), equals $$2\coth\theta$$, which is what (a) gives. For their spacelike triangle the apex is a kink inside the future boundary, which contributes nothing, and each base vertex contributes $$\coth\theta$$, as in their eq. (66).
 
-As an independent check we computed $$K$$ exactly for the regions below, by integrating the overlap of the vertical sections of $$P$$ and its translate, and compared the second difference at small $$(a,b)$$ with Lemma 2. Vertices are given as $$(x,t)$$, past boundary first, then future boundary, rounded to five decimals (for the wedge the rounded coordinates give $$\theta_L=0.700002$$; the table uses the unrounded region with $$\theta_L=0.7$$).
+As an independent check we computed $$K$$ exactly for the regions below, by integrating the overlap of the vertical sections of $$P$$ and its translate, and compared the second difference at small $$(a,b)$$ with Lemma 2. Vertices are given as $$(t,x)$$, past boundary first, then future boundary, rounded to five decimals (for the wedge the rounded coordinates give $$\theta_L=0.700002$$; the table uses the unrounded region with $$\theta_L=0.7$$).
 
 | Region | Vertices | $$\theta_L,\ \theta_R$$ | $$\tfrac12(\coth\theta_L+\coth\theta_R)$$ | $$\partial_a\partial_bK$$, numerical |
 |---|---|---|---|---|
-| wedge closed by null edges | $$(0,0),(0.72466,-0.27534),(1,0)$$; $$(0,0),(0.77441,0.22559),(1,0)$$ | $$0.7,\ \infty$$ | 1.327311 | 1.327311 |
-| lens | $$(-1,0),(0.2,-0.35),(1,0)$$; $$(-1,0),(0.1,0.25),(1,0)$$ | $$0.5317,\ 0.7544$$ | 1.811353 | 1.811353 |
-| causal diamond | $$(-1,0),(0,-1),(1,0)$$; $$(-1,0),(0,1),(1,0)$$ | $$\infty,\ \infty$$ | 1 | 1.000000 |
-| figure 1(a) | $$(-1,0),(-0.4,-0.5),(0,-0.2),(0.5,-0.6),(1,-0.3)$$; $$(-1,0),(-0.5,0.3),(0,0.1),(0.4,0.2),(1,-0.3)$$ | $$1.8921,\ 1.8921$$ | 1.046512 | 1.046512 |
+| wedge closed by null edges | $$(0,0),(-0.27534,0.72466),(0,1)$$; $$(0,0),(0.22559,0.77441),(0,1)$$ | $$0.7,\ \infty$$ | 1.327311 | 1.327311 |
+| lens | $$(0,-1),(-0.35,0.2),(0,1)$$; $$(0,-1),(0.25,0.1),(0,1)$$ | $$0.5317,\ 0.7544$$ | 1.811353 | 1.811353 |
+| causal diamond | $$(0,-1),(-1,0),(0,1)$$; $$(0,-1),(1,0),(0,1)$$ | $$\infty,\ \infty$$ | 1 | 1.000000 |
+| figure 1(a) | $$(0,-1),(-0.5,-0.4),(-0.2,0),(-0.6,0.5),(-0.3,1)$$; $$(0,-1),(0.3,-0.5),(0.1,0),(0.2,0.4),(-0.3,1)$$ | $$1.8921,\ 1.8921$$ | 1.046512 | 1.046512 |
 
 The two agree to the accuracy of the finite differences ($$10^{-6}$$ or better), along directions $$b/a$$ from $$0.05$$ to $$20$$, and for each region $$K-T_L-T_R$$ is affine in $$h$$ near the origin to within $$10^{-12}$$.
 

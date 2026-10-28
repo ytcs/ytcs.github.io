@@ -45,7 +45,7 @@ The setting is fixed by the following hypotheses.
 
 (H1) Tree-level two-derivative gravity in $$D$$ dimensions, with the unwarped product geometry above. Potentials for the moduli are allowed but do not enter the kinetic terms or couplings computed here.
 
-(H2) The Standard Model lives on a point-like 3-brane and couples only to the induced metric $$g_{\mu\nu}$$. Every brane parameter (position, tension, couplings, any dilaton) is fixed in units of $$M_D$$, so every brane mass, including the nucleon mass through $$\Lambda_{\rm QCD}$$, is constant in the frame $$g_{\mu\nu}$$. The brane may carry an Einstein–Hilbert term $$\tfrac12M_b^2\sqrt{-g}\,R$$; the case $$M_b=0$$ is the minimal setting of the introduction.
+(H2) The Standard Model lives on a point-like 3-brane and couples only to the induced metric $$g_{\mu\nu}$$. Every brane parameter (position, tension, couplings, any dilaton) is fixed in units of $$M_D$$, so every brane mass, including the nucleon mass through $$\Lambda_{\rm QCD}$$, is constant in the frame $$g_{\mu\nu}$$. The brane may carry an Einstein–Hilbert term $$\tfrac12M_b^2\sqrt{-g}\,R$$; the case $$M_b=0$$ is the setting of the introduction, without a brane term.
 
 (H3) The dark matter is the KK tower of the dark circle, with masses $$m_j=\lvert j\rvert e^{-\sigma_0}$$ in units of $$M_D$$ in the frame $$g_{\mu\nu}$$.
 
