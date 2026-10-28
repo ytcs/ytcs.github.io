@@ -1,0 +1,43 @@
+---
+layout: default
+---
+{%- assign project_id = page.path | split: "/" | slice: 1 | first -%}
+{%- assign project = site.data.projects | where: "id", project_id | first -%}
+{%- assign prefix = "/" | append: project_id | append: "/" -%}
+{%- assign siblings = site.notes | where_exp: "n", "n.url contains prefix" | sort: "order" -%}
+<article class="post note h-entry">
+  <header class="post-header">
+    {%- if project %}
+    <p class="note-project"><a href="{{ '/' | relative_url }}#{{ project.id }}">{{ project.title | escape }}</a></p>
+    {%- endif %}
+    <h1 class="p-name">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      {%- if page.last_updated and page.last_updated != page.date %}
+      <span class="updated">Updated <time datetime="{{ page.last_updated | date_to_xmlschema }}">{{ page.last_updated | date: "%-d %B %Y" }}</time></span>
+      {%- endif %}
+    </p>
+  </header>
+
+  <div class="post-body e-content">
+    {{ content }}
+  </div>
+
+  {%- for note in siblings -%}
+    {%- if note.url == page.url -%}
+      {%- assign i = forloop.index0 -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign prev_i = i | minus: 1 -%}
+  {%- assign next_i = i | plus: 1 -%}
+  {%- if siblings.size > 1 %}
+  <nav class="post-nav" aria-label="More in {{ project.title | escape }}">
+    {%- if prev_i >= 0 %}
+    <a class="prev" href="{{ siblings[prev_i].url | relative_url }}"><span>Previous note</span>{{ siblings[prev_i].title | escape }}</a>
+    {%- endif -%}
+    {%- if next_i < siblings.size %}
+    <a class="next" href="{{ siblings[next_i].url | relative_url }}"><span>Next note</span>{{ siblings[next_i].title | escape }}</a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+</article>

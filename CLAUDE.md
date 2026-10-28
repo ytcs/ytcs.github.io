@@ -1,7 +1,22 @@
 # ytcs.github.io
 
-Personal blog of To Chin Yu: physics, maths, finance, ML. Jekyll on GitHub Pages
-(built by `.github/workflows/jekyll.yml`), KaTeX via jektex. Posts in `_posts/`.
+Personal research site of To Chin Yu. Jekyll on GitHub Pages (built by
+`.github/workflows/jekyll.yml`; Pages source is "GitHub Actions"), KaTeX via
+jektex (server-side; macros in `_config.yml` under `jektex.macros`).
+
+Structure: projects, not a blog.
+- `_data/projects.yml` lists projects; each is a tab on the home page.
+- Notes are `_notes/<project-id>/<slug>.md`, served at `/<project-id>/<slug>/`,
+  ordered by the `order` front-matter field. Front matter: `title`, `date`,
+  `order`, `summary` (one sentence shown on the home page), optional
+  `last_updated`. No reference to where the result came from.
+- A note is one result written as lecture notes: full rigor, pedagogical order.
+- Theorem-like blocks: `<div class="theorem" markdown="1">` (also `lemma`,
+  `proposition`, `corollary`, `definition`, `remark`, `example`, `proof`), first
+  paragraph starting `**Theorem 1** (Name).` / `*Proof.*`. Number equations with
+  `\tag{n}` and refer to them as (n).
+- Math: `$$…$$` inline inside a paragraph, display when it stands alone between
+  blank lines.
 
 Read this before touching the design or writing any prose for the site.
 
@@ -46,41 +61,45 @@ Do this instead:
 - Table of contents only on long posts: in the right margin on wide screens,
   a `<details>` at the top on narrow screens. Never overlapping text.
 - Footnotes as real footnotes (kramdown `[^1]`), references as a plain list.
-- Home page: a first-person line or two about the author, then posts by year.
-  A multi-part series appears once, with its parts listed beneath it.
+- Home page: a first-person line or two about the author, then one tab per
+  project with its summary and its notes (title + one-sentence summary).
+  Without JS the projects are stacked.
 - Visible keyboard focus, `prefers-reduced-motion` respected, readable with
   JS off, contrast ≥ 4.5:1. Check at 390px wide before calling anything done.
 
 ## Writing voice
 
-The reference for voice is the author's own 2023 posts
-(`2023-09-18-stable-distribution-with-minimal-information.md`): first person,
-says what they noticed, says what they believe and how sure they are ("I feel
-there must be a deeper reason… I present here an informal argument"). Other
-models: Tao (What's new), Gowers, Baez, Aaronson, Olah, Jeremy Kun.
+Notes read as self-contained manuscripts in the register of a standard
+academic paper or a good set of lecture notes.
 
-- Open with the occasion or the claim. "Yesterday several people asked my
-  opinion of a preprint…" (Aaronson). "Humans don't start their thinking from
-  scratch every second." (Olah). Never a hook question, never "In this post we
-  will explore".
-- Write in first person. Say "I don't know", "I'm not sure this is right",
-  "I was confused by this". Hedges should be specific ("this assumes γ is
-  constant across caps"), not blanket.
-- Vary sentence length. Plain words. Dry humour is fine when it's about the
-  subject.
+- Use "we" for the reasoning and the computations. No first-person opinion,
+  no asides about what the author believes, finds plausible, or would like to
+  know next.
+- Withhold subjective judgement. Where there are several possibilities (escape
+  routes, interpretations, readings of a tension), state each with its
+  conditions and leave the choice to the reader.
+- Self-contained: never mention how the result was produced. No references to
+  pipelines, campaigns, agents, LLMs, referees, scripts, code directories or
+  ledgers. "Two independent calculations agree" is fine; "our pipeline" is
+  not ("the setup of section 5" instead).
+- Open with the question and the answer, stated with their conditions. Never a
+  hook question, never "In this note we will explore".
+- Credit prior work near the start, in prose, and say what is added.
+- Hedges are specific ("this assumes γ is constant across caps"), never blanket.
+- Vary sentence length. Plain words.
 - Define terms inside sentences, not as bold labels in bullet lists. Bullets
   are for genuinely list-shaped things.
-- Headings name what happens in the section ("Fitting γ to S&P data"), not
-  grand abstractions ("The Fundamental Dynamic Equation"). Short essays can
-  have no headings at all.
-- End when the argument ends: an open question, a limitation, what would change
-  your mind. No "Conclusion" section restating the post.
-- Corrections are dated inline: "Update (2026-01-24): …".
+- Headings name what happens in the section ("Curvature and the BAO
+  distances"), not grand abstractions ("The Fundamental Dynamic Equation").
+- End where the argument ends: limitations and open questions, stated neutrally.
+  No recap section, no "What is new" list at the end.
+- Corrections after publication are dated inline: "Update (2026-01-24): …".
 
-Words and patterns to remove on sight (current posts use "fundamental" ×52,
-"crucial" ×45, 74 bold-label bullets): crucial, fundamental, profound, powerful,
+Words and patterns to remove on sight: crucial, fundamental, profound, powerful,
 remarkable, elegant, delve, "the key insight", "it's not X, it's Y",
-"isn't just", rhetorical triads, "Let's dive in", "Have you ever", em dashes
+"isn't just", "the honest reading", "worth noticing", "the whole mechanism",
+signposting that announces instead of saying ("Here are the assumptions"),
+dense "not X but Y" constructions, rhetorical triads, "Let's dive in", "Have you ever", em dashes
 used as punchline drumrolls (two or three per post is plenty), "mathematical
 certainty", titles that claim more than the post shows ("X Is the Key to…",
 "solves").
@@ -130,3 +149,64 @@ Before publishing a post, grep it for the words above, read the first
 paragraph alone (does it state the question and the answer?), and read only
 the display equations in order (does the chain make sense without the prose?
 does the prose add the why?).
+
+## Review before publishing a note
+
+No note goes live until it has passed both stages below. Run the agents in
+parallel and in the background. Each starts fresh and gets only the file paths
+and its criteria, never the author's opinion of the note, so its read isn't
+anchored. Agents are read-only and work in the scratchpad.
+
+**1. Verification** (one agent per note). Treat every claim in the source as
+unverified; source results may have been produced and checked by LLM agents only.
+- Redo every proof and derivation by hand (sympy is fine).
+- Recompute the headline numbers with the agent's *own* code where feasible.
+  Re-run the source material's own code for anything too heavy to
+  reimplement.
+- Check every quoted measurement and every bibliography entry against the
+  source (arXiv abs pages, the papers' equations and tables). Never fill in
+  author initials or titles from memory.
+- Report each item as VERIFIED / DISCREPANCY (with numbers) / NOT CHECKED (why),
+  plus anything overstated or misleading.
+
+**2. Red team** (three agents, each reading every note in the batch, one
+dimension each). Target reader: a physics PhD student or postdoc outside the
+note's subfield.
+- *Readability and ease of following:* undefined or late-defined symbols and
+  jargon, steps the reader can't reproduce, overloaded sentences, unclear
+  tables or units, places where an example or one-line intuition is missing.
+- *AI-slop and writing tells:* the "Writing voice" list above plus the
+  reviewer's own knowledge of LLM prose: stock intensifiers, contrast
+  templates, triads, signposting that announces instead of saying, bold run-in
+  labels, uniform rhythm, stacked hedges, recap sentences, grand framing; also
+  stilted over-formality, and any mention of how the result was produced
+  (pipelines, agents, code). The target register is a standard academic paper.
+  Verdict: how likely a skeptical physicist is to clock it as LLM-written.
+- *Logical progression and linear build-up:* the note's actual dependency
+  outline, forward references, objects used before they're motivated,
+  hypotheses far from where they're used, epistemic labelling (proved /
+  numerical / sketch / cited), weighting of routine against hard steps,
+  opening states question and answer, ending stops with the argument; a better
+  section order if one exists.
+Each finding quotes the phrase (≤15 words), says what goes wrong, and gives a
+concrete fix, ordered by severity.
+
+**Audit trail.** Every note has a review log at
+`_reviews/<project-id>/<slug>.md` (underscore folder: never published). Each
+round appends a section: date, the reviewer brief in one line, every finding
+(numbered, quoted phrase, severity), and against each finding the response:
+FIXED (what changed), DECLINED (why), or DEFERRED (why). Author instructions
+that settle a question (e.g. "academic tone, no subjective judgement") are
+recorded there too, so later rounds don't reopen them.
+
+**Then:** fix every verification discrepancy and every blocking or significant
+red-team finding, or record in the log why not. After the revision, run a
+second round: resume the same reviewer agents with SendMessage if they are
+still reachable, otherwise start fresh ones. Either way give them the review
+log and the revised file, and ask them to (a) check each of their previous
+findings against the revision and mark it resolved or not, and (b) report only
+new problems introduced by the revision. Don't let a later round relitigate a
+finding the log marks DECLINED with a reason unless the reviewer shows the
+reason is wrong. Repeat until no blocking or significant findings remain.
+Build the site and check the rendered page (no KaTeX errors, theorem blocks,
+tables, figures and phone width) before committing.

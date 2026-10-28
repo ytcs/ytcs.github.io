@@ -3,10 +3,30 @@
 
 title: To Chin Yu
 description: Personal site of To Chin Yu
-intro: "I’m interested in physics, maths, finance, and anything in-between. This blog contains short notes on these topics, heavily co-authored by LLM."
+intro: "I work on open problems in physics, mathematics and finance, organised here as projects. Each project lists notes that write up individual results in full, with proofs, in the style of lecture notes. Much of the exploration is done with LLM agents."
 url: "https://ytcs.github.io"
 baseurl: ""
 
+
+# Notes live in _notes/<project>/<slug>.md and are served at /<project>/<slug>/.
+# Projects (the tabs on the home page) are listed in _data/projects.yml.
+collections:
+  notes:
+    output: true
+    permalink: /:path/
+
+defaults:
+  - scope:
+      type: notes
+    values:
+      layout: note
+      render_with_liquid: false  # LaTeX braces like {{\rm crit}} would otherwise parse as Liquid
+
+feed:
+  path: "/feed/posts.xml"  # the site has no posts; keeps /feed.xml free for notes
+  collections:
+    notes:
+      path: "/feed.xml"
 
 # Build settings
 markdown: kramdown
@@ -17,7 +37,7 @@ plugins:
 
 # Kramdown settings for better math support
 kramdown:
-  math_engine: katex
+  math_engine: mathjax  # emits \( \) and \[ \]; jektex then renders them server-side with our macros
   syntax_highlighter: rouge
   input: GFM
   hard_wrap: false
@@ -58,3 +78,13 @@ jektex:
   cache_dir: ".jektex-cache"
   ignore: ["*.xml"]
   silent: false
+  macros:
+    - ["\\Seff", "\\Sigma_{\\rm eff}"]
+    - ["\\Strue", "\\Sigma_{\\rm true}"]
+    - ["\\SBAO", "\\Sigma_{\\rm eff}^{\\rm BAO}"]
+    - ["\\zd", "z_{\\rm d}"]
+    - ["\\fe", "f_{\\rm eq}"]
+    - ["\\fo", "f_{\\rm or}"]
+    - ["\\cO", "\\mathcal{O}"]
+    - ["\\eV", "\\,\\mathrm{eV}"]
+    - ["\\meV", "\\,\\mathrm{meV}"]

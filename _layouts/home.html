@@ -8,44 +8,29 @@ layout: default
   {{ content }}
 
   {%- comment -%}
-    Posts grouped by year, newest first. Posts sharing a `series` front-matter
-    value are listed once, under the year of the newest part, with the parts
-    in order beneath.
+    One section per project. site.js turns the sections into tabs; without
+    JavaScript they are simply stacked.
   {%- endcomment -%}
-  {%- assign shown_series = "" | split: "" -%}
-  {%- assign current_year = "" -%}
-  {%- for post in site.posts -%}
-    {%- if post.series -%}
-      {%- if shown_series contains post.series -%}{%- continue -%}{%- endif -%}
-      {%- assign shown_series = shown_series | push: post.series -%}
-    {%- endif -%}
-
-    {%- assign year = post.date | date: "%Y" -%}
-    {%- if year != current_year -%}
-      {%- if current_year != "" -%}</ul></section>{%- endif -%}
-      <section class="year">
-      <h2>{{ year }}</h2>
-      <ul class="post-list">
-      {%- assign current_year = year -%}
-    {%- endif -%}
-
-    {%- if post.series -%}
-      {%- assign parts = site.posts | where: "series", post.series | sort: "date" -%}
-      <li class="series">
-        <span class="series-title">{{ post.series | escape }}</span>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
-        <ol>
-          {%- for part in parts -%}
-          <li><a href="{{ part.url | relative_url }}">{{ part.short_title | default: part.title | escape }}</a></li>
-          {%- endfor -%}
-        </ol>
-      </li>
-    {%- else -%}
-      <li>
-        <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
-      </li>
-    {%- endif -%}
-  {%- endfor -%}
-  {%- if current_year != "" -%}</ul></section>{%- endif -%}
+  <div class="projects">
+    {%- for project in site.data.projects -%}
+    {%- assign prefix = "/" | append: project.id | append: "/" -%}
+    {%- assign notes = site.notes | where_exp: "n", "n.url contains prefix" | sort: "order" -%}
+    <section class="project" id="{{ project.id }}" aria-labelledby="{{ project.id }}-title">
+      <h2 id="{{ project.id }}-title">{{ project.title | escape }}</h2>
+      {%- if project.summary -%}
+      <p class="project-summary">{{ project.summary }}</p>
+      {%- endif -%}
+      <ol class="note-list">
+        {%- for note in notes -%}
+        <li>
+          <a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a>
+          {%- if note.summary %}
+          <p>{{ note.summary }}</p>
+          {%- endif %}
+        </li>
+        {%- endfor -%}
+      </ol>
+    </section>
+    {%- endfor -%}
+  </div>
 </div>
