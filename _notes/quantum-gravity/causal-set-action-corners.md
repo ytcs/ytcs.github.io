@@ -161,7 +161,7 @@ $$
 With $$e_\pm=(-p_\pm,q_\pm)$$ we have $$h\times e_\pm=aq_\pm+bp_\pm\ge0$$ and $$\lvert e_-\times e_+\rvert=\lvert p_+q_--q_+p_-\rvert$$, which is (8) for $$a,b>0$$; continuity of $$K$$ extends it to the axes. For the mixed derivative, $$\partial_a\partial_bT_J=\tfrac12(q_+p_-+p_+q_-)/\lvert p_+q_--q_+p_-\rvert$$. A spacelike edge of rapidity $$\eta$$ has $$(p,q)\propto(e^{-\eta},e^{\eta})$$, which gives $$\tfrac12(e^{\eta_+-\eta_-}+e^{\eta_--\eta_+})/\lvert e^{\eta_+-\eta_-}-e^{\eta_--\eta_+}\rvert=\tfrac12\coth\theta_J$$. A null edge has $$p=0$$ or $$q=0$$, and the ratio is then $$\tfrac12$$.
 </div>
 
-![Panel (a): a non-convex graph region P between a past boundary f− and a future boundary f+, both piecewise linear with spacelike edges, meeting at the joints L and R; the dashed curve is the future boundary translated by −h for a future-timelike vector h, and the strip between the two curves is the set of points whose translate leaves P. Panel (b): the neighbourhood of a joint J, with the past and future edges, the translated future edge (dashed) and the shaded triangle T_J with vertices J, J−h and the intersection of the translated future edge with the line of the past edge.](/assets/img/causal-set-action-corners-joint.svg){: .invertible}
+![Panel (a): a non-convex graph region P between a past boundary f− and a future boundary f+, both piecewise linear with spacelike edges, meeting at the joints L and R; the dashed curve is the future boundary translated by −h for a future-timelike vector h, and the strip between the two curves is the set of points whose translate leaves P. Panel (b): the neighbourhood of a joint J, with the past and future edges, the translated future edge (dashed) and the shaded triangle T_J with vertices J, J−h and the intersection of the translated future edge with the line of the past edge.](/assets/img/quantum-gravity/corners.svg){: .invertible}
 
 *Figure 1.* (a) A graph region with a reflex kink in each boundary. Points of $$P$$ between the future boundary and its translate by $$-h$$ (dashed) leave $$P$$ when translated by $$h$$. (b) Near a joint the strip is cut off by the past edge; the excess is the triangle $$T_J$$, whose area is quadratic in $$h$$.
 
@@ -209,16 +209,16 @@ In the language of [[DLLJ]](#ref-dllj), the four-dimensional joints are the two 
 
 The theorem reproduces the known cases. For the causal diamond both joints are null, and (a) gives $$2$$, the value of [[BDJS]](#ref-bdjs). For the lozenge of [[DLLJ]](#ref-dllj), their eq. (55) gives $$2n+1/(2n)$$ with $$n=\tfrac12\coth(\theta/2)$$ (their eq. 59), which equals $$2\coth\theta$$, and (a) gives the same. For their spacelike triangle the apex is a kink inside the future boundary, which contributes nothing, and each base vertex contributes $$\coth\theta$$, as found in their eq. (66).
 
-As an independent check we computed $$K$$ exactly for several graph regions, by integrating the overlap of the vertical sections of $$P$$ and its translate, and compared the second difference at small $$(a,b)$$ with Lemma 2. The two agree to the accuracy of the finite differences ($$10^{-6}$$ or better), along directions $$b/a$$ from $$0.05$$ to $$20$$. For each region, $$K-T_L-T_R$$ is affine in $$h$$ near the origin to within $$10^{-12}$$. We also evaluated the exact finite-$$\rho$$ means (3) and (4) by quadrature, without the expansion of section 3:
+As an independent check we computed $$K$$ exactly for several graph regions, by integrating the overlap of the vertical sections of $$P$$ and its translate, and compared the second difference at small $$(a,b)$$ with Lemma 2. The two agree to the accuracy of the finite differences ($$10^{-6}$$ or better), along directions $$b/a$$ from $$0.05$$ to $$20$$. For each region, $$K-T_L-T_R$$ is affine in $$h$$ near the origin to within $$10^{-12}$$.
 
-| Region | $$\theta_L,\ \theta_R$$ | $$\tfrac12(\coth\theta_L+\coth\theta_R)$$ | $$\partial_a\partial_bK$$, numerical | $$\langle S_2\rangle$$ at $$\rho=10^3,\ 4\cdot10^3$$ |
-|---|---|---|---|---|
-| wedge closed by null edges | $$0.7,\ \infty$$ | 1.327311 | 1.327311 | |
-| convex lens, two spacelike joints | $$0.5317,\ 0.7544$$ | 1.811353 | 1.811353 | 3.63334, 3.62535 |
-| figure 1(a), reflex kinks in both boundaries | $$1.8921,\ 1.8921$$ | 1.046512 | 1.046512 | |
-| causal diamond | $$\infty,\ \infty$$ | 1 | 1.000000 | 2.00003, 2.00000 |
+| Region | $$\theta_L,\ \theta_R$$ | $$\tfrac12(\coth\theta_L+\coth\theta_R)$$ | $$\partial_a\partial_bK$$, numerical |
+|---|---|---|---|
+| wedge closed by null edges | $$0.7,\ \infty$$ | 1.327311 | 1.327311 |
+| convex lens, two spacelike joints | $$0.5317,\ 0.7544$$ | 1.811353 | 1.811353 |
+| figure 1(a), reflex kinks in both boundaries | $$1.8921,\ 1.8921$$ | 1.046512 | 1.046512 |
+| causal diamond | $$\infty,\ \infty$$ | 1 | 1.000000 |
 
-For the lens, $$2k_{11}=3.62271$$ and the deviation falls by a factor of 4 when $$\rho$$ grows by 4, as the $$O(\rho^{-1})$$ error predicts.
+We also evaluated the finite-$$\rho$$ means (3) and (4) by quadrature of $$H$$, without the expansion of section 3, with lengths in units of the size of $$P$$. For the lens, where $$\coth\theta_L+\coth\theta_R=3.62271$$, the two-dimensional mean is 3.63334, 3.62535 and 3.62337 at $$\rho=10^3$$, $$4\cdot10^3$$ and $$1.6\cdot10^4$$; the deviation falls by a factor of 4 each time, as the $$O(\rho^{-1})$$ error predicts. The four-dimensional mean in units of $$A/\ell_p^2$$ is 3.63097, 3.62531 and 3.62353 at $$\rho=10^6$$, $$10^7$$ and $$10^8$$; the deviation falls by $$\sqrt{10}$$ per decade, as $$O(\rho^{-1/2})$$ predicts. For the region of figure 1(a) the two-dimensional values are 2.07696, 2.08915 and 2.09206 against the limit 2.09302, again converging as $$\rho^{-1}$$. The quadrature reproduces the diamond value 2 to within $$3\cdot10^{-5}$$ in two dimensions and $$10^{-4}$$ in four.
 
 ## 6. Curved two-dimensional intervals
 
