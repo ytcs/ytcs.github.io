@@ -299,6 +299,7 @@ a:hover { text-decoration-thickness: 0.12em; }
 
   table {
     display: block;
+    position: relative;  // contains KaTeX's absolutely positioned MathML, so wide tables scroll instead of widening the page
     max-width: 100%;
     overflow-x: auto;
     border-collapse: collapse;

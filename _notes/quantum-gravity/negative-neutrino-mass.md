@@ -1,7 +1,7 @@
 ---
 title: What a negative neutrino mass in the BAO data would require
 date: 2026-10-28
-order: 1
+order: 6
 description: In a flat universe whose cold dark matter is stable, no component obeying the null energy condition can make the expansion history mimic a lighter neutrino. Under DESI DR2 weights the BAO-inferred mass sum has a floor of 0.0638 eV.
 ---
 
