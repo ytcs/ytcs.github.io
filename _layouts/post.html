@@ -1,51 +1,29 @@
 ---
 layout: default
 ---
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
+<article class="post h-entry">
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <h1 class="p-name">{{ page.title | escape }}</h1>
     <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.last_updated and page.last_updated != page.date -%}
-      • <span class="post-meta-updated">
-        Last updated: 
-        <time datetime="{{ page.last_updated | date_to_xmlschema }}" itemprop="dateModified">
-          {{ page.last_updated | date: date_format }}
-        </time>
-      </span>
-      {%- endif -%}
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      {%- if page.last_updated and page.last_updated != page.date %}
+      <span class="updated">Updated <time datetime="{{ page.last_updated | date_to_xmlschema }}">{{ page.last_updated | date: "%-d %B %Y" }}</time></span>
+      {%- endif %}
     </p>
   </header>
 
-  <!-- TOC collapsible sidebar -->
-  <div class="post-toc-container">
-    <!-- The toggle button and content will be inserted by JavaScript -->
+  <div class="post-body e-content">
+    {{ content }}
   </div>
 
-  <div class="post-content-wrapper">
-    <!-- Main content at full width -->
-    <div class="post-content e-content" itemprop="articleBody">
-      {{ content }}
-    </div>
-  </div>
-
-  <nav class="post-nav">
-    {%- if page.previous -%}
-      <a class="post-nav-item post-nav-prev" href="{{ page.previous.url | relative_url }}">
-        &laquo; {{ page.previous.title | escape }}
-      </a>
+  {%- if page.previous or page.next %}
+  <nav class="post-nav" aria-label="More posts">
+    {%- if page.previous %}
+    <a class="prev" href="{{ page.previous.url | relative_url }}"><span>Older</span>{{ page.previous.title | escape }}</a>
     {%- endif -%}
-
-    {%- if page.next -%}
-      <a class="post-nav-item post-nav-next" href="{{ page.next.url | relative_url }}">
-        {{ page.next.title | escape }} &raquo;
-      </a>
-    {%- endif -%}
+    {%- if page.next %}
+    <a class="next" href="{{ page.next.url | relative_url }}"><span>Newer</span>{{ page.next.title | escape }}</a>
+    {%- endif %}
   </nav>
-
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article> 
+  {%- endif %}
+</article>
