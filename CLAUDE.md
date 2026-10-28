@@ -8,7 +8,9 @@ Structure: projects, not a blog.
 - `_data/projects.yml` lists projects; each is a tab on the home page.
 - Notes are `_notes/<project-id>/<slug>.md`, served at `/<project-id>/<slug>/`,
   ordered by the `order` front-matter field. Front matter: `title`, `date`,
-  `order`, `summary` (one sentence shown on the home page), optional
+  `order`, `description` (plain text, no math: shown on the home page and
+  used as the meta description; without it the first paragraph, with its math,
+  ends up in the page head), optional
   `last_updated`. No reference to where the result came from.
 - A note is one result written as lecture notes: full rigor, pedagogical order.
 - Theorem-like blocks: `<div class="theorem" markdown="1">` (also `lemma`,

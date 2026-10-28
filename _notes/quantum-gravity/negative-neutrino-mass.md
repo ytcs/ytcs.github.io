@@ -2,7 +2,7 @@
 title: What a negative neutrino mass in the BAO data would require
 date: 2026-10-28
 order: 1
-summary: In a flat universe whose cold dark matter is stable, no component obeying the null energy condition can make the expansion history mimic a lighter neutrino. Under DESI DR2 weights the BAO-inferred mass sum has a floor of 0.0638 eV.
+description: In a flat universe whose cold dark matter is stable, no component obeying the null energy condition can make the expansion history mimic a lighter neutrino. Under DESI DR2 weights the BAO-inferred mass sum has a floor of 0.0638 eV.
 ---
 
 Neutrino oscillation experiments require the three neutrino masses to sum to at least $$0.0588\eV$$. When cosmological data are fitted with $$\Lambda$$CDM plus a free mass sum $$\Seff$$ that is allowed to take negative values, the preferred value is below zero: DESI DR2 combined with the CMB gives $$\Seff=-0.101^{+0.047}_{-0.056}\eV$$ [[DESI ν]](#ref-desi-nu). A large part of this preference comes from CMB lensing. This note concerns the part that comes from the expansion history alone, which is what baryon acoustic oscillations (BAO) measure; fitted to DR2 BAO with a compressed CMB prior, it is $$\SBAO=-0.153\pm0.077\eV$$ (section 5).

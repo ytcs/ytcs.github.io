@@ -2,7 +2,7 @@
 title: A positivity wedge for inflationary non-Gaussianity
 date: 2026-10-28
 order: 2
-summary: When the primordial bispectrum comes from tree-level exchange with a unitary heavy hidden sector, the reported equilateral and orthogonal amplitudes lie in a narrow wedge, with negative equilateral and positive orthogonal amplitude. Three hypotheses carry the result, and current data are consistent with it.
+description: When the primordial bispectrum comes from tree-level exchange with a unitary heavy hidden sector, the reported equilateral and orthogonal amplitudes lie in a narrow wedge, with negative equilateral and positive orthogonal amplitude. Three hypotheses carry the result, and current data are consistent with it.
 ---
 
 If the inflaton couples to a hidden sector of heavy states, exchange of those states makes the primordial fluctuations non-Gaussian. Unitarity of the hidden sector implies that its two-point function has a spectral decomposition with a non-negative density. De Rham, Jazayeri and Tolley [[DJT]](#ref-djt) used this to show that the shape of the resulting bispectrum is confined to a limited region of shape space. They posed the corresponding question for the quantities experiments report, the amplitudes of the equilateral and orthogonal templates, as a non-linear optimisation problem.
