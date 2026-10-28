@@ -101,6 +101,8 @@ Words and patterns to remove on sight: crucial, fundamental, profound, powerful,
 remarkable, elegant, delve, "the key insight", "it's not X, it's Y",
 "isn't just", "the honest reading", "worth noticing", "the whole mechanism",
 signposting that announces instead of saying ("Here are the assumptions"),
+sentences that state the obvious or vouch for the work ("Each is a smaller
+statement, proved and checked, that stands on its own"),
 dense "not X but Y" constructions, rhetorical triads, "Let's dive in", "Have you ever", em dashes
 used as punchline drumrolls (two or three per post is plenty), "mathematical
 certainty", titles that claim more than the post shows ("X Is the Key to…",
@@ -212,3 +214,11 @@ finding the log marks DECLINED with a reason unless the reviewer shows the
 reason is wrong. Repeat until no blocking or significant findings remain.
 Build the site and check the rendered page (no KaTeX errors, theorem blocks,
 tables, figures and phone width) before committing.
+
+## Deploying
+
+Pushing to `master` deploys via the GitHub Pages workflow. After pushing, do
+not wait for or poll the deploy (watching `gh run` tends to hang); the author
+checks the live page. Before pushing, verify the local build instead: the
+rendered body *and* the generated `<head>` (meta tags must not contain
+rendered math or HTML).
