@@ -2,10 +2,12 @@
 title: The low multipoles of holographic cosmology at large flavour number
 date: 2026-10-28
 order: 7
-description: In holographic cosmology with conformally coupled matter, the leading large-flavour resummation of the dual stress-tensor correlator fixes the power spectrum at the largest angular scales with no new parameter. Positivity of the spectrum then bounds the number of non-conformal scalars and excludes the explicit solution published with the model, and a fit to Planck temperature data is about two standard deviations worse than the standard model.
+description: In holographic cosmology with conformally coupled matter, the leading large-flavour resummation of the dual stress-tensor correlator fixes the power spectrum at the largest angular scales with no new parameter. Positivity of the spectrum then bounds the number of non-conformal scalars and excludes the explicit solution published with the model, and a fit to Planck temperature data is about two standard deviations worse than the standard cosmological model.
 ---
 
-In holographic cosmology the primordial power spectrum is computed from the stress-tensor two-point function of a three-dimensional SU($$N$$) gauge theory with many scalar and fermion fields. The published two-loop form fits the Planck temperature spectrum at multipoles $$\ell\ge30$$, but it is not valid at lower $$\ell$$, which were therefore excluded from the fits. We ask what the same theory predicts for $$\ell<30$$. When all scalars are conformally coupled and quartic and Yukawa couplings are negligible, the answer is fixed at leading order in the number of fields: the gauge-field contribution to the trace correlator, with both gluon lines dressed by the chain of matter loops, can be computed exactly. Its expansion reproduces the published two-loop coefficient $$64/(3\pi^2)$$, and below a crossover scale, corresponding to $$\ell_c\approx3$$–$$4$$ for the fitted parameters, the logarithm that drives the two-loop running stops growing. The low-$$\ell$$ spectrum then follows from the three parameters already fitted at $$\ell\ge30$$, with no new parameter. Three consequences follow. Positivity of the power spectrum at all scales bounds the number of non-conformal scalar units by $$N_B\le0.864\,\beta$$, that is, $$N_B\lesssim1.6$$–$$2.9$$ over the published one-standard-deviation ranges of $$\beta$$; this excludes the explicit solution with $$N_B\approx88$$ given with the model. Fitted to Planck temperature data at all multipoles, with a compressed likelihood, the resummed spectrum is worse than $$\Lambda$$CDM by $$\Delta(-2\ln\mathcal L)\approx3$$–$$5$$, depending on the treatment of the background cosmology, and predicts a quadrupole $$0.57$$ times the $$\Lambda$$CDM value. Finally, the same parameters predict suppressed low-$$\ell$$ $$E$$-mode polarization with unsuppressed tensor modes, a sum rule among the scalar tilt and its first two runnings, a positive effective running, and a $$\mu$$-type spectral distortion about $$1.3$$ times the $$\Lambda$$CDM value.
+In holographic cosmology the primordial power spectrum is computed from the stress-tensor two-point function of a three-dimensional SU($$N$$) gauge theory with many scalar and fermion fields. The published two-loop form fits the Planck temperature spectrum at multipoles $$\ell\ge30$$, but it is not valid at lower $$\ell$$, which were therefore excluded from the fits. We ask what the same theory predicts for $$\ell<30$$. When all scalars are conformally coupled and quartic and Yukawa couplings are negligible, the answer is fixed at leading order in the number of fields: the gauge-field contribution to the trace correlator, with both gluon lines dressed by the chain of matter loops, can be computed exactly. Its expansion reproduces the published two-loop coefficient $$64/(3\pi^2)$$, and below a crossover scale, corresponding to $$\ell_c\approx3$$–$$4$$ for the fitted parameters, the logarithm that drives the two-loop running stops growing. The low-$$\ell$$ spectrum then follows from the three parameters already fitted at $$\ell\ge30$$, with no new parameter.
+
+Positivity of the power spectrum at all scales then bounds the number of non-conformal scalar units by $$N_B\le0.864\,\beta$$, that is, $$N_B\lesssim1.6$$–$$2.9$$ over the published one-standard-deviation ranges of $$\beta$$; this excludes the explicit solution with $$N_B\approx88$$ given with the model. Fitted to Planck temperature data at all multipoles, with a compressed likelihood, the resummed spectrum is worse than $$\Lambda$$CDM by $$\Delta(-2\ln\mathcal L)\approx3$$–$$5$$, depending on the treatment of the background cosmology, and predicts a quadrupole $$0.57$$ times the $$\Lambda$$CDM value. Finally, the same parameters predict suppressed low-$$\ell$$ $$E$$-mode polarization with unsuppressed tensor modes, a sum rule among the scalar tilt and its first two runnings, a positive effective running, and a $$\mu$$-type spectral distortion about $$1.3$$ times the $$\Lambda$$CDM value.
 
 The framework is due to McFadden and Skenderis [[MS 2009]](#ref-ms09), [[MS 2010]](#ref-ms10). The two-loop coefficients were computed by Corianò, Delle Rose and Skenderis [[CDS]](#ref-cds) and first used by Afshordi, Corianò, Delle Rose, Gould and Skenderis [[ACDGS]](#ref-acdgs), who fitted the model to Planck 2015 data, found that the fit at all multipoles is disfavoured relative to $$\Lambda$$CDM, and attributed this to the breakdown of perturbation theory at $$\ell\lesssim30$$. Afshordi, Gould and Skenderis [[AGS]](#ref-ags) repeated the analysis in more detail. The dressing of a three-dimensional gauge field by a large number of matter fields is standard; Huh, Strack and Sachdev [[HSS]](#ref-hss) and Giombi, Tarnopolsky and Klebanov [[GTK]](#ref-gtk) compute stress-tensor correlators at the resulting infrared fixed point. This note adds the full crossover of the trace correlator between the perturbative and infrared regimes, the resulting low-$$\ell$$ spectrum and its comparison with data, the positivity bound, and the predictions of section 7.
 
@@ -15,7 +17,7 @@ Familiarity with the holographic cosmology dictionary is not assumed beyond eq. 
 
 The dual theory is SU($$N$$) Yang–Mills theory in three Euclidean dimensions coupled to $$N_\Phi$$ real scalars and $$N_\psi$$ two-component Dirac fermions, all in the adjoint representation [[ACDGS]](#ref-acdgs). Scalars couple to the background curvature with parameters $$\xi_M$$; the value $$\xi_M=1/8$$ is conformal coupling in three dimensions. The theory is super-renormalizable, and its dimensionless coupling at momentum $$q$$ is the 't Hooft coupling $$\lambda=g_{\rm YM}^2N/q$$.
 
-The trace $$\Theta=T^i{}_i$$ of the stress tensor carries the scalar perturbations. At large $$N$$ its two-point function has the form $$\langle\Theta(q)\Theta(-q)\rangle=N^2q^3f(\lambda)$$ up to local terms, and the dictionary of [[MS 2009]](#ref-ms09), [[CDS]](#ref-cds) (their eqs. 7.1–7.5) gives the curvature power spectrum
+The trace $$\Theta=T^i{}_i$$ of the stress tensor carries the scalar perturbations. At large $$N$$ its two-point function has the form $$\langle\Theta(q)\Theta(-q)\rangle=N^2q^3f(\lambda)$$ up to local terms, and the holographic dictionary [[MS 2009]](#ref-ms09), in the form used in [[ACDGS]](#ref-acdgs) and [[CDS]](#ref-cds), gives the curvature power spectrum
 
 $$
 \Delta^2(q)=\frac{1}{4\pi^2N^2f(\lambda)}. \tag{1}
@@ -48,10 +50,10 @@ Multipoles and wavenumbers are related by $$\ell\approx q\chi_\ast$$, with $$\ch
 The two-loop term in (2) is large at low $$\ell$$ although the 't Hooft coupling there is small. The tensor-to-scalar ratio of the model is $$r=32N_B/N_A$$ with $$N_A=1+2N_\psi+N_\Phi$$ [[ACDGS]](#ref-acdgs), so the bound $$r<0.036$$ [[BK18]](#ref-bk18) requires $$N_A>889$$ when $$N_B=1$$. Since $$N_\psi+N_\Phi/2=(N_A-1)/2$$, the coefficient above is
 
 $$
-\lvert f_1\rvert=\frac{2}{3\pi^2}(N_A-5)\ge60,
+\lvert f_1\rvert=\frac{2}{3\pi^2}(N_A-5)\gtrsim60,
 $$
 
-and $$\lambda=u/\lvert f_1\rvert\le0.06$$ at $$\ell=2$$ for any of the fits in section 6. The two-loop correction is not small because $$f_1$$ counts all the matter fields, while $$f_0$$ counts only the gauge field.
+and $$\lambda=u/\lvert f_1\rvert\le0.1$$ at $$\ell=2$$ for every parameter set used in this note. The two-loop correction is not small because $$f_1$$ counts all the matter fields, while $$f_0$$ counts only the gauge field.
 
 This identifies the relevant limit. Each matter field contributes to the one-loop vacuum polarisation of the gluon. In three dimensions a massless two-component fermion of unit charge gives a self-energy $$e^2k/16$$ and a complex scalar the same, so that a real adjoint scalar contributes $$g_{\rm YM}^2Nk/32$$ and an adjoint fermion $$g_{\rm YM}^2Nk/16$$ (the adjoint index factor is $$N$$). Summing the chain of these bubbles gives the dressed gluon propagator, in a normalisation where the free propagator is $$1/k^2$$,
 
@@ -86,7 +88,7 @@ $$
 \langle\Theta_A\Theta_A\rangle(q)=\frac{q^3}{64}-\frac{q_c\,q^2\ln q}{3\pi^2}+\dots,
 $$
 
-where the dots stand for terms analytic in $$q$$ and terms of order $$q_c^2$$. Equivalently, the ratio $$F=64\langle\Theta_A\Theta_A\rangle/q^3$$ obeys $$F=1+a_1x\ln x+O(x)$$ with $$a_1=64/(3\pi^2)$$.
+where the dots stand for terms analytic in $$q$$ and terms of order $$q_c^2$$. Equivalently, the ratio $$\mathcal F=64\langle\Theta_A\Theta_A\rangle/q^3$$ obeys $$\mathcal F=1+a_1x\ln x+O(x)$$ with $$a_1=64/(3\pi^2)$$.
 </div>
 
 <div class="proof" markdown="1">
@@ -109,7 +111,7 @@ The free term reproduces the normalisation $$f_0=1/64$$ per unit of $$N_B$$. For
 
 ### The contact term
 
-The full calculation produces a term independent of $$q$$, which in $$F$$ would appear as a multiple of $$x^3$$ and would dominate at small $$q$$. It does not enter the power spectrum. The reason is that the power spectrum is computed from the spin-0 form factor $$B(q)$$ in the decomposition $$\langle T_{ij}T_{kl}\rangle=A(q)\Pi_{ijkl}+B(q)\pi_{ij}\pi_{kl}$$ of the transverse part of the correlator [[CDS]](#ref-cds), where $$\pi_{ij}=\delta_{ij}-q_iq_j/q^2$$ and $$\Pi_{ijkl}=\tfrac12(\pi_{ik}\pi_{jl}+\pi_{il}\pi_{jk}-\pi_{ij}\pi_{kl})$$; away from contact terms $$\langle\Theta\Theta\rangle=4B$$.
+The full calculation produces a term independent of $$q$$, which in $$\mathcal F$$ would appear as a multiple of $$x^3$$ and would dominate at small $$q$$. It does not enter the power spectrum. The reason is that the power spectrum is computed from the spin-0 form factor $$B(q)$$ in the decomposition $$\langle T_{ij}T_{kl}\rangle=A(q)\Pi_{ijkl}+B(q)\pi_{ij}\pi_{kl}$$ of the transverse part of the correlator [[CDS]](#ref-cds), where $$\pi_{ij}=\delta_{ij}-q_iq_j/q^2$$ and $$\Pi_{ijkl}=\tfrac12(\pi_{ik}\pi_{jl}+\pi_{il}\pi_{jk}-\pi_{ij}\pi_{kl})$$; away from contact terms $$\langle\Theta\Theta\rangle=4B$$.
 
 <div class="lemma" markdown="1">
 **Lemma 1** (no constant in $$B$$). A term in $$\langle T_{ij}T_{kl}\rangle$$ independent of $$q$$ does not contribute to $$B$$.
@@ -125,7 +127,7 @@ $$
 Projecting each index with $$\pi$$ gives $$c\big[\tfrac14\pi_{ij}\pi_{kl}-\tfrac14(\pi_{ik}\pi_{jl}+\pi_{il}\pi_{jk})\big]=-\tfrac{c}{2}\Pi_{ijkl}+0\cdot\pi_{ij}\pi_{kl}$$, so its transverse part lies entirely in $$A$$. $$\square$$
 </div>
 
-The constant is nonetheless present in the full trace $$\delta_{ij}\delta_{kl}\langle T_{ij}T_{kl}\rangle$$, with weight $$\tfrac34c$$; it belongs to the Ward identity involving $$\langle T_{ij}\rangle$$. We therefore remove it, which amounts to $$B(0)=0$$. Keeping it would add a term proportional to $$x^3$$ to $$F$$ and reverse the infrared behaviour found below.
+The constant is nonetheless present in the full trace $$\delta_{ij}\delta_{kl}\langle T_{ij}T_{kl}\rangle$$, with weight $$\tfrac34c$$; it belongs to the Ward identity involving $$\langle T_{ij}\rangle$$. We therefore remove it, which amounts to $$B(0)=0$$. Keeping it would add a term proportional to $$x^3$$ to $$\mathcal F$$, which would dominate at small $$q$$.
 
 ### The full crossover
 
@@ -138,31 +140,31 @@ $$
 which reduces the dressed loop to a superposition of loops with two massive vector propagators. The sum over polarisations gives the numerator $$4[(k\cdot p)^2+k^2p^2]$$ for gluon momenta $$k$$ and $$p=q-k$$. Writing $$k\cdot p=\tfrac12(q^2-k^2-p^2)$$ and setting $$k^2=-\mu_1^2$$, $$p^2=-\mu_2^2$$ wherever a propagator is not cancelled, the remaining terms have one propagator cancelled and are polynomials in $$q$$ of degree at most 2. With the three-dimensional bubble $$\int\frac{d^3k}{(2\pi)^3}\frac{1}{(k^2+\mu_1^2)(p^2+\mu_2^2)}=\frac{\arctan(q/(\mu_1+\mu_2))}{4\pi q}$$,
 
 $$
-F(q)=\frac{2}{\pi q^3}\int_0^\infty\!\!\int_0^\infty d\mu_1d\mu_2\,\rho(\mu_1)\rho(\mu_2)\Big[J(q)-J(0)-q^2J'(0)\Big],\quad J=\big[(q^2+\mu_1^2+\mu_2^2)^2+4\mu_1^2\mu_2^2\big]\frac{\arctan\frac{q}{\mu_1+\mu_2}}{q}, \tag{6}
+\mathcal F(q)=\frac{2}{\pi q^3}\int_0^\infty\!\!\int_0^\infty d\mu_1d\mu_2\,\rho(\mu_1)\rho(\mu_2)\Big[J(q)-J(0)-q^2J'(0)\Big],\quad J=\big[(q^2+\mu_1^2+\mu_2^2)^2+4\mu_1^2\mu_2^2\big]\frac{\arctan\frac{q}{\mu_1+\mu_2}}{q}, \tag{6}
 $$
 
-where $$J'(0)$$ denotes the coefficient of $$q^2$$ in the expansion of $$J$$ about $$q=0$$. The two subtractions remove the $$q^0$$ and $$q^2$$ terms of each massive loop. The first implements $$B(0)=0$$. The second removes a local term $$\propto q_cq^2$$, which in (2) is a contribution to $$f_2\lambda$$ and so to $$\ln\beta$$; its coefficient is a renormalisation constant, logarithmically divergent, and is fixed by matching to the fitted $$\ln\beta$$ in section 4. No other counterterm is added. The integral (6) converges absolutely, and as $$q_c\to0$$, $$\rho$$ tends to a delta function at $$\mu=0$$ and $$F\to1$$.
+where $$J'(0)$$ denotes the coefficient of $$q^2$$ in the expansion of $$J$$ about $$q=0$$. The two subtractions remove the $$q^0$$ and $$q^2$$ terms of each massive loop. The first implements $$B(0)=0$$. The second removes a local term $$\propto q_cq^2$$, which in (2) is a contribution to $$f_2\lambda$$ and so to $$\ln\beta$$; its coefficient is a renormalisation constant, logarithmically divergent, and is fixed by matching to the fitted $$\ln\beta$$ in section 4. No other counterterm is added. The integral (6) converges absolutely, and as $$q_c\to0$$, $$\rho$$ tends to a delta function at $$\mu=0$$ and $$\mathcal F\to1$$.
 
-We evaluated (6) by trapezoidal quadrature in $$\ln\mu_1,\ln\mu_2$$, with a series expansion of the subtracted integrand for $$q\ll\mu_1+\mu_2$$; doubling the grid changes $$F$$ by less than $$10^{-12}$$. The results are numerical:
+We evaluated (6) by trapezoidal quadrature in $$\ln\mu_1,\ln\mu_2$$, with a series expansion of the subtracted integrand for $$q\ll\mu_1+\mu_2$$; doubling the grid changes $$\mathcal F$$ by less than $$10^{-12}$$. The results are numerical:
 
-- At small $$x$$, a fit gives $$F=1+a_1x\ln x+b\,x+O(x^2\ln^2x)$$ with $$a_1$$ equal to $$64/(3\pi^2)$$ to $$10^{-6}$$, as Proposition 1 requires, and $$b=1.98139$$. This $$b$$ agrees with $$\tfrac{11}{12}a_1$$ to six digits; we have not derived that value.
-- $$F$$ decreases monotonically from 1 to 0 and is positive for all $$x$$. Sample values are $$F=0.920,\ 0.644,\ 0.199,\ 0.026$$ at $$x=0.01,\ 0.1,\ 1,\ 10$$.
-- At large $$x$$, $$F\approx0.274/x$$.
+- At small $$x$$, a fit gives $$\mathcal F=1+a_1x\ln x+b\,x+O(x^2\ln^2x)$$ with $$a_1$$ equal to $$64/(3\pi^2)$$ to $$10^{-6}$$, as Proposition 1 requires, and $$b=1.98139$$. This $$b$$ agrees with $$\tfrac{11}{12}a_1$$ to six digits; we have not derived that value.
+- $$\mathcal F$$ decreases monotonically from 1 to 0 and is positive for all $$x$$. Sample values are $$\mathcal F=0.920,\ 0.644,\ 0.199,\ 0.026$$ at $$x=0.01,\ 0.1,\ 1,\ 10$$.
+- At large $$x$$, $$\mathcal F\approx0.274/x$$.
 
-In this scheme the small-$$x$$ expansion can be written $$F=1+a_1x\ln(x/x_\ast)+\dots$$ with
+In this scheme the small-$$x$$ expansion can be written $$\mathcal F=1+a_1x\ln(x/x_\ast)+\dots$$ with
 
 $$
 x_\ast=e^{-b/a_1}=0.3998,
 $$
 
-and at large $$x$$ neither the constant 1 nor a term linear in $$x$$ survives. The tree-level term switches off because, for $$q\ll q_c$$, the gauge field becomes part of the conformal infrared theory of the matter fields, whose trace correlator vanishes; the logarithm stops growing at $$x\approx x_\ast$$. The combination $$x_\ast$$ does not depend on the renormalisation constant, because a change in that constant shifts $$b$$ and the large-$$x$$ linear term equally.
+and at large $$x$$ neither the constant 1 nor a term linear in $$x$$ survives. The disappearance of the constant is expected: for $$q\ll q_c$$ the gauge field becomes part of the conformal infrared theory of the matter fields, whose trace correlator has no $$q^3$$ term. The logarithm, in turn, stops growing near $$x=x_\ast$$. The combination $$x_\ast$$ does not depend on the renormalisation constant, because a change in that constant shifts $$b$$ and the large-$$x$$ linear term equally.
 
 ## 4. The resummed spectrum
 
-The physical $$f$$ is $$f_0F$$ plus the local term $$\propto q_cq^2$$, that is, plus a multiple of $$u$$. With $$N_B=1$$ and $$x=\kappa u$$, the multiple is fixed by requiring that the expansion in $$u$$ reproduce (3) to first order. Allowing for later use a general $$N_B$$, with the extra non-conformal scalars contributing only to the tree term and with $$\kappa=N_B/a_1$$ chosen so that the logarithm has unit coefficient, this gives
+The physical $$f$$ is $$f_0\mathcal F$$ plus the local term $$\propto q_cq^2$$, that is, plus a multiple of $$u$$. With $$N_B=1$$ and $$x=\kappa u$$, the multiple is fixed by requiring that the expansion in $$u$$ reproduce (3) to first order. Allowing for later use a general $$N_B$$, with the extra non-conformal scalars contributing only to the tree term and with $$\kappa=N_B/a_1$$ chosen so that the logarithm has unit coefficient, this gives
 
 $$
-\frac{f}{f_0}=1+\frac{F(\kappa u)-1}{N_B}+u\ln\frac{\beta x_\ast}{\kappa},\qquad\kappa=\frac{N_B}{a_1}. \tag{7}
+\frac{f}{f_0}=1+\frac{\mathcal F(\kappa u)-1}{N_B}+u\ln\frac{\beta x_\ast}{\kappa},\qquad\kappa=\frac{N_B}{a_1}. \tag{7}
 $$
 
 For $$u\ll1$$, (7) reduces to $$1+u\ln u+u\ln\beta$$ up to $$O(u^2\ln^2u)$$. For $$u\gg1$$,
@@ -173,14 +175,14 @@ $$
 
 the logarithm $$\ln(\beta u)$$ of (3) is frozen at its value at $$x=x_\ast$$, which for $$N_B=1$$ is the scale $$q=q_c/x_\ast\approx2.5\,q_c$$. For $$N_B=1$$ the low-$$\ell$$ spectrum is therefore determined by $$(\Delta_0^2,g,\ln\beta)$$ alone, the parameters that $$\ell\ge30$$ data already measure. The colour number $$N$$ and the split between $$N_\Phi$$ and $$N_\psi$$ drop out at leading order. Equation (7) for $$N_B>1$$ is a model: it omits the mixed diagrams discussed in section 3.
 
-At the published $$\ell\ge30$$ parameters and $$N_B=1$$, the resummed spectrum gives a quadrupole $$0.51$$ times the $$\Lambda$$CDM value, against $$0.32$$ for (3), and worsens the low-$$\ell$$ likelihood by $$+4.6$$, against $$+23.6$$ (section 6). The resummed and two-loop forms differ by more than 10% below $$\ell\approx30$$, so the $$\ell\ge30$$ fit itself must be redone with (7); this is done in section 6.
+At the published $$\ell\ge30$$ parameters and $$N_B=1$$, the resummed spectrum gives a quadrupole $$0.51$$ times the $$\Lambda$$CDM value, against $$0.32$$ for (3), and worsens the low-$$\ell$$ likelihood by $$+4.6$$, against $$+23.6$$ (section 6). The resummed and two-loop forms differ by more than 10% below $$\ell\approx33$$, so the $$\ell\ge30$$ fit itself must be redone with (7); this is done in section 6.
 
 ## 5. Positivity and the number of non-conformal scalars
 
 A power spectrum is positive, so $$f$$ must be positive at every $$q$$, including scales far outside the observed range.
 
 <div class="proposition" markdown="1">
-**Proposition 2** (positivity bound). Assume, as found numerically in section 3, that $$F>0$$ for all $$x$$ and $$F\to0$$ as $$x\to\infty$$. Then the spectrum (7) is positive at all $$q$$ if and only if $$\kappa\le\beta x_\ast$$, that is,
+**Proposition 2** (positivity bound). Assume, as found numerically in section 3, that $$\mathcal F>0$$ for all $$x$$ and $$\mathcal F\to0$$ as $$x\to\infty$$. Then the spectrum (7) is positive at all $$q$$ if and only if $$\kappa\le\beta x_\ast$$, that is,
 
 $$
 N_B\le a_1x_\ast\,\beta=0.864\,\beta. \tag{8}
@@ -188,12 +190,12 @@ $$
 </div>
 
 <div class="proof" markdown="1">
-*Proof.* Each term of $$f/f_0=(1-1/N_B)+F(\kappa u)/N_B+u\ln(\beta x_\ast/\kappa)$$ is non-negative when $$\ln(\beta x_\ast/\kappa)\ge0$$, and the second is strictly positive, so $$f>0$$. If $$\ln(\beta x_\ast/\kappa)<0$$, the last term tends to $$-\infty$$ as $$u\to\infty$$ while the others stay bounded, so $$f<0$$ at small enough $$q$$. $$\square$$
+*Proof.* Each term of $$f/f_0=(1-1/N_B)+\mathcal F(\kappa u)/N_B+u\ln(\beta x_\ast/\kappa)$$ is non-negative when $$\ln(\beta x_\ast/\kappa)\ge0$$, and the second is strictly positive, so $$f>0$$. If $$\ln(\beta x_\ast/\kappa)<0$$, the last term tends to $$-\infty$$ as $$u\to\infty$$ while the others stay bounded, so $$f<0$$ at small enough $$q$$. $$\square$$
 </div>
 
-For $$N_B=1$$, (8) requires $$\ln\beta\ge0.146$$, which every published fit satisfies. For larger $$N_B$$, (8) is a statement within the model (7); its derivation assumes the omitted mixed diagrams do not change the infrared slope. Over the one-standard-deviation ranges of $$\ln\beta$$ in the two fits of [[ACDGS]](#ref-acdgs), $$0.64\le\ln\beta\le1.22$$, it gives $$N_B\le1.6$$ to $$2.9$$. At the all-$$\ell$$ refit of section 6, $$\ln\beta=1.11^{+0.16}_{-0.15}$$ and the bound is $$2.6$$ ($$2.3$$ to $$3.1$$). The violation, when it occurs, need not be at observable scales; for $$N_B$$ just above the bound $$f$$ first turns negative at $$\ell<1$$. Positivity is a consistency requirement on the theory at all scales, not a fit to data.
+For $$N_B=1$$, (8) requires $$\ln\beta\ge0.146$$, which every published fit satisfies. For larger $$N_B$$, (8) is a statement within the model (7); its derivation assumes the omitted mixed diagrams do not change the infrared slope. Over the one-standard-deviation ranges of $$\ln\beta$$ in the two fits of [[ACDGS]](#ref-acdgs), $$0.64\le\ln\beta\le1.22$$, it gives $$N_B\le1.6$$ to $$2.9$$. At the all-$$\ell$$ refit of section 6, $$\ln\beta=1.11^{+0.16}_{-0.15}$$ and the bound is $$2.6$$ ($$2.3$$ to $$3.1$$). The violation, when it occurs, need not be at observable scales: at the refit parameters, $$N_B=3$$ makes $$f$$ negative only below $$\ell\approx1$$, and $$N_B=4$$ below $$\ell\approx3.5$$. Positivity is a consistency requirement on the theory at all scales, not a fit to data.
 
-The explicit solution of [[ACDGS]](#ref-acdgs), eq. (12), has $$N=2995$$, $$N_\Phi=23\,255$$ scalars with common $$\xi\approx0.133$$ chosen so that $$r=0.12$$, and no fermions. Then $$\lvert1-8\xi\rvert=0.0613$$, $$N_B\approx88$$ and $$f_1=-11.0$$, as quoted there. Within (7), positivity would require $$\ln\beta\ge\ln(88/0.864)=4.6$$, far outside the fitted range and outside the prior range $$-0.2\le\ln\beta\le3.5$$ used in [[ACDGS]](#ref-acdgs). The conclusion does not depend on how the non-conformal scalars are treated. With the actual coupling of this solution, $$\kappa=q_c/(\lvert g\rvert q_\ast)=(N_\Phi/32)/\lvert f_1\rvert=66$$ instead of $$88/a_1=41$$: the gauge bubble then carries 161% of the two-loop logarithm and the mixed diagrams $$-61\%$$, and positivity would need $$\ln\beta\ge5.1$$. At the published $$\ell\ge30$$ parameters, the spectrum turns negative below $$\ell\approx33$$ in the model (7), and below $$\ell\approx37$$ or $$\ell\approx56$$ if the mixed share of the logarithm is taken to freeze with the gauge share or to keep running. In addition, the crossover of this solution lies at $$\ell_c=\kappa\lvert g\rvert q_\ast\chi_\ast\approx600$$, so the two-loop form on which its parameters were fitted is not valid anywhere in $$\ell\lesssim600$$. Its tensor-to-scalar ratio, $$0.12$$, is also excluded by $$r<0.036$$ [[BK18]](#ref-bk18).
+The explicit solution of [[ACDGS]](#ref-acdgs), eq. (12), has $$N=2995$$, $$N_\Phi=23\,255$$ scalars with common $$\xi\approx0.133$$ chosen so that $$r=0.12$$, and no fermions. Then $$\lvert1-8\xi\rvert=0.0613$$, $$N_B\approx88$$ and $$f_1=-11.0$$, as quoted there. Within (7), positivity would require $$\ln\beta\ge\ln(88/0.864)=4.6$$, far outside the fitted range and outside the prior range $$-0.2\le\ln\beta\le3.5$$ used in [[ACDGS]](#ref-acdgs). The conclusion does not depend on how the non-conformal scalars are treated. With the actual coupling of this solution, $$\kappa=q_c/(\lvert g\rvert q_\ast)=(N_\Phi/32)/\lvert f_1\rvert=66$$ instead of $$88/a_1=41$$: the gauge bubble then carries 161% of the two-loop logarithm and the mixed diagrams $$-61\%$$. If the whole logarithm freezes at $$x=x_\ast$$, positivity needs $$\ln\beta\ge\ln(66/x_\ast)=5.1$$; if the mixed share keeps running, the spectrum turns negative at small enough $$q$$ for any $$\beta$$. At the published $$\ell\ge30$$ parameters, the spectrum turns negative below $$\ell\approx33$$ in the model (7), and below $$\ell\approx37$$ or $$\ell\approx56$$ if the mixed share of the logarithm is taken to freeze with the gauge share or to keep running. In addition, the crossover of this solution lies at $$\ell_c=\kappa\lvert g\rvert q_\ast\chi_\ast\approx600$$, so the two-loop form on which its parameters were fitted is not valid anywhere in $$\ell\lesssim600$$. Its tensor-to-scalar ratio, $$0.12$$, is also excluded by $$r<0.036$$ [[BK18]](#ref-bk18).
 
 ## 6. Comparison with Planck temperature data
 
@@ -210,9 +212,15 @@ The differences are relative to $$\Lambda$$CDM, whose fit has $$n_s=0.964$$. Wit
 
 For $$N_B=1$$ the refit has $$\ell_c=2.9$$, and the predicted temperature spectrum relative to $$\Lambda$$CDM at $$\ell=2,\dots,8$$ is $$0.57,\ 0.62,\ 0.68,\ 0.73,\ 0.78,\ 0.82,\ 0.85$$. The observed quadrupole is about $$0.22$$ of the $$\Lambda$$CDM value, so the model moves towards it without reaching it. The last row shows why the fit at all multipoles matters. The $$\ell\ge30$$ data constrain $$g$$ and $$\ln\beta$$ only along a degenerate direction, and different points along it predict very different low-$$\ell$$ spectra; fitting to $$\ell\ge30$$ alone selects a point that overshoots the suppression at low $$\ell$$.
 
-BACKGROUNDPLACEHOLDER
+![Panel (a): the resummed function F(x) falling monotonically from 1 at small x to 0 at large x, together with its first-order expansion, which agrees below x of about 0.03 and then turns upward. Panel (b): the temperature spectrum relative to LambdaCDM for 2 ≤ ℓ ≤ 50, with Planck 2018 data points and three curves: the two-loop form at the ℓ ≥ 30 parameters falling to 0.32 at the quadrupole, the resummed form at the same parameters falling to about 0.5, and the resummed form refitted at all multipoles falling to 0.57.](/assets/img/resummed-holographic-cosmology-lowell.svg){: .invertible}
 
-The two numbers that the data at $$\ell<30$$ add, $$\Delta(-2\ln\mathcal L)\approx+2$$ at low $$\ell$$ and a small cost at $$\ell\ge30$$ from a $$1$$–$$2\%$$ excess at $$\ell=30$$–$$50$$, are in a regime where the compressed likelihood is adequate in magnitude but not in detail. A fit with the full Planck temperature and polarization likelihood and free background is needed to turn these numbers into a significance.
+*Figure 1.* (a) The resummed gauge-field trace correlator (6) and its first-order expansion $$1+a_1x\ln(x/x_\ast)$$, as functions of $$x=q_c/q$$. (b) Temperature spectrum relative to the $$\Lambda$$CDM fit of section 6 at $$\ell\le50$$, with the Planck 2018 data. The two curves at the published $$\ell\ge30$$ parameters [[ACDGS]](#ref-acdgs) have their amplitude matched to $$\Lambda$$CDM over $$30\le\ell\le800$$; the solid curve is the $$N_B=1$$ refit.
+{: .caption}
+
+
+Part of the penalty at $$\ell\ge30$$ comes from fixing the background. Refitting both models on a $$3\times3$$ grid in $$(\omega_b,\omega_c)$$, with $$\omega_b\in[0.0219,0.0228]$$, $$\omega_c\in[0.1175,0.1225]$$ and the acoustic angle held fixed, and interpolating quadratically, the difference for $$N_B=1$$ becomes $$+4.2$$ with a Gaussian prior from the Planck 2018 values $$\omega_b=0.02237\pm0.00015$$, $$\omega_c=0.1200\pm0.0012$$ [[Planck VI]](#ref-planck-vi), and $$+3.0$$ minimised over the grid without a prior; the minimum then lies on the edge $$\omega_c=0.1175$$. The prior was derived within $$\Lambda$$CDM from data that include the temperature spectrum, so it favours $$\Lambda$$CDM slightly. Outside the grid the quadratic interpolation moves both models to $$\omega_c\approx0.11$$, where the difference nearly vanishes; temperature data to $$\ell=800$$ do not constrain $$\omega_c$$ well enough to make that extrapolation meaningful. Over the treatments within the grid, the resummed model is worse than $$\Lambda$$CDM by $$\Delta(-2\ln\mathcal L)=3.0$$ to $$5.0$$ while having one more primordial parameter. As a rough Gaussian equivalent, $$\sqrt{\Delta(-2\ln\mathcal L)}$$ is $$1.7$$ to $$2.2$$.
+
+After the refit, the cost is shared between low and high multipoles: $$+2.1$$ at $$\ell<30$$, and $$+2.9$$ at $$\ell\ge30$$, mostly from an excess of $$1.3$$–$$1.7\%$$ over $$\Lambda$$CDM at $$\ell=30$$–$$50$$. Both are in a regime where the compressed likelihood is adequate in magnitude but not in detail. A fit with the full Planck temperature and polarization likelihood and free background is needed to turn these numbers into a significance.
 
 ## 7. Further predictions of the same parameters
 
@@ -220,9 +228,9 @@ The two numbers that the data at $$\ell<30$$ add, $$\Delta(-2\ln\mathcal L)\appr
 
 The suppression of the scalar spectrum at $$q\lesssim q_c$$ appears in the reionisation bump of the $$E$$-mode spectrum, which probes the largest scales. At the $$N_B=1$$ refit and $$\tau=0.0544$$, $$C_\ell^{EE}$$ relative to $$\Lambda$$CDM at $$\ell=2,\dots,8$$ is $$0.45,\ 0.56,\ 0.64,\ 0.69,\ 0.74,\ 0.79,\ 0.85$$.
 
-Tensor modes behave differently. The tensor spectrum is $$\Delta_T^2=1/(\pi^2N^2f^T)$$ with $$f^T_0=N_A/256$$ [[CDS]](#ref-cds), and the gauge field is one of $$N_A$$ units in $$f^T_0$$. The crossover changes only that unit, so at leading order the tensor spectrum at low $$\ell$$ changes by a fraction of at most $$1/N_A<1.1\times10^{-3}$$. If primordial $$B$$ modes are detected at low $$\ell$$, the model predicts an unsuppressed reionisation bump in $$BB$$ together with a suppressed one in $$EE$$.
+Tensor modes behave differently. The tensor spectrum is inversely proportional to the analogous function $$f^T$$ of the transverse-traceless part of the correlator, with $$f^T_0=N_A/256$$ [[CDS]](#ref-cds), and the gauge field is one of the $$N_A$$ units in $$f^T_0$$. The crossover changes only that unit, so at leading order the tensor spectrum at low $$\ell$$ changes by a fraction of at most $$1/N_A<1.1\times10^{-3}$$. If primordial $$B$$ modes are detected at low $$\ell$$, the model predicts an unsuppressed reionisation bump in $$BB$$ together with a suppressed one in $$EE$$.
 
-The polarization test is weak. For a cosmic-variance-limited measurement of $$EE$$ at $$2\le\ell\le30$$ over 70% of the sky, the target of LiteBIRD [[LiteBIRD]](#ref-litebird), and with $$\tau$$ refitted in $$\Lambda$$CDM at fixed $$A_se^{-2\tau}$$, the $$N_B=1$$ spectrum differs from the best $$\Lambda$$CDM by $$\Delta\chi^2=2.0$$ (best $$\tau=0.051$$), and by $$1.5$$ using $$\ell\le10$$ only. Foregrounds and noise would reduce this.
+The polarization test is weak. For a cosmic-variance-limited measurement of $$EE$$ at $$2\le\ell\le30$$ over 70% of the sky, an idealisation of the low-$$\ell$$ measurement planned by LiteBIRD [[LiteBIRD]](#ref-litebird), and with $$\tau$$ refitted in $$\Lambda$$CDM at fixed $$A_se^{-2\tau}$$, the $$N_B=1$$ spectrum differs from the best $$\Lambda$$CDM by $$\Delta\chi^2=2.0$$ (best $$\tau=0.051$$), and by $$1.5$$ using $$\ell\le10$$ only. Foregrounds and noise would reduce this.
 
 ### A sum rule for the running
 
@@ -260,7 +268,7 @@ These are template projections at fixed background, not fits, and marginalising 
 
 ### The tensor tilt
 
-The tensor spectrum has the two-loop form (3) with its own parameters $$g_T$$ and $$\beta_T$$. From eq. (7.10) of [[CDS]](#ref-cds), at $$\xi=1/8$$ and with no Yukawa couplings, $$f_1^T=\frac{8}{3\pi^2N_A}(N_\psi+2N_\Phi-2)$$, so $$g_T/g=f_1^T/f_1$$ lies between $$-2/N_A$$ (all fermions) and $$-8/N_A$$ (all scalars). For $$r<0.036$$ this gives $$\lvert g_T\rvert<1.2\times10^{-4}$$, and the tensor tilt is of order $$\lvert g_T\rvert$$ times a logarithm. Its sign depends on $$\ln\beta_T$$, which contains the finite part of the $$\int\sqrt g\,R$$ counterterm through $$\log(g_{\rm YM}^2N/\mu)$$ in $$f_2^T$$ (eq. 7.11 of [[CDS]](#ref-cds)). The scalar $$f_2$$ contains the same logarithm but, when scalars are present, also an infrared-regulated term absent from $$f_2^T$$, so the fitted $$\ln\beta$$ does not fix $$\ln\beta_T$$. Both signs of the tilt occur for admissible values of the counterterm, and the model does not predict it.
+The tensor spectrum has the two-loop form (3) with its own parameters $$g_T$$ and $$\beta_T$$. From eq. (7.10) of [[CDS]](#ref-cds), at $$\xi=1/8$$ and with no Yukawa couplings, $$f_1^T=\frac{8}{3\pi^2N_A}(N_\psi+2N_\Phi-2)$$, so $$g_T/g=f_1^T/f_1$$ lies between $$-2/N_A$$ (all fermions) and $$-8/N_A$$ (all scalars). With $$N_A>889$$ and $$\lvert g\rvert\le0.013$$ this gives $$0<g_T<1.2\times10^{-4}$$. Repeating the steps leading to (3), with $$w_T=g_Tq_\ast/q$$, the tensor tilt at first order is $$n_T=w_T(L_T-1)$$ with $$L_T=\ln(q/\beta_Tg_Tq_\ast)$$. From $$f_2^T$$ (eq. 7.11 of [[CDS]](#ref-cds)), $$L_T=c_T+\ln(q_\ast/\mu)$$ at the pivot, where $$\mu$$ is the renormalisation scale and $$c_T$$, the ratio of the non-logarithmic parts of $$f_2^T$$ and $$f_1^T$$, lies between $$-2.3$$ (all fermions) and $$-2.1$$ (all scalars) for large $$N_A$$. The choice $$\mu$$ amounts to the finite part of the $$\int\sqrt g\,R$$ counterterm. For $$\mu=q_\ast$$, the scheme of [[ACDGS]](#ref-acdgs), the tilt is red, $$n_T\approx-3.2\,w_T$$, of order $$-10^{-4}$$; it is blue if $$\mu<e^{-3.2}q_\ast$$. The scalar $$f_2$$ contains the same logarithm of $$\mu$$, but when scalars are present also an infrared-regulated term absent from $$f_2^T$$, so the fitted $$\ln\beta$$ does not fix the counterterm. The sign of the tensor tilt is therefore not predicted, and its magnitude, below about $$4\times10^{-4}$$ in the scheme $$\mu=q_\ast$$, is far from measurable.
 
 ### Small scales and spectral distortions
 
@@ -274,7 +282,7 @@ The size of the gap can be estimated under two further assumptions: that the dua
 
 ## 9. Limitations and open questions
 
-The low-$$\ell$$ result rests on (A1)–(A3). For conformally coupled matter it is the leading term of the $$1/N_A$$ expansion, and the corrections are suppressed by $$1/N_A<1.1\times10^{-3}$$ by power counting; the counting has not been carried out diagram by diagram to all orders. For $$N_B>1$$ the mixed diagrams between the scalar trace and the gauge trace are of the same order as the gauge loop and have not been computed, so the spectrum (7) and the bound (8) are then a model. A flavour-singlet quartic coupling would add a second crossover and at least one parameter. The prescription $$B(0)=0$$ rests on Lemma 1, and the absence of finite counterterms beyond $$\int\sqrt g$$ and $$\int\sqrt g\,R$$ is a choice; a finite $$\int\sqrt g\,R^2$$-type term would change the large-$$x$$ tail $$F\approx0.27/x$$, which is subleading in (7).
+The low-$$\ell$$ result rests on (A1)–(A3). For conformally coupled matter it is the leading term of the $$1/N_A$$ expansion, and the corrections are suppressed by $$1/N_A<1.1\times10^{-3}$$ by power counting; the counting has not been carried out diagram by diagram to all orders. For $$N_B>1$$ the mixed diagrams between the scalar trace and the gauge trace are of the same order as the gauge loop and have not been computed, so the spectrum (7) and the bound (8) are then a model. A flavour-singlet quartic coupling would add a second crossover and at least one parameter. The prescription $$B(0)=0$$ rests on Lemma 1, and the absence of finite counterterms beyond $$\int\sqrt g$$ and $$\int\sqrt g\,R$$ is a choice; a finite $$\int\sqrt g\,R^2$$-type term would change the large-$$x$$ tail $$\mathcal F\approx0.27/x$$, which is subleading in (7).
 
 The comparison with data uses a compressed temperature likelihood at fixed or gridded background. With it, the resummed model at $$N_B=1$$ is worse than $$\Lambda$$CDM by $$\Delta(-2\ln\mathcal L)$$ between about $$3$$ and $$5$$ while having one more primordial parameter. Whether this survives the full Planck likelihood with polarization and a free background, and how the model fares against ACT and SPT data at high $$\ell$$, has not been determined. The quadrupole remains low compared with the model at about the same level as in $$\Lambda$$CDM.
 
