@@ -1,5 +1,5 @@
 ---
-title: "Exact lattice translations and a discrete Lorentz group leave no dispersion relation"
+title: "Dispersion relations on lattices with an arithmetic Lorentz group"
 date: 2026-10-29
 category: substrate
 order: 4
@@ -14,7 +14,7 @@ If $$\Gamma$$ is a symmetry of the action and the state breaks it, the conclusio
 
 Integral Lorentz transformations of $$\mathbb Z^4$$ and the covariance of lattice wave equations under them were studied by Lorente [[Lorente]](#ref-lorente), who obtains covariance by letting the group act on non-linear functions of the lattice momentum. The proofs rest on the Borel density theorem for arithmetic groups, the Benoist–Quint classification of invariant measures and closed invariant sets on the torus [[Benoist–Quint]](#ref-bq) (the proximal case is due to Bourgain, Furman, Lindenstrauss and Mozes [[BFLM]](#ref-bflm)), and the classification of irreducible connected groups preserving a Lorentzian form [[Di Scala–Leistner–Neukirchner]](#ref-dln), all stated in section 2. What is proved here is their consequence for lattice dynamics, Theorems 1 and 2. Theorem 1 follows from the fact that every non-zero lattice vector has an infinite $$\Gamma$$-orbit; Theorem 2 needs in addition the classification of $$\Gamma$$-invariant measures on the Brillouin torus.
 
-Random point sets with a Lorentz-invariant law are the subject of [quantum sprinklings](/quantum-gravity/quantum-sprinklings/) (quantum states whose counts are Poisson with a random intensity) and [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/) (Haar-random lattices). On [kernel-scale kinematics of a single realisation](/quantum-gravity/per-realisation-kinematics/), one realisation of a cocompact orbit lattice is shown to be a lattice with its own translations whose Lorentz stabiliser is a Zariski-dense lattice in $$SO^+(1,3)$$, so Theorem 1 and Proposition 1 below apply to it directly.
+Random point sets with a Lorentz-invariant law are the subject of [quantum sprinklings](/quantum-gravity/quantum-sprinklings/) (quantum states whose counts are Poisson with a random intensity) and [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/) (Haar-random lattices). On [kernel-scale kinematics of a single realisation](/quantum-gravity/per-realisation-kinematics/), one realisation of a cocompact orbit lattice is shown to be a lattice with its own translations whose Lorentz stabiliser is a Zariski-dense lattice in $$SO^+(1,3)$$, so Theorem 1 and Proposition 1 below apply to the bounded operators on it and the kernels supported on finitely many shells, with the hypotheses stated there.
 
 ## 1. Conventions
 

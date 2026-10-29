@@ -165,7 +165,7 @@ The bound is an estimate within a model with one Yukawa term of strength $$-1$$;
 
 ## 7. Constant terms, tensor propagators and jump generators
 
-The page [The four-dimensional causal-set d'Alembertian has no positive spectral representation](/quantum-gravity/causal-box-spectrum/) gives the two-dimensional Benincasa–Dowker propagator a constant term of size $$1/2$$ in its normalisation, with positive weight supported numerically. Its symbol is therefore bounded, $$P$$ is infinite, and its spectral dimension needs a regularised definition; whether the inequality of Theorem 2 survives such a definition is open.
+The page [The four-dimensional causal-set d'Alembertian has no positive spectral representation](/quantum-gravity/causal-box-spectrum/) gives the two-dimensional Benincasa–Dowker propagator a constant term of size $$1/2$$ in its normalisation; the page proves that its spectral density is non-negative and supports the Stieltjes form numerically. Its symbol is therefore bounded, $$P$$ is infinite, and its spectral dimension needs a regularised definition; whether the inequality of Theorem 2 survives such a definition is open.
 
 For a spin-two propagator with several tensor structures and gauge parameters, the corresponding statement has not been derived. It is open whether non-perturbative information on the Lorentzian spectral function beyond the transverse-traceless mode changes the conclusion of section 5.
 

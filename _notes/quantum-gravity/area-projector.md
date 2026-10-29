@@ -381,7 +381,7 @@ Jacobson's argument uses balls in slices whose extrinsic curvature vanishes at t
 
 Weyl and transverse-traceless curvature are not covered: only two scalar responses of the conformally static class were computed. Weights that depend on elements to the past of the lower element, on molecules with several elements outside the horizon, or on the geometry of the pair are not covered either.
 
-The variance of the signed count is not computed. The coefficients of Proposition 2 are computed for $$3\le d\le12$$ and no closed form in $$(d,j)$$ is known, so positivity for all $$d$$ is open. Whether the first correction to the area law, of order $$\ell_\rho/\ell$$ in the type-0 count, can be used to read off the extrinsic geometry of the horizon, as proposed in [[Barton et al.]](#ref-barton), and whether this survives for weighted counts, is not examined.
+The variance of the signed count of a finite weighting is bounded by a constant times the area for a planar horizon and is evaluated by Monte Carlo in [causal-set counts and dimensionless constants](/quantum-gravity/no-number-from-kinematics/); its dependence on curvature is not computed here. The coefficients of Proposition 2 are computed for $$3\le d\le12$$ and no closed form in $$(d,j)$$ is known, so positivity for all $$d$$ is open. Whether the first correction to the area law, of order $$\ell_\rho/\ell$$ in the type-0 count, can be used to read off the extrinsic geometry of the horizon, as proposed in [[Barton et al.]](#ref-barton), and whether this survives for weighted counts, is not examined.
 
 ## References
 
