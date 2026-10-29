@@ -448,7 +448,7 @@ For the four-dimensional Benincasa–Dowker functional $$F=N-N_0+9N_1-16N_2+8N_3
 | $$\mathrm{Var}\,F$$ | $$1.6\times10^{5}$$ | $$6.1\times10^{5}$$ | $$2.4\times10^{6}$$ | $$8.1\times10^{6}$$ |
 | statistical error | 6% | 8% | 12% | 18% |
 
-so $$\mathrm{Var}\,F$$ grows like $$\bar N^{1.9}$$ over this range. With $$S\propto\rho^{-1/2}F$$ the variance of the action grows like $$\mathrm{Var}\,F/\bar N$$, a fitted power $$\bar N^{0.89}$$; the asymptotic exponent is not determined by these data. For the thinning identity (i), on one realisation of $$300$$ points with $$\epsilon=0.3$$ the formula gives $$44.05$$ and the average over $$3000$$ independent thinnings $$43.11\pm2.18$$. For the inequality (ii), at $$\bar N=1000$$ and $$\epsilon=1/4$$ the variance of $$S_\epsilon$$ (in units of the raw functional) is $$598$$ against $$\epsilon\,\mathrm{Var}\,F(\eta')$$ of order $$4\times10^4$$, and at $$\bar N=2000$$ and $$\epsilon=1/8$$ it is $$144$$ against $$2\times10^4$$.
+so $$\mathrm{Var}\,F$$ grows like $$\bar N^{1.9}$$ over this range. With $$S\propto\rho^{-1/2}F$$ the variance of the action grows like $$\mathrm{Var}\,F/\bar N$$, a fitted power $$\bar N^{0.89}$$; the asymptotic exponent is not determined by these data. For the thinning identity (i), on one realisation of $$300$$ points with $$\epsilon=0.3$$ the formula gives $$44.05$$ and the average over $$3000$$ independent thinnings $$43.11\pm2.18$$. For the inequality (ii), at $$\bar N=1000$$ and $$\epsilon=1/4$$ the variance of $$S_\epsilon$$ (in units of the raw functional) is about $$6\times10^2$$ against $$\epsilon\,\mathrm{Var}\,F(\eta')\approx4\times10^4$$, so the inequality holds with a factor of about $$60$$ to spare.
 
 ## 8. What the results do not exclude
 
