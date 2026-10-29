@@ -285,7 +285,7 @@ Proposition 13 is the lattice pairing of Fermi points for every invariant pure s
 
 ## 6. The full order complex and the Möbius function
 
-If the span restriction is dropped, the complex $$\Delta(P)$$ of all chains is not local, but the index of Theorem 5 has a closed form, and in two dimensions its mean is bounded. This is the reason why the growth of section 3 belongs to the span restriction. Let $$\hat0$$ and $$\hat1$$ be the bottom and top of a causal diamond, $$P^{\circ}$$ the set of elements strictly between them, and $$\Delta(P^{\circ})$$ the order complex of $$P^{\circ}$$.
+If the span restriction is dropped, the complex $$\Delta(P)$$ of all chains is not local, but the index of Theorem 5 has a closed form, and in two dimensions its mean is bounded, so the growth of section 3 does not hold for the complex of all chains. Let $$\hat0$$ and $$\hat1$$ be the bottom and top of a causal diamond, $$P^{\circ}$$ the set of elements strictly between them, and $$\Delta(P^{\circ})$$ the order complex of $$P^{\circ}$$.
 
 <div class="proposition" markdown="1">
 **Proposition 14** (index of the open and closed interval). For every finite poset $$P^{\circ}$$, $$\chi(\Delta(P^{\circ}))=1+\mu(\hat0,\hat1)$$, so any operator as in Theorem 5 has $$\dim\ker K\ge\lvert1+\mu(\hat0,\hat1)\rvert$$ on $$\Delta(P^{\circ})$$. On the closed interval $$\Delta(P^{\circ}\cup\{\hat0,\hat1\})$$, a cone, $$\ker(\delta+\delta^{*})$$ is one-dimensional for the counting form.
