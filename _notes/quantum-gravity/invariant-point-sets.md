@@ -4,7 +4,7 @@ date: 2026-10-29
 category: substrate
 order: 5
 description: Poisson point sets and Haar-random lattices are Poincaré invariant in law, whereas no non-empty invariant random set of null lines or hyperplanes with locally finite mean measure exists, and frames known only modulo an arithmetic lattice support no finite neighbour rule.
-status: The theorems and propositions are proved on the page from cited inputs that are not proved here, namely Siegel's mean value theorem, Moore's ergodicity theorem, Weil's criterion for invariant measures on homogeneous spaces, the Borel density theorem, the Borel–Harish-Chandra finiteness theorem, the generation of p-adic orthogonal groups by reflections, and the analytic continuation of Eisenstein series. The void law of Proposition 2 is proved in two dimensions only, and the Hecke statement of Proposition 10 concerns the Eisenstein sector only.
+status: The theorems and propositions are proved on the page from cited inputs that are not proved here, namely Siegel's mean value theorem, Moore's ergodicity theorem, Weil's criterion for invariant measures on homogeneous spaces, the Borel density theorem, the Borel–Harish-Chandra finiteness theorem, and the generation of p-adic orthogonal groups by reflections. Equation (5) is proved for real part of s above 2, and its continuation to the line with real part 1 assumes the standard meromorphic continuation of Eisenstein series. The void law of Proposition 2 is proved in two dimensions only, and the Hecke statement of Proposition 10 concerns the Eisenstein sector only.
 excludes: Poincaré-invariant random sets of null lines or null hyperplanes with Radon mean measure, other than the empty set; invariant random sets of non-null lines with finite expected incidence with bounded sets; invariant point processes with complexified or hyperboloid-valued marks that are not all trivial and have finite intensity on the real slice; equivariant rules that select a finite non-empty set of neighbours from lattice-of-frames marks on Poisson points; Hecke steps as changes of a point set confined to a bounded region; a hand on the causal order of a Poisson process or of a mixed Poisson process with random constant intensity.
 ---
 
@@ -189,7 +189,7 @@ The space of null lines is the quotient $$P/H$$ of the Poincaré group by the st
 
 <div class="theorem" markdown="1">
 
-**Theorem W** (Weil's criterion). Let $$\mathcal G$$ be a locally compact group, $$H$$ a closed subgroup, and $$\Delta_{\mathcal G},\Delta_H$$ the modular functions. Then $$\mathcal G/H$$ carries a non-zero $$\mathcal G$$-invariant Radon measure if and only if $$\Delta_{\mathcal G}\vert _H=\Delta_H$$; such a measure is unique up to a constant factor (see, for instance, section 2.6 of Folland [[Folland]](#ref-folland)).
+**Theorem W** (Weil's criterion). Let $$\mathcal G$$ be a locally compact group, $$H$$ a closed subgroup, and $$\Delta_{\mathcal G},\Delta_H$$ the modular functions. Then $$\mathcal G/H$$ carries a non-zero $$\mathcal G$$-invariant Radon measure if and only if $$\Delta_{\mathcal G}\vert _H=\Delta_H$$; such a measure is unique up to a constant factor (see, for instance, chapter 2 of Folland [[Folland]](#ref-folland)).
 
 </div>
 
@@ -281,7 +281,7 @@ A rule that sees frames only through $$\Gamma$$-cosets therefore selects either 
 
 ## 5. Hecke correspondences between lattices
 
-Sections 2 to 4 concern structure at the real place. A different proposal replaces "a neighbouring point in spacetime" by "a neighbouring lattice": two lattices are neighbours at a prime $$p$$ when they differ by a Kneser step, and a Hecke correspondence moves from a lattice to its neighbours. The question is whether such steps can serve as dynamics of a Lorentz-invariant substrate.
+Sections 2 to 4 concern structure at the real place. A different proposal replaces "a neighbouring point in spacetime" by "a neighbouring lattice": two lattices are neighbours at a prime $$p$$ when they differ by a Kneser step [[Kneser]](#ref-kneser), and a Hecke correspondence moves from a lattice to its neighbours. The question is whether such steps can serve as dynamics of a Lorentz-invariant substrate.
 
 Take $$\mathbb R^4$$ with $$Q=x_0^2-x_1^2-x_2^2-x_3^2$$, and let $$\mathcal Y$$ be the set of lattices $$L\subset\mathbb R^4$$ on which the bilinear form $$B$$ takes integer values and which have Gram determinant $$-1$$. An even unimodular lattice of signature $$(1,3)$$ does not exist (the signature must be divisible by 8), so each $$L\in\mathcal Y$$ is odd, and by the classification of indefinite odd unimodular lattices it is isometric to $$\mathbb Z^4$$ with the form $$Q$$. The group $$G=SO^+(1,3)$$ acts transitively on $$\mathcal Y$$ (the automorphism group of $$\mathbb Z^4$$ meets all four components of $$O(1,3)$$), and $$\mathbb Z^4\in\mathcal Y$$ has stabiliser $$\Gamma_0=SO^+(1,3;\mathbb Z)$$, a lattice in $$G$$ by the Borel–Harish-Chandra theorem [[Borel–Harish-Chandra]](#ref-bhc). So $$\mathcal Y\cong G/\Gamma_0$$ carries a $$G$$-invariant probability measure. For an odd prime $$p$$ and $$L\in\mathcal Y$$, a vector $$w\in L\setminus pL$$ with $$Q(w)\equiv0\pmod{p^2}$$ defines the neighbour
 
@@ -355,7 +355,7 @@ To prove (5) we classify, for a fixed primitive null vector $$u$$ of $$L$$, how 
 
 </div>
 
-Each function $$B(u,x)^{-s}$$ on $$H^3$$ is an eigenfunction of the Laplacian: in the upper half-space model with $$u$$ at infinity it is proportional to $$y^{s}$$, and $$\Delta y^s=s(2-s)y^s$$ for $$\Delta=-y^2(\partial_x^2+\partial_y^2+\partial_z^2)+y\partial_y$$. Hence $$E_s$$ has Laplace eigenvalue $$s(2-s)$$, which equals $$1+t^2$$ at $$s=1+it$$. The Eisenstein series $$E_s$$ continues meromorphically in $$s$$, and (5) continues with it. At $$s=1+it$$ the right side of (5) is $$\big(2p\cos(t\ln p)+c_p\big)E_s(L)$$, so on this sector the operator $$T_p=\sum_{L'\in N_p(L)}$$ acts as
+Each function $$B(u,x)^{-s}$$ on $$H^3$$ is an eigenfunction of the Laplacian: in the upper half-space model with $$u$$ at infinity it is proportional to $$y^{s}$$, and $$\Delta y^s=s(2-s)y^s$$ for $$\Delta=-y^2(\partial_x^2+\partial_y^2+\partial_z^2)+y\partial_y$$. Hence $$E_s$$ has Laplace eigenvalue $$s(2-s)$$, which equals $$1+t^2$$ at $$s=1+it$$. Assuming the standard meromorphic continuation of the Eisenstein series $$E_s$$ in $$s$$, (5) continues with it. At $$s=1+it$$ the right side of (5) is $$\big(2p\cos(t\ln p)+c_p\big)E_s(L)$$, so on this sector the operator $$T_p=\sum_{L'\in N_p(L)}$$ acts as
 
 $$
 T_p=2p\cos\big(\ln p\,\sqrt{\Delta-1}\big)+c_p .
@@ -423,7 +423,7 @@ which has signature $$(1,3)$$ and determinant $$-17^6$$, and identify $$L\otimes
 
 </div>
 
-An improper automorphism would have a single rational spinor norm $$r$$. Away from 2 and 17 the lattice is unimodular, which forces $$r$$ to be a unit there, and at 17 this leaves $$r$$ in the class of $$1$$ or $$17$$ modulo squares; but the 17-adic structure of $$L$$ allows an improper automorphism only the classes $$u$$ and $$17u$$ with $$u$$ a non-residue. The spinor norm is the homomorphism $$\theta$$ from an orthogonal group to $$\mathbb Q_p^\times/(\mathbb Q_p^\times)^2$$ that takes a reflection in a vector $$v$$ to the class of $$Q(v)$$. We use two cited facts. For a lattice $$L_p$$ over $$\mathbb Z_p$$ with $$p$$ odd, the orthogonal group $$O(L_p)$$ is generated by reflections (Kneser [[Kneser]](#ref-kneser); see also O'Meara [[O'Meara]](#ref-omeara), §92). An improper isometry of a rational quadratic space is a product of an odd number of rational reflections (Cartan–Dieudonné), so an improper automorphism $$\sigma$$ of $$L$$ has a spinor norm $$r\in\mathbb Q^\times/(\mathbb Q^\times)^2$$; it is also an improper isometry of $$L_p$$ for every prime $$p$$, with spinor norm the image of $$r$$ in $$\mathbb Q_p^\times/(\mathbb Q_p^\times)^2$$.
+An improper automorphism would have a single rational spinor norm $$r$$. Away from 2 and 17 the lattice is unimodular, which forces $$r$$ to be a unit there, and at 17 this leaves $$r$$ in the class of $$1$$ or $$17$$ modulo squares; but the 17-adic structure of $$L$$ allows an improper automorphism only the classes $$u$$ and $$17u$$ with $$u$$ a non-residue. The spinor norm is the homomorphism $$\theta$$ from an orthogonal group to $$\mathbb Q_p^\times/(\mathbb Q_p^\times)^2$$ that takes a reflection in a vector $$v$$ to the class of $$Q(v)$$. We use two cited facts. For a lattice $$L_p$$ over $$\mathbb Z_p$$ with $$p$$ odd, the orthogonal group $$O(L_p)$$ is generated by reflections (O'Meara [[O'Meara]](#ref-omeara), §92). An improper isometry of a rational quadratic space is a product of an odd number of rational reflections (Cartan–Dieudonné), so an improper automorphism $$\sigma$$ of $$L$$ has a spinor norm $$r\in\mathbb Q^\times/(\mathbb Q^\times)^2$$; it is also an improper isometry of $$L_p$$ for every prime $$p$$, with spinor norm the image of $$r$$ in $$\mathbb Q_p^\times/(\mathbb Q_p^\times)^2$$.
 
 <div class="proof" markdown="1">
 
@@ -487,7 +487,7 @@ Several points are undecided. For a non-Poisson invariant law with infinite inte
 6. <a id="ref-moore"></a>Moore, "Ergodicity of flows on homogeneous spaces," Amer. J. Math. 88 (1966) 154. Ergodicity of the Lorentz group on the space of lattices.
 7. <a id="ref-borel"></a>Borel, "Density properties for certain subgroups of semi-simple groups without compact components," Ann. of Math. 72 (1960) 179. Zariski density of lattices, used in Theorem 6 and Proposition 7.
 8. <a id="ref-bhc"></a>Borel, Harish-Chandra, "Arithmetic subgroups of algebraic groups," Ann. of Math. 75 (1962) 485. Finite covolume of arithmetic subgroups, used in sections 5 and 6.
-9. <a id="ref-kneser"></a>Kneser, "Klassenzahlen indefiniter quadratischer Formen in drei oder mehr Veränderlichen," Arch. Math. 7 (1956) 323. 
-10. <a id="ref-omeara"></a>O'Meara, *Introduction to Quadratic Forms*, Springer (1963), §92. Generation of the orthogonal group of a lattice over the p-adic integers by reflections.
-11. <a id="ref-folland"></a>Folland, *A Course in Abstract Harmonic Analysis*, 2nd ed., CRC Press (2016), section 2.6. Weil's criterion for invariant measures on quotients.
+9. <a id="ref-kneser"></a>Kneser, "Klassenzahlen definiter quadratischer Formen," Arch. Math. 8 (1957) 241. The neighbour construction of section 5.
+10. <a id="ref-omeara"></a>O'Meara, *Introduction to Quadratic Forms*, Springer (reprint 2000), §92. Generation of the orthogonal group of a lattice over the p-adic integers (p odd) by reflections.
+11. <a id="ref-folland"></a>Folland, *A Course in Abstract Harmonic Analysis*, CRC Press (2016), chapter 2. Weil's criterion for invariant measures on quotients.
 12. <a id="ref-lp"></a>Last, Penrose, *Lectures on the Poisson Process*, Cambridge University Press (2017). Mecke's formula and the Palm law of a Poisson process.

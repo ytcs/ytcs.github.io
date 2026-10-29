@@ -258,7 +258,7 @@ Let $$B\subset T^3$$ be the band of the cubic vertex $$H_3$$, the set of momenta
 *Proof.* $$B$$ contains $$0$$ and is closed under addition and negation, so it is a subgroup. A subgroup containing a neighbourhood $$\mathcal N$$ of $$0$$ is open, since $$b+\mathcal N\subset B$$ for each $$b\in B$$. An open subgroup is also closed, its complement being a union of cosets, and $$T^3$$ is connected.
 </div>
 
-Under (G) the band is therefore the whole zone, where Proposition 1 is unavailable and Umklapp processes are present. Band-limited vertices of the form of Proposition 1 are thus compatible with deformed diffeomorphisms whose nonlinear part is the transport term only if (G) is dropped. Whether some deformation exists under which a band-limited cubic vertex is gauge invariant is open.
+Under (G) the band is therefore the whole zone, where Proposition 1 is unavailable and Umklapp processes are present. Keeping band-limited vertices of the form of Proposition 1 thus requires dropping (G), that is, a deformation of the gauge transformations that does not close on band-limited fields. Whether some deformation exists under which a band-limited cubic vertex is gauge invariant is open.
 
 ### 6.3 Lorentz invariance
 

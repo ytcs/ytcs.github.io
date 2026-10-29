@@ -243,7 +243,7 @@ $$
 
 The $$\ell-N+1$$ or more harmonic cochains that Proposition 10 leaves at zero are lifted to $$r$$, and the other singular values are at least $$\tfrac12(\sqrt{r^{2}+4\mu_*}-r)$$. If $$\mu_0\ge1$$, as observed, this is $$\tfrac12(\sqrt{r^{2}+4}-r)$$ or more; for $$r$$ of order one in the units above, no light mode remains. Without the gap on $$L_0$$, Proposition 11 gives no such lower bound.
 
-{{CHECK}}
+On sprinklings with $$N=70$$ and $$N=120$$ (186 to 431 links) the identity $$\chi=N-\ell$$, the kernel dimension $$2b_0+\ell-N$$ of $$K$$ and of the Krein operator $$\delta-\delta^{T}$$, the bound $$L_2\ge\mathbb 1$$ (with the value $$1$$ attained) and the singular-value list of Proposition 11 for $$r=0.5,1,2$$ were confirmed numerically.
 
 Four limits apply to Propositions 9 to 11.
 
