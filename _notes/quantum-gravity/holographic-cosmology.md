@@ -14,7 +14,7 @@ Positivity of the power spectrum at all scales bounds the number $$N_B=1+\sum_M(
 
 The framework is due to McFadden and Skenderis [[MS09]](#ref-ms09), [[MS10]](#ref-ms10). Afshordi, Corianò, Delle Rose, Gould and Skenderis [[ACDGS]](#ref-acdgs) used the two-loop coefficients, computed in full by Corianò, Delle Rose and Skenderis [[CDS]](#ref-cds), to fit the model to Planck 2015 data; they found the fit at all multipoles disfavoured relative to $$\Lambda$$CDM with running, and attributed this to the breakdown of perturbation theory at $$\ell\lesssim30$$. Afshordi, Gould and Skenderis [[AGS]](#ref-ags) repeated the analysis in more detail. The dressing of a three-dimensional gauge field by a large number of matter fields is standard; Giombi, Tarnopolsky and Klebanov [[GTK]](#ref-gtk) compute the stress-tensor two-point coefficient of conformal QED at the resulting infrared fixed point to next-to-leading order in $$1/N$$. What this page adds is the crossover of the trace correlator between the perturbative and infrared regimes, an exact check of the two-loop coefficient against it, the consequences for the low-$$\ell$$ spectrum and for positivity, and a refit of the spectrum to temperature data.
 
-The dictionary is stated in section 1. A reader needs one-loop computations in three-dimensional gauge theory and the basics of CMB power spectra.
+The dictionary is stated in section 1. A reader needs one-loop computations in three-dimensional gauge theory and the basics of CMB power spectra. For the surrounding map see [The landscape of quantum-gravity theories](/quantum-gravity/landscape/).
 
 ## 1. The two-loop spectrum and where it fails
 
@@ -249,7 +249,7 @@ The low-$$\ell$$ result and the bound (11) are statements within stated hypothes
 - A flavour-singlet quartic coupling (violating A3) adds a second crossover scale and at least one parameter, and could alter the low-$$\ell$$ shape.
 - Other finite counterterms. The prescription $$\mathcal B(0)=0$$ rests on Lemma 1, and the coefficient of the curvature counterterm is absorbed in $$\ln\beta$$; a finite curvature-squared term would change the large-$$x$$ tail $$\mathcal F\approx0.27/x$$, which is subleading in (9).
 - The fit to data. The temperature comparison uses an approximate likelihood and a fixed background; with a free background and polarization the gap to $$\Lambda$$CDM could differ in either direction.
-- Late times. The only term of the correlator independent of $$q$$ is the contact term of Lemma 1, which does not enter $$\mathcal B$$, so the fitted dual contains no constant that could be identified with a late-time vacuum energy; any such energy requires ingredients outside the fitted dual theory.
+- Late times. The only term of the correlator independent of $$q$$ is the contact term of Lemma 1, which does not enter $$\mathcal B$$; the page makes no statement about a late-time vacuum energy.
 
 ## 9. Open points
 

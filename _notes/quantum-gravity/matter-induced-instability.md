@@ -3,7 +3,7 @@ title: A matter-induced instability in Freezing Gravity
 date: 2026-10-29
 category: dark-sector
 order: 6
-description: Adding pressureless matter to the Freezing Gravity dark-energy model produces a sub-horizon instability whose growth rate does not depend on wavenumber. It affects every phantom phase and every constant non-zero beyond-Horndeski coupling, and no constant coupling stabilises the DESI DR2 fits, unless one of four stated escape routes applies.
+description: Adding pressureless matter to the Freezing Gravity dark-energy model produces a sub-horizon instability whose growth rate does not depend on wavenumber. It affects every phantom phase and every constant non-zero beyond-Horndeski coupling, and no constant coupling stabilises the DESI DR2 fits, unless one of the escape routes of section 7 applies.
 status: The quadratic action and its exact reduction are proved by direct expansion; the growth rate is derived at leading order in the square root of the lapse-gradient coefficient and compared with exact numerical integration of the linear equations. DESI numbers use CPL posterior means.
 excludes: Freezing Gravity with minimally coupled dust, constant effective-field-theory parameters and a small lapse-gradient coefficient, in any phantom phase with zero beyond-Horndeski coupling and zero tensor-speed excess, and for any non-zero constant beyond-Horndeski coupling on a cosmological-constant background.
 ---
@@ -22,11 +22,11 @@ Units are $$M_{\rm Pl}^2/2=1$$, as in [[YYS]](#ref-yys), so that the Friedmann e
 
 ## 1. Background, perturbations and the model
 
-**Background.** The universe is described by a flat Friedmann–Robertson–Walker metric $$ds^2=-N^2dt^2+a(t)^2d\mathbf x^2$$ with lapse $$N=1$$ on the background, scale factor $$a(t)$$ and Hubble rate $$H=\dot a/a$$. Two components are present: pressureless matter (dust) with density $$\rho_m\propto a^{-3}$$, and a dark-energy component with density $$\rho_{\rm de}$$ and pressure $$p_{\rm de}=w\rho_{\rm de}$$. The density fractions are $$\Omega_m=\rho_m/(6H^2)$$ and $$\Omega_{\rm de}=\rho_{\rm de}/(6H^2)$$, with $$\Omega_m+\Omega_{\rm de}=1$$. A cosmological constant has $$w=-1$$ and $$\rho_{\rm de}$$ constant. The line $$w=-1$$ is the phantom divide: a component with $$w<-1$$ is called phantom, and in the models considered here it is a dark-energy density that grows with time. Recent baryon acoustic oscillation (BAO) measurements by DESI, combined with the cosmic microwave background and supernovae, prefer a dark-energy equation of state $$w(a)=w_0+w_a(1-a)$$ (the CPL form) with $$w_0>-1$$ and $$w_a<0$$ [[DESI]](#ref-desi). Then $$w$$ is phantom at early times and crosses $$-1$$ at $$a_c=1+(1+w_0)/w_a$$, that is at redshift $$z_c=1/a_c-1$$.
+*Background.* The universe is described by a flat Friedmann–Robertson–Walker metric $$ds^2=-N^2dt^2+a(t)^2d\mathbf x^2$$ with lapse $$N=1$$ on the background, scale factor $$a(t)$$ and Hubble rate $$H=\dot a/a$$. Two components are present: pressureless matter (dust) with density $$\rho_m\propto a^{-3}$$, and a dark-energy component with density $$\rho_{\rm de}$$ and pressure $$p_{\rm de}=w\rho_{\rm de}$$. The density fractions are $$\Omega_m=\rho_m/(6H^2)$$ and $$\Omega_{\rm de}=\rho_{\rm de}/(6H^2)$$, with $$\Omega_m+\Omega_{\rm de}=1$$. A cosmological constant has $$w=-1$$ and $$\rho_{\rm de}$$ constant. The line $$w=-1$$ is the phantom divide: a component with $$w<-1$$ is called phantom, and in the models considered here it is a dark-energy density that grows with time. Recent baryon acoustic oscillation (BAO) measurements by DESI, combined with the cosmic microwave background and supernovae, prefer a dark-energy equation of state $$w(a)=w_0+w_a(1-a)$$ (the CPL form) with $$w_0>-1$$ and $$w_a<0$$ [[DESI]](#ref-desi). Then $$w$$ is phantom at early times and crosses $$-1$$ at $$a_c=1+(1+w_0)/w_a$$, that is at redshift $$z_c=1/a_c-1$$.
 
-**Perturbations.** A small perturbation is decomposed into Fourier modes of comoving wavenumber $$k$$. A mode is sub-horizon when $$\kappa\equiv k/(aH)\gg1$$, that is, when its wavelength is much shorter than the Hubble radius. We work to linear order, for one mode at a time, in the gauge in which the dark-energy scalar is uniform on constant-time slices (unitary gauge), so that the scalar's own perturbation is carried by the metric.
+*Perturbations.* A small perturbation is decomposed into Fourier modes of comoving wavenumber $$k$$. A mode is sub-horizon when $$\kappa\equiv k/(aH)\gg1$$, that is, when its wavelength is much shorter than the Hubble radius. We work to linear order, for one mode at a time, in the gauge in which the dark-energy scalar is uniform on constant-time slices (unitary gauge), so that the scalar's own perturbation is carried by the metric.
 
-**The model.** In unitary gauge Freezing Gravity is defined by the action [[YYS]](#ref-yys), eq. (3.27),
+*The model.* In unitary gauge Freezing Gravity is defined by the action [[YYS]](#ref-yys), eq. (3.27),
 
 $$
 S_g=\int dt\,d^3x\,N\sqrt h\Big[\sigma_1\Big(K_{ij}K^{ij}-\tfrac13K^2\Big)+r_1R+r_2\,\mathfrak a_i\mathfrak a^i-\tfrac23K^2+4\mathcal F K-6\mathcal G^2\Big], \tag{2}
@@ -40,7 +40,7 @@ $$
 
 The parameter $$\alpha_T$$ is the excess of the tensor speed over the speed of light, $$\alpha_H$$ the beyond-Horndeski coupling of $$R$$ to the lapse perturbation, $$\alpha_L$$ the detuning of the two $$K^2$$ terms, and $$\beta_3$$ the coefficient of the lapse gradient energy $$(\partial_i\delta N)^2/a^2$$, in the notation of Gleyzes, Langlois and Vernizzi [[GLV]](#ref-glv) and Langlois et al. [[LMNV]](#ref-lmnv). Throughout, $$\alpha_L\ge0$$ and $$\beta_3>0$$. In vacuum the scalar mode of this model has kinetic coefficient $$\beta_3\kappa^2$$ and gradient coefficient $$2\alpha_H-2(1+\alpha_H)\dot H/H^2+2\dot\alpha_H/H$$ at $$\alpha_L=\alpha_T=0$$ ([[YYS]](#ref-yys), eq. (4.17)); the gradient coefficient is $$-2\dot H/H^2$$ at $$\alpha_H=0$$, negative in any phantom phase, which is why the vacuum conditions of [[YYS]](#ref-yys), eqs. (4.15)–(4.16), require a sufficiently large $$\alpha_H$$ there. The question is which of the two derivatives $$\dot H$$ and $$\dot{\mathcal F}$$ takes the place of $$\dot H$$ once dust is present. For the DESI+CMB+DESY5 fit at $$z=0.93$$, on the phantom side, $$-2\dot H/H^2=2.18$$ while $$-2\dot{\mathcal F}/H^2=3(1+w)\Omega_{\rm de}=-0.117$$: if the total $$\dot H$$ entered, matter would stabilise the phantom phase, and if $$\dot{\mathcal F}$$ enters it would not. Section 3 shows that $$\dot{\mathcal F}$$ enters.
 
-**Dust.** We add pressureless matter in the form
+*Dust.* We add pressureless matter in the form
 
 $$
 S_m=-\frac12\int d^4x\sqrt{-g}\;\rho_m\,\big(g^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi+1\big),
@@ -54,7 +54,7 @@ $$
 
 So $$\rho_{\rm de}=6\mathcal G^2$$ and $$\rho_{\rm de}+p_{\rm de}=-4\dot{\mathcal F}$$ as claimed, and $$-2\dot{\mathcal F}/H^2=3(1+w)\Omega_{\rm de}$$. Radiation is not included. In the redshift range used below its density fraction is below $$10^{-3}$$, and we do not derive its effect on (1).
 
-**Hypotheses.** Results below are stated under the following hypotheses, which are collected here because the escape routes of section 7 are the failures of each.
+*Hypotheses.* Results below are stated under the following hypotheses, which are collected here because the escape routes of section 7 are the failures of each.
 
 - (H1) $$\alpha_L=0$$ (section 5 treats small $$\alpha_L>0$$).
 - (H2) The only matter is the dust $$S_m$$, minimally coupled, in a flat background (3).
@@ -190,7 +190,7 @@ The friction and $$\dot\beta_3$$ terms are smaller than $$\ddot v$$ by $$H/\Gamm
 
 In the language of the effective field theory of dark energy, $$v$$ is minus the Goldstone time shift of the dark energy seen from the dust's rest frame, and the $$v$$ part of (5) is $$a\,k^2[\beta_3\dot v^2-B_mH^2v^2]$$. The kinetic term comes from $$\mathfrak a_i\mathfrak a^i$$ and carries two spatial gradients, as does the potential term, which is why $$k^2$$ cancels in the rate. The instability is of the type that De Felice et al. [[DFP]](#ref-dfp) call tachyonic: a negative squared frequency $$B_mH^2/\beta_3$$ that is independent of $$k$$ and much larger than $$H^2$$ in magnitude, as opposed to a gradient instability, whose rate grows with $$k$$. The term $$2\dot\alpha_H/H$$ enters through an integration by parts and would be lost in a frozen-coefficient treatment of the action.
 
-**Checks.** We integrate the linear equations of the reduced system without approximating the time dependence: the Euler–Lagrange equations of the two-variable Lagrangian in $$(\mathcal R,v)$$ obtained from (4) with $$\delta N=\dot v$$ and the shift eliminated (for $$\alpha_L>0$$), on $$w_0w_a$$ backgrounds with $$H_0=1$$. The amplitude is $$\mathcal X=(\zeta^2+H^2v^2)^{1/2}$$ and its local growth rate is $$d\ln\mathcal X/d\ln a$$. Initial data at $$z=4$$ are $$Hv=\zeta=10^{-3}$$ ($$\mathcal R=0$$), $$\dot v=0$$ and $$\dot\zeta=-\rho_mv/4$$, which satisfy the constraint. Comoving wavenumbers are in units of $$H_0$$; $$k=10H_0$$ is $$3.3\times10^{-3}\,h\,{\rm Mpc}^{-1}$$. The first test is the exact $$\alpha_L=0$$ system (6)–(7), which isolates the $$k$$-dependence.
+*Checks.* We integrate the linear equations of the reduced system without approximating the time dependence: the Euler–Lagrange equations of the two-variable Lagrangian in $$(\mathcal R,v)$$ obtained from (4) with $$\delta N=\dot v$$ and the shift eliminated (for $$\alpha_L>0$$), on $$w_0w_a$$ backgrounds with $$H_0=1$$. The amplitude is $$\mathcal X=(\zeta^2+H^2v^2)^{1/2}$$ and its local growth rate is $$d\ln\mathcal X/d\ln a$$. Initial data at $$z=4$$ are $$Hv=\zeta=10^{-3}$$ ($$\mathcal R=0$$), $$\dot v=0$$ and $$\dot\zeta=-\rho_mv/4$$, which satisfy the constraint. Comoving wavenumbers are in units of $$H_0$$; $$k=10H_0$$ is $$3.3\times10^{-3}\,h\,{\rm Mpc}^{-1}$$. The first test is the exact $$\alpha_L=0$$ system (6)–(7), which isolates the $$k$$-dependence.
 
 | $$k/H_0$$ | $$\kappa$$ | measured rate $$/H$$ | $$\sqrt{-B_m/\beta_3}$$ | $$\sqrt{-B_{\rm eff}/\beta_3}$$ |
 |---|---|---|---|---|
@@ -220,7 +220,7 @@ Agreement is within 8% in all rows, and the largest deviations occur where $$B_m
 
 The local rates do not depend on the initial data. Integrated growth does, because the growing mode needs a fraction of an e-fold to dominate: for the first fit of section 6, imposing the initial data at $$z=2.33$$ rather than $$z=4$$ gives 19.6 instead of 23.0 e-folds between $$z=2.33$$ and the crossing.
 
-**A worked value.** On $$\Lambda$$CDM with $$\alpha_H=0.3$$ and $$\alpha_T=0$$ at $$z=1.5$$, $$\Omega_m=0.3027\cdot15.625/(0.3027\cdot15.625+0.6973)=0.8715$$, so $$B_m=0.3(2-3\cdot0.8715)=-0.184$$ and $$\Gamma/H=\sqrt{0.184/10^{-4}}=42.9$$, against 42.0 measured. In the vacuum limit ($$\Omega_m\to0$$), (1) reduces to the coefficient of [[YYS]](#ref-yys), eq. (4.17), at $$\alpha_T=0$$; for $$\alpha_H=\alpha_T=0$$ and $$w=-1$$, $$B_m=0$$, as it must for general relativity with dust and a cosmological constant.
+*A worked value.* On $$\Lambda$$CDM with $$\alpha_H=0.3$$ and $$\alpha_T=0$$ at $$z=1.5$$, $$\Omega_m=0.3027\cdot15.625/(0.3027\cdot15.625+0.6973)=0.8715$$, so $$B_m=0.3(2-3\cdot0.8715)=-0.184$$ and $$\Gamma/H=\sqrt{0.184/10^{-4}}=42.9$$, against 42.0 measured. In the vacuum limit ($$\Omega_m\to0$$), (1) reduces to the coefficient of [[YYS]](#ref-yys), eq. (4.17), at $$\alpha_T=0$$; for $$\alpha_H=\alpha_T=0$$ and $$w=-1$$, $$B_m=0$$, as it must for general relativity with dust and a cosmological constant.
 
 ## 5. Finite $$\alpha_L$$: the band
 
@@ -321,7 +321,7 @@ The comparison confirms the $$2\dot\alpha_H/H$$ term. A rate $$d\alpha_H/d\ln a\
 
 in e-folds. Whether a large $$\alpha_L$$ removes the instability therefore depends on scales $$k\lesssim aH$$ that this page does not resolve.
 
-*Other matter content or couplings.* The page treats minimally coupled dust at $$-1<\alpha_L$$ with $$\alpha_L\ge0$$. A non-minimal coupling of dust to the scalar, radiation with $$\alpha_H\neq0$$, or the branch $$-1<\alpha_L<0$$ are not covered.
+*Other matter content or couplings.* The page treats minimally coupled dust with $$\alpha_L\ge0$$. A non-minimal coupling of dust to the scalar, radiation with $$\alpha_H\neq0$$, and the branch $$-1<\alpha_L<0$$ are not treated.
 
 ## 8. The closed-form conditions of the matter-coupled model
 
