@@ -62,7 +62,7 @@ be the rescaled energy shell. Its limit as $$\rho\to0$$ is the massless resonant
 
 (S3) There are an open set $$U\subset\Lambda$$ meeting $$\mathcal M_0^\ast$$ and a number $$\rho_1>0$$ such that for $$0<\rho<\rho_1$$ the quartets $$\rho q$$ with $$q\in\mathcal M_\rho\cap U$$ have $$\mathcal M_4(\rho q)\ne0$$ and pairwise distinct velocities $$v_i$$.
 
-(S4) It is not the case that $$J(k)$$ is a multiple of $$\eta^{\mu\nu}$$ for every $$k$$. (By Lemma A this means that the coefficient $$\beta$$ of $$\mathsf s^\sharp\mathsf s^\sharp$$ in $$J$$ is not identically zero: the graviton couples to energy and momentum.)
+(S4) The tensor $$J$$ is not identically a multiple of $$\eta^{\mu\nu}$$. (By Lemma A this means that the coefficient $$\beta$$ of $$\mathsf s^\sharp\mathsf s^\sharp$$ in $$J$$ is not identically zero: the graviton couples to energy and momentum.)
 
 In general relativity $$\Omega=\lvert k\rvert$$ and $$J^{\mu\nu}=-\kappa\Omega\,\mathsf s^{\sharp\mu}\mathsf s^{\sharp\nu}$$, with $$\mathsf s^\sharp=-p/\Omega$$ null, which is (1) rewritten with $$p\cdot K=-\Omega\,\mathsf s\cdot K$$; so $$\beta=-\kappa\Omega$$ there. The hypotheses hold in that case. We do not assert that they hold for a lattice graviton; Theorem 1 states what they imply.
 
