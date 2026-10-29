@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 310" width="520" height="310" role="img" font-family="Charter, Georgia, serif" font-size="15">
+  <title>Geometry of a horizon molecule</title>
+  <rect x="0" y="0" width="520" height="310" fill="#ffffff"/>
+  <!-- region P below the slice, between the two horizon lines -->
+  <polygon points="190,150 330,150 456,276 64,276" fill="#000000" fill-opacity="0.09" stroke="none"/>
+  <!-- slice Sigma -->
+  <line x1="30" y1="150" x2="490" y2="150" stroke="#222" stroke-width="1.2"/>
+  <text x="494" y="154" fill="#222">Σ</text>
+  <!-- ball B -->
+  <line x1="190" y1="150" x2="330" y2="150" stroke="#222" stroke-width="4"/>
+  <text x="252" y="170" fill="#222">B</text>
+  <!-- domain of dependence above, tip o -->
+  <line x1="190" y1="150" x2="260" y2="80" stroke="#222" stroke-width="1" stroke-dasharray="2 4"/>
+  <line x1="330" y1="150" x2="260" y2="80" stroke="#222" stroke-width="1" stroke-dasharray="2 4"/>
+  <circle cx="260" cy="80" r="2.5" fill="#222"/>
+  <text x="268" y="76" fill="#222">o</text>
+  <!-- horizon below Sigma -->
+  <line x1="190" y1="150" x2="64" y2="276" stroke="#222" stroke-width="1.6"/>
+  <line x1="330" y1="150" x2="456" y2="276" stroke="#222" stroke-width="1.6"/>
+  <text x="404" y="214" fill="#222">horizon</text>
+  <text x="236" y="268" fill="#222">P</text>
+  <!-- F(p): future of p below Sigma -->
+  <polygon points="302,234 218,150 386,150" fill="none" stroke="#222" stroke-width="1" stroke-dasharray="6 3"/>
+  <text x="281" y="206" fill="#222">F(p)</text>
+  <circle cx="302" cy="234" r="3.5" fill="#222"/>
+  <text x="310" y="240" fill="#222">p</text>
+  <circle cx="358" cy="164" r="3.5" fill="#222"/>
+  <text x="365" y="182" fill="#222">q</text>
+  <!-- depth marker -->
+  <line x1="18" y1="150" x2="18" y2="234" stroke="#222" stroke-width="0.8"/>
+  <line x1="14" y1="150" x2="22" y2="150" stroke="#222" stroke-width="0.8"/>
+  <line x1="14" y1="234" x2="22" y2="234" stroke="#222" stroke-width="0.8"/>
+  <line x1="18" y1="234" x2="302" y2="234" stroke="#222" stroke-width="0.5" stroke-dasharray="1 4"/>
+  <text x="26" y="196" fill="#222" font-style="italic">τ</text>
+</svg>
