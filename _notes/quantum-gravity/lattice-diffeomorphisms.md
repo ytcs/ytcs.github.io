@@ -1,0 +1,382 @@
+---
+title: "Lattice gravitons, exact diffeomorphisms and lattice momentum"
+date: 2026-10-29
+category: gravity
+order: 1
+description: In a Hamiltonian lattice theory of gravitons, a conserved lattice momentum with an analytic symbol is incompatible with low-energy graviton scattering, which excludes exact deformed diffeomorphism invariance with exponentially local generators whenever such a symmetry supplies that charge. Band-limited vertices conserve lattice momentum exactly, but they single out a frame, and at one loop they shift the speed of light by a few parts in ten thousand.
+status: "Theorems proved in full under stated hypotheses. The passage from exact diffeomorphisms to a conserved charge, the form of the low-energy amplitude and the gauge-invariance cost of band-limiting are assumptions or heuristics. One-loop coefficients are numerical, for a ball-shaped band in scalar electrodynamics."
+excludes: "Hamiltonian lattice theories of gravitons, in continuous time on a fixed cubic lattice, that carry an exactly conserved lattice momentum with a real-analytic symbol, equal to the wave vector at low energy and the same for both helicities, while low-energy graviton scattering is non-zero; and Villain-type lattices with integer momentum-constraint charges and a linear graviton dispersion."
+---
+
+The question is whether an interacting theory of gravitons on a spatial lattice can keep an exact, conserved lattice momentum built from exponentially local terms. An exact, deformed version of linearised diffeomorphism invariance would supply such a charge, because constant diffeomorphisms translate the fields. The answer is no under the following conditions (Theorem 1). The theory is a Hamiltonian theory in continuous time on a fixed cubic lattice, treated order by order in the gravitational coupling. The free graviton dispersion has no three-wave resonances, as that of the nearest-neighbour graviton has. The charge acts in the same way on both helicities, has a real-analytic symbol $$P(k)$$ that equals $$k$$ plus quadratic terms at small wave vector, and has coefficient functions that are continuous in the sense of section 2. The low-energy $$2\to2$$ graviton interaction is non-zero on an open set of kinematics. Conservation of the charge in low-energy scattering then forces $$P(k)=k$$ near the origin, hence everywhere by analyticity, which contradicts the periodicity of $$P$$ on the Brillouin zone.
+
+The theorem does not exclude a charge with a non-analytic symbol. If every vertex is switched off when one of its legs is near the zone boundary, no scattering process involves a wrap-around of the total momentum (an Umklapp process), and a charge equal to $$k$$ near the origin is conserved exactly. This is Peierls' observation for phonons. Section 7 shows what it costs: no band of momenta is invariant under the Lorentz group of any metric, the closure of the band under the nonlinear gauge transformations fails by a criterion that we state as a heuristic, and in a one-loop model of band-limited scalar electrodynamics the speed of light shifts by $$\delta c_\gamma=(1.8\text{–}7.8)\times10^{-4}$$, independently of the band edge, with a different shift for the charged scalar. Section 6 proves a companion statement for compact (Villain) lattice gravity: integer momentum-constraint charges force $$\omega\propto k^2$$ (Theorem 2).
+
+Lattice versions of linearised gravity with exact linear gauge modes are known, for example linearised Regge calculus [[Dittrich–Freidel–Speziale]](#ref-dfs) [[Höhn]](#ref-hoehn). Beyond linear order discretisation generically breaks diffeomorphism symmetry, and exact symmetry has been restored only in non-local "perfect" actions [[Bahr–Dittrich 2009a]](#ref-bd1) [[Bahr–Dittrich 2009b]](#ref-bd2) [[Dittrich]](#ref-dittrich). For fermions, the Ginsparg–Wilson relation gives an exact deformed lattice chiral symmetry [[Lüscher]](#ref-luscher); Horváth and Bietenholz showed that its Dirac operators cannot be ultralocal but can decay exponentially [[Horváth]](#ref-horvath) [[Bietenholz]](#ref-bietenholz). The question here is whether gravity has such an escape. For supersymmetry, no lattice with translation invariance, locality and the Leibniz rule exists [[Kato–Sakamoto–So]](#ref-kss), and the argument below is of the same type for translations. In the continuum, consistent deformations of linearised diffeomorphism invariance lead to general relativity [[Deser]](#ref-deser) [[Barnich–Henneaux]](#ref-bh). Spohn characterised, under conditions on the dispersion relation, the collision invariants of the phonon Boltzmann equation with pair collisions over the whole zone [[Spohn]](#ref-spohn). That crystal momentum is a true conserved momentum when there is no Umklapp goes back to Peierls [[Peierls]](#ref-peierls), and Lewis, Kempf and Menicucci showed that bandlimited lattice models carry conserved observables for continuous translations [[LKM]](#ref-lkm); Proposition 1 below is their observation in the present language. Collins et al. showed that a preferred-frame cutoff produces Lorentz violation of order $$g^2/16\pi^2$$ that does not decrease as the cutoff is raised [[Collins et al.]](#ref-collins), and Chankowski, Lewandowski and Meißner that a physical momentum cutoff gives the photon a mass [[CLM]](#ref-clm). Compact lattice tensor gauge theories in Villain form have soft gravitons with $$\omega\propto k^2$$ [[Xu]](#ref-xu) [[Xu–Hořava]](#ref-xh) [[GLSS 2021]](#ref-glss1) [[GLSS 2022]](#ref-glss2).
+
+This page adds Theorem 1, whose proof uses only low-energy data, the connectedness of the massless resonant set and the identity theorem for analytic functions; the lemma on collision invariants of massless kinematics in section 4, which [Exact universal graviton coupling and periodic dispersion](/quantum-gravity/spin-2-soft-locking/) uses in a second setting; Theorem 2 for the whole Villain class; the proof that no band is Lorentz invariant; and the one-loop light-cone shifts and photon mass produced by band-limited vertices. The lattice spacing is 1 and the low-energy speed of light is 1.
+
+## 1. Linearised gravity in ADM form and on a lattice
+
+### 1.1 The continuum theory
+
+In the canonical (ADM) description of gravity the dynamical variables are the spatial metric $$\gamma_{ij}$$ and its conjugate momentum $$\pi^{ij}$$. The lapse $$N$$ and the shift $$N^i$$ are Lagrange multipliers, and the Hamiltonian is $$\int(N\mathcal H+N^i\mathcal H_i)$$ with the Hamiltonian constraint $$\mathcal H$$ and the momentum constraint $$\mathcal H_i$$. Expand around flat space, $$\gamma_{ij}=\delta_{ij}+h_{ij}$$, and work in units with $$16\pi G=1$$. To linear order the constraints are
+
+$$
+C_i=-2\,\partial_j\pi_{ij}\approx0,\qquad C=\partial_i\partial_jh_{ij}-\partial_k\partial_kh_{ii}\approx0, \tag{1}
+$$
+
+where $$\approx$$ means equal to zero on physical states and repeated indices are summed. The Hamiltonian at second order is
+
+$$
+H_2=\int d^3x\,\Big[\pi_{ij}\pi_{ij}-\tfrac12\pi_{kk}\pi_{ll}+\mathcal U(h)\Big],\qquad
+\mathcal U(h)=\tfrac14\partial_kh_{ij}\partial_kh_{ij}-\tfrac12\partial_ih_{ij}\partial_kh_{kj}+\tfrac12\partial_ih_{ij}\partial_jh_{kk}-\tfrac14\partial_kh_{ii}\partial_kh_{jj}. \tag{2}
+$$
+
+The kinetic term is the DeWitt form. The potential $$\mathcal U$$ is the Fierz–Pauli form, minus the second-order part of $$\sqrt\gamma R$$. The smeared momentum constraint $$D[\xi]=\int\xi_iC_i=\int\pi_{ij}(\partial_i\xi_j+\partial_j\xi_i)$$ generates the gauge transformations
+
+$$
+\delta_\xi h_{ij}=(S\xi)_{ij}\equiv\partial_i\xi_j+\partial_j\xi_i, \tag{3}
+$$
+
+and $$\mathcal U$$ is invariant under (3) because the linearised curvature of a pure-gauge $$h$$ vanishes. We checked the invariance symbolically in Fourier space: with $$h\to h+k\otimes\xi+\xi\otimes k$$ the form $$\mathcal U$$ does not change. The Hamiltonian constraint generates shifts of $$\pi_{ij}$$ by $$(\partial_i\partial_j-\delta_{ij}\partial_k\partial_k)\theta$$; the kinetic term is invariant under these only up to terms proportional to the constraints.
+
+At each wave vector $$k\ne0$$ the phase space has twelve dimensions, and the four first-class constraints (1) remove eight, leaving the transverse traceless components. For them $$H_2=\int[\pi^{\rm TT}_{ij}\pi^{\rm TT}_{ij}+\tfrac14(\partial_kh^{\rm TT}_{ij})^2]$$, so there are two modes, of helicity $$\pm2$$, with $$\omega=\lvert k\rvert$$. For $$k$$ along the third axis, $$\mathcal U$$ takes the value $$+\tfrac12$$ on $$h=\mathrm{diag}(1,-1,0)$$ and $$-\tfrac12$$ on the transverse-trace mode $$h=\mathrm{diag}(1,1,0)$$. The potential is therefore indefinite on the gauge-invariant modes, and it is the Hamiltonian constraint that removes the negative direction. Page [Gravitons from qubits, rotors and composite tetrads](/quantum-gravity/emergent-spin-2/) uses this fact.
+
+Beyond linear order the structure persists with deformations. The full momentum constraint generates the Lie derivative of $$\gamma_{ij}=\delta_{ij}+\kappa h_{ij}$$, where $$\kappa$$ is the gravitational coupling:
+
+$$
+\delta_\xi h_{ij}=(S\xi)_{ij}+\kappa\big(\xi_k\partial_kh_{ij}+h_{kj}\partial_i\xi_k+h_{ik}\partial_j\xi_k\big)+O(\kappa^2). \tag{4}
+$$
+
+For constant $$\xi$$ the linear term vanishes and what remains is the translation $$\xi_k\partial_kh_{ij}$$ of the field. This is the reason to expect that an exact diffeomorphism symmetry on a lattice comes with an exactly conserved momentum, and section 2 makes the expectation into a hypothesis.
+
+### 1.2 Fourier analysis on the lattice
+
+Let the sites be $$\mathbb Z^3$$ with spacing 1. A field $$\phi_x$$ has the Fourier coefficient $$\phi(k)=\sum_xe^{-ik\cdot x}\phi_x$$ with $$k$$ in the Brillouin torus $$T^3=(\mathbb R/2\pi\mathbb Z)^3$$. A translation-invariant linear operator acts on $$\phi(k)$$ as multiplication by a matrix-valued function of $$k$$, its *symbol*. Three facts are used below. A symbol of finite range is a trigonometric polynomial. If the kernel of the operator decays like $$e^{-\mu\lvert x\rvert}$$, the symbol extends holomorphically to the strip $$\lvert\mathrm{Im}\,k\rvert<\mu$$; conversely a real-analytic function on the compact torus extends to some strip, so its Fourier coefficients decay exponentially. *Exponentially local* therefore means *real-analytic symbol*. Finally, translation invariance conserves momentum only modulo $$2\pi$$: a process with incoming momenta $$k_1,k_2$$ and outgoing momenta $$k_3,k_4$$ is *normal* if $$k_1+k_2-k_3-k_4=0$$ and *Umklapp* if the difference is a non-zero multiple of $$2\pi$$.
+
+To put (1)–(3) on the lattice, place the diagonal components $$h_{ii}$$ on sites, the off-diagonal components $$h_{ij}$$ on plaquette centres and $$\xi_i$$ on links, and replace every derivative by the centred difference $$d_i\phi(x)=\phi(x+\tfrac12e_i)-\phi(x-\tfrac12e_i)$$. Each $$d_i$$ then maps a field on one sublattice to a field on another, and in the potential (2) the two differentiated fields in every term live on the same sublattice, as one checks term by term. After absorbing the phase of each sublattice into the field, $$d_i$$ has symbol $$i\,v_i(k)$$ with
+
+$$
+v_i(k)=2\sin(k_i/2). \tag{5}
+$$
+
+Every identity of section 1.1 is a polynomial identity in the commuting variables $$\partial_i$$, so it holds on the lattice with $$k$$ replaced by the real vector $$v(k)$$. The linear gauge invariance is therefore exact, and at each $$k\ne0$$ there are two physical modes with the common frequency
+
+$$
+\omega(k)=\lvert v(k)\rvert=2\Big(\sum_i\sin^2(k_i/2)\Big)^{1/2}. \tag{6}
+$$
+
+Since $$v(k)$$ vanishes in the zone $$(-\pi,\pi]^3$$ only at $$k=0$$ there are no doublers, and $$\omega(k)=\lvert k\rvert\,(1+O(k^2))$$. We call this the *nearest-neighbour graviton*. Whether its gauge group can be made compact, with integer charges, is taken up in section 6. The question of sections 2–5 is what happens when interactions are added.
+
+## 2. From an exact symmetry to a conserved lattice momentum
+
+Write the physical graviton modes through complex amplitudes $$a_\sigma(k)$$, with helicity $$\sigma=\pm$$, $$k\in T^3$$ and Poisson bracket $$\{a_\sigma(k),a^*_{\sigma'}(k')\}=-i\delta_{\sigma\sigma'}\delta(k-k')$$. We work with the classical field theory, which is the tree-level content of the quantum theory, and with formal power series in the coupling $$\kappa$$:
+
+$$
+H=H_2+\kappa H_3+\kappa^2H_4+\dots,\qquad H_2=\sum_\sigma\int\omega(k)\,\lvert a_\sigma(k)\rvert^2\,dk, \tag{7}
+$$
+
+where $$H_r$$ is a polynomial of degree $$r$$ in $$a$$ and $$a^*$$ whose monomials conserve momentum modulo $$2\pi$$. For a monomial $$w$$ let $$\Omega(w)$$ and $$\mathcal P(w)$$ be the sums of $$\omega(k)$$ and of $$P(k)$$ over its factors, with sign $$+$$ for each $$a$$ and $$-$$ for each $$a^*$$. Then
+
+$$
+\{w,H_2\}=-i\,\Omega(w)\,w,\qquad \{w,Q_2\}=-i\,\mathcal P(w)\,w, \tag{8}
+$$
+
+where $$Q_2=\sum_\sigma\int P(k)\lvert a_\sigma(k)\rvert^2dk$$ is introduced below.
+
+The hypotheses are motivated by the gauge generators. The deformed momentum constraint is $$D[\xi]=\langle\pi,S\xi\rangle+\kappa D_3[\xi]+\dots$$, with $$(S\xi)_{ij}=d_i\xi_j+d_j\xi_i$$ the lattice symmetrised gradient. For constant $$\xi$$ the linear term vanishes, because a lattice difference of a constant is zero, and $$D[\xi]/\kappa$$ starts at quadratic order. Its quadratic part generates the transport term $$\xi\cdot\partial h$$ of (4), which for constant $$\xi$$ translates the long-wavelength fields, and its symbol is periodic because the lattice is. If the generators are exponentially local, this symbol is real-analytic by section 1.2.
+
+This motivation is not a derivation. $$D[\xi]$$ with constant $$\xi$$ is itself a constraint, so it vanishes on physical states, and a conserved graviton momentum appears only after the constraints are solved, with the total momentum carried by a boundary term as in the ADM construction. On a lattice that identification needs an argument that we do not give. That the resulting charge acts diagonally on the physical modes, with the symbol $$k+O(k^2)$$ and the same for both helicities, is a further assumption, and the continuity of its higher terms must be inherited from the generators. We therefore state the hypotheses directly in terms of the charge.
+
+(H1) The dispersion $$\omega$$ is continuous on $$T^3$$, positive away from $$k=0$$, the same for both helicities, and relativistic at low energy: $$\omega(\lambda q)/\lambda\to\lvert q\rvert$$ as $$\lambda\to0$$, in $$C^1$$ on compact subsets of $$q\ne0$$.
+
+(H2) There are no three-wave resonances: $$\omega(k_1)+\omega(k_2)>\omega(k_1+k_2)$$ whenever $$k_1\ne0$$ and $$k_2\ne0$$.
+
+(H3) There is a charge $$Q=Q_2+\kappa Q_3+\kappa^2Q_4+\dots$$ with $$\{Q,H\}=0$$ order by order in $$\kappa$$. Its quadratic part is $$Q_2$$ above, with $$P:T^3\to\mathbb R^3$$ continuous, $$P(0)=0$$ and $$P(k)=k+O(k^2)$$. The coefficient functions of $$Q_3,Q_4,H_3,H_4$$ are continuous at all momenta at which no internal or external momentum vanishes (as they are for exponentially local terms).
+
+(H4) $$P$$ is real-analytic on $$T^3$$.
+
+(H5) The low-energy $$2\to2$$ interaction is non-zero on an open set of kinematics. The precise form is given after Lemma 2.
+
+The nearest-neighbour graviton satisfies (H1) and (H2).
+
+<div class="lemma" markdown="1">
+**Lemma 1.** The dispersion (6) satisfies (H2).
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* For real $$\phi,\psi$$, $$\lvert\sin\tfrac{\phi+\psi}2\rvert\le\lvert\sin\tfrac\phi2\rvert\lvert\cos\tfrac\psi2\rvert+\lvert\cos\tfrac\phi2\rvert\lvert\sin\tfrac\psi2\rvert\le\lvert\sin\tfrac\phi2\rvert+\lvert\sin\tfrac\psi2\rvert$$, and equality in the last step requires $$\phi$$ or $$\psi$$ to lie in $$2\pi\mathbb Z$$. Applied componentwise, the vector $$(\lvert v_j(k_1+k_2)\rvert)_j$$ is dominated entry by entry by $$(\lvert v_j(k_1)\rvert+\lvert v_j(k_2)\rvert)_j$$, so the triangle inequality gives $$\omega(k_1+k_2)\le\omega(k_1)+\omega(k_2)$$. Equality needs equality in every component, so that in each direction $$j$$ one of $$v_j(k_1),v_j(k_2)$$ vanishes, and equality in the triangle inequality for the vectors $$(\lvert v_j(k_1)\rvert)_j$$ and $$(\lvert v_j(k_2)\rvert)_j$$, which then must be parallel. Two parallel non-negative vectors with disjoint supports cannot both be non-zero, so $$k_1=0$$ or $$k_2=0$$.
+</div>
+
+As a numerical check, the minimum of $$\omega(k_1)+\omega(k_2)-\omega(k_1+k_2)$$ over $$2\times10^6$$ random pairs in the zone is $$0.014$$, and its ratio to $$\min(\lvert k_1\rvert,\lvert k_2\rvert)$$ is never below $$0.04$$.
+
+## 3. The resonance condition
+
+With (H2), the cubic part of $$H$$ can be removed by a canonical change of variables, the first step of Birkhoff normal form, which leaves an effective quartic interaction. By (8) and positivity of $$\omega$$, $$\Omega(w)\ne0$$ for every cubic monomial whose momenta are non-zero: a monomial with three factors of the same kind has $$\lvert\Omega\rvert$$ equal to a sum of positive frequencies, and one with two factors of one kind and one of the other has $$\Omega\ne0$$ by (H2) together with momentum conservation modulo $$2\pi$$. Let $$\Gamma_3$$ be the cubic functional whose coefficient on each such monomial is that of $$H_3$$ divided by $$-i\,\Omega(w)$$, so that $$\{H_2,\Gamma_3\}=-H_3$$ by (8). The Lie series $$F\mapsto F+\kappa\{F,\Gamma_3\}+\tfrac12\kappa^2\{\{F,\Gamma_3\},\Gamma_3\}+\dots$$ is a canonical transformation and maps $$H$$ to $$H'=H_2+\kappa^2H_4'+O(\kappa^3)$$ with
+
+$$
+H_4'=H_4+\tfrac12\{H_3,\Gamma_3\}.
+$$
+
+The factor $$\tfrac12$$ is the net of the first-order term $$\{H_3,\Gamma_3\}$$ and the second-order term $$\tfrac12\{\{H_2,\Gamma_3\},\Gamma_3\}=-\tfrac12\{H_3,\Gamma_3\}$$. The same transformation maps $$Q$$ to $$Q'=Q_2+\kappa Q_3'+\kappa^2Q_4'+\dots$$ with the same $$Q_2$$, where $$Q_3'=Q_3+\{Q_2,\Gamma_3\}$$ and $$Q_4'=Q_4+\{Q_3,\Gamma_3\}+\tfrac12\{\{Q_2,\Gamma_3\},\Gamma_3\}$$. On the resonant monomials $$a_1^*a_2^*a_3a_4$$ with $$\omega_1+\omega_2=\omega_3+\omega_4$$ the coefficient $$\mathcal T(1,2;3,4)$$ of $$H_4'$$ is the effective $$2\to2$$ interaction: contact term plus graviton exchange, with the energy denominators of second-order perturbation theory. At tree level it is the $$2\to2$$ scattering amplitude up to normalisation factors that do not vanish. It carries helicity labels, which we suppress.
+
+<div class="lemma" markdown="1">
+**Lemma 2** (resonance condition). Under (H1)–(H3), at every resonant quartet at which all $$k_i\ne0$$ and none of the exchanged momenta $$k_1-k_3$$, $$k_1-k_4$$, $$k_1+k_2$$ vanishes (modulo $$2\pi$$),
+
+$$
+\mathcal T(1,2;3,4)\,\big(P(k_1)+P(k_2)-P(k_3)-P(k_4)\big)=0. \tag{9}
+$$
+
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* Canonical transformations preserve brackets, so $$\{Q',H'\}=0$$ order by order. At order $$\kappa$$ this reads $$\{Q_3',H_2\}=0$$. By (8) every coefficient of $$Q_3'$$ is multiplied by $$\Omega(w)\ne0$$ and so vanishes: $$Q_3'=0$$. At order $$\kappa^2$$ it reads $$\{Q_4',H_2\}+\{Q_2,H_4'\}=0$$. By (8) the coefficient of a quartic monomial $$w$$ in this sum is $$-i\,\Omega(w)$$ times its coefficient $$q_4'(w)$$ in $$Q_4'$$ plus $$i\,\mathcal P(w)$$ times its coefficient $$h_4'(w)$$ in $$H_4'$$, so
+
+$$
+\Omega(w)\,q_4'(w)=\mathcal P(w)\,h_4'(w).
+$$
+
+The coefficients of $$\Gamma_3$$ have denominators $$\Omega\ne0$$, and the coefficient functions of $$H_3,H_4,Q_3,Q_4$$ are continuous by (H3), so $$q_4'$$ and $$h_4'$$ are continuous at the quartets of the statement: the contractions in $$\{H_3,\Gamma_3\}$$, $$\{Q_3,\Gamma_3\}$$ and $$\{\{Q_2,\Gamma_3\},\Gamma_3\}$$ run over one internal line whose momentum is one of the exchanged momenta, which is non-zero there. A continuous identity between coefficient functions holds at every point of its domain and may be evaluated on the resonant set, where $$\Omega(w)=0$$ and the left side vanishes. (Without continuity the resonant set, which has measure zero, would not be reached: a distributional coefficient proportional to $$\mathcal P\,\mathcal T/\Omega$$ solves the identity for any $$P$$.) This leaves $$\mathcal P(w)\,h_4'(w)=0$$ with $$\mathcal P(a_1^*a_2^*a_3a_4)=P(k_3)+P(k_4)-P(k_1)-P(k_2)$$. The helicity labels do not enter, because $$P$$ is the same for both.
+</div>
+
+To state (H5) precisely, let $$\Lambda=\{q\in\mathbb R^{12}:q_1+q_2=q_3+q_4\}$$ and let
+
+$$
+\mathcal M_\lambda=\{q\in\Lambda:\ \omega(\lambda q_1)+\omega(\lambda q_2)=\omega(\lambda q_3)+\omega(\lambda q_4)\}
+$$
+
+be the rescaled resonant set of normal quartets. Let $$\mathcal M_0=\{q\in\Lambda:\ \lvert q_1\rvert+\lvert q_2\rvert=\lvert q_3\rvert+\lvert q_4\rvert\}$$ be its limit, the massless resonant set, and $$\mathcal M_0^\ast$$ its part on which $$\lvert q_1\rvert+\lvert q_2\rvert>\lvert q_1+q_2\rvert$$.
+
+(H5, precise form) There are an open set $$U\subset\Lambda$$ meeting $$\mathcal M_0^\ast$$, a number $$\lambda_0>0$$, and a helicity configuration such that $$\mathcal T(\lambda q)\ne0$$ for all $$q\in\mathcal M_\lambda\cap U$$ and $$0<\lambda<\lambda_0$$.
+
+For gravity this holds if the low-energy limit is general relativity, whose tree-level $$2\to2$$ graviton amplitude does not vanish on an open set of physical kinematics: with all momenta outgoing and Mandelstam invariants $$\mathsf s,\mathsf t,\mathsf u$$, the helicity configuration $$(-,-,+,+)$$ has modulus proportional to $$\kappa^2\mathsf s^3/(\mathsf t\mathsf u)$$. We assume this identification for the lattice vertex and do not compute it.
+
+## 4. Collisions of massless particles
+
+Theorem 1 rests on two facts about the limiting set $$\mathcal M_0$$. The first is its geometry. The second says that a function that adds up in every massless collision is, among homogeneous functions, at most linear in the momentum (degree 0 and 1 are the exceptions). The proof of the second fact is the part of the argument that does not depend on the lattice at all.
+
+<div class="lemma" markdown="1">
+**Lemma 3** (the massless resonant set). $$\mathcal M_0^\ast$$ is a connected real-analytic submanifold of $$\Lambda$$ of dimension 8. On it all $$q_i\ne0$$, and the gradient of $$F_0(q)=\lvert q_1\rvert+\lvert q_2\rvert-\lvert q_3\rvert-\lvert q_4\rvert$$ along $$\Lambda$$ does not vanish. For every $$z\in\mathbb R^3\setminus\{0\}$$ the quartet $$(3z,z;2z,2z)$$ lies in the closure of $$\mathcal M_0^\ast$$.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* Write $$K=q_1+q_2$$ and $$E=\lvert q_1\rvert+\lvert q_2\rvert$$. If $$q\in\mathcal M_0^\ast$$, then $$q_3$$ lies on the spheroid $$\lvert q_3\rvert+\lvert K-q_3\rvert=E$$ with foci $$0$$ and $$K$$. It is a 2-sphere and $$E>\lvert K\rvert$$, so it avoids both foci: $$q_3\ne0$$ and $$q_4=K-q_3\ne0$$. Also $$E>\lvert K\rvert$$ forces $$q_1,q_2\ne0$$. Along $$\Lambda$$, with coordinates $$(q_1,q_2,q_3)$$ and $$q_4=q_1+q_2-q_3$$, the derivative of $$F_0$$ with respect to $$q_3$$ is $$-\hat q_3+\hat q_4$$ (hats denote unit vectors). It vanishes only if $$q_3$$ and $$q_4$$ point the same way, and then $$\lvert q_3\rvert+\lvert q_4\rvert=\lvert K\rvert<E$$, a contradiction. So $$F_0$$ is analytic with non-vanishing gradient near $$\mathcal M_0^\ast$$, and $$\mathcal M_0^\ast$$ is a real-analytic submanifold of dimension $$9-1=8$$.
+
+Connectedness. Let $$B$$ be the set of pairs $$(q_1,q_2)$$ of non-zero vectors that are not positively parallel; these are the pairs with $$E>\lvert K\rvert$$. The group $$SO(3)\times\mathbb R_{>0}$$ acts on $$B$$, and every orbit contains a pair $$(e_3,\ r(\sin\theta\,e_1+\cos\theta\,e_3))$$ with $$r>0$$ and $$\theta\in(0,\pi]$$. So $$B$$ is the image of the connected set $$SO(3)\times\{(r,\theta)\}$$ and is connected. The map $$\pi:\mathcal M_0^\ast\to B$$, $$q\mapsto(q_1,q_2)$$, is surjective with fibres the spheroids, which are connected. It is proper, because $$\lvert q_3\rvert,\lvert q_4\rvert\le E$$ and the defining conditions are closed, hence closed as a map. A closed continuous surjection with connected fibres onto a connected space has connected domain: if $$\mathcal M_0^\ast=A\cup A'$$ were a splitting into disjoint non-empty open and closed sets, every fibre would lie in one of them, so $$\pi(A)$$ and $$\pi(A')$$ would be disjoint, non-empty, closed and cover $$B$$.
+
+The collinear quartet. Take $$z\ne0$$ and a unit vector $$z_\perp\perp z$$. For small $$\varepsilon\ne0$$ let $$q_1=3z$$ and $$q_2=z+\varepsilon z_\perp$$. Then $$K=4z+\varepsilon z_\perp$$ and $$E-\lvert K\rvert>0$$, so $$(q_1,q_2)\in B$$. Put $$b=\tfrac12\sqrt{E^2-\lvert K\rvert^2}$$ and $$q_3=\tfrac12K+b\,u$$, $$q_4=\tfrac12K-b\,u$$ with $$u\perp K$$ a unit vector; then $$\lvert q_3\rvert+\lvert q_4\rvert=2\sqrt{\lvert K\rvert^2/4+b^2}=E$$, so $$q\in\mathcal M_0^\ast$$. As $$\varepsilon\to0$$, $$b\to0$$ and $$q\to(3z,z,2z,2z)$$.
+</div>
+
+<div class="lemma" markdown="1">
+**Lemma 4** (homogeneous collision invariants). Let $$g:\mathbb R^3\setminus\{0\}\to\mathbb R^n$$ be real-analytic and positively homogeneous of a real degree $$m$$, $$g(tq)=t^mg(q)$$ for $$t>0$$. Put $$\Delta g(q)=g(q_1)+g(q_2)-g(q_3)-g(q_4)$$. If $$\Delta g$$ vanishes on a non-empty relatively open subset of $$\mathcal M_0^\ast$$, then $$g\equiv0$$ unless $$m\in\{0,1\}$$. For $$m=1$$ the linear functions $$g(q)=Aq$$ and for $$m=0$$ the constants do satisfy $$\Delta g=0$$ on all of $$\mathcal M_0$$, and so does $$g(q)=\lvert q\rvert$$ for $$m=1$$.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* The function $$\Delta g$$ is real-analytic on the connected analytic manifold $$\mathcal M_0^\ast$$ (Lemma 3, and all $$q_i\ne0$$ there), so it vanishes identically on it by the identity theorem, and by continuity on the closure within the region where all $$q_i\ne0$$. The quartet $$(3z,z;2z,2z)$$ has all vectors non-zero, so $$\Delta g=0$$ there, and homogeneity gives
+
+$$
+\big(3^m+1-2^{m+1}\big)\,g(z)=0 .
+$$
+
+The function $$\psi(m)=(3^m+1-2^{m+1})/2^m=(3/2)^m+2^{-m}-2$$ is strictly convex in $$m$$, so it has at most two zeros, and $$m=0$$ and $$m=1$$ are zeros. For every other $$m$$ the prefactor is non-zero and $$g(z)=0$$. The last sentence follows from momentum conservation, $$\sum\pm q_i=0$$, and energy conservation, $$\sum\pm\lvert q_i\rvert=0$$ on $$\mathcal M_0$$.
+</div>
+
+For integer degree $$m=2,3,\dots$$ the factor $$3^m+1-2^{m+1}$$ is $$2,12,50,180,\dots$$. As a numerical check of Lemma 4 for polynomials, we sampled $$6000$$ massless collisions and formed the matrix of $$\Delta g$$ on the monomials of degree $$p$$, normalised by the size of the entries. For $$p=1$$ it has three zero singular values, the linear functions, and for $$p=2,\dots,6$$ its smallest singular values are $$0.20$$, $$0.42$$, $$0.42$$, $$0.31$$, $$0.21$$, so there is no polynomial invariant of those degrees.
+
+## 5. Analytic charges are excluded
+
+The idea is that (9) at low energy sees only normal quartets, on which $$P(k)=k$$ satisfies it exactly. Any analytic correction to $$k$$ is a sum of homogeneous polynomials, and the lowest one would have to be a collision invariant of massless $$2\to2$$ kinematics. By Lemma 4 none exists in degree two or more. So $$P$$ equals $$k$$ near $$0$$, hence everywhere by analyticity, which is incompatible with periodicity.
+
+<div class="theorem" markdown="1">
+**Theorem 1** (no exponentially local exact translation charge). Hypotheses (H1)–(H5) cannot hold together. Equivalently, if (H1)–(H4) hold, the effective $$2\to2$$ interaction of low-energy gravitons vanishes in the sense that (H5) fails for every helicity configuration.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* Write $$P(k)=k+R(k)$$, with $$R$$ real-analytic near $$0$$ and $$R=\sum_{p\ge2}R_p$$ its expansion in vector-valued homogeneous polynomials. Suppose $$R\not\equiv0$$ near $$0$$ and let $$p_0\ge2$$ be the least $$p$$ with $$R_p\ne0$$. For a function $$f$$ write $$\Delta f=f(k_1)+f(k_2)-f(k_3)-f(k_4)$$.
+
+*Step 1 (low-energy quartets are normal).* If every component of every $$k_i$$ lies in $$(-\pi/2,\pi/2)$$, then $$k_1+k_2-k_3-k_4$$ has components in $$(-2\pi,2\pi)$$ and is a multiple of $$2\pi$$, so it vanishes. For small $$\lambda$$ the quartets $$\lambda q$$ with $$q$$ in a bounded set are therefore normal, and $$\Delta k=0$$ there. Hence $$\Delta P(\lambda q)=\Delta R(\lambda q)=\lambda^{p_0}\,\Delta R_{p_0}(q)+O(\lambda^{p_0+1})$$. This step is routine.
+
+*Step 2 (limit to the massless resonant set).* Set $$F_\lambda(q)=\lambda^{-1}[\omega(\lambda q_1)+\omega(\lambda q_2)-\omega(\lambda q_3)-\omega(\lambda q_4)]$$ on $$\Lambda$$, so that $$\mathcal M_\lambda=\{F_\lambda=0\}$$. By (H1), $$F_\lambda\to F_0$$ in $$C^1$$ near any point where all $$q_i\ne0$$. Choose a point $$q^\ast\in U\cap\mathcal M_0^\ast$$ at which also $$q_1\ne q_3$$, $$q_1\ne q_4$$ and $$q_1+q_2\ne0$$; these conditions fail only on lower-dimensional subsets, so such points exist, and we may shrink $$U$$ to a neighbourhood of $$q^\ast$$ on which they hold. By Lemma 3 the gradient of $$F_0$$ at $$q^\ast$$ is non-zero, so the implicit function theorem shows that every $$q\in\mathcal M_0$$ near $$q^\ast$$ is a limit of points $$q_\lambda\in\mathcal M_\lambda\cap U$$. By Lemma 2 and (H5), $$\Delta P(\lambda q_\lambda)=0$$, so Step 1 gives $$\Delta R_{p_0}(q_\lambda)=O(\lambda)$$ and, in the limit, $$\Delta R_{p_0}(q)=0$$. The polynomial map $$R_{p_0}$$ is real-analytic and homogeneous of degree $$p_0\ge2$$, so Lemma 4 gives $$R_{p_0}\equiv0$$. This is a contradiction. The weight of the proof is in this step: it uses the lattice only through the $$C^1$$ convergence in (H1), and everything else is the geometry of massless collisions.
+
+*Step 3 (periodicity).* Hence $$R_p=0$$ for all $$p$$, so the Taylor series of $$R$$ at $$0$$ vanishes, and $$R\equiv0$$ near $$0$$ by analyticity. Lift $$P$$ to a real-analytic periodic function on $$\mathbb R^3$$. Then $$P(k)-k$$ is real-analytic on the connected set $$\mathbb R^3$$ and vanishes on an open set, so $$P(k)=k$$ everywhere, and $$P(k+2\pi e_1)=P(k)+2\pi e_1\ne P(k)$$ contradicts periodicity.
+</div>
+
+*Checks.* For the nearest-neighbour dispersion and the analytic charge $$P=\sin k$$ (componentwise) we constructed exact normal resonant quartets $$\lambda q$$ numerically: $$q_1,q_2$$ and the direction of $$q_3$$ were fixed, and the length of $$q_3$$ was found by root finding so that the energy residual is below $$10^{-15}$$. For six fixed configurations, $$\max_a\lvert\Delta P_a\rvert/\lambda^3$$ takes the values $$1.464,\ 1.067,\ 1.855,\ 0.689,\ 8.633,\ 1.482$$ at $$\lambda=0.2$$ and $$1.506,\ 1.099,\ 1.881,\ 0.705,\ 9.392,\ 1.538$$ at $$\lambda=0.0125$$, so $$\Delta P$$ scales as $$\lambda^3$$ with a non-zero coefficient, as Step 1 predicts for $$p_0=3$$. For the first configuration at $$\lambda=0.0125$$ the three components of $$\Delta P/\lambda^3$$ are $$(-0.20139,-1.50591,-0.00120)$$, against $$(-0.20140,-1.50606,-0.00120)$$ from the leading term $$-\tfrac16\sum\pm k_i^3$$. A control with a linear charge was not needed, since $$\Delta k=0$$ exactly on normal quartets.
+
+<div class="remark" markdown="1">
+**Remark** (where the hypotheses enter). Steps 1 and 2 need only smoothness of $$P$$, with $$R_p$$ read as the Taylor terms of $$R$$; for a smooth $$P$$ they show that the Taylor series of $$R$$ at $$0$$ vanishes. Analyticity enters in Step 3, twice: a vanishing Taylor series forces $$R\equiv0$$ near $$0$$, and a function equal to $$k$$ on an open set equals $$k$$ everywhere. A smooth $$P$$ that equals $$k$$ on a neighbourhood of $$0$$ passes Steps 1 and 2, so the theorem says nothing against smooth non-analytic charges. Both uses of analyticity survive in any quasi-analytic class in the sense of Denjoy and Carleman (a class of smooth functions in which a function with vanishing Taylor series at a point vanishes identically), so the argument extends to charges whose Fourier coefficients decay somewhat more slowly than exponentially; we do not make the class precise. Only low-energy normal quartets are used, so Umklapp processes play no role. The proof is an identity-theorem argument on a non-linear manifold, not a statement about the number of lattice neighbours: finite range is a special case of analytic.
+</div>
+
+<div class="remark" markdown="1">
+**Remark** (the vertex side). A second route uses the vertex instead of the charge. Under conditions on the dispersion relation that we do not restate, Spohn [[Spohn]](#ref-spohn) proved that every measurable periodic function $$f$$ with $$f(k_1)+f(k_2)=f(k_3)+f(k_4)$$ almost everywhere on the full resonant manifold of the lattice, Umklapp quartets included, has the form $$c_0+c_1\omega(k)$$. If $$\mathcal T\ne0$$ almost everywhere on that manifold, (9) makes each component of $$P$$ such an invariant, and $$c_0+c_1\omega$$ is even in $$k$$ for the nearest-neighbour dispersion, so it cannot equal $$k+O(k^2)$$. This route needs no analyticity of $$P$$ but needs $$\mathcal T\ne0$$ almost everywhere on the whole zone. That would follow from analyticity of $$\mathcal T$$ together with connectedness of the lattice resonant manifold after removal of its degenerate subsets; the connectedness is not proved here.
+</div>
+
+## 6. Integer charges in Villain form
+
+A separate question about the free theory of section 1 is whether its gauge group can be made compact. Compact $$U(1)$$ makes electric charges integers; compactifying $$h$$ would likewise make the momentum-constraint charges integers. The standard device is the modified Villain formulation [[GLSS 2021]](#ref-glss1). Each component $$h_a$$ of the lattice field, with conjugate momentum $$\varpi_a$$, is paired with integer fields $$N_b$$ whose conjugate angles are $$\theta_b$$. The potential depends on $$h$$ only through $$X=Lh-2\pi N$$, where $$L$$ is a translation-invariant integer matrix of finite range. The integer shifts $$h\to h+2\pi n$$, $$N\to N+Ln$$, for every integer-valued $$n$$ on the components of $$h$$, are gauged by imposing
+
+$$
+\mathcal W[n]\equiv\exp\big(2\pi i\langle\varpi,n\rangle+i\langle\theta,Ln\rangle\big)=1 . \tag{10}
+$$
+
+This makes every component of $$h$$ an angle. The symmetrised gradient $$S$$ of section 2 is an integer matrix, and the generators of the linearised gauge transformations $$h\to h+S\xi$$ are the momentum-constraint charges $$\mathsf q=S^{\rm T}\varpi$$, one per link.
+
+<div class="theorem" markdown="1">
+**Theorem 2** (Villain dichotomy). In the modified Villain formulation above:
+
+(a) the charges $$\mathsf q$$ have integer spectrum on the states with $$\mathcal W[n]=1$$ for all $$n$$ if and only if $$LS=0$$;
+
+(b) if $$LS=0$$, the symbol of $$L$$ is $$O(k^2)$$, so the quadratic potential is $$O(k^4)$$; if moreover the kinetic term has a bounded symbol, every mode has $$\omega=O(k^2)$$.
+
+Hence integer charges and a graviton with $$\omega\propto\lvert k\rvert$$ are incompatible in this formulation.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* (a) The operators $$\varpi$$ and $$\theta$$ commute, and $$\mathcal W[n]=1$$ for all integer $$n$$ means that $$\zeta\equiv\varpi+L^{\rm T}\theta/2\pi$$ is integer-valued, while $$\theta$$ takes all values in its torus. Then $$\mathsf q=S^{\rm T}\zeta-(LS)^{\rm T}\theta/2\pi$$. The first term is an integer. The second sweeps a continuum as $$\theta$$ varies unless $$LS=0$$.
+
+(b) The idea is that $$LS=0$$ is an identity between symbols, and its expansion in $$k$$ kills the low orders of $$L$$ by a purely algebraic lemma. Let $$\ell(k)$$ and $$S(k)$$ be the symbols of $$L$$ and $$S$$, and expand $$\ell=\ell_0+\ell_1(k)+O(k^2)$$, $$S(k)\xi=i(k_i\xi_j+k_j\xi_i)+O(k^3)$$. At first order in $$k$$, $$\ell_0S_1(k)=0$$ requires $$\ell_0$$ to annihilate every symmetrised product $$k_i\xi_j+k_j\xi_i$$; these span all symmetric tensors, so $$\ell_0=0$$. At second order, write each row of $$\ell_1$$ as $$c_{ij,l}k_l$$ with $$c_{ij,l}=c_{ji,l}$$. The condition $$c_{ij,l}k_l(k_i\xi_j+k_j\xi_i)=0$$ for all $$k,\xi$$ says that $$c_{ij,l}+c_{lj,i}=0$$, that is, $$c$$ is antisymmetric under $$i\leftrightarrow l$$. A tensor symmetric in its first two indices and antisymmetric in its first and third vanishes: $$c_{ij,l}=-c_{lj,i}=-c_{jl,i}=c_{il,j}=c_{li,j}=-c_{ji,l}=-c_{ij,l}$$. So $$\ell=O(k^2)$$, the quadratic potential $$\ell(k)^\dagger V\ell(k)$$ is $$O(k^4)$$ for a bounded matrix $$V$$, and $$\omega^2$$, an eigenvalue of the product of the kinetic and potential symbols, is $$O(k^4)$$ when the kinetic symbol is bounded.
+</div>
+
+The theorem is narrow. Its hypothesis is that the gauge lattice is all of $$\mathbb Z$$ on every component of $$h$$. If instead only the gauge directions are compactified, by imposing $$\exp(2\pi i\langle\varpi,S\iota\rangle)=1$$ for integer $$\iota$$ on links, then the charges $$S^{\rm T}\varpi$$ are integers, the potential of section 1 is invariant under $$h\to h+S\iota$$ because the linearised curvature of $$S\iota$$ vanishes identically, and the dispersion is (6). Integer charges and $$\omega\propto\lvert k\rvert$$ then coexist at the free level. That compact lattice tensor gauge theories have $$\omega\propto k^2$$ was known in examples [[Xu]](#ref-xu) [[Xu–Hořava]](#ref-xh) [[GLSS 2022]](#ref-glss2); Theorem 2 gives the reason for the whole Villain class. The "only if" in (a) also has limited reach: when $$LS\ne0$$, a quadratic potential $$\tfrac12X^{\rm T}VX$$ changes under $$h\to h+S\xi$$ with continuous $$\xi$$ by terms such as $$-2\pi N^{\rm T}VLS\xi$$, so in that branch the theory generally has no continuous linear gauge symmetry to begin with. The same tensor lemma, applied to local integer charges of a general compact potential, gives $$z\ge3$$ in [Gravitons from qubits, rotors and composite tetrads](/quantum-gravity/emergent-spin-2/).
+
+## 7. Band-limited vertices
+
+### 7.1 An exact momentum from Peierls' observation
+
+Theorem 1 excludes analytic charges only. For a non-analytic $$P$$, (9) requires $$\mathcal T$$ to vanish on every resonant quartet with $$\Delta P\ne0$$: on Umklapp quartets, and on normal quartets outside the region where $$P$$ is linear. One way to meet this is to combine a non-analytic charge with vertices that never produce Umklapp processes.
+
+<div class="proposition" markdown="1">
+**Proposition 1** (no Umklapp; Peierls). Suppose that for each $$r\ge3$$ the coefficients of $$H_r$$ vanish unless every momentum $$k_i$$ of the monomial has all its components in $$(-2\pi/r,2\pi/r)$$. Let $$P$$ be any periodic function with values in $$\mathbb R^3$$ such that $$P(k)=k$$ when all components of $$k$$ lie in $$(-2\pi/3,2\pi/3)$$. Then $$\{Q_2,H_r\}=0$$ for every $$r$$, so $$Q_2$$ is conserved exactly, to all orders in $$\kappa$$.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* By (8), the coefficient of a monomial $$w$$ in $$\{Q_2,H_r\}$$ is $$i\,\mathcal P(w)$$ times its coefficient in $$H_r$$. On the support of $$H_r$$ the signed sum of the $$r$$ momenta has components in $$(-2\pi,2\pi)$$ and is a multiple of $$2\pi$$, so it vanishes, and $$\mathcal P(w)$$ equals that signed sum because $$P(k)=k$$ there.
+</div>
+
+The free dispersion does not enter, so the nearest-neighbour $$H_2$$ can be used. Nor does the decay class of $$P$$ matter beyond non-analyticity: the sawtooth $$P(k)=k$$ on $$(-\pi,\pi]$$, which is discontinuous and decays like $$1/n$$, works as well as a smooth $$P$$ that equals $$k$$ on a box. Smooth examples exist in every Gevrey class $$s>1$$, the smooth functions whose $$n$$-th derivatives are bounded by $$C^{n+1}(n!)^s$$; class $$s=1$$ is the real-analytic functions. The vertices must vanish on an open set of momenta and $$P$$ is linear on an open set, so neither is real-analytic. With cutoffs of Gevrey class $$s>1$$ the vertices decay with distance as a stretched exponential. The band of $$H_r$$ shrinks as $$2\pi/r$$, so at fixed lattice spacing higher-order vertices act on ever smaller sets of momenta. An analytic charge is not rescued by band-limiting, because the low-energy quartets of Theorem 1 lie inside every band.
+
+### 7.2 Gauge invariance
+
+Let $$B\subset T^3$$ be the set of momenta on which the vertices act. The transport term $$\kappa\,\xi\cdot\partial h$$ of (4) maps a gauge parameter and a field with momenta in $$B$$ to momenta in $$B+B$$. At order $$\kappa$$, the transport term varies the free Hamiltonian $$H_2$$, which is not band-limited, and this variation contains momenta in $$B+B$$. Invariance requires it to be cancelled by the linear variation of the cubic vertex, which lives only in $$B$$. This suggests that the band can be preserved at all orders only if $$B+B\subset B$$. We have not turned this into a proof for general deformed transformations, and treat it as a heuristic criterion.
+
+<div class="proposition" markdown="1">
+**Proposition 2.** Let $$B\subset T^3$$ be closed, symmetric ($$B=-B$$), contain a neighbourhood of $$0$$, and satisfy $$B+B\subset B$$. Then $$B=T^3$$.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* $$B$$ contains $$0$$ and is closed under addition and negation, so it is a subgroup. A subgroup containing a neighbourhood $$\mathcal N$$ of $$0$$ is open, since $$b+\mathcal N\subset B$$ for each $$b\in B$$. An open subgroup is also closed, its complement being a union of cosets, and $$T^3$$ is connected.
+</div>
+
+A band that satisfies the closure criterion is therefore the whole zone, where Proposition 1 is unavailable and Umklapp processes are present. If the criterion is the right one, band-limited vertices are not invariant under deformed diffeomorphisms whose nonlinear part is the transport term. A different deformation of the gauge transformations, for example one that acts differently on modes outside the band, is not excluded, and whether one exists is open.
+
+### 7.3 Lorentz invariance
+
+A band limit is a statement about spatial momenta in the lattice frame, while the energy is unrestricted in a continuous-time theory. It singles out that frame.
+
+<div class="proposition" markdown="1">
+**Proposition 3** (no Lorentz-invariant band). Let $$\tilde B\subset\mathbb R^4$$ be a set of momenta $$(\omega,\mathbf k)$$ that contains a neighbourhood of $$0$$ and has bounded projection onto the spatial momenta $$\mathbf k$$. Then $$\tilde B$$ is not invariant under the identity component of the Lorentz group of any Lorentzian metric $$g$$ on $$\mathbb R^4$$.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* Choose $$v\in\tilde B$$ with $$g(v,v)>0$$ (spacelike in signature $$-+++$$); one exists because $$\tilde B$$ contains a neighbourhood of $$0$$. If $$\tilde B$$ were invariant it would contain the orbit of $$v$$, which is the whole one-sheeted hyperboloid $$g(x,x)=g(v,v)$$, since the identity component of the Lorentz group acts transitively on it. The orthogonal complement of $$v$$ is a three-dimensional subspace of Lorentzian signature, and it contains a one-parameter family of null directions $$\nu$$. For each of them $$g(v+\tau\nu,v+\tau\nu)=g(v,v)$$, so the line $$v+\tau\nu$$ lies on the hyperboloid. At most one of these directions, up to sign and scale, has vanishing spatial part, so for some $$\nu$$ the spatial part of $$v+\tau\nu$$ is unbounded in $$\tau$$.
+</div>
+
+So no band can be a Lorentz-invariant regulator in any emergent metric, and loops are expected to produce the preferred-frame effects of [[Collins et al.]](#ref-collins). The covariant band limit of [[Pye–Donnelly–Kempf]](#ref-pdk) restricts a Euclidean four-momentum, not the spatial momentum, and is not of this kind. We compute the effects in a model.
+
+### 7.4 One-loop speeds and a photon mass
+
+*The model.* In the construction of Proposition 1, exact conservation of the total momentum is obtained by band-limiting every vertex, including those of matter. We take the most favourable case for Lorentz invariance at tree level: every field has the exactly relativistic dispersion $$\omega=\lvert k\rvert$$ inside the band, which requires a non-analytic lattice derivative equal to $$k$$ there, so that the only departure from the continuum is a factor $$\chi(\lvert k\rvert/b)$$ on every leg of every vertex. Here $$b$$ is the band edge; $$\chi=1$$ for $$\lvert k\rvert\le y_0b$$ and $$\chi=0$$ for $$\lvert k\rvert\ge b$$, with a Gevrey step in between, $$\chi=\varphi(1-\eta)/[\varphi(1-\eta)+\varphi(\eta)]$$ with $$\varphi(x)=\exp(-x^{-\beta})$$ for $$x>0$$, $$\varphi(x)=0$$ for $$x\le0$$ and $$\eta=(\lvert k\rvert/b-y_0)/(1-y_0)$$. Here $$\beta=1$$ is Gevrey class 2 and $$\beta=\tfrac12$$ class 3. The same cutoff is used for the cubic and the seagull vertices, which is consistent with Proposition 1 when $$b\le\pi/2$$. The matter is scalar electrodynamics: a complex scalar $$\Phi$$ of charge $$e$$, with the infrared regulator $$m_{\rm IR}$$ on the internal lines later taken to $$0$$.
+
+*Reduction.* A vertex vanishes if any of its legs lies outside the band, and inside the band the lattice propagators equal the continuum ones. A one-loop diagram with external momenta inside the band is therefore a continuum Euclidean loop in which each internal line carries the weight $$\varrho=\chi^2$$ of its spatial momentum, one factor $$\chi$$ from the vertex at each end, while the loop energy is integrated over the real line without restriction.
+
+*Definitions.* Write the Euclidean inverse propagator of a field as $$p^2+\Sigma(p)$$ and expand $$\Sigma(p)=\Sigma(0)+A_4p_4^2+A_s\lvert\mathbf p\rvert^2+\dots$$. After the continuation $$p_4\to i\omega$$ the low-energy speed is $$c=[(1+A_s)/(1+A_4)]^{1/2}$$, so
+
+$$
+\delta c=\tfrac12(A_s-A_4). \tag{11}
+$$
+
+For a marginal coupling $$\delta c=(e^2/16\pi^2)\,C$$, with $$C$$ a number that depends on the shape of the profile but not on $$b$$, because $$b$$ is the only scale. For the photon $$\gamma$$ (a transverse component, from the $$\Phi$$ loop) the coefficient $$C_\gamma$$ is independent of the gauge fixing, since no photon propagates in the loop. For $$\Phi$$ (from the photon loop) we use Feynman gauge; because the cut breaks the $$U(1)$$ gauge symmetry, $$C_\Phi$$ depends on this choice, which is then part of the definition of the model. Without the cut, both vanish by Lorentz invariance.
+
+The cut also gives the photon a mass. With $$q^2=q_4^2+\lvert\mathbf q\rvert^2$$ and $$\int\equiv\int d^4q/(2\pi)^4$$, the seagull contributes $$2e^2\delta_{\mu\nu}\int\varrho/q^2$$ to the vacuum polarisation $$\Pi_{\mu\nu}$$ and the bubble contributes $$-e^2\int(2q+p)_\mu(2q+p)_\nu\,\varrho\varrho'/(q^2(q+p)^2)$$, where the prime refers to the line with momentum $$q+p$$.
+
+<div class="proposition" markdown="1">
+**Proposition 4** (photon mass). At one loop,
+
+$$
+\Pi_{xx}(0)=2e^2\!\int\frac{\varrho-\varrho^2}{q^2}-2e^2\!\int\frac{q_x}{q^2}\,\partial_x(\varrho^2),\qquad
+\Pi_{44}(0)=2e^2\!\int\frac{\varrho-\varrho^2}{q^2}. \tag{12}
+$$
+
+If $$\varrho$$ has compact support in the spatial momenta, $$0\le\varrho\le1$$, and $$\varrho$$ is non-increasing along rays, both are non-negative, and $$\Pi_{xx}(0)>0$$ unless $$\varrho\equiv0$$. For a ball band, $$\varrho=\varrho(\lvert\mathbf q\rvert/b)$$, the photon mass squared is
+
+$$
+M^2\equiv\Pi_{xx}(0)=\frac{e^2b^2}{16\pi^2}\Big[\frac{16}3\int_0^\infty y\,\varrho^2\,dy+8\int_0^\infty y\,(\varrho-\varrho^2)\,dy\Big], \tag{13}
+$$
+
+with $$y=\lvert\mathbf q\rvert/b$$.
+</div>
+
+<div class="proof" markdown="1">
+*Proof.* At $$p=0$$ no sum over $$\mu$$: $$\Pi_{\mu\mu}(0)=2e^2\int\varrho/q^2-4e^2\int q_\mu^2\varrho^2/q^4$$. Split $$\varrho=(\varrho-\varrho^2)+\varrho^2$$ in the first term and use $$2/q^2-4q_\mu^2/q^4=2\partial_\mu(q_\mu/q^2)$$ in the remainder. Integrating by parts, the boundary terms vanish: in the spatial directions because $$\varrho$$ has compact support, in the energy direction because $$\varrho$$ does not depend on $$q_4$$ and $$\int dq_4\,\partial_4(q_4/q^2)=0$$. This gives both formulas in (12), and the sign conditions give $$\varrho-\varrho^2\ge0$$ and $$-q_x\partial_x\varrho^2\ge0$$. For a ball band, $$\int dq_4/2\pi\;q^{-2}=1/(2\lvert\mathbf q\rvert)$$, $$\partial_x\varrho^2=(\varrho^2)'q_x/\lvert\mathbf q\rvert$$ and the angular average of $$q_x^2$$ is $$\lvert\mathbf q\rvert^2/3$$. With $$d^3q/(2\pi)^3=\lvert\mathbf q\rvert^2d\lvert\mathbf q\rvert/2\pi^2$$ the first term of (12) gives the second term of (13). The second term of (12) gives $$-(e^2/6\pi^2)\int\lvert\mathbf q\rvert^2(\varrho^2)'\,d\lvert\mathbf q\rvert$$, and one integration by parts in $$y$$ gives the first term of (13).
+</div>
+
+Without the cut, $$\Pi_{\mu\nu}(0)$$ vanishes, as gauge invariance requires. With the cut, the mismatch between the seagull weight $$\varrho$$ and the bubble weight $$\varrho^2$$ and the derivative of the cutoff source $$M^2$$. Since $$\Pi_{44}(0)\ne\Pi_{xx}(0)$$, the mass term itself is not Lorentz invariant.
+
+*Numbers.* The coefficients $$C_\gamma$$ and $$C_\Phi$$ need the second derivatives of the bubbles in $$p$$. We computed them with the loop energy integrated in closed form, the integrand differentiated twice in the external momentum by computer algebra at symmetric routing $$q\pm p/2$$, and a Gauss–Legendre quadrature in the radial momentum and the polar angle with a sinh-mapped radial grid. The table is the result of this computation at $$m_{\rm IR}=0.003\,b$$, with $$C_\gamma$$ and $$C_\Phi$$ defined by $$\delta c=(e^2/16\pi^2)C$$ and $$M^2$$ in units of $$e^2b^2/16\pi^2$$.
+
+| profile ($$y_0$$, Gevrey class) | $$C_\gamma$$ | $$C_\Phi$$ | $$M^2/(e^2b^2/16\pi^2)$$ |
+|---|---|---|---|
+| 0.2, 2 | +0.3086 | +0.6049 | 0.8517 |
+| 0.5, 2 | +0.5144 | +1.1194 | 1.4016 |
+| 0.8, 2 | +1.3376 | +3.1772 | 2.1084 |
+| 0.5, 3 | +0.3850 | +0.7959 | 1.3394 |
+| 0.8, 3 | +1.0118 | +2.3629 | 2.0663 |
+
+*Checks.* The photon mass from the quadrature agrees with the closed form (13) to $$2\times10^{-5}$$ in relative terms in every row. For the profile $$(0.5,2)$$ the coefficients change by less than $$0.05\%$$ between $$m_{\rm IR}=0.01\,b$$ and $$0.001\,b$$: $$C_\gamma=0.51424,\ 0.51442,\ 0.51443$$ at $$m_{\rm IR}/b=0.01,\ 0.003,\ 0.001$$, and $$C_\Phi=1.11913,\ 1.11940,\ 1.11942$$. A second evaluation of $$C_\gamma$$ for this profile by second finite differences in $$p$$ of the integrated bubble, with the loop energy integrated in closed form as before and Richardson extrapolation from steps $$0.04$$ and $$0.02$$, gives $$0.51424$$, in agreement with the analytic differentiation. This tests the differentiation and the quadrature, not the model.
+
+All coefficients are positive, $$C_\Phi/C_\gamma$$ lies between $$1.96$$ and $$2.38$$, and the coefficients vary with the shape of the profile by factors of $$4.3$$ ($$C_\gamma$$), $$5.3$$ ($$C_\Phi$$) and $$2.5$$ ($$M^2$$); none comes near zero.
+
+*Comparison with data.* With $$\alpha=e^2/4\pi=1/137.036$$, (11) gives a photon speed shift $$\delta c_\gamma=C_\gamma\,\alpha/4\pi=(1.8\text{–}7.8)\times10^{-4}$$. The graviton has no $$O(e^2)$$ shift in this model, so this is also $$c_\gamma-c_{\rm GW}$$ at this order. The arrival times of GW170817 and GRB 170817A bound $$(c_{\rm GW}-c_\gamma)/c$$ between $$-3\times10^{-15}$$ and $$+7\times10^{-16}$$ [[GW170817]](#ref-gw170817). Since $$c_{\rm GW}-c_\gamma=-\delta c_\gamma<0$$, the relevant bound is $$3\times10^{-15}$$, which is $$4\times10^{-12}$$ to $$2\times10^{-11}$$ times $$\delta c_\gamma$$. The shift does not depend on $$b$$, so no choice of band edge reduces it. The two species of the same theory also disagree, $$\lvert\delta c_\gamma-\delta c_\Phi\rvert=(1.7\text{–}11)\times10^{-4}$$, with the gauge caveat above. The photon mass is $$m_\gamma=(0.022\text{–}0.035)\,b$$, from $$m_\gamma^2=M^2$$ in the units of the table. For a band edge at the Planck mass, $$1.2\times10^{28}$$ eV, this is $$(2.7\text{–}4.3)\times10^{26}$$ eV, some $$10^{44}$$ times the bound $$m_\gamma<10^{-18}$$ eV [[PDG]](#ref-pdg). Each of these can be cancelled by a bare Lorentz-violating counterterm, since no symmetry forbids one once gauge invariance is broken; agreement with the bounds then requires the bare parameters to be tuned species by species, the speeds to between one part in $$10^{11}$$ and one part in $$10^{12}$$ and the photon mass term to a much higher accuracy. This is the fine-tuning problem of [[Collins et al.]](#ref-collins), realised here by the vertices of Proposition 1. Graviton loops add contributions of order $$\kappa^2b^2/16\pi^2$$, which depend on $$b$$ and could cancel the photon shift only for one tuned value of $$b$$; we have not evaluated them.
+
+## 8. What the theorems do not exclude
+
+The statements above are conditional, and each escape below is stated with the hypothesis it drops. None of them is chosen over the others here.
+
+1. *Non-analytic charges.* Theorem 1 needs $$P$$ analytic (or, by the remark, in a quasi-analytic class). Band-limited vertices with a charge that is linear on the band conserve it exactly (Proposition 1), at the costs of section 7: a preferred frame, a heuristic obstruction to closure under the nonlinear gauge transformations, and the loop effects of section 7.4 in the model computed there. Whether a deformation of the gauge transformations exists that closes on band-limited fields is open.
+2. *Other settings.* Spacetime lattices, on which energy is also periodic; dynamical lattices; and non-local actions are outside the scope of Theorem 1, which is for a continuous-time Hamiltonian on a fixed Bravais lattice. Perfect actions are non-local in this sense.
+3. *Matrix-valued charges.* The charge is assumed to act identically on both helicities. A charge with a $$2\times2$$ matrix symbol on the helicity index is not covered.
+4. *Collinear resonances.* (H2) holds for the nearest-neighbour dispersion but not for an exactly linear one, for which collinear three-wave processes are resonant. For such dispersions the cubic step of section 3 needs separate treatment, and the on-shell three-graviton amplitude would have to vanish on the collinear set.
+5. *Scattering that is not general relativity's.* (H5) assumes a non-zero low-energy $$2\to2$$ amplitude. A lattice theory whose amplitude vanishes on the resonant set, or whose amplitude is non-zero but different from that of general relativity, satisfies (H5) or not according to its own vertex; Theorem 1 uses only non-vanishing.
+6. *Compactness.* Theorem 2 is limited to Villain lattices in which every component of $$h$$ is compact. With only the gauge directions compact, integer charges and a linear dispersion coexist for the free theory; the remaining obstruction is then in the matter sector or in the Leibniz rule.
+7. *Photon speed and mass.* The one-loop shifts of section 7.4 are cancelled by bare Lorentz-violating terms, since no symmetry forbids them once gauge invariance is broken; agreement with the bounds then requires the bare parameters to be tuned species by species. This is the fine-tuning problem of [[Collins et al.]](#ref-collins), realised here by the band-limited vertices.
+
+## 9. Open points
+
+The obstruction in Theorem 1 first appears at order $$\kappa^2$$. Whether an exponentially local $$Q_3$$ exists at order $$\kappa$$ is open: the lattice Leibniz defect obstructs the obvious construction. The passage from exact gauge invariance to the conserved charge of (H3), and the identification of $$\mathcal T$$ with the general-relativity amplitude in (H5), are assumptions about the lattice theory. The closure criterion of section 7.2 concerns only gauge transformations whose nonlinear part is the transport term, and the gauge-invariance cost of band-limiting is established only by that criterion. The one-loop results use ball-shaped bands, one toy matter sector and Feynman gauge for $$C_\Phi$$; cubic bands, fermions and the graviton's own shift were not computed, and graviton loops add contributions of order $$\kappa^2b^2/16\pi^2$$ that depend on $$b$$. Whether some Lorentz-invariant structure other than a momentum band, for example a random rather than a regular lattice, avoids both the identity-theorem obstruction and the band is not addressed here; see [Lorentz-invariant quantum sprinklings are condensates](/quantum-gravity/quantum-sprinklings/) for point sets that have no preferred frame.
+
+## References
+
+1. <a id="ref-dfs"></a>Dittrich, Freidel, Speziale, “Linearized dynamics from the 4-simplex Regge action,” Phys. Rev. D 76, 104020 (2007), [arXiv:0707.4513](https://arxiv.org/abs/0707.4513).
+2. <a id="ref-hoehn"></a>Höhn, “Canonical linearized Regge calculus: counting lattice gravitons with Pachner moves,” Phys. Rev. D 91, 124034 (2015), [arXiv:1411.5672](https://arxiv.org/abs/1411.5672).
+3. <a id="ref-bd1"></a>Bahr, Dittrich, “(Broken) gauge symmetries and constraints in Regge calculus,” Class. Quantum Grav. 26, 225011 (2009), [arXiv:0905.1670](https://arxiv.org/abs/0905.1670).
+4. <a id="ref-bd2"></a>Bahr, Dittrich, “Breaking and restoring of diffeomorphism symmetry in discrete gravity,” [arXiv:0909.5688](https://arxiv.org/abs/0909.5688).
+5. <a id="ref-dittrich"></a>Dittrich, “Diffeomorphism symmetry in quantum gravity models,” [arXiv:0810.3594](https://arxiv.org/abs/0810.3594).
+6. <a id="ref-luscher"></a>Lüscher, “Exact chiral symmetry on the lattice and the Ginsparg–Wilson relation,” Phys. Lett. B 428, 342 (1998), [arXiv:hep-lat/9802011](https://arxiv.org/abs/hep-lat/9802011).
+7. <a id="ref-horvath"></a>Horváth, “Ginsparg–Wilson relation and ultralocality,” Phys. Rev. Lett. 81, 4063 (1998), [arXiv:hep-lat/9808002](https://arxiv.org/abs/hep-lat/9808002).
+8. <a id="ref-bietenholz"></a>Bietenholz, “The absence of ultralocal Ginsparg–Wilson fermions,” [arXiv:hep-lat/9901005](https://arxiv.org/abs/hep-lat/9901005).
+9. <a id="ref-kss"></a>Kato, Sakamoto, So, “No-go theorem of Leibniz rule and supersymmetry on the lattice,” PoS LATTICE2008, 233, [arXiv:0810.2360](https://arxiv.org/abs/0810.2360).
+10. <a id="ref-deser"></a>Deser, “Self-interaction and gauge invariance,” Gen. Rel. Grav. 1, 9 (1970), [arXiv:gr-qc/0411023](https://arxiv.org/abs/gr-qc/0411023).
+11. <a id="ref-bh"></a>Barnich, Henneaux, “Consistent couplings between fields with a gauge freedom and deformations of the master equation,” Phys. Lett. B 311, 123 (1993), [arXiv:hep-th/9304057](https://arxiv.org/abs/hep-th/9304057).
+12. <a id="ref-spohn"></a>Spohn, “Collisional invariants for the phonon Boltzmann equation,” [arXiv:math-ph/0605069](https://arxiv.org/abs/math-ph/0605069).
+13. <a id="ref-peierls"></a>Peierls, “Zur kinetischen Theorie der Wärmeleitung in Kristallen,” Ann. Phys. (Leipzig) 395, 1055 (1929).
+14. <a id="ref-lkm"></a>Lewis, Kempf, Menicucci, “Quantum lattice models that preserve continuous translation symmetry,” Phys. Rev. D 108, 096024 (2023), [arXiv:2303.07649](https://arxiv.org/abs/2303.07649).
+15. <a id="ref-pdk"></a>Pye, Donnelly, Kempf, “Locality and entanglement in bandlimited quantum field theory,” Phys. Rev. D 92, 105022 (2015), [arXiv:1508.05953](https://arxiv.org/abs/1508.05953).
+16. <a id="ref-collins"></a>Collins, Perez, Sudarsky, Urrutia, Vucetich, “Lorentz invariance and quantum gravity: an additional fine-tuning problem?,” Phys. Rev. Lett. 93, 191301 (2004), [arXiv:gr-qc/0403053](https://arxiv.org/abs/gr-qc/0403053).
+17. <a id="ref-clm"></a>Chankowski, Lewandowski, Meißner, “Ultraviolet cutoffs and the photon mass,” [arXiv:1608.01214](https://arxiv.org/abs/1608.01214).
+18. <a id="ref-xu"></a>Xu, “Novel algebraic boson liquid phase with soft graviton excitations,” [arXiv:cond-mat/0602443](https://arxiv.org/abs/cond-mat/0602443).
+19. <a id="ref-xh"></a>Xu, Hořava, “Emergent gravity at a Lifshitz point from a Bose liquid on the lattice,” Phys. Rev. D 81, 104033 (2010), [arXiv:1003.0009](https://arxiv.org/abs/1003.0009).
+20. <a id="ref-glss1"></a>Gorantla, Lam, Seiberg, Shao, “A modified Villain formulation of fractons and other exotic theories,” J. Math. Phys. 62, 102301 (2021), [arXiv:2103.01257](https://arxiv.org/abs/2103.01257).
+21. <a id="ref-glss2"></a>Gorantla, Lam, Seiberg, Shao, “Global dipole symmetry, compact Lifshitz theory, tensor gauge theory, and fractons,” [arXiv:2201.10589](https://arxiv.org/abs/2201.10589).
+22. <a id="ref-gw170817"></a>LIGO Scientific Collaboration, Virgo Collaboration, Fermi Gamma-ray Burst Monitor, INTEGRAL, “Gravitational waves and gamma-rays from a binary neutron star merger: GW170817 and GRB 170817A,” Astrophys. J. Lett. 848, L13 (2017), [arXiv:1710.05834](https://arxiv.org/abs/1710.05834).
+23. <a id="ref-pdg"></a>Navas et al. (Particle Data Group), “Review of particle physics,” Phys. Rev. D 110, 030001 (2024).
