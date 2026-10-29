@@ -6,8 +6,32 @@ sections:
     blurb: >-
       A map of the approaches to quantum gravity that have been tested against
       the same requirements, and where each stands.
-  - id: no-go
-    title: No-go theorems
+  - id: substrate
+    title: Discrete Lorentz-invariant substrates
     blurb: >-
-      Each page states one theorem that excludes a region of the landscape,
-      with its hypotheses, its proof, and the escape routes it leaves open.
+      Theorems about point sets, random lattices and quantum counts that are
+      invariant under the Lorentz group.
+  - id: gravity
+    title: Locality, lattices and gravity
+    blurb: >-
+      Theorems about gravitons on lattices, about non-locality, and about where
+      a preferred frame shows up at low energy.
+  - id: matter
+    title: Matter on discrete substrates
+    blurb: >-
+      Theorems about fermions and chirality on causal orders and random points.
+  - id: entropy
+    title: Entropy, action and dynamics
+    blurb: >-
+      Theorems about horizon counts, the causal-set action, and laws of change.
+  - id: continuum
+    title: Continuum and indefinite-metric theories
+    blurb: >-
+      Theorems about theories whose spacetime is emergent or whose propagators
+      are not positive.
+  - id: dark-sector
+    title: Cosmology and the dark sector
+    blurb: >-
+      Theorems that exclude routes to the cosmological constant, the dark
+      matter density and the neutrino mass, and model classes fitted to
+      cosmological data.
