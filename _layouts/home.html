@@ -7,30 +7,25 @@ layout: default
   {%- endif -%}
   {{ content }}
 
-  {%- comment -%}
-    One section per project. site.js turns the sections into tabs; without
-    JavaScript they are simply stacked.
-  {%- endcomment -%}
-  <div class="projects">
-    {%- for project in site.data.projects -%}
-    {%- assign prefix = "/" | append: project.id | append: "/" -%}
-    {%- assign notes = site.notes | where_exp: "n", "n.url contains prefix" | where_exp: "n", "n.parent == nil" | sort: "order" -%}
-    <section class="project" id="{{ project.id }}" aria-labelledby="{{ project.id }}-title">
-      <h2 id="{{ project.id }}-title">{{ project.title | escape }}</h2>
-      {%- if project.summary -%}
-      <p class="project-summary">{{ project.summary }}</p>
-      {%- endif -%}
-      <ol class="note-list">
-        {%- for note in notes -%}
-        <li>
-          <a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a>
-          {%- if note.description %}
-          <p>{{ note.description }}</p>
-          {%- endif %}
-        </li>
-        {%- endfor -%}
-      </ol>
-    </section>
-    {%- endfor -%}
-  </div>
+  {%- for section in site.data.wiki.sections -%}
+  {%- assign pages = site.notes | where: "category", section.id | sort: "order" -%}
+  {%- if pages.size > 0 %}
+  <section class="home-section" id="{{ section.id }}">
+    <h2>{{ section.title | escape }}</h2>
+    {%- if section.blurb %}
+    <p>{{ section.blurb }}</p>
+    {%- endif %}
+    <ul class="page-list">
+      {%- for entry in pages %}
+      <li>
+        <a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a>
+        {%- if entry.description %}
+        <p>{{ entry.description }}</p>
+        {%- endif %}
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif -%}
+  {%- endfor -%}
 </div>

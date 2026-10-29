@@ -1,48 +1,38 @@
 ---
 layout: default
 ---
-{%- assign project_id = page.path | split: "/" | slice: 1 | first -%}
-{%- assign project = site.data.projects | where: "id", project_id | first -%}
-{%- assign prefix = "/" | append: project_id | append: "/" -%}
-{%- assign siblings = site.notes | where_exp: "n", "n.url contains prefix" | where_exp: "n", "n.parent == page.parent" | sort: "order" -%}
-{%- if page.parent -%}
-{%- assign parent_note = site.notes | where: "url", page.parent | first -%}
-{%- endif -%}
-<article class="post note h-entry">
+{%- assign section = site.data.wiki.sections | where: "id", page.category | first -%}
+{%- assign here = page.url -%}
+{%- assign linking = site.notes | where_exp: "n", "n.url != here" | where_exp: "n", "n.content contains here" | sort: "title" -%}
+<article class="post note">
   <header class="post-header">
-    {%- if project %}
-    <p class="note-project"><a href="{{ '/' | relative_url }}#{{ project.id }}">{{ project.title | escape }}</a>
-      {%- if parent_note %} / <a href="{{ parent_note.url | relative_url }}">{{ parent_note.short_title | default: parent_note.title | escape }}</a>{% endif -%}
+    <p class="note-project"><a href="{{ '/' | relative_url }}">Home</a>
+      {%- if section %} / <a href="{{ '/' | relative_url }}#{{ section.id }}">{{ section.title | escape }}</a>{% endif -%}
     </p>
-    {%- endif %}
-    <h1 class="p-name">{{ page.title | escape }}</h1>
-    <p class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
-      {%- if page.last_updated and page.last_updated != page.date %}
-      <span class="updated">Updated <time datetime="{{ page.last_updated | date_to_xmlschema }}">{{ page.last_updated | date: "%-d %B %Y" }}</time></span>
+    <h1>{{ page.title | escape }}</h1>
+    <dl class="facts">
+      {%- if page.status %}
+      <dt>Status</dt><dd>{{ page.status | escape }}</dd>
       {%- endif %}
-    </p>
+      {%- if page.excludes %}
+      <dt>Excludes</dt><dd>{{ page.excludes | escape }}</dd>
+      {%- endif %}
+      <dt>Revised</dt><dd><time datetime="{{ page.last_updated | default: page.date | date_to_xmlschema }}">{{ page.last_updated | default: page.date | date: "%-d %B %Y" }}</time></dd>
+    </dl>
   </header>
 
-  <div class="post-body e-content">
+  <div class="post-body">
     {{ content }}
   </div>
 
-  {%- for note in siblings -%}
-    {%- if note.url == page.url -%}
-      {%- assign i = forloop.index0 -%}
-    {%- endif -%}
-  {%- endfor -%}
-  {%- assign prev_i = i | minus: 1 -%}
-  {%- assign next_i = i | plus: 1 -%}
-  {%- if siblings.size > 1 %}
-  <nav class="post-nav" aria-label="More in {{ project.title | escape }}">
-    {%- if prev_i >= 0 %}
-    <a class="prev" href="{{ siblings[prev_i].url | relative_url }}"><span>{% if page.parent %}Previous entry{% else %}Previous note{% endif %}</span>{{ siblings[prev_i].title | escape }}</a>
-    {%- endif -%}
-    {%- if next_i < siblings.size %}
-    <a class="next" href="{{ siblings[next_i].url | relative_url }}"><span>{% if page.parent %}Next entry{% else %}Next note{% endif %}</span>{{ siblings[next_i].title | escape }}</a>
-    {%- endif %}
-  </nav>
+  {%- if linking.size > 0 %}
+  <aside class="backlinks" aria-labelledby="backlinks-title">
+    <h2 id="backlinks-title">Pages that link here</h2>
+    <ul>
+      {%- for n in linking %}
+      <li><a href="{{ n.url | relative_url }}">{{ n.title | escape }}</a></li>
+      {%- endfor %}
+    </ul>
+  </aside>
   {%- endif %}
 </article>

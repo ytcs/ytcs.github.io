@@ -1,0 +1,13 @@
+# Sections of the wiki. A page belongs to a section through its `category`
+# front-matter field; pages in a section are listed on the home page by `order`.
+sections:
+  - id: landscape
+    title: The landscape
+    blurb: >-
+      A map of the approaches to quantum gravity that have been tested against
+      the same requirements, and where each stands.
+  - id: no-go
+    title: No-go theorems
+    blurb: >-
+      Each page states one theorem that excludes a region of the landscape,
+      with its hypotheses, its proof, and the escape routes it leaves open.

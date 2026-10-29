@@ -3,13 +3,13 @@
 
 title: To Chin Yu
 description: Personal site of To Chin Yu
-intro: "I work on open problems in physics, mathematics and finance, organised here as projects. Each project lists notes that write up individual results in full, with proofs, in the style of lecture notes. Much of the exploration is done with LLM agents."
+intro: "I work on open problems in physics, mathematics and finance. This site is a wiki: each page sets out one result or one map of a field in full, with proofs, and links to the pages it depends on. Much of the exploration is done with LLM agents."
 url: "https://ytcs.github.io"
 baseurl: ""
 
 
-# Notes live in _notes/<project>/<slug>.md and are served at /<project>/<slug>/.
-# Projects (the tabs on the home page) are listed in _data/projects.yml.
+# Pages live in _notes/<topic>/<slug>.md and are served at /<topic>/<slug>/.
+# Sections of the home page are listed in _data/wiki.yml.
 collections:
   notes:
     output: true

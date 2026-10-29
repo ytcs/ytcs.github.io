@@ -1,4 +1,4 @@
-// Theme override, table of contents for long posts, and click-to-enlarge figures.
+// Theme override, table of contents for long pages, and click-to-enlarge figures.
 // The page is complete without this script; each piece only adds to it.
 
 (function () {
@@ -99,67 +99,8 @@
     });
   }
 
-  // Home page: one tab per project. The selected tab follows the URL hash so
-  // links like /#quantum-gravity open the right project.
-  function initProjectTabs() {
-    var container = document.querySelector('.projects');
-    if (!container) return;
-    var sections = Array.prototype.slice.call(container.querySelectorAll('.project'));
-    if (!sections.length) return;
-
-    var tablist = document.createElement('div');
-    tablist.className = 'tabs';
-    tablist.setAttribute('role', 'tablist');
-    var tabs = sections.map(function (section) {
-      var heading = section.querySelector('h2');
-      var tab = document.createElement('button');
-      tab.type = 'button';
-      tab.className = 'tab';
-      tab.id = section.id + '-tab';
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('aria-controls', section.id);
-      tab.textContent = heading.textContent;
-      section.setAttribute('role', 'tabpanel');
-      section.setAttribute('aria-labelledby', tab.id);
-      tablist.appendChild(tab);
-      return tab;
-    });
-    container.insertBefore(tablist, container.firstChild);
-    container.classList.add('tabbed');
-
-    function select(index, updateHash) {
-      sections.forEach(function (section, i) {
-        var on = i === index;
-        section.hidden = !on;
-        tabs[i].setAttribute('aria-selected', on ? 'true' : 'false');
-        tabs[i].tabIndex = on ? 0 : -1;
-      });
-      if (updateHash) history.replaceState(null, '', '#' + sections[index].id);
-    }
-
-    function fromHash() {
-      var id = location.hash.slice(1);
-      var index = sections.findIndex(function (s) { return s.id === id; });
-      return index < 0 ? 0 : index;
-    }
-
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { select(i, true); });
-      tab.addEventListener('keydown', function (e) {
-        var next = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
-        if (next === null) return;
-        next = (next + tabs.length) % tabs.length;
-        select(next, true);
-        tabs[next].focus();
-      });
-    });
-    window.addEventListener('hashchange', function () { select(fromHash(), false); });
-    select(fromHash(), false);
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     initThemeToggle();
-    initProjectTabs();
     initToc();
     initFigureZoom();
   });

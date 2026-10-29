@@ -161,58 +161,21 @@ a:hover { text-decoration-thickness: 0.12em; }
   margin: 0 0 2.5rem;
 }
 
-.tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.75rem;
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: 1.75rem;
-}
-
-.tab {
-  font: inherit;
-  color: var(--muted);
-  background: none;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  padding: 0.4rem 0;
-  cursor: pointer;
-  &:hover { color: var(--ink); }
-  &[aria-selected="true"] {
-    color: var(--ink);
-    border-bottom-color: var(--ink);
-  }
-}
-
-.project {
-  margin-bottom: 3rem;
+.home-section {
+  margin: 0 0 3rem;
   h2 {
     font-size: 1.35rem;
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.5rem;
   }
+  > p { margin: 0 0 1.25rem; }
 }
 
-// The tab already names the project.
-.tabbed .project > h2 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.project-summary {
-  margin: 0 0 2rem;
-}
-
-.note-list {
+.page-list {
   list-style: none;
   margin: 0;
   padding: 0;
 
-  > li { margin: 0 0 1.5rem; }
+  > li { margin: 0 0 1.25rem; }
   > li > a {
     font-weight: 700;
     color: var(--ink);
@@ -220,7 +183,7 @@ a:hover { text-decoration-thickness: 0.12em; }
     &:hover { text-decoration: underline; }
   }
   p {
-    margin: 0.25rem 0 0;
+    margin: 0.2rem 0 0;
     color: var(--muted);
   }
 }
@@ -244,11 +207,28 @@ a:hover { text-decoration-thickness: 0.12em; }
   a:hover { color: var(--ink); text-decoration: underline; }
 }
 
-.post-meta {
-  margin: 0;
-  color: var(--muted);
+// Facts about a page (type, status, what it excludes, revision), as a plain table of rows.
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.3rem 1.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
   font-size: 0.9rem;
-  .updated { margin-left: 1rem; }
+  dt { color: var(--muted); }
+  dd { margin: 0; }
+}
+
+.backlinks {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.95rem;
+  h2 { font-size: 1rem; margin: 0 0 0.5rem; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { margin: 0.25rem 0; }
 }
 
 .post-body {
@@ -370,25 +350,6 @@ pre {
   .k, .kd, .kn, .kr { font-weight: 700; }
 }
 
-// Previous / next
-.post-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
-  font-size: 0.95rem;
-
-  a { max-width: 48%; }
-  span {
-    display: block;
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  .next { margin-left: auto; text-align: right; }
-}
-
 // ---------------------------------------------------------------- contents
 
 .toc {
@@ -455,11 +416,11 @@ dialog.zoom {
 @media (max-width: 40rem) {
   .site-header { margin-bottom: 2.5rem; }
   .post-header h1 { font-size: 1.65rem; }
-  .post-nav { flex-direction: column; gap: 1rem; a { max-width: none; } .next { text-align: left; margin-left: 0; } }
+  .facts { grid-template-columns: 1fr; gap: 0; dd { margin-bottom: 0.5rem; } }
 }
 
 @media print {
-  .site-nav, .site-footer, .toc, .post-nav { display: none; }
+  .site-nav, .site-footer, .toc, .backlinks { display: none; }
   body { background: #fff; color: #000; }
   a { color: inherit; }
 }

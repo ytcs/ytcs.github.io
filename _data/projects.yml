@@ -1,9 +1,0 @@
-# Each project is a tab on the home page. Notes belong to a project through
-# their folder: _notes/<id>/<slug>.md. Notes are listed by their `order`.
-- id: quantum-gravity
-  title: Quantum Gravity
-  summary: >-
-    The goal is a new physical principle for quantum gravity that derives,
-    without fitting, a measured number nobody can currently explain: the
-    neutrino masses, the dark matter density, or the size of the cosmological
-    constant. The notes here are results found along the way.
