@@ -181,7 +181,7 @@ The remaining coefficients follow from (4) by expanding to first order in $$\var
 | $$9/4$$ | | $$\frac{31\cdot3^{1/4}\Gamma(1/4)}{1120\,\pi^{1/4}}\ell$$ | $$\frac{37\cdot3^{1/4}\Gamma(1/4)}{70\,\pi^{1/4}}\ell$$ |
 | $$5/2$$ | | $$\frac{\sqrt3}{1260}$$ | $$\frac{547\sqrt3}{1260}$$ |
 
-and in three dimensions the flat count is $$\frac{3^{2/3}\pi^{1/3}\Gamma(2/3)}{3}Q(\tfrac53)\ell+\frac9{10}Q(2)$$, with $$h_\Sigma=\frac{3^{2/3}\pi^{1/3}\Gamma(2/3)}{48}Q(\tfrac53)\ell^3+\frac9{40}Q(2)\ell^2+\frac{3^{1/3}\Gamma(1/3)}{20\pi^{1/3}}Q(\tfrac73)\ell+\frac{3^{2/3}\Gamma(2/3)}{210\pi^{2/3}}Q(\tfrac83)$$ and $$h_0=\frac{5\cdot3^{1/3}\Gamma(1/3)}{12\pi^{1/3}}Q(\tfrac73)\ell+\frac{64\cdot3^{2/3}\Gamma(2/3)}{105\pi^{2/3}}Q(\tfrac83)$$. In five dimensions, to six figures,
+and in three dimensions the flat count is $$\frac{3^{2/3}\pi^{1/3}\Gamma(2/3)}{3}Q(\tfrac53)\ell+\frac9{10}Q(2)$$, with $$h_\Sigma=\frac{3^{2/3}\pi^{1/3}\Gamma(2/3)}{48}Q(\tfrac53)\ell^3+\frac9{40}Q(2)\ell^2+\frac{3^{1/3}\Gamma(1/3)}{20\pi^{1/3}}Q(\tfrac73)\ell+\frac{3^{2/3}\Gamma(2/3)}{210\pi^{2/3}}Q(\tfrac83)$$ and $$h_0=\frac{5\cdot3^{1/3}\Gamma(1/3)}{12\pi^{1/3}}Q(\tfrac73)\ell+\frac{64\cdot3^{2/3}\Gamma(2/3)}{105\pi^{2/3}}Q(\tfrac83)$$. The five-dimensional coefficients, to six figures, are in the table below.
 
 | exponent $$\alpha$$ | flat count | $$h_\Sigma$$ | $$h_0$$ |
 |---|---|---|---|
