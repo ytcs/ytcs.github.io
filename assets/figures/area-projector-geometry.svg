@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 310" width="520" height="310" role="img" font-family="Charter, Georgia, serif" font-size="15">
   <title>Geometry of a horizon molecule</title>
-  <rect x="0" y="0" width="520" height="310" fill="#ffffff"/>
   <!-- region P below the slice, between the two horizon lines -->
   <polygon points="190,150 330,150 456,276 64,276" fill="#000000" fill-opacity="0.09" stroke="none"/>
   <!-- slice Sigma -->
