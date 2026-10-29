@@ -3,60 +3,64 @@ title: A matter-induced instability in Freezing Gravity
 date: 2026-10-29
 category: dark-sector
 order: 6
-description: Adding pressureless matter to the Freezing Gravity dark-energy model produces a sub-horizon instability whose growth rate does not depend on wavenumber. It affects every phantom phase and every constant non-zero beyond-Horndeski coupling, and no constant coupling stabilises the DESI DR2 fits, unless one of the escape routes of section 7 applies.
-status: The quadratic action and its exact reduction are proved by direct expansion; the growth rate is derived at leading order in the square root of the lapse-gradient coefficient and compared with exact numerical integration of the linear equations. DESI numbers use CPL posterior means.
-excludes: Freezing Gravity with minimally coupled dust, constant effective-field-theory parameters and a small lapse-gradient coefficient, in any phantom phase with zero beyond-Horndeski coupling and zero tensor-speed excess, and for any non-zero constant beyond-Horndeski coupling on a cosmological-constant background.
+description: With pressureless matter added, the Freezing Gravity dark-energy model has a sub-horizon scalar instability whose growth rate does not depend on the wavenumber when its lapse-gradient coefficient and kinetic detuning are small, and no constant beyond-Horndeski coupling removes it on the phantom side of the DESI DR2 fits.
+status: The quadratic action and an exact reduction of the dust system are derived by direct expansion. The growth rate and the edge of the unstable band are leading-order derivations, compared with numerical integration of the linear equations. DESI numbers use CPL posterior means.
+excludes: At leading order in the square root of the lapse-gradient coefficient, for minimally coupled dust, constant parameters and modes between the Hubble scale and the band edge, the following are excluded. A phantom phase with zero beyond-Horndeski coupling and zero tensor-speed excess. A constant positive beyond-Horndeski coupling in a matter era. Any constant non-zero beyond-Horndeski coupling on a cosmological-constant background. Any constant coupling on the phantom side of the four DESI DR2 fits, where the growth is at least 4.7 e-folds at a lapse-gradient coefficient of 0.0001. Not excluded are a lapse-gradient coefficient of order 0.01 or larger, a running beyond-Horndeski coupling, and a negative tensor-speed excess near redshift 1. A kinetic detuning above the band-closing value and modes near the horizon are unresolved.
 ---
 
-Freezing Gravity is a dark-energy model in which the expansion history, including a crossing of the phantom divide $$w=-1$$, can be prescribed freely, while the linear perturbations are controlled by four separate parameters [[YYS]](#ref-yys). The question is whether those perturbations remain stable once pressureless matter is added to the model. For a small lapse-gradient coefficient $$\beta_3$$ they do not. On sub-horizon scales the scalar mode, with the dust slaved to it, obeys an oscillator equation whose squared frequency $$B_mH^2/\beta_3$$ does not depend on the wavenumber, with
+Freezing Gravity is a dark-energy model whose expansion history, including a crossing of the phantom divide $$w=-1$$, can be prescribed freely, while four parameters control the linear perturbations [[YYS]](#ref-yys). Without matter the perturbations are stable under conditions on those parameters. Once pressureless matter is added they are not, if the lapse-gradient coefficient $$\beta_3$$ and the detuning $$\alpha_L$$ of the two kinetic terms are small (both defined in section 1). Between the Hubble scale and a cutoff $$k_{\max}$$, the scalar mode, with the dust slaved to it, obeys an oscillator equation whose squared frequency $$B_mH^2/\beta_3$$ does not depend on the wavenumber, and it grows at the rate $$\Gamma=H\sqrt{-B_m/\beta_3}$$ wherever $$B_m<0$$. With zero beyond-Horndeski coupling and zero tensor-speed excess, $$B_m<0$$ in every phantom phase.
+
+The coefficient is
 
 $$
 B_m=2(\alpha_H-\alpha_T)+3(1+\alpha_H)(1+w)\,\Omega_{\rm de}-3\alpha_H\,\Omega_m+\frac{2\dot\alpha_H}{H}. \tag{1}
 $$
 
-Where $$B_m<0$$ the perturbations grow at the rate $$\Gamma=H\sqrt{-B_m/\beta_3}$$. The symbols are defined in section 1: $$H$$ is the Hubble rate, $$w$$ and $$\Omega_{\rm de}$$ the equation of state and density fraction of the dark energy, $$\Omega_m$$ the density fraction of the dust, $$\alpha_T$$ the tensor-speed excess, $$\alpha_H$$ a beyond-Horndeski coupling, and a dot is a derivative in cosmic time. With constant parameters and $$\alpha_T=0$$, every phantom phase is unstable at $$\alpha_H=0$$, and every constant $$\alpha_H\neq0$$ is unstable on a cosmological-constant background, so the instability is not tied to the phantom crossing. No constant $$\alpha_H$$ stabilises the phantom phase of the four DESI DR2 $$w_0w_a$$ fits; at $$\beta_3=10^{-4}$$ the leading-order growth between $$z=2.33$$ and the crossing is 23 to 28 e-folds. The conditions under which this fails are listed in section 7: a running $$\alpha_H$$, a negative $$\alpha_T$$ near $$z\sim1$$, a $$\beta_3$$ of order 0.1, or a large $$\alpha_L$$.
+Here $$H$$ is the Hubble rate and a dot a derivative in cosmic time; $$w$$ and $$\Omega_{\rm de}$$ are the equation of state and the density fraction of the dark energy, and $$\Omega_m$$ is the density fraction of the dust; $$\alpha_T$$ is the excess of the tensor-wave speed over the speed of light; and $$\alpha_H$$ couples the spatial curvature to the lapse perturbation, a coupling that is absent in Horndeski theories. For constant parameters and $$\alpha_T=0$$, $$B_m<0$$ also for every $$\alpha_H>0$$ in a matter era and for every $$\alpha_H\neq0$$ on a cosmological-constant background (Corollary 2). On the phantom side of the four DESI DR2 $$w_0w_a$$ fits, no constant $$\alpha_H$$ makes $$B_m$$ non-negative throughout (Corollary 3). At $$\beta_3=10^{-4}$$ the leading-order growth between $$z=2.33$$ and the crossing is 23 to 28 e-folds at $$\alpha_H=0$$ and at least 4.7 e-folds for any constant $$\alpha_H$$ between $$-6$$ and $$6$$.
 
-The model and its vacuum stability conditions are due to Yao, Ye and Silvestri [[YYS]](#ref-yys). Yao [[Yao]](#ref-yao) added a minimally coupled perfect fluid, derived the no-ghost conditions at all wavenumbers and a gradient condition at high wavenumber, and presented the model as realising arbitrary backgrounds with stable perturbations. That the scalar's gradient energy involves the dark-energy combination $$\rho_{\rm de}+p_{\rm de}$$ and not the total $$\rho+p$$ is a familiar feature of the effective field theory of dark energy: in the Horndeski sound speed of Bellini and Sawicki [[BS]](#ref-bs), eq. (3.13), the matter contribution to $$\dot H$$ cancels against an explicit $$\tilde\rho_m+\tilde p_m$$ term, and Creminelli et al. [[CDNV]](#ref-cdnv) showed that a stable $$w<-1$$ phase needs operators beyond those of quintessence. De Felice, Frusciante and Papadomanolakis [[DFP]](#ref-dfp) classified the instabilities of modified gravity with matter, including tachyonic ones with rates far above $$H$$. What this page adds is the coefficient (1) for Freezing Gravity with dust, in particular its terms $$-3\alpha_H\Omega_m$$ and $$2\dot\alpha_H/H$$, an exact reduction of the dust system (Lemma 2) from which the rate follows, and the consequences for constant parameters and for the DESI fits. The conclusion bears on the DESI-motivated dark-energy interpretations discussed in [What a negative neutrino mass in BAO data would require](/quantum-gravity/neutrino-mimic/) and [The sign of energy exchange between vacuum and matter](/quantum-gravity/vacuum-matter-sign/), which address the same data with different mechanisms.
+These statements are leading order in $$\sqrt{\beta_3}$$ and require $$\beta_3\ll\lvert B_m\rvert$$, where $$\lvert B_m\rvert\lesssim0.2$$ on the DESI backgrounds. At $$\beta_3=10^{-2}$$ the integrated growth in the exact linear evolution is already a fraction of an e-fold at the wavenumbers tested (section 8). A running $$\alpha_H$$ and a negative $$\alpha_T$$ near $$z\sim1$$ also lie outside the result, and for a large $$\alpha_L$$ the question is unresolved; section 8 gives the conditions.
+
+The model and its vacuum stability conditions are due to Yao, Ye and Silvestri [[YYS]](#ref-yys). Yao [[Yao]](#ref-yao) added a minimally coupled perfect fluid, derived the no-ghost conditions at all wavenumbers and a gradient condition at high wavenumber, and presented the model as realising arbitrary backgrounds with stable perturbations. Those conditions hold at the parameters used here (section 7); the instability lies below the wavenumber $$k_{\max}$$ above which the high-wavenumber gradient condition applies. That the scalar's gradient energy involves $$\rho_{\rm de}+p_{\rm de}$$ rather than the total $$\rho+p$$ is familiar from the effective field theory of dark energy: in the Horndeski sound speed of Bellini and Sawicki [[BS]](#ref-bs), eq. (3.13), the matter contribution to $$\dot H$$ cancels against an explicit $$\tilde\rho_m+\tilde p_m$$ term, and Creminelli et al. [[CDNV]](#ref-cdnv) showed that a stable $$w<-1$$ phase needs operators beyond those of quintessence. De Felice, Frusciante and Papadomanolakis [[DFP]](#ref-dfp) classified the instabilities of modified gravity with matter, including tachyonic ones with rates far above $$H$$. What is added here is the coefficient (1) for Freezing Gravity with dust, an exact reduction of the dust system from which the rate follows (Lemma 2), and its consequences for constant parameters and the DESI fits. The same data motivate the mechanisms discussed in [negative neutrino mass in BAO data](/quantum-gravity/neutrino-mimic/) and [vacuum–matter energy exchange](/quantum-gravity/vacuum-matter-sign/).
 
 Units are $$M_{\rm Pl}^2/2=1$$, as in [[YYS]](#ref-yys), so that the Friedmann equation reads $$6H^2=\rho_{\rm tot}$$.
 
 ## 1. Background, perturbations and the model
 
-*Background.* The universe is described by a flat Friedmann–Robertson–Walker metric $$ds^2=-N^2dt^2+a(t)^2d\mathbf x^2$$ with lapse $$N=1$$ on the background, scale factor $$a(t)$$ and Hubble rate $$H=\dot a/a$$. Two components are present: pressureless matter (dust) with density $$\rho_m\propto a^{-3}$$, and a dark-energy component with density $$\rho_{\rm de}$$ and pressure $$p_{\rm de}=w\rho_{\rm de}$$. The density fractions are $$\Omega_m=\rho_m/(6H^2)$$ and $$\Omega_{\rm de}=\rho_{\rm de}/(6H^2)$$, with $$\Omega_m+\Omega_{\rm de}=1$$. A cosmological constant has $$w=-1$$ and $$\rho_{\rm de}$$ constant. The line $$w=-1$$ is the phantom divide: a component with $$w<-1$$ is called phantom, and in the models considered here it is a dark-energy density that grows with time. Recent baryon acoustic oscillation (BAO) measurements by DESI, combined with the cosmic microwave background and supernovae, prefer a dark-energy equation of state $$w(a)=w_0+w_a(1-a)$$ (the CPL form) with $$w_0>-1$$ and $$w_a<0$$ [[DESI]](#ref-desi). Then $$w$$ is phantom at early times and crosses $$-1$$ at $$a_c=1+(1+w_0)/w_a$$, that is at redshift $$z_c=1/a_c-1$$.
+The universe is described by a flat Friedmann–Robertson–Walker metric $$ds^2=-N^2dt^2+a(t)^2d\mathbf x^2$$ with lapse $$N=1$$ on the background, scale factor $$a(t)$$ and Hubble rate $$H=\dot a/a$$. Two components are present: pressureless matter (dust) with density $$\rho_m\propto a^{-3}$$, and a dark-energy component with density $$\rho_{\rm de}$$ and pressure $$p_{\rm de}=w\rho_{\rm de}$$. The density fractions are $$\Omega_m=\rho_m/(6H^2)$$ and $$\Omega_{\rm de}=\rho_{\rm de}/(6H^2)$$, with $$\Omega_m+\Omega_{\rm de}=1$$. A cosmological constant has $$w=-1$$. The line $$w=-1$$ is the phantom divide: a component with $$w<-1$$ is called phantom, and in the models considered here its density grows with time. Baryon acoustic oscillation (BAO) measurements by DESI, combined with the cosmic microwave background (CMB) and a supernova sample (DES-Y5, written DESY5, Union3 or Pantheon+), prefer a dark-energy equation of state $$w(a)=w_0+w_a(1-a)$$ (the CPL form) with $$w_0>-1$$ and $$w_a<0$$ [[DESI]](#ref-desi). With $$w_0+w_a<-1$$, $$w$$ is phantom at early times and crosses $$-1$$ at $$a_c=1+(1+w_0)/w_a$$, that is at redshift $$z_c=1/a_c-1$$. The fit to DESI, CMB and DESY5 data is written DESI+CMB+DESY5 below; its parameters are in section 6.
 
-*Perturbations.* A small perturbation is decomposed into Fourier modes of comoving wavenumber $$k$$. A mode is sub-horizon when $$\kappa\equiv k/(aH)\gg1$$, that is, when its wavelength is much shorter than the Hubble radius. We work to linear order, for one mode at a time, in the gauge in which the dark-energy scalar is uniform on constant-time slices (unitary gauge), so that the scalar's own perturbation is carried by the metric.
+A small perturbation is decomposed into Fourier modes of comoving wavenumber $$k$$. A mode is sub-horizon when $$\kappa\equiv k/(aH)\gg1$$, that is, when its wavelength is much shorter than the Hubble radius. We work to linear order, for one mode at a time, in the gauge in which the dark-energy scalar is uniform on constant-time slices (unitary gauge), so that the scalar's own perturbation is carried by the metric.
 
-*The model.* In unitary gauge Freezing Gravity is defined by the action [[YYS]](#ref-yys), eq. (3.27),
+In unitary gauge Freezing Gravity is defined by the action [[YYS]](#ref-yys), eq. (3.27),
 
 $$
-S_g=\int dt\,d^3x\,N\sqrt h\Big[\sigma_1\Big(K_{ij}K^{ij}-\tfrac13K^2\Big)+r_1R+r_2\,\mathfrak a_i\mathfrak a^i-\tfrac23K^2+4\mathcal F K-6\mathcal G^2\Big], \tag{2}
+S_g=\int dt\,d^3x\,N\sqrt h\Big[\sigma_1\Big(K_{ij}K^{ij}-\tfrac13K^2\Big)+r_1\,{}^{(3)}\!R+r_2\,\mathfrak a_i\mathfrak a^i-\tfrac23K^2+4\mathcal F K-6\mathcal G^2\Big], \tag{2}
 $$
 
-where $$h_{ij}$$ is the spatial metric with determinant $$h$$, $$K_{ij}$$ its extrinsic curvature with trace $$K$$, $$R$$ its Ricci scalar, and $$\mathfrak a_i=\partial_i\ln N$$ the acceleration of the normal to the slices. The coefficients $$\sigma_1,r_1,r_2$$ (written $$\sigma_1,\rho_1,\rho_2$$ in [[YYS]](#ref-yys)) are functions of $$t$$ and $$N$$; $$\mathcal F$$ and $$\mathcal G$$ are functions of $$t$$ alone. For $$\sigma_1=r_1=1$$, $$r_2=0$$ and $$\mathcal F=0$$ the bracket is the Einstein–Hilbert Lagrangian plus a cosmological constant $$\propto\mathcal G^2$$. The terms $$4\mathcal FK$$ and $$-6\mathcal G^2$$ fix the background: on the flat background $$\rho_{\rm de}=6\mathcal G^2$$ and $$\rho_{\rm de}+p_{\rm de}=-4\dot{\mathcal F}$$ (shown below), so any $$w(t)$$ can be realised by choosing $$\mathcal F(t),\mathcal G(t)$$. The perturbations depend on the coefficients only through their values at $$N=1$$ and one derivative, which define the effective-field-theory parameters ([[YYS]](#ref-yys), eq. (4.2)):
+where $$h_{ij}$$ is the spatial metric with determinant $$h$$, $$K_{ij}$$ its extrinsic curvature with trace $$K$$, $${}^{(3)}\!R$$ its Ricci scalar, and $$\mathfrak a_i=\partial_i\ln N$$ the acceleration of the normal to the slices. The coefficients $$\sigma_1,r_1,r_2$$ (written $$\sigma_1,\rho_1,\rho_2$$ in [[YYS]](#ref-yys)) are functions of $$t$$ and $$N$$; $$\mathcal F$$ and $$\mathcal G$$ are functions of $$t$$ alone. For $$\sigma_1=r_1=1$$, $$r_2=0$$ and $$\mathcal F=0$$ the bracket is the Einstein–Hilbert Lagrangian plus a cosmological constant $$\propto\mathcal G^2$$. The terms $$4\mathcal FK$$ and $$-6\mathcal G^2$$ fix the background: on the flat background $$\rho_{\rm de}=6\mathcal G^2$$ and $$\rho_{\rm de}+p_{\rm de}=-4\dot{\mathcal F}$$ (shown below), so any $$w(t)$$ can be realised by choosing $$\mathcal F(t),\mathcal G(t)$$. The perturbations depend on the coefficients only through their values at $$N=1$$ and one derivative, which define the effective-field-theory parameters ([[YYS]](#ref-yys), eq. (4.2)):
 
 $$
 \sigma_1=\frac{1}{1+\alpha_L},\qquad r_1=\frac{1+\alpha_T}{1+\alpha_L},\qquad r_1+\partial_Nr_1=\frac{1+\alpha_H}{1+\alpha_L},\qquad r_2=\frac{\beta_3}{1+\alpha_L}.
 $$
 
-The parameter $$\alpha_T$$ is the excess of the tensor speed over the speed of light, $$\alpha_H$$ the beyond-Horndeski coupling of $$R$$ to the lapse perturbation, $$\alpha_L$$ the detuning of the two $$K^2$$ terms, and $$\beta_3$$ the coefficient of the lapse gradient energy $$(\partial_i\delta N)^2/a^2$$, in the notation of Gleyzes, Langlois and Vernizzi [[GLV]](#ref-glv) and Langlois et al. [[LMNV]](#ref-lmnv). Throughout, $$\alpha_L\ge0$$ and $$\beta_3>0$$. In vacuum the scalar mode of this model has kinetic coefficient $$\beta_3\kappa^2$$ and gradient coefficient $$2\alpha_H-2(1+\alpha_H)\dot H/H^2+2\dot\alpha_H/H$$ at $$\alpha_L=\alpha_T=0$$ ([[YYS]](#ref-yys), eq. (4.17)); the gradient coefficient is $$-2\dot H/H^2$$ at $$\alpha_H=0$$, negative in any phantom phase, which is why the vacuum conditions of [[YYS]](#ref-yys), eqs. (4.15)–(4.16), require a sufficiently large $$\alpha_H$$ there. The question is which of the two derivatives $$\dot H$$ and $$\dot{\mathcal F}$$ takes the place of $$\dot H$$ once dust is present. For the DESI+CMB+DESY5 fit at $$z=0.93$$, on the phantom side, $$-2\dot H/H^2=2.18$$ while $$-2\dot{\mathcal F}/H^2=3(1+w)\Omega_{\rm de}=-0.117$$: if the total $$\dot H$$ entered, matter would stabilise the phantom phase, and if $$\dot{\mathcal F}$$ enters it would not. Section 3 shows that $$\dot{\mathcal F}$$ enters.
+The parameter $$\alpha_T$$ is the excess of the tensor speed over the speed of light, $$\alpha_H$$ the beyond-Horndeski coupling of the curvature to the lapse perturbation (it vanishes in Horndeski theories), $$\alpha_L$$ the detuning of the two $$K^2$$ terms, and $$\beta_3$$ the coefficient of the lapse gradient energy $$(\partial_i\delta N)^2/a^2$$, in the notation of Gleyzes, Langlois and Vernizzi [[GLV]](#ref-glv) and Langlois et al. [[LMNV]](#ref-lmnv). Throughout, $$\alpha_L\ge0$$ and $$\beta_3>0$$. In vacuum the scalar mode of this model has kinetic coefficient $$\beta_3\kappa^2$$ and gradient coefficient $$2\alpha_H-2(1+\alpha_H)\dot H/H^2+2\dot\alpha_H/H$$ at $$\alpha_L=\alpha_T=0$$ ([[YYS]](#ref-yys), eq. (4.17)). At $$\alpha_H=0$$ the gradient coefficient is $$-2\dot H/H^2$$, negative in any phantom phase, so the vacuum conditions of [[YYS]](#ref-yys), eqs. (4.15)–(4.16), require a sufficiently large $$\alpha_H$$ there. With dust, the derivative that enters is $$\dot{\mathcal F}$$, the dark-energy part of $$\dot H$$ (section 3). For the DESI+CMB+DESY5 fit at $$z=0.93$$, on the phantom side, $$-2\dot H/H^2=2.18$$ while $$-2\dot{\mathcal F}/H^2=3(1+w)\Omega_{\rm de}=-0.117$$, so the dust does not stabilise the phantom phase.
 
-*Dust.* We add pressureless matter in the form
+Pressureless matter is added in the form
 
 $$
 S_m=-\frac12\int d^4x\sqrt{-g}\;\rho_m\,\big(g^{\mu\nu}\partial_\mu\phi\,\partial_\nu\phi+1\big),
 $$
 
-where $$\rho_m(x)$$ and $$\phi(x)$$ are independent fields. Varying $$\rho_m$$ makes $$\partial_\mu\phi$$ a unit timelike vector, so $$\phi$$ is proper time along geodesic worldlines; varying $$\phi$$ gives $$\nabla_\mu(\rho_m\partial^\mu\phi)=0$$; and on shell the stress tensor is $$\rho_m\partial_\mu\phi\,\partial_\nu\phi$$, pressureless matter of density $$\rho_m$$. On the flat background with $$\phi=t$$, varying the lapse and the scale factor in (2) gives
+where $$\rho_m(x)$$ and $$\phi(x)$$ are independent fields. Varying $$\rho_m$$ makes $$\partial_\mu\phi$$ a unit timelike vector, so $$\phi$$ is proper time along geodesic worldlines; varying $$\phi$$ gives $$\nabla_\mu(\rho_m\partial^\mu\phi)=0$$; and on shell the stress tensor is $$\rho_m\partial_\mu\phi\,\partial_\nu\phi$$, pressureless matter of density $$\rho_m$$. On the flat background with $$\phi=t$$, the lapse equation of (2) plus $$S_m$$ is $$6H^2-6\mathcal G^2-\rho_m=0$$, and the scale-factor equation then gives
 
 $$
 6H^2=6\mathcal G^2+\rho_m,\qquad \dot H=\dot{\mathcal F}-\frac{\rho_m}{4},\qquad \dot\rho_m=-3H\rho_m. \tag{3}
 $$
 
-So $$\rho_{\rm de}=6\mathcal G^2$$ and $$\rho_{\rm de}+p_{\rm de}=-4\dot{\mathcal F}$$ as claimed, and $$-2\dot{\mathcal F}/H^2=3(1+w)\Omega_{\rm de}$$. Radiation is not included. In the redshift range used below its density fraction is below $$10^{-3}$$, and we do not derive its effect on (1).
+So $$\rho_{\rm de}=6\mathcal G^2$$ and $$\rho_{\rm de}+p_{\rm de}=-4\dot{\mathcal F}$$ as claimed, and $$-2\dot{\mathcal F}/H^2=3(1+w)\Omega_{\rm de}$$. Radiation is not included. Its density fraction is about $$10^{-3}$$ in the redshift range used below ($$1.1\times10^{-3}$$ at $$z=3$$ and $$1.4\times10^{-3}$$ at $$z=4$$ for a present-day radiation fraction of $$9\times10^{-5}$$), and its effect on (1) is not derived.
 
-*Hypotheses.* Results below are stated under the following hypotheses, which are collected here because the escape routes of section 7 are the failures of each.
+The results below are stated under the following hypotheses, and the conditions of section 8 are the failures of each.
 
-- (H1) $$\alpha_L=0$$ (section 5 treats small $$\alpha_L>0$$).
+- (H1) $$\alpha_L=0$$ in the exact reduction of section 3; section 5 gives the leading-order modification for small $$\alpha_L>0$$.
 - (H2) The only matter is the dust $$S_m$$, minimally coupled, in a flat background (3).
 - (H3) $$\alpha_T,\alpha_H,\beta_3$$ are smooth functions of time that change on the Hubble time, and $$\beta_3>0$$.
 - (H4) $$\varepsilon\equiv\sqrt{\beta_3}$$ is small compared with $$\sqrt{|B_m|}$$.
@@ -79,26 +83,42 @@ It holds for time-dependent $$\alpha_L,\alpha_T,\alpha_H,\beta_3$$.
 </div>
 
 <div class="proof" markdown="1">
-*Proof.* The expansion is routine, and four facts organise it. First, $$K_{ij}K^{ij}-\tfrac13K^2$$ is the square of the traceless part of $$K_{ij}$$, which vanishes on the background; at second order it receives only the shift, $$\tfrac23(k^2/a^2)^2\psi^2$$, so the $$N$$-dependence of $$\sigma_1$$ never enters, and writing $$\sigma_1=1-\alpha_L/(1+\alpha_L)$$ the part with coefficient 1 combines with $$-\tfrac23K^2$$ into the Einstein–Hilbert kinetic term. Second, $$R$$ and $$\mathfrak a_i$$ vanish on the background, so $$r_1$$ enters through $$r_1(1)\,\delta_2(\sqrt hR)$$ and $$(r_1+\partial_Nr_1)(1)\,\delta N\,\delta_1R$$, and $$r_2$$ through $$r_2(1)(\partial\delta N)^2$$; higher $$N$$-derivatives multiply terms of cubic order. Third, $$N\sqrt h\,K=\partial_t\sqrt h-\partial_i(\sqrt hN^i)$$ identically, so $$4\mathcal FK$$ contributes $$-4\dot{\mathcal F}\sqrt h$$, independent of the lapse. Fourth, the dust term is expanded from $$-g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi=(\dot\phi-N^i\partial_i\phi)^2/N^2-h^{ij}\partial_i\phi\,\partial_j\phi$$. We carried out the expansion by computer algebra for fields proportional to $$\cos kx$$, starting from the ADM expressions, and checked that the Euler–Lagrange expressions of the result with respect to each of $$\delta N,\psi,\zeta,v,\delta\rho_m$$ equal those of (4) up to the overall factor $$\tfrac12$$ (from the average of $$\cos^2$$) once (3) is used.
+*Proof.* We expand each term of (2) and of $$S_m$$ to second order for fields proportional to $$\cos kx$$. The average of $$\cos^2$$ gives a common factor $$\tfrac12$$, which we drop; then $$\partial_x^2\to-k^2$$ and $$\partial_xf\,\partial_xg\to k^2fg$$. We use $$\sqrt h=a^3e^{3\zeta}$$, $$N^i=h^{ij}\partial_j\psi$$, $$K=(3(H+\dot\zeta)-\nabla_iN^i)/N$$ with $$\nabla_iN^i=a^{-2}e^{-2\zeta}(\partial^2\psi+\partial\zeta\cdot\partial\psi)$$, and $$\sqrt h\,{}^{(3)}\!R=-ae^{\zeta}\big(4\partial^2\zeta+2(\partial\zeta)^2\big)$$.
+
+The traceless part $$E_{ij}=K_{ij}-\tfrac13Kh_{ij}$$ vanishes on the background and equals $$-(\nabla_i\nabla_j-\tfrac13h_{ij}\nabla^2)\psi$$ at first order. Since $$K_{ij}K^{ij}-\tfrac13K^2=E_{ij}E^{ij}$$ is already second order, only $$\sigma_1(1)$$ enters, and the term is $$\tfrac23\sigma_1k^4\psi^2/a$$. The term $$-\tfrac23N\sqrt h\,K^2$$ gives
+
+$$
+-6a^3(\dot\zeta-H\delta N)^2-a^3\big(36H\zeta\dot\zeta-18H^2\zeta\,\delta N+27H^2\zeta^2\big)-4ak^2\psi(\dot\zeta-H\delta N)-\tfrac23\frac{k^4}{a}\psi^2 ,
+$$
+
+so that the $$\psi^2$$ coefficient of the two terms together is $$\tfrac23(\sigma_1-1)=-\tfrac{2\alpha_L}{3(1+\alpha_L)}$$. Since $$N\sqrt h\,K=\partial_t\sqrt h-\partial_i(\sqrt hN^i)$$ identically, $$4\mathcal FK$$ contributes $$-4\dot{\mathcal F}\sqrt h$$, independent of the lapse, which is $$-18\dot{\mathcal F}a^3\zeta^2$$ at second order. The term $$-6\mathcal G^2N\sqrt h$$ gives $$-27\mathcal G^2a^3\zeta^2-18\mathcal G^2a^3\zeta\,\delta N$$.
+
+The curvature $${}^{(3)}\!R$$ vanishes on the background, so the product $$N r_1(N)\sqrt h\,{}^{(3)}\!R$$ needs $$r_1$$ only to first order in $$\delta N$$. It contributes $$2ak^2\frac{1+\alpha_T}{1+\alpha_L}\zeta^2+4ak^2\frac{1+\alpha_H}{1+\alpha_L}\zeta\,\delta N$$, with $$r_1(1)$$ multiplying $$\zeta^2$$ and $$(r_1+\partial_Nr_1)(1)$$ multiplying $$\zeta\,\delta N$$. Since $$\mathfrak a_i\mathfrak a^i$$ is already second order, $$r_2$$ enters at $$N=1$$ and the term is $$ak^2\beta_3\delta N^2/(1+\alpha_L)$$. The dust action, with $$-g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi=(\dot\phi-N^i\partial_i\phi)^2/N^2-h^{ij}\partial_i\phi\,\partial_j\phi$$, gives
+
+$$
+a^3\Big[\tfrac12\rho_m(\dot v-\delta N)^2+3\rho_m\zeta(\dot v-\delta N)+\delta\rho_m(\dot v-\delta N)\Big]-ak^2\rho_m\big(\psi v+\tfrac12v^2\big).
+$$
+
+Add these terms and integrate $$-36a^3H\zeta\dot\zeta$$ by parts to $$+18(a^3H)^{\boldsymbol\cdot}\,\zeta^2=18a^3(3H^2+\dot H)\zeta^2$$. With (3) in the form $$6\mathcal G^2=6H^2-\rho_m$$ and $$\dot H-\dot{\mathcal F}=-\rho_m/4$$, the coefficient of $$\zeta^2$$ is $$a^3[27H^2+18(\dot H-\dot{\mathcal F})-27\mathcal G^2]=a^3[27H^2-\tfrac92\rho_m-27H^2+\tfrac92\rho_m]=0$$, and the coefficient of $$\zeta\,\delta N$$ is $$a^3[18(H^2-\mathcal G^2)-3\rho_m]=0$$. What remains is (4).
 </div>
 
-Two checks. Without dust and at $$\alpha_L=\alpha_T=0$$ the $$\psi$$ equation gives $$\delta N=\dot\zeta/H$$; substituting it and integrating the $$\zeta\dot\zeta$$ term by parts reproduces the kinetic and gradient coefficients of [[YYS]](#ref-yys), eq. (4.17), quoted in section 1, including the $$2\dot\alpha_H/H$$ term. With dust, (4) is the quadratic action behind the constraint equations written in [[Yao]](#ref-yao), eqs. (3.8) and (3.9), which we did not rederive from that paper's variables.
+Without dust and at $$\alpha_L=\alpha_T=0$$ the $$\psi$$ equation gives $$\delta N=\dot\zeta/H$$; substituting it and integrating the $$\zeta\dot\zeta$$ term by parts gives the kinetic and gradient coefficients of [[YYS]](#ref-yys), eq. (4.17), quoted in section 1, including the $$2\dot\alpha_H/H$$ term. With dust, (4) is the quadratic action behind the constraint equations of [[Yao]](#ref-yao), eqs. (3.8) and (3.9): the $$\psi$$ equation of (4) is the first of them, with $$M^2=2/(1+\alpha_L)$$ in that paper's notation, and the $$\delta N$$ equation is the second.
 
 ## 3. An exact reduction at $$\alpha_L=0$$
 
-The idea is that the dust equation and the momentum constraint remove all but one fast degree of freedom, and that both remaining terms of its Lagrangian carry two spatial derivatives. The dust fixes the lapse: $$\delta\rho_m$$ appears only multiplying $$\dot v-\delta N$$, so $$\delta N=\dot v$$. At $$\alpha_L=0$$ the shift $$\psi$$ appears linearly in (4) and is a multiplier. It is natural to trade $$\zeta$$ for
+The dust equation and the momentum constraint remove all but one fast degree of freedom, and both remaining terms of its Lagrangian carry two spatial derivatives. The dust fixes the lapse: $$\delta\rho_m$$ appears only multiplying $$\dot v-\delta N$$, so $$\delta N=\dot v$$. At $$\alpha_L=0$$ the shift $$\psi$$ appears linearly in (4) and is a multiplier. We change variables to
 
 $$
 \mathcal R\equiv\zeta-Hv,
 $$
 
-the curvature perturbation on the slices of constant dust proper time, since $$a^2(t)e^{2\zeta}=a^2(t+v)e^{2\mathcal R}$$ to first order, and to shift the multiplier to $$\tilde\psi\equiv\psi+(1+\alpha_H)v$$. The new variables remove the cross term between $$\zeta$$ and $$\delta N$$ at the price of a total time derivative. Define
+the curvature perturbation on the slices of constant dust proper time, since $$a^2(t)e^{2\zeta}=a^2(t+v)e^{2\mathcal R}$$ to first order, and shift the multiplier to $$\tilde\psi\equiv\psi+(1+\alpha_H)v$$. The new variables remove the cross term between $$\zeta$$ and $$\delta N$$ at the price of a total time derivative. Define
 
 $$
 D\equiv(\alpha_H-\alpha_T)H+\dot\alpha_H ,
 $$
 
-so that $$B_m$$ of (1) can be written $$B_m=2(\alpha_H-\alpha_T)-2(1+\alpha_H)\dot{\mathcal F}/H^2-3\alpha_H\Omega_m+2\dot\alpha_H/H$$ using $$\rho_m=6H^2\Omega_m$$.
+so that $$B_m$$ of (1) can be written $$B_m=2(\alpha_H-\alpha_T)-2(1+\alpha_H)\dot{\mathcal F}/H^2-3\alpha_H\Omega_m+2\dot\alpha_H/H$$ using $$3(1+w)\Omega_{\rm de}=-2\dot{\mathcal F}/H^2$$ and $$\rho_m=6H^2\Omega_m$$.
 
 <div class="lemma" markdown="1">
 **Lemma 2** (exact reduction). Let $$\alpha_L=0$$ and $$\delta N=\dot v$$, $$\zeta=Hv+\mathcal R$$, $$\psi=\tilde\psi-(1+\alpha_H)v$$. Then, up to a total time derivative, (4) equals
@@ -139,7 +159,7 @@ $$
 2(\alpha_T-\alpha_H)H^2-2H\dot\alpha_H+2(1+\alpha_H)\dot{\mathcal F}+\tfrac12\alpha_H\rho_m=-H^2B_m ,
 $$
 
-and the $$\mathcal Rv$$ terms, $$4(1+\alpha_T)H$$ from $$\zeta^2$$ and $$-4[H(1+\alpha_H)+\dot\alpha_H]$$ from the line above, add to $$-4D$$. The terms without $$k^2$$ are rewritten with $$\dot\zeta-H\dot v=\dot{\mathcal R}+\dot Hv$$. This is (5); the equality was also confirmed symbolically, with $$\alpha_T,\alpha_H,\beta_3$$ arbitrary functions of time.
+and the $$\mathcal Rv$$ terms, $$4(1+\alpha_T)H$$ from $$\zeta^2$$ and $$-4[H(1+\alpha_H)+\dot\alpha_H]$$ from the line above, add to $$-4D$$. The terms without $$k^2$$ are rewritten with $$\dot\zeta-H\dot v=\dot{\mathcal R}+\dot Hv$$. This is (5).
 
 The Euler–Lagrange equations of (5) follow. The variation with respect to $$\tilde\psi$$ gives the first equation of (6). With it, $$\dot{\mathcal R}+\dot Hv=-\tfrac14\rho_mv$$, so $$12a^3(\dot{\mathcal R}+\dot Hv)=-3a^3\rho_mv$$, and the variation with respect to $$\mathcal R$$ reads
 
@@ -156,7 +176,7 @@ $$
 using $$(a^3\rho_m)^{\cdot}=0$$, $$\rho_m+4\dot H=4\dot{\mathcal F}$$ and $$\dot{\mathcal R}+\dot Hv=-\rho_mv/4$$. Dividing by $$2ak^2$$ and using $$3a^2\rho_m/(2k^2)=9\Omega_m/\kappa^2$$ gives (7).
 </div>
 
-The step with content is the cancellation between the $$\dot H$$ produced by integrating $$Hv\dot v$$ by parts and the $$\dot{\mathcal F}$$ produced by the momentum constraint. Matter's share of $$\dot H$$ is traded for $$\dot{\mathcal F}$$, leaving $$\tfrac12\alpha_H\rho_m$$ behind, which is the origin of the term $$-3\alpha_H\Omega_m$$. At $$\alpha_H=0$$ that remainder vanishes and the coefficient of $$v^2$$ is the quintessence-type gradient energy $$2\dot{\mathcal F}=-\tfrac12(\rho_{\rm de}+p_{\rm de})$$. The system (6)–(7) contains $$k$$ only through $$\kappa^{-2}$$ in the last term of (7), so it is valid for every $$\kappa$$ at $$\alpha_L=0$$, not only for $$\kappa\gg1$$.
+The cancellation between the $$\dot H$$ produced by integrating $$Hv\dot v$$ by parts and the $$\dot{\mathcal F}$$ produced by the momentum constraint is what turns the total $$\dot H$$ into $$\dot{\mathcal F}$$. It leaves $$\tfrac12\alpha_H\rho_m$$ behind, which is the origin of the term $$-3\alpha_H\Omega_m$$. At $$\alpha_H=0$$ that remainder vanishes and the coefficient of $$v^2$$ is the quintessence-type gradient energy $$2\dot{\mathcal F}=-\tfrac12(\rho_{\rm de}+p_{\rm de})$$. At $$\Omega_m=0$$, $$B_m$$ is the vacuum gradient coefficient of section 1 with $$\dot{\mathcal F}$$ in place of $$\dot H$$; with dust the same combination appears as a squared frequency independent of $$k$$. The system (6)–(7) contains $$k$$ only through $$\kappa^{-2}$$ in the last term of (7), so it is valid for every $$\kappa$$ at $$\alpha_L=0$$, not only for $$\kappa\gg1$$.
 
 ## 4. The fast mode
 
@@ -167,7 +187,7 @@ B_{\rm eff}\equiv B_m-\frac{9\Omega_m\dot{\mathcal F}}{H^2\kappa^2}=B_m+\frac{27
 $$
 
 <div class="proposition" markdown="1">
-**Proposition 1** (fast mode at leading order). Assume (H1)–(H4), and let $$[t_1,t_2]$$ be an interval on which $$B_{\rm eff}\le-b_0<0$$ with $$b_0$$ independent of $$\varepsilon$$. As $$\varepsilon\to0$$, the system (6)–(7) has a solution in which $$v$$ grows with
+**Proposition 1** (fast mode; derivation at leading order in $$\sqrt{\beta_3}$$). Assume (H1)–(H4), and let $$[t_1,t_2]$$ be an interval on which $$B_{\rm eff}\le-b_0<0$$ with $$b_0$$ independent of $$\varepsilon$$. As $$\varepsilon\to0$$, the system (6)–(7) has a solution in which $$v$$ grows with
 
 $$
 \frac{d\ln\lvert v\rvert}{dt}=H\sqrt{\frac{-B_{\rm eff}}{\beta_3}}+O(H),\qquad \mathcal R,\ \tilde\psi=O(\varepsilon)\,v, \tag{8}
@@ -176,7 +196,7 @@ $$
 and $$\zeta=Hv+\mathcal R$$ grows with it. Where $$B_{\rm eff}>0$$ the corresponding solutions oscillate at frequency $$H\sqrt{B_{\rm eff}/\beta_3}$$ without growth. For $$\kappa\gg1$$, $$B_{\rm eff}\to B_m$$, the quantity (1), and the growth rate is $$\Gamma=H\sqrt{-B_m/\beta_3}$$, independent of $$k$$.
 </div>
 
-This is a derivation at leading order, not a bound on solutions: it combines exact size estimates with the standard WKB theory of linear systems with a large parameter, which we use without reproving, and the numerical evidence of this section.
+The proof combines exact size estimates with the standard WKB theory of linear systems with a large parameter, which we use without reproving; the remainder in (8) is not bounded.
 
 <div class="proof" markdown="1">
 *Proof.* Suppose $$v$$ varies at a rate $$\Gamma\sim H/\varepsilon$$. Then (6) gives $$\mathcal R\simeq-\dot{\mathcal F}v/\Gamma=O(\varepsilon H)v$$ and $$\tilde\psi\simeq Dv/\Gamma=O(\varepsilon)v$$. The first two terms on the right of (7) are therefore of order $$\varepsilon H^2v$$, and the third is the explicit $$\kappa^{-2}$$ term already moved into $$B_{\rm eff}$$. Equation (7) becomes
@@ -190,19 +210,19 @@ The friction and $$\dot\beta_3$$ terms are smaller than $$\ddot v$$ by $$H/\Gamm
 
 In the language of the effective field theory of dark energy, $$v$$ is minus the Goldstone time shift of the dark energy seen from the dust's rest frame, and the $$v$$ part of (5) is $$a\,k^2[\beta_3\dot v^2-B_mH^2v^2]$$. The kinetic term comes from $$\mathfrak a_i\mathfrak a^i$$ and carries two spatial gradients, as does the potential term, which is why $$k^2$$ cancels in the rate. The instability is of the type that De Felice et al. [[DFP]](#ref-dfp) call tachyonic: a negative squared frequency $$B_mH^2/\beta_3$$ that is independent of $$k$$ and much larger than $$H^2$$ in magnitude, as opposed to a gradient instability, whose rate grows with $$k$$. The term $$2\dot\alpha_H/H$$ enters through an integration by parts and would be lost in a frozen-coefficient treatment of the action.
 
-*Checks.* We integrate the linear equations of the reduced system without approximating the time dependence: the Euler–Lagrange equations of the two-variable Lagrangian in $$(\mathcal R,v)$$ obtained from (4) with $$\delta N=\dot v$$ and the shift eliminated (for $$\alpha_L>0$$), on $$w_0w_a$$ backgrounds with $$H_0=1$$. The amplitude is $$\mathcal X=(\zeta^2+H^2v^2)^{1/2}$$ and its local growth rate is $$d\ln\mathcal X/d\ln a$$. Initial data at $$z=4$$ are $$Hv=\zeta=10^{-3}$$ ($$\mathcal R=0$$), $$\dot v=0$$ and $$\dot\zeta=-\rho_mv/4$$, which satisfy the constraint. Comoving wavenumbers are in units of $$H_0$$; $$k=10H_0$$ is $$3.3\times10^{-3}\,h\,{\rm Mpc}^{-1}$$. The first test is the exact $$\alpha_L=0$$ system (6)–(7), which isolates the $$k$$-dependence.
+The linear equations were integrated without approximating the time dependence, for a single Fourier mode, on $$w_0w_a$$ backgrounds with $$H_0=1$$. The amplitude is $$\mathcal X=(\zeta^2+H^2v^2)^{1/2}$$, its local growth rate is $$d\ln\mathcal X/d\ln a$$, and the growth between $$z_a$$ and $$z_b$$ is the logarithm of the maximum of $$\mathcal X$$ over $$z_b\le z\le z_a$$ divided by $$\mathcal X(z_a)$$. Initial data at $$z=4$$ are $$Hv=\zeta=10^{-3}$$ ($$\mathcal R=0$$), $$\dot v=0$$, $$\dot\zeta=-\rho_mv/4$$, which satisfy the constraint, and $$\tilde\psi=0$$ where $$\tilde\psi$$ is evolved. Comoving wavenumbers are in units of $$H_0$$; $$k=10H_0$$ is $$3.3\times10^{-3}\,h\,{\rm Mpc}^{-1}$$ for $$H_0=100\,h\,{\rm km\,s^{-1}Mpc^{-1}}$$. The first test is the exact $$\alpha_L=0$$ system (6)–(7) on the DESI+CMB+DESY5 background of section 6 at $$z=1$$, with $$\beta_3=10^{-4}$$, $$\alpha_H=\alpha_T=0$$ and initial data at $$z=2.33$$. It isolates the $$k$$-dependence. Both the rate of $$\lvert v\rvert$$, to which (8) refers, and that of $$\mathcal X$$ are listed.
 
-| $$k/H_0$$ | $$\kappa$$ | measured rate $$/H$$ | $$\sqrt{-B_m/\beta_3}$$ | $$\sqrt{-B_{\rm eff}/\beta_3}$$ |
-|---|---|---|---|---|
-| 3 | 3.3 | 39.18 | 34.14 | 39.21 |
-| 10 | 11.1 | 34.54 | 34.14 | 34.63 |
-| 30 | 33.3 | 34.10 | 34.14 | 34.19 |
-| 100 | 111 | 34.05 | 34.14 | 34.14 |
-| 1000 | 1110 | 34.05 | 34.14 | 34.14 |
+| $$k/H_0$$ | $$\kappa$$ | rate of $$\lvert v\rvert$$, $$d\ln\lvert v\rvert/d\ln a$$ | rate of $$\mathcal X$$ | $$\sqrt{-B_m/\beta_3}$$ | $$\sqrt{-B_{\rm eff}/\beta_3}$$ |
+|---|---|---|---|---|---|
+| 3 | 3.3 | 39.19 | 38.07 | 34.14 | 39.21 |
+| 10 | 11.1 | 34.55 | 33.43 | 34.14 | 34.63 |
+| 30 | 33.3 | 34.11 | 32.99 | 34.14 | 34.19 |
+| 100 | 111 | 34.06 | 32.94 | 34.14 | 34.14 |
+| 1000 | 1110 | 34.05 | 32.93 | 34.14 | 34.14 |
 
-The background is the DESI+CMB+DESY5 fit of section 6 at $$z=1$$, with $$\beta_3=10^{-4}$$, $$\alpha_H=\alpha_T=0$$, and initial data at $$z=2.33$$. The rate at fixed $$z$$ is independent of $$k$$ for $$\kappa\gtrsim30$$ to 0.3%, and the explicit $$\kappa^{-2}$$ term of $$B_{\rm eff}$$ accounts for the departure at $$\kappa\lesssim11$$.
+For $$\kappa\gtrsim30$$ both rates are independent of $$k$$ to 0.2%. The rate of $$\lvert v\rvert$$ is within 0.3% of $$\sqrt{-B_{\rm eff}/\beta_3}$$ in every row, and the explicit $$\kappa^{-2}$$ term of $$B_{\rm eff}$$ accounts for the departure from $$\sqrt{-B_m/\beta_3}$$ at $$\kappa\lesssim11$$. The rate of $$\mathcal X$$ is lower by $$1.12=-d\ln H/d\ln a$$ at $$z=1$$, because $$\mathcal X\simeq\sqrt2H\lvert v\rvert$$ up to $$O(\varepsilon)$$; at $$\kappa\to\infty$$ it is 3.5% below $$\sqrt{-B_m/\beta_3}$$. Both offsets are of the order $$H$$ allowed by (8).
 
-The second test is the case $$\alpha_L=10^{-5}$$, the small positive value that makes the system regular and for which the band edge of section 5 lies beyond $$\kappa\approx100$$. Here $$k=10H_0$$, $$\beta_3=10^{-4}$$, and the rate is the slope of $$\ln\mathcal X$$ over $$\pm0.02$$ in $$\ln a$$.
+The second test uses the small positive value $$\alpha_L=10^{-5}$$. For $$\alpha_L>0$$ the shift $$\psi$$ is no longer a multiplier, so it can be eliminated and the equations of the two-variable Lagrangian in $$(\mathcal R,v)$$ integrated directly; the band edge of section 5 lies beyond $$\kappa\approx100$$. Here $$k=10H_0$$, $$\beta_3=10^{-4}$$, and the rate is the slope of $$\ln\mathcal X$$ over $$\pm0.02$$ in $$\ln a$$. The $$\Lambda$$CDM background has $$\Omega_{m,0}=0.3027$$, the DESI+CMB value ([[DESI]](#ref-desi), eq. (21)).
 
 | background | $$\alpha_H$$ | $$z$$ | $$\kappa$$ | $$B_m$$ | measured $$\Gamma/H$$ | $$\sqrt{-B_m/\beta_3}$$ |
 |---|---|---|---|---|---|---|
@@ -216,11 +236,11 @@ The second test is the case $$\alpha_L=10^{-5}$$, the small positive value that 
 | $$\Lambda$$CDM | $$-0.3$$ | 0.2 | 10.9 | $$-0.214$$ | 44.6 | 46.3 |
 | $$\Lambda$$CDM | $$-0.3$$ | 0.4 | 11.3 | $$-0.111$$ | 30.5 | 33.3 |
 
-Agreement is within 8% in all rows, and the largest deviations occur where $$B_m$$ changes quickly in time (DESY5 at $$z=0.5$$; the $$\Lambda$$CDM rows with $$\alpha_H=-0.3$$, where $$B_m$$ vanishes at $$z=0.66$$), which is outside the WKB regime. The expected size of the corrections is a few per cent: friction lowers the rate by $$H/2$$ (1.5%), the $$O(\varepsilon)$$ terms of (8) are of the same order, and the explicit $$\kappa^{-2}$$ term raises it. The $$\Lambda$$CDM background has $$\Omega_{m,0}=0.3027$$, the DESI+CMB value ([[DESI]](#ref-desi), eq. (21)). On $$\Lambda$$CDM with $$\alpha_H=0$$, where $$B_m=0$$, no mode grows.
+Agreement is within 9% in all rows (8.4% at worst). The largest deviations occur where $$B_m$$ changes quickly in time (DESY5 at $$z=0.5$$; the $$\Lambda$$CDM rows with $$\alpha_H=-0.3$$, where $$B_m$$ vanishes at $$z=0.66$$), which is outside the WKB regime. Where $$B_m$$ varies slowly the agreement is within 3%. Friction lowers the rate by $$H/2$$ (1.5%), the $$O(\varepsilon)$$ terms of (8) are of the same order, and the explicit $$\kappa^{-2}$$ term raises it. On $$\Lambda$$CDM with $$\alpha_H=0$$, where $$B_m=0$$, no mode grows.
 
 The local rates do not depend on the initial data. Integrated growth does, because the growing mode needs a fraction of an e-fold to dominate: for the first fit of section 6, imposing the initial data at $$z=2.33$$ rather than $$z=4$$ gives 19.6 instead of 23.0 e-folds between $$z=2.33$$ and the crossing.
 
-*A worked value.* On $$\Lambda$$CDM with $$\alpha_H=0.3$$ and $$\alpha_T=0$$ at $$z=1.5$$, $$\Omega_m=0.3027\cdot15.625/(0.3027\cdot15.625+0.6973)=0.8715$$, so $$B_m=0.3(2-3\cdot0.8715)=-0.184$$ and $$\Gamma/H=\sqrt{0.184/10^{-4}}=42.9$$, against 42.0 measured. In the vacuum limit ($$\Omega_m\to0$$), (1) reduces to the coefficient of [[YYS]](#ref-yys), eq. (4.17), at $$\alpha_T=0$$; for $$\alpha_H=\alpha_T=0$$ and $$w=-1$$, $$B_m=0$$, as it must for general relativity with dust and a cosmological constant.
+As a worked value, take $$\Lambda$$CDM with $$\alpha_H=0.3$$ and $$\alpha_T=0$$ at $$z=1.5$$: $$\Omega_m=0.3027\cdot15.625/(0.3027\cdot15.625+0.6973)=0.8715$$, so $$B_m=0.3(2-3\cdot0.8715)=-0.184$$ and $$\Gamma/H=\sqrt{0.184/10^{-4}}=42.9$$, against 42.0 measured. In the vacuum limit ($$\Omega_m\to0$$), (1) reduces to the coefficient of [[YYS]](#ref-yys), eq. (4.17), at $$\alpha_T=0$$; for $$\alpha_H=\alpha_T=0$$ and $$w=-1$$, $$B_m=0$$, as it must for general relativity with dust and a cosmological constant.
 
 ## 5. Finite $$\alpha_L$$: the band
 
@@ -230,19 +250,21 @@ $$
 \ell(\alpha_L)-\ell(0)=\frac{\alpha_L}{1+\alpha_L}\Big[-\frac23\frac{k^4}{a}\big(\tilde\psi-(1+\alpha_H)v\big)^2-a k^2\big(\beta_3\dot v^2+4(1+\alpha_H)\zeta\dot v+2(1+\alpha_T)\zeta^2\big)\Big], \tag{9}
 $$
 
-which can be checked by expansion. The second part of the bracket changes the coefficients in (5) by relative amounts of order $$\alpha_L$$. The first part, with $$\tilde\psi=O(\varepsilon)v$$ as in Proposition 1, contributes $$-\tfrac23\alpha_L(1+\alpha_H)^2\kappa^2\cdot ak^2H^2v^2$$ at leading order, which is enhanced by $$\kappa^2$$. Its effect on (7) is to replace
+which follows by substituting the variables of Lemma 2 into (4). The second part of the bracket changes the coefficients in (5) by relative amounts of order $$\alpha_L$$. The first part, with $$\tilde\psi=O(\varepsilon)v$$ as in Proposition 1, contributes $$-\tfrac23\alpha_L(1+\alpha_H)^2\kappa^2\cdot ak^2H^2v^2$$ at leading order, which is enhanced by $$\kappa^2$$. Its effect on (7) is to replace
 
 $$
 B_{\rm eff}\to B_{\rm eff}+\tfrac23\alpha_L(1+\alpha_H)^2\kappa^2 \tag{10}
 $$
 
-when $$\alpha_L\ll1$$ and $$\alpha_L\kappa^2=O(1)$$. This is a derivation at leading order in $$\varepsilon$$ and $$\alpha_L$$; we have not bounded the remainder. The added term equals $$\beta_3c_s^2\kappa^2$$, where $$c_s^2=\tfrac23\alpha_L(1+\alpha_H)^2/\beta_3$$ is the leading term of the high-$$k$$ sound speed $$\alpha_L[2(1+\alpha_H)^2-\beta_3(1+\alpha_T)]/[3\beta_3(1+\alpha_L)]$$ of the scalar in vacuum ([[YYS]](#ref-yys), large-$$k$$ limit of the ratio of the coefficients of $$\zeta^2$$ and $$\dot\zeta^2$$), so the squared frequency interpolates as $$B_mH^2/\beta_3+c_s^2k^2/a^2$$. The growth therefore occupies a band
+when $$\alpha_L\ll1$$ and $$\alpha_L\kappa^2=O(1)$$; this is a derivation at leading order in $$\varepsilon$$ and $$\alpha_L$$. The added term equals $$\beta_3c_s^2\kappa^2$$, where $$c_s^2=\tfrac23\alpha_L(1+\alpha_H)^2/\beta_3$$ is the leading term of the high-$$k$$ sound speed $$\alpha_L[2(1+\alpha_H)^2-\beta_3(1+\alpha_T)]/[3\beta_3(1+\alpha_L)]$$ of the scalar in vacuum ([[YYS]](#ref-yys), large-$$k$$ limit of the ratio of the coefficients of $$\zeta^2$$ and $$\dot\zeta^2$$), so the squared frequency interpolates as $$B_mH^2/\beta_3+c_s^2k^2/a^2$$. The growth therefore occupies a band
 
 $$
 aH\ll k<k_{\max},\qquad k_{\max}=\frac{aH}{1+\alpha_H}\sqrt{\frac{3\lvert B_m\rvert}{2\alpha_L}} , \tag{11}
 $$
 
-which extends to all sub-horizon scales as $$\alpha_L\to0$$ and closes (falls to $$k\lesssim aH$$) for $$\alpha_L\gtrsim\tfrac32\lvert B_m\rvert$$. Numerical test: $$\Lambda$$CDM, $$\alpha_H=0.3$$, $$\alpha_L=10^{-3}$$, $$z=1.5$$ ($$B_m=-0.184$$, $$\kappa_{\max}=12.8$$), initial data at $$z=3$$.
+which extends to all sub-horizon scales as $$\alpha_L\to0$$ and closes (falls to $$k\lesssim aH$$) for $$\alpha_L\gtrsim 3\lvert B_m\rvert/[2(1+\alpha_H)^2]$$. On the DESI backgrounds at $$\alpha_H=0$$ the maximum of $$\lvert B_m\rvert$$ is 0.096 to 0.192, so the band closes for $$\alpha_L\gtrsim0.14$$ to $$0.29$$ (0.18 for DESI+CMB+DESY5).
+
+As a test, take $$\Lambda$$CDM with $$\alpha_H=0.3$$, $$\alpha_L=10^{-3}$$, $$z=1.5$$ ($$B_m=-0.184$$, $$\kappa_{\max}=12.8$$) and initial data at $$z=3$$.
 
 | $$\kappa$$ | measured $$\Gamma/H$$ | from (10) | leading order |
 |---|---|---|---|
@@ -250,21 +272,21 @@ which extends to all sub-horizon scales as $$\alpha_L\to0$$ and closes (falls to
 | 8.6 | 31.1 | 31.8 | 42.9 |
 | 10.7 | 23.2 | 23.4 | 42.9 |
 
-Beyond the edge the integrated growth falls: the logarithm of the maximum of $$\mathcal X$$ between $$z=3$$ and $$0$$, divided by its value at $$z=3$$, is 30.6, 18.5, 4.1, 1.2 and 0.0 e-folds at $$k=5,10,15,20,30\,H_0$$ (initial data at $$z=4$$). The local rate is not quoted there, since the amplitude oscillates and its logarithmic slope is not defined. The derivation of (10) assumes $$\kappa\gg1$$ and does not cover scales near the horizon.
+Beyond the edge the integrated growth falls. For the same background and parameters, with initial data at $$z=4$$, the growth between $$z=3$$ and $$0$$ is 30.6, 18.5, 4.1, 1.2 and 0.0 e-folds at $$k=5,10,15,20,30\,H_0$$. The local rate is not quoted there, since the amplitude oscillates and its logarithmic slope is not defined. The derivation of (10) assumes $$\kappa\gg1$$ and does not cover scales near the horizon.
 
 ## 6. Constant parameters
 
-With $$\dot\alpha_H=0$$ the following statements follow from (1) by inspection; each holds in the band and at leading order, for $$\kappa\gg1$$.
+With $$\dot\alpha_H=0$$ the following statements follow from (1) by inspection. Each assumes (H2)–(H4) and $$\alpha_L$$ small enough that the band (11) exists, and holds at leading order in $$\sqrt{\beta_3}$$, for modes $$aH\ll k<k_{\max}$$.
 
 <div class="corollary" markdown="1">
-**Corollary 1** (phantom phases). If $$\alpha_H=\alpha_T=0$$, then $$B_m=3(1+w)\Omega_{\rm de}$$. There is no fast growth exactly when $$w\ge-1$$, with $$w=-1$$ marginal at this order. Every phantom phase ($$w<-1$$) is unstable.
+**Corollary 1** (phantom phases, leading order). If $$\alpha_H=\alpha_T=0$$, then $$B_m=3(1+w)\Omega_{\rm de}$$. There is no fast growth exactly when $$w\ge-1$$, with $$w=-1$$ marginal at this order. In every phantom phase ($$w<-1$$) with $$\beta_3\ll3\lvert1+w\rvert\Omega_{\rm de}$$ the mode grows at the rate $$H\sqrt{3\lvert1+w\rvert\Omega_{\rm de}/\beta_3}$$.
 </div>
 
 <div class="corollary" markdown="1">
-**Corollary 2** (constant $$\alpha_H$$ on $$\Lambda$$CDM). If $$w=-1$$ and $$\alpha_T=0$$, then $$B_m=\alpha_H(2-3\Omega_m)$$. A constant $$\alpha_H>0$$ is unstable while $$\Omega_m>\tfrac23$$, which includes the whole matter era, and a constant $$\alpha_H<0$$ is unstable while $$\Omega_m<\tfrac23$$. For $$\Omega_{m,0}=0.3027$$ the transition is at $$z=0.664$$.
+**Corollary 2** (constant $$\alpha_H$$ on $$\Lambda$$CDM, leading order). If $$w=-1$$ and $$\alpha_T=0$$, then $$B_m=\alpha_H(2-3\Omega_m)$$. A constant $$\alpha_H>0$$ is unstable while $$\Omega_m>\tfrac23$$, which includes the whole matter era, and a constant $$\alpha_H<0$$ is unstable while $$\Omega_m<\tfrac23$$, in both cases where $$\beta_3\ll\lvert B_m\rvert$$. For $$\Omega_{m,0}=0.3027$$ the transition is at $$z=0.664$$.
 </div>
 
-The statement for $$\alpha_H>0$$ does not need $$w=-1$$: whenever $$\Omega_m\to1$$ and $$(1+w)\Omega_{\rm de}\to0$$, (1) gives $$B_m\to-\alpha_H$$ at $$\alpha_T=0$$. The vacuum condition of [[YYS]](#ref-yys), eqs. (4.15)–(4.16), allows constant $$\alpha_H\ge0$$ on a $$\Lambda$$CDM background; with dust, the matter era excludes every $$\alpha_H>0$$. The exact evolution confirms this. With $$k=20H_0$$, $$\alpha_L=10^{-5}$$, $$\beta_3=10^{-4}$$ and initial data at $$z=4$$, the growth between $$z=3$$ and $$0$$ (logarithm of the maximum of $$\mathcal X$$ over $$0\le z\le3$$ divided by $$\mathcal X(z=3)$$) is compared with $$\int\Gamma\,dt$$:
+The statement for $$\alpha_H>0$$ does not need $$w=-1$$: whenever $$\Omega_m\to1$$ and $$(1+w)\Omega_{\rm de}\to0$$, (1) gives $$B_m\to-\alpha_H$$ at $$\alpha_T=0$$. The vacuum condition of [[YYS]](#ref-yys), eq. (4.15), allows constant $$\alpha_H\ge0$$ on a $$\Lambda$$CDM background; with dust, a matter era makes every $$\alpha_H>0$$ with $$\beta_3\ll\alpha_H$$ unstable. The exact evolution agrees. For $$\Lambda$$CDM with $$\Omega_{m,0}=0.3027$$, $$k=20H_0$$, $$\alpha_L=10^{-5}$$, $$\beta_3=10^{-4}$$ and initial data at $$z=4$$, the growth between $$z=3$$ and $$0$$ is compared with $$\int\Gamma\,dt$$:
 
 | $$\alpha_H$$ | $$+0.3$$ | $$+0.1$$ | $$0$$ | $$-0.1$$ | $$-0.3$$ |
 |---|---|---|---|---|---|
@@ -276,27 +298,46 @@ For $$\alpha_H<0$$ the unstable epoch $$z<0.66$$ starts late, and the exact grow
 For a general background write $$B_m=\alpha_H\,C(z)+3(1+w)\Omega_{\rm de}-2\alpha_T$$ at constant $$\alpha_H$$, with $$C\equiv2-3\Omega_m+3(1+w)\Omega_{\rm de}$$.
 
 <div class="corollary" markdown="1">
-**Corollary 3** (no constant $$\alpha_H$$). Let $$\alpha_T=0$$. If $$C(z_*)=0$$ at a redshift $$z_*$$ where $$w(z_*)<-1$$, then $$B_m(z_*)=3(1+w)\Omega_{\rm de}<0$$ for every constant $$\alpha_H$$.
+**Corollary 3** (no constant $$\alpha_H$$, leading order). Let $$\alpha_T=0$$. If $$C(z_*)=0$$ at a redshift $$z_*$$ where $$w(z_*)<-1$$, then $$B_m(z_*)=3(1+w)\Omega_{\rm de}<0$$ for every constant $$\alpha_H$$. The local growth rate is then positive at $$z_*$$ for every constant $$\alpha_H$$, and the mode grows there if $$\beta_3\ll\lvert B_m(z_*)\rvert$$.
 </div>
 
 We evaluate this on the DESI DR2 $$w_0w_a$$ fits that combine BAO, CMB and supernovae, with the posterior means of $$(\Omega_m,w_0,w_a)$$ from Table V of [[DESI]](#ref-desi). In each fit $$w$$ crosses $$-1$$ at $$z_c$$ and is phantom above it, and $$C$$ has one zero $$z_*$$ for $$z\in(0.05,3)$$, which lies on the phantom side.
 
-| fit | $$\Omega_m,\ w_0,\ w_a$$ | $$z_c$$ | $$\min B_m$$ at $$\alpha_H=0$$ (at $$z$$) | $$z_*$$ | $$B_m(z_*)$$ | $$\int\Gamma dt$$, $$2.33\to z_c$$ (exact) | $$3\to z_c$$ |
-|---|---|---|---|---|---|---|---|
-| DESI+CMB+DESY5 | 0.3191, $$-0.752$$, $$-0.86$$ | 0.405 | $$-0.117$$ (0.93) | 0.611 | $$-0.085$$ | 24.2 (23.0) | 27.3 |
-| DESI+CMB+Union3 | 0.3275, $$-0.667$$, $$-1.09$$ | 0.440 | $$-0.137$$ (0.96) | 0.615 | $$-0.089$$ | 25.3 (24.2) | 28.6 |
-| DESI+CMB+Pantheon+ | 0.3114, $$-0.838$$, $$-0.62$$ | 0.354 | $$-0.096$$ (0.89) | 0.607 | $$-0.078$$ | 22.9 (21.6) | 25.8 |
-| DESI+CMB | 0.353, $$-0.42$$, $$-1.75$$ | 0.496 | $$-0.192$$ (0.99) | 0.627 | $$-0.104$$ | 28.2 (27.3) | 31.7 |
+| fit | $$\Omega_m,\ w_0,\ w_a$$ | $$z_c$$ | $$\min B_m$$ at $$\alpha_H=0$$ (at $$z$$) | $$z_*$$ | $$B_m(z_*)$$ |
+|---|---|---|---|---|---|
+| DESI+CMB+DESY5 | 0.3191, $$-0.752$$, $$-0.86$$ | 0.405 | $$-0.117$$ (0.93) | 0.611 | $$-0.085$$ |
+| DESI+CMB+Union3 | 0.3275, $$-0.667$$, $$-1.09$$ | 0.440 | $$-0.137$$ (0.96) | 0.615 | $$-0.089$$ |
+| DESI+CMB+Pantheon+ | 0.3114, $$-0.838$$, $$-0.62$$ | 0.354 | $$-0.096$$ (0.89) | 0.607 | $$-0.078$$ |
+| DESI+CMB | 0.353, $$-0.42$$, $$-1.75$$ | 0.496 | $$-0.192$$ (0.99) | 0.627 | $$-0.104$$ |
 
-Growth columns are e-folds at $$\alpha_H=\alpha_T=0$$ and $$\beta_3=10^{-4}$$ from $$\int\Gamma\,dt$$; the parenthesis is the growth $$\ln[\mathcal X(z_c)/\mathcal X(2.33)]$$ in the exact evolution at $$k=20H_0$$, $$\alpha_L=10^{-5}$$, with initial data at $$z=4$$ (and dependence on initial data as above). The redshift $$z=2.33$$ is the effective redshift of the highest-redshift DESI BAO measurement; extending the CPL form to $$z=20$$ raises the first entry to 34 e-folds, but that range lies beyond the data. The growth scales as $$\beta_3^{-1/2}$$ in the exponent, so for the first fit it is $$e^{24}$$ at $$\beta_3=10^{-4}$$ and $$e^{2.4}$$ at $$\beta_3=10^{-2}$$ at the level of $$\int\Gamma dt$$. The posterior means are not best-fit points, and the DESY5 supernova sample has been recalibrated since the release; the sign structure of (1), on which Corollaries 1 to 3 rest, does not depend on these values.
+Integrated over the phantom epoch at $$\beta_3=10^{-4}$$, the growth in e-folds is as follows. The leading-order columns are $$\int\Gamma\,dt$$ with $$\alpha_H=\alpha_T=0$$. The exact column is $$\ln[\mathcal X(z_c)/\mathcal X(2.33)]$$ in the exact evolution at $$k=20H_0$$, $$\alpha_L=10^{-5}$$ with initial data at $$z=4$$. The last column is the minimum of the leading-order integral over constant $$\alpha_H\in[-6,6]$$.
 
-In all four fits $$z_*$$ lies on the phantom side, so Corollary 3 applies and no constant $$\alpha_H$$ stabilises them. A constant $$\alpha_T$$ of at most $$-0.04$$ to $$-0.05$$ would make $$B_m(z_*)\ge0$$ (it enters as $$-2\alpha_T$$), but GW170817 [[GW170817]](#ref-gw) bounds a constant $$\lvert\alpha_T\rvert$$ far below that.
+| fit | leading order, $$2.33\to z_c$$ | exact, $$2.33\to z_c$$ | leading order, $$3\to z_c$$ | minimum over constant $$\alpha_H$$ (at $$\alpha_H$$) |
+|---|---|---|---|---|
+| DESI+CMB+DESY5 | 24.2 | 23.0 | 27.3 | 6.8 ($$-0.57$$) |
+| DESI+CMB+Union3 | 25.3 | 24.2 | 28.6 | 5.9 ($$-0.72$$) |
+| DESI+CMB+Pantheon+ | 22.9 | 21.6 | 25.8 | 8.2 ($$-0.42$$) |
+| DESI+CMB | 28.2 | 27.3 | 31.7 | 4.7 ($$-1.02$$) |
 
-## 7. What the theorem does not exclude
+The redshift $$z=2.33$$ is the effective redshift of the highest-redshift DESI BAO measurement; extending the CPL form to $$z=20$$ raises the first entry to 34 e-folds, but that range lies beyond the data. The growth scales as $$\beta_3^{-1/2}$$ in the exponent at the level of $$\int\Gamma dt$$, so for the first fit it is $$e^{24}$$ at $$\beta_3=10^{-4}$$ and $$e^{2.4}$$ at $$\beta_3=10^{-2}$$, and the exact evolution at $$\beta_3=10^{-2}$$ gives less (section 8). These e-fold counts are growth factors of linear perturbation theory, up to $$e^{28}\sim10^{12}$$, not predictions: linear theory fails at a time set by the initial amplitude of $$v$$, and what happens after that is not addressed. The posterior means are not best-fit points. The DESY5 supernova sample has since been recalibrated; with the recalibrated sample, the CMB and DESI DR2 data the reported CPL values are $$w_0=-0.803$$, $$w_a=-0.72$$ [[Popovic]](#ref-popovic), for which the crossing is at $$z_c=0.377$$. The sign structure of (1), on which Corollaries 1 to 3 rest, does not depend on these values.
 
-The hypotheses of Corollaries 1 to 3 are constant parameters, $$\beta_3\ll\lvert B_m\rvert$$, a band that exists, and dust as the only matter. Relaxing each gives a route out. We list the routes with the conditions under which they work on the DESI+CMB+DESY5 background, without choosing among them.
+In all four fits $$z_*$$ lies on the phantom side, so Corollary 3 applies and no constant $$\alpha_H$$ makes $$B_m$$ non-negative throughout. A constant $$\alpha_T$$ of at most $$-0.04$$ to $$-0.05$$ would make $$B_m(z_*)\ge0$$ (it enters as $$-2\alpha_T$$), but GW170817 [[GW170817]](#ref-gw) bounds a constant $$\lvert\alpha_T\rvert$$ far below that.
 
-*A running $$\alpha_H$$.* The term $$2\dot\alpha_H/H$$ in (1) can make $$B_m$$ positive throughout. For $$\alpha_H=s\,(\ln a+0.5)$$, which runs from $$-0.89\,s$$ at $$z=3$$ to $$0.5\,s$$ today, the exact evolution ($$k=20H_0$$, $$\alpha_L=10^{-5}$$, initial data at $$z=4$$; growth is the logarithm of the maximum of $$\mathcal X$$ over $$0\le z\le3$$ divided by $$\mathcal X(z=3)$$) gives
+## 7. Comparison with the stability conditions of the matter-coupled model
+
+The stability conditions that [[Yao]](#ref-yao) derives for the matter-coupled model hold at parameters where the exact evolution grows. For $$\alpha_L>0$$ they are the following, with $$\alpha_A$$ the coefficient written $$\beta_3$$ here. The detuning must satisfy $$\alpha_L>-1$$ (eq. (3.24)), and $$\alpha_A>0$$ (3.25). The no-ghost conditions (3.26) hold at all wavenumbers when $$\chi_m<(\sqrt{1+\alpha_L}+\sqrt{\alpha_L})^2$$, with $$\chi_m=\alpha_A(1+w_m)\bar\rho_m/(4M^2H^2(1+\alpha_L))$$ and $$M^2=2/(1+\alpha_L)$$, which for dust in our units is $$\chi_m=\tfrac34\alpha_A\Omega_m$$. The high-$$k$$ gradient condition (3.39) is $$(1+\alpha_H)^2>\tfrac12\alpha_A(1+\alpha_T)>0$$.
+
+Take the DESI+CMB+DESY5 background with $$\beta_3=\alpha_A=10^{-4}$$, $$\alpha_H=\alpha_T=0$$ and $$\alpha_L=10^{-4}$$. Then (3.24) and (3.25) hold, $$\chi_m<7.4\times10^{-5}$$ for $$z\le3$$ so that the no-ghost bound is satisfied by a wide margin, and (3.39) reads $$1>5\times10^{-5}$$. The scalar has the real sound speed $$c_s^2=\tfrac23$$. In the exact linear evolution of section 4 for these parameters, at $$k=10H_0$$ the amplitude grows by 22.5 e-folds between $$z=2.33$$ and the crossing (19.5 with the initial data imposed at $$z=2.33$$), against 24.2 from (1) at leading order. At $$\alpha_L=10^{-3}$$ the amplitude at $$k=5H_0$$ grows by 21.5 e-folds over the same interval, and at $$k=3H_0$$ by 28.1 e-folds between $$z=3$$ and $$0$$ (initial data at $$z=3$$). For $$\alpha_L=10^{-4}$$ the band (11) extends to $$\kappa_{\max}\approx27$$ to $$42$$ for $$0.5\le z\le1$$, and the evolved modes have $$\kappa\approx10$$.
+
+The gradient condition (3.39) is the $$k\to\infty$$ limit of the WKB condition (3.43), and the high-$$k$$ expansion of [[Yao]](#ref-yao), eq. (3.34), is an expansion in inverse powers of $$k$$ at fixed $$\alpha_L\alpha_A\neq0$$ whose leading term is the sound speed $$c_s^2k^2/a^2$$ that appears in (10). The unstable band lies below $$k_{\max}$$, where the $$k$$-independent term $$B_mH^2/\beta_3$$ is not small against it: the fast mode has $$\omega^2=c_s^2k^2/a^2+B_mH^2/\beta_3$$, which is negative for $$k<k_{\max}$$, with $$\lvert\omega\rvert\simeq30H$$ well inside the WKB regime $$\lvert\omega\rvert\gg H$$. The finite-$$k$$ condition (3.43) is therefore the one that applies in the band. We do not evaluate it from the closed-form coefficients of that paper; the dispersion relation above is the result of Proposition 1 and (10) in the variables of section 3.
+
+## 8. Parameter ranges outside the result
+
+Corollaries 1 to 3 assume constant parameters, $$\beta_3\ll\lvert B_m\rvert$$, an existing band, and dust as the only matter. Outside those assumptions the instability can be weaker or absent. The conditions below refer to the DESI+CMB+DESY5 background.
+
+The vacuum conditions of [[YYS]](#ref-yys), eqs. (4.15)–(4.16), are sufficient conditions for a positive gradient coefficient in the model without matter and are stated for $$\alpha_T=0$$. With the total $$\dot H$$, which satisfies $$\dot H/H^2\le-0.63$$ for $$0\le z\le4$$ on the four DESI backgrounds, the third condition of (4.15) holds for every $$\alpha_H\ge-0.38$$. Together with $$\alpha_L\ge0$$ and $$2(1+\alpha_H)^2\ge\beta_3>0$$ it is satisfied at $$\alpha_H=\alpha_T=0$$, where $$B_m<0$$ nevertheless. With dust the condition for stability of the fast mode is $$B_m\ge0$$ (Lemma 2), and (4.15)–(4.16) do not imply it. The routes below are therefore stated in terms of $$B_m$$, and the conditions of section 7 and of (4.15)–(4.16) are noted where they bear on a route.
+
+A running $$\alpha_H$$ can make $$B_m$$ positive throughout through the term $$2\dot\alpha_H/H$$ in (1). For $$\alpha_H=s\,(\ln a+0.5)$$, which runs from $$-0.89\,s$$ at $$z=3$$ to $$0.5\,s$$ today, the exact evolution ($$k=20H_0$$, $$\alpha_L=10^{-5}$$, initial data at $$z=4$$; growth between $$z=3$$ and $$0$$) gives
 
 | $$s$$ | min $$B_m$$ | exact growth (e-folds) | $$\int\Gamma dt$$ with (1) | $$\int\Gamma dt$$ without $$2\dot\alpha_H/H$$ |
 |---|---|---|---|---|
@@ -305,13 +346,22 @@ The hypotheses of Corollaries 1 to 3 are constant parameters, $$\beta_3\ll\lvert
 | 0.06 | $$+0.006$$ | 0.7 | 0.0 | 21.4 |
 | 0.10 | $$+0.088$$ | 0.3 | 0.0 | 19.0 |
 
-The comparison confirms the $$2\dot\alpha_H/H$$ term. A rate $$d\alpha_H/d\ln a\gtrsim0.06$$ suffices on this background and in this linear parametrisation; it satisfies the vacuum condition $$\dot\alpha_H\ge0$$ of [[YYS]](#ref-yys), eq. (4.16). This route is closed if $$\alpha_H$$ must vanish: the decay of gravitational waves into dark-energy fluctuations forces $$\alpha_H=0$$ in the effective field theory of dark energy [[CLTV]](#ref-cltv). Whether that argument carries over to Freezing Gravity, whose scalar has the additional operator $$\mathfrak a_i\mathfrak a^i$$, is not examined here. With $$\alpha_H\equiv0$$, Corollary 1 leaves the other routes.
+The last two columns show that the $$2\dot\alpha_H/H$$ term accounts for the reduction. A rate $$d\alpha_H/d\ln a\gtrsim0.06$$ suffices on this background and in this linear parametrisation. It satisfies $$\dot\alpha_H\ge0$$ of (4.16), and $$\alpha_H\ge-0.089$$ for $$s\le0.1$$, so the third condition of (4.15) holds. The route is closed if $$\alpha_H$$ must vanish: the decay of gravitational waves into dark-energy fluctuations forces $$\alpha_H=0$$ in the effective field theory of dark energy [[CLTV]](#ref-cltv). Whether that argument carries over to Freezing Gravity, whose scalar has the additional operator $$\mathfrak a_i\mathfrak a^i$$, is not examined here. With $$\alpha_H\equiv0$$, Corollary 1 leaves the other routes.
 
-*A negative $$\alpha_T$$ at intermediate redshift.* A constant $$\alpha_T=-0.03$$ ($$-0.07$$) reduces the exact growth from 25.2 to 13.5 (1.7) e-folds, against $$\int\Gamma dt=11.5$$ (0.0). GW170817 constrains $$\alpha_T$$ at $$z\approx0$$ only, so an $$\alpha_T(z)$$ that is about $$-0.06$$ near $$z\sim1$$ and vanishes today is not excluded by it.
+A negative $$\alpha_T$$ at intermediate redshift enters (1) as $$-2\alpha_T$$. A constant $$\alpha_T=-0.03$$ ($$-0.07$$) reduces the exact growth from 25.2 to 13.5 (1.7) e-folds, against $$\int\Gamma dt=11.5$$ (0.0). GW170817 constrains $$\alpha_T$$ at $$z\approx0$$ only, so an $$\alpha_T(z)$$ that is about $$-0.06$$ near $$z\sim1$$ and vanishes today is not excluded by it. The conditions of section 7 hold for $$\alpha_T\ge-0.06$$ at $$\beta_3=10^{-4}$$; (4.15)–(4.16) are stated at $$\alpha_T=0$$.
 
-*A large $$\beta_3$$.* Proposition 1 requires $$\beta_3\ll\lvert B_m\rvert$$. For $$\beta_3\gtrsim\lvert B_m\rvert_{\max}\approx0.1$$ to $$0.2$$ the rate drops to order $$H$$ and the proposition no longer applies. At $$\beta_3=0.1$$, $$\int\Gamma dt$$ from $$z=3$$ gives $$e^{0.86}$$, but the exact evolution shows no growth of $$\mathcal X$$ beyond its initial value for $$k=5,20,100\,H_0$$; at $$\beta_3=10^{-2}$$ the exact growth is $$e^{0.64}$$, $$e^{0.22}$$ and none at those wavenumbers, against $$e^{2.7}$$ from $$\int\Gamma dt$$. The vacuum condition $$\beta_3\le2(1+\alpha_H)^2$$ of [[YYS]](#ref-yys), eq. (4.15), is still satisfied there.
+A larger $$\beta_3$$ leaves Proposition 1, which requires $$\beta_3\ll\lvert B_m\rvert$$. The exact growth between $$z=3$$ and $$0$$ ($$\alpha_H=\alpha_T=0$$, $$\alpha_L=10^{-5}$$, initial data at $$z=4$$) compared with $$\int\Gamma dt$$ is
 
-*A large $$\alpha_L$$.* For $$\alpha_L\gtrsim\tfrac32\lvert B_m\rvert\approx0.2$$ to $$0.3$$, $$k_{\max}$$ in (11) falls below $$aH$$ and the band closes. Near-horizon modes are then outside Proposition 1, and in the exact evolution they can still grow. On the DESY5 background with $$\alpha_H=\alpha_T=0$$, $$\beta_3=10^{-4}$$ and initial data at $$z=3$$, the growth between $$z=3$$ and $$0$$ is
+| $$\beta_3$$ | exact, $$k=5H_0$$ | exact, $$k=20H_0$$ | $$\int\Gamma dt$$ |
+|---|---|---|---|
+| $$10^{-3}$$ | 7.3 | 6.0 | 8.6 |
+| $$3.3\times10^{-3}$$ | 2.9 | 2.1 | 4.7 |
+| $$10^{-2}$$ | 0.64 | 0.22 | 2.7 |
+| $$10^{-1}$$ | 0.0 | 0.0 | 0.86 |
+
+The leading-order integral is within 30% of the exact growth for $$\beta_3\le10^{-3}$$, where $$\varepsilon/\sqrt{\lvert B_m\rvert}\lesssim0.1$$, and it overstates it by a factor of several from $$\beta_3=10^{-2}$$. At $$k=100H_0$$, which lies near or beyond the band edge at $$\alpha_L=10^{-5}$$ ($$\kappa_{\max}\approx60$$ to $$130$$ for $$0.5\le z\le1$$), no growth is found for any of these $$\beta_3$$. For $$\beta_3\gtrsim\lvert B_m\rvert_{\max}\approx0.1$$ to $$0.2$$ the rate drops to order $$H$$ and the proposition no longer applies. The vacuum condition $$\beta_3\le2(1+\alpha_H)^2$$ of [[YYS]](#ref-yys), eq. (4.15), and the condition (3.39) are still satisfied there.
+
+A large $$\alpha_L$$ closes the band when $$\alpha_L\gtrsim3\lvert B_m\rvert/[2(1+\alpha_H)^2]$$, which is about 0.18 at $$\alpha_H=0$$ on this background, because $$k_{\max}$$ in (11) then falls below $$aH$$. Near-horizon modes are outside Proposition 1, and in the exact evolution they can still grow. On the DESY5 background with $$\alpha_H=\alpha_T=0$$, $$\beta_3=10^{-4}$$ and initial data at $$z=3$$, the growth between $$z=3$$ and $$0$$ in e-folds is
 
 | $$\alpha_L$$ | $$k=H_0$$ | $$k=3H_0$$ | $$k=10H_0$$ |
 |---|---|---|---|
@@ -319,24 +369,15 @@ The comparison confirms the $$2\dot\alpha_H/H$$ term. A rate $$d\alpha_H/d\ln a\
 | $$10^{-2}$$ | 52.5 | 9.3 | 0.0 |
 | $$0.05$$ | 35.3 | 0.0 | 0.0 |
 
-in e-folds. Whether a large $$\alpha_L$$ removes the instability therefore depends on scales $$k\lesssim aH$$ that this page does not resolve.
-
-*Other matter content or couplings.* The page treats minimally coupled dust with $$\alpha_L\ge0$$. A non-minimal coupling of dust to the scalar, radiation with $$\alpha_H\neq0$$, and the branch $$-1<\alpha_L<0$$ are not treated.
-
-## 8. The closed-form conditions of the matter-coupled model
-
-For $$\alpha_L>0$$, Yao [[Yao]](#ref-yao) states the conditions $$\alpha_L>-1$$ (its eq. (3.24)), $$\alpha_A>0$$ (3.25), the no-ghost conditions (3.26), and the high-$$k$$ gradient condition (3.39), $$(1+\alpha_H)^2>\tfrac12\alpha_A(1+\alpha_T)>0$$, where $$\alpha_A$$ is our $$\beta_3$$. In that paper the no-ghost conditions hold at all wavenumbers when $$\epsilon_m<(\sqrt{1+\alpha_L}+\sqrt{\alpha_L})^2$$, with $$\epsilon_m=\alpha_A(1+w_m)\bar\rho_m/(4M^2H^2(1+\alpha_L))$$ and $$M^2=2/(1+\alpha_L)$$, which for dust in our units is $$\epsilon_m=\tfrac34\alpha_A\Omega_m$$.
-
-Consider the DESI+CMB+DESY5 background with $$\beta_3=\alpha_A=10^{-4}$$, $$\alpha_H=\alpha_T=0$$ and $$\alpha_L=10^{-4}$$. Then (3.24) and (3.25) hold, $$\epsilon_m<7.4\times10^{-5}$$ for $$z\le3$$ so that the bound above is satisfied by a wide margin, and (3.39) reads $$1>5\times10^{-5}$$. We evaluated the exact linear evolution of section 4 for these parameters: at $$k=10H_0$$ the amplitude grows by 22.5 e-folds between $$z=2.33$$ and the crossing (19.5 with the initial data imposed at $$z=2.33$$), against 24.2 from (1) at leading order. At $$\alpha_L=10^{-3}$$ the amplitude at $$k=5H_0$$ grows by 21.5 e-folds over the same interval, and at $$k=3H_0$$ by 28.1 e-folds between $$z=3$$ and $$0$$ (initial data at $$z=3$$). For these parameters the band (11) extends to $$\kappa_{\max}\approx27$$ to $$42$$ at $$\alpha_L=10^{-4}$$ for $$0.5\le z\le1$$, and the evolved modes have $$\kappa\approx10$$. The high-$$k$$ expansion of [[Yao]](#ref-yao), eq. (3.34), is an expansion in inverse powers of $$k$$ at fixed $$\alpha_L\alpha_A\neq0$$, and its leading term is the $$c_s^2k^2/a^2$$ of (10); we have not evaluated its general WKB condition (3.43) on a phantom-crossing background.
+Whether a large $$\alpha_L$$ removes the instability therefore depends on scales $$k\lesssim aH$$ that this page does not resolve. A non-minimal coupling of dust to the scalar, radiation with $$\alpha_H\neq0$$, and the branch $$-1<\alpha_L<0$$ are not treated.
 
 ## 9. Open points
 
-- Proposition 1 is a leading-order statement in $$\sqrt{\beta_3}$$, obtained from the exact system (6)–(7) by size estimates and WKB; the remainder is not bounded. The numerical agreement is a few per cent where $$B_m$$ varies slowly. The band edge (10) is derived at leading order only.
+- The remainder in (8) and in the band edge (10) is not bounded. The numerical agreement is a few per cent where $$B_m$$ varies slowly.
 - The scales $$k\lesssim aH$$ are not resolved. The exact evolution shows growth there even when the band is closed, and the kinetic matrix of the matter-coupled model degenerates as $$k\to0$$ ([[Yao]](#ref-yao), eq. (3.33)).
-- The branch $$-1<\alpha_L<0$$, a radiation component with $$\alpha_H\ne0$$, and time-dependent $$\alpha_L$$ are not treated.
+- Time-dependent $$\alpha_L$$, the branch $$-1<\alpha_L<0$$ and a radiation component with $$\alpha_H\neq0$$ are not treated.
 - It is not known whether the gravitational-wave decay bound $$\alpha_H=0$$ applies to Freezing Gravity, which decides whether a running $$\alpha_H$$ is available.
-- The growth factors exceed $$10^{10}$$. In an unstable model linear theory fails at a time set by the initial amplitude of $$v$$, and what happens after that is not addressed.
-- A Freezing Gravity realisation of the DESI phantom crossing needs one of the conditions of section 7. Which of them, if any, is compatible with large-scale-structure and lensing data has not been examined.
+- A Freezing Gravity realisation of the DESI phantom crossing needs one of the conditions of section 8. Which of them, if any, is compatible with large-scale-structure and lensing data has not been examined.
 
 ## References
 
@@ -350,3 +391,4 @@ Consider the DESI+CMB+DESY5 background with $$\beta_3=\alpha_A=10^{-4}$$, $$\alp
 8. <a id="ref-desi"></a>DESI Collaboration, "DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints," Phys. Rev. D 112, 083515 (2025), [arXiv:2503.14738](https://arxiv.org/abs/2503.14738).
 9. <a id="ref-gw"></a>LIGO Scientific Collaboration, Virgo Collaboration, Fermi Gamma-ray Burst Monitor, INTEGRAL, "Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A," Astrophys. J. Lett. 848, L13 (2017), [arXiv:1710.05834](https://arxiv.org/abs/1710.05834).
 10. <a id="ref-cltv"></a>Creminelli, Lewandowski, Tambalo, Vernizzi, "Gravitational Wave Decay into Dark Energy," [arXiv:1809.03484](https://arxiv.org/abs/1809.03484).
+11. <a id="ref-popovic"></a>Popovic et al. (DES Collaboration), "The Dark Energy Survey Supernova Program: A Reanalysis Of Cosmology Results And Evidence For Evolving Dark Energy With An Updated Type Ia Supernova Calibration," Mon. Not. R. Astron. Soc. (2026), [arXiv:2511.07517](https://arxiv.org/abs/2511.07517).
