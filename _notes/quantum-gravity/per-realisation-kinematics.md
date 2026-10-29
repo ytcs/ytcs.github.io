@@ -3,16 +3,16 @@ title: Kernel-scale kinematics of a single realisation
 date: 2026-10-29
 category: substrate
 order: 6
-description: On a Poisson sprinkling, the standard deviation of a layer-weighted d'Alembertian of kernel scale on a smooth wave packet exceeds the signal by at least about one third of the cube of the packet width in kernel units (a proved bound, evaluated numerically), and on the cocompact orbit lattice of an anisotropic integral form the same kind of operator can have the correct mean but has no symbol on a single realisation.
-status: The variance inequality (6), the structure of the orbit lattice (Theorem 3), the absence of a symbol (Proposition 4) and the superposition identity (Proposition 5) are proved. The size of (6), the sampled standard deviations, the shell densities, interior-count laws and weights of the orbit lattice and the single-realisation errors are numerical, with sample sizes and ranges stated; the rational values of the interior-count laws for shells 6 to 10 are identified from enumeration.
-excludes: For the Benincasa–Dowker and a five-layer kernel on a Poisson sprinkling and a timelike Gaussian packet of width 2 to 32 discreteness lengths, accuracy of a single realisation (numerical evaluation of a proved bound); on the orbit lattice of the integral form with coefficients (7, -1, -1, -1), a symbol for the layer kernel, and a bounded smearing that commutes with the translations and the stabiliser of the realisation and is not a multiple of the identity (proved). Kernels with a non-locality scale much larger than the discreteness scale, and smearings that use a frame, are not covered.
+description: At the discreteness scale, the Benincasa–Dowker d'Alembertian on a Poisson sprinkling has a standard deviation of at least about one third of the cube of the packet width, in discreteness lengths, times the signal for timelike Gaussian packets of width 2 to 32 (computed), and a layer operator on a cocompact orbit lattice has no symbol in a single realisation (proved).
+status: "Proved: the first-chaos inequality (6), the structure of the orbit lattice (Theorem 3), the absence of a symbol (Proposition 4) and the number variance of superposed lattices (Proposition 5). Computed: the size of (6), sampled standard deviations, shell densities, interior-count laws (rational values for shells 6 to 10 identified, not proved), weights and single-realisation errors."
+excludes: "Under a kernel scale equal to the discreteness scale: accuracy of the Benincasa–Dowker or a five-layer operator in one Poisson realisation, for timelike Gaussian packets of width 2 to 32 or 2 to 20 discreteness lengths (computed). On the orbit lattice of an anisotropic integral form: a symbol for a layer kernel with non-zero nearest-neighbour weight (proved)."
 ---
 
-A causal-set d'Alembertian is a sum over the causal past of a point, with a weight that depends on the number $$m$$ of points in the causal interval between the two. Its expectation on a Poisson sprinkling of density $$\ell^{-4}$$ is the d'Alembertian $$\Box\phi$$ of a smooth field $$\phi$$ [[Benincasa–Dowker]](#ref-bd) [[Aslanbeigi–Saravani–Sorkin]](#ref-ass). We ask whether one realisation computes $$\Box\phi$$ when the kernel sits at the scale $$\ell$$ of the discreteness and $$\phi$$ varies on a scale $$L\gg\ell$$. For the Benincasa–Dowker weights and for a five-layer variant the answer is no. For a Gaussian packet of width $$L$$ between $$2\ell$$ and $$32\ell$$, the standard deviation of the operator at a point is at least $$0.33\,(L/\ell)^3\,\lvert\Box\phi\rvert$$ (Benincasa–Dowker weights, packet oscillating in time): the inequality (6) behind this is proved, and its value is computed numerically. Sampled standard deviations are $$3\cdot10^2$$ to $$8\cdot10^3$$ times $$\lvert\Box\phi\rvert$$ at $$L=5\ell$$, depending on the kernel.
+A causal-set d'Alembertian is a sum over the causal past of a point, with a weight that depends on the number $$m$$ of points in the causal interval between the two. Its expectation on a Poisson sprinkling of density $$\ell^{-4}$$ is the d'Alembertian $$\Box\phi$$ of a smooth field $$\phi$$ [[Benincasa–Dowker]](#ref-bd) [[Aslanbeigi–Saravani–Sorkin]](#ref-ass). Does one realisation compute $$\Box\phi$$ when the weights act at the scale $$\ell$$ of the discreteness and $$\phi$$ varies on a scale $$L\gg\ell$$? For the Benincasa–Dowker weights and for a five-layer variant, on the Gaussian packets examined, it does not. For a timelike packet of width $$L$$ between $$2\ell$$ and $$32\ell$$, the standard deviation of the Benincasa–Dowker operator at a point is at least about $$0.33\,(L/\ell)^3\,\lvert\Box\phi\rvert$$: the inequality (6) behind this is proved and its value is computed. Sampled standard deviations are $$3\cdot10^2$$ to $$8\cdot10^3$$ times $$\lvert\Box\phi\rvert$$ at $$L=5\ell$$, depending on the kernel and the carrier.
 
-We also ask whether a lattice, which carries no Poisson randomness within a realisation, does better. We take the lattice $$\mathbb Z^4$$ with the anisotropic form $$7x_0^2-x_1^2-x_2^2-x_3^2$$, embedded in Minkowski space and randomly boosted and translated (the orbit lattice of section 3), which is Poincaré invariant in law. Its weights can be retuned to the interval statistics of the lattice so that the mean reproduces $$\Box\phi$$. A single realisation, however, carries an operator with no symbol, and the operator maps every non-zero finitely supported field outside the square-summable functions (Proposition 4, proved). The relative errors computed on a few Gaussian packets lie between $$4\cdot10^2$$ and $$4\cdot10^6$$; Proposition 4 does not bound them.
+A lattice has no Poisson randomness within a realisation. We take $$\mathbb Z^4$$ with the anisotropic form $$7x_0^2-x_1^2-x_2^2-x_3^2$$, embedded in Minkowski space and randomly boosted and translated (the orbit lattice of section 3), which is Poincaré invariant in law. Its weights can be retuned to the interval statistics of the lattice so that the mean reproduces $$\Box\phi$$ on the packets examined (section 4, numerical). A single realisation nevertheless carries an operator with no symbol, and the operator maps every non-zero finitely supported field outside the square-summable functions (Proposition 4, proved). The relative errors computed on four Gaussian packets lie between $$4\cdot10^2$$ and $$4\cdot10^6$$; Proposition 4 does not bound them. Superposing independent copies of the lattice brings the number statistics towards the Poisson ones and leaves the operator unexamined (Proposition 5).
 
-Sorkin argued that Lorentz-invariant discreteness requires a non-locality scale $$\ell_k\gg\ell$$ [[Sorkin]](#ref-sorkin), and the generalised d'Alembertians of Aslanbeigi, Saravani and Sorkin [[Aslanbeigi–Saravani–Sorkin]](#ref-ass) are families with such a scale. Saravani and Aslanbeigi studied number fluctuations of Poisson sprinklings and of two-dimensional Lorentzian lattices [[Saravani–Aslanbeigi]](#ref-sa). The lower bound below uses the first term of the chaos expansion of a Poisson functional [[Last–Penrose]](#ref-lp), and its evaluation for the four-dimensional kernels is what is added here, together with the structure of the orbit lattice. The conditions on the weights that make the mean work are derived on [the page on signed and mixed Poisson substrates](/quantum-gravity/signed-substrates/); the invariant random lattices are described on [the page on Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/); the argument that a Zariski-dense stabiliser forbids a symbol is on [the page on exact discrete Lorentz symmetry](/quantum-gravity/discrete-lorentz-group/).
+Sorkin argued that Lorentz-invariant discreteness requires a non-locality scale $$\ell_k\gg\ell$$ [[Sorkin]](#ref-sorkin), and the generalised d'Alembertians of Aslanbeigi, Saravani and Sorkin [[Aslanbeigi–Saravani–Sorkin]](#ref-ass) are families with such a scale. Saravani and Aslanbeigi studied number fluctuations of Poisson sprinklings and of two-dimensional Lorentzian lattices [[Saravani–Aslanbeigi]](#ref-sa). The lower bound below starts from the first term of the chaos expansion of a Poisson functional [[Last–Penrose]](#ref-lp); the evaluation of that term for four-dimensional layer kernels is new here. The conditions on the weights that make the mean work are derived in [mixed-Poisson and signed substrates](/quantum-gravity/signed-substrates/), the invariant random lattices are described in [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/), and the argument that a Zariski-dense stabiliser forbids a symbol is given in [lattice translations with a discrete Lorentz group](/quantum-gravity/discrete-lorentz-group/).
 
 ## 1. Layer operators at the kernel scale
 
@@ -28,9 +28,9 @@ $$
 \psi(V)=\sum_mw_m\,e^{-V}\frac{V^m}{m!}. \tag{2}
 $$
 
-The Mellin transform of $$\psi$$ is $$\hat\psi(s)=\int_0^\infty\psi(V)V^{s-1}dV=\sum_mw_m\Gamma(s+m)/m!$$. The conditions of Aslanbeigi, Saravani and Sorkin for the mean to tend to $$\Box\phi$$ are $$\hat\psi(\tfrac12)=\hat\psi(1)=\hat\psi(\tfrac32)=0$$ and $$a=-3\hat\psi'(1)$$, with $$\nu$$ fixed by the value of $$\hat\psi'(\tfrac32)$$ [[Aslanbeigi–Saravani–Sorkin]](#ref-ass). They are derived on the page on signed and mixed Poisson substrates linked above, and we use them as given. We use two weight sets, both with $$\lvert\hat\psi'(\tfrac32)\rvert=\sqrt\pi/3$$ and $$\lvert\nu\rvert=4/\sqrt6$$.
+The Mellin transform of $$\psi$$ is $$\hat\psi(s)=\int_0^\infty\psi(V)V^{s-1}dV=\sum_mw_m\Gamma(s+m)/m!$$. The conditions of Aslanbeigi, Saravani and Sorkin for the mean to tend to $$\Box\phi$$ are $$\hat\psi(\tfrac12)=\hat\psi(1)=\hat\psi(\tfrac32)=0$$ and $$a=-3\hat\psi'(1)$$, with $$\nu$$ fixed by the value of $$\hat\psi'(\tfrac32)$$ [[Aslanbeigi–Saravani–Sorkin]](#ref-ass). They are derived in [mixed-Poisson and signed substrates](/quantum-gravity/signed-substrates/), and we use them as given. We use two weight sets, both with $$\lvert\hat\psi'(\tfrac32)\rvert=\sqrt\pi/3$$ and $$\lvert\nu\rvert=4/\sqrt6$$ ($$\nu=-4/\sqrt6$$ for the Benincasa–Dowker set and $$\nu=4/\sqrt6$$ for the five-layer set below).
 
-The Benincasa–Dowker weights are $$(1,-9,16,-8)$$, for which $$\hat\psi(s)=-\tfrac13\Gamma(s)(2s-1)(s-1)(2s-3)$$, so that $$\hat\psi'(1)=\tfrac13$$ (hence $$a=-1$$) and $$\hat\psi(\tfrac54)=0.0567$$. The five-layer set $$(5,-85,280,-328,128)$$ has $$\hat\psi(s)=\tfrac{16}3\Gamma(s)(s-\tfrac12)(s-1)(s-\tfrac54)(s-\tfrac32)$$; it has the extra zero at $$\tfrac54$$, which removes the term of order $$\ell^{-1}$$ proportional to the timelike boundary volume that the Benincasa–Dowker action has on a region (see [the page on boundary terms](/quantum-gravity/boundary-terms/)), and it is used here to test how the fluctuation depends on the weights. It has $$\hat\psi'(1)=\tfrac13$$, so $$a=-1$$ as well.
+The Benincasa–Dowker weights are $$(1,-9,16,-8)$$, for which $$\hat\psi(s)=-\tfrac13\Gamma(s)(2s-1)(s-1)(2s-3)$$, so that $$\hat\psi'(1)=\tfrac13$$ (hence $$a=-1$$) and $$\hat\psi(\tfrac54)=0.0567$$. In [causal-set counts and dimensionless constants](/quantum-gravity/no-number-from-kinematics/) and [boundary and corner terms](/quantum-gravity/boundary-terms/) the sign of $$\nu$$ is absorbed into the weights, so that the normalisation is $$4/\sqrt6$$ and the Benincasa–Dowker weights are $$(-1,9,-16,8)$$ with the symbol $$Q_{\rm BD}(s)=\tfrac13(2s-1)(s-1)(2s-3)=-\hat\psi(s)/\Gamma(s)$$. The five-layer set $$(5,-85,280,-328,128)$$ has $$\hat\psi(s)=\tfrac{16}3\Gamma(s)(s-\tfrac12)(s-1)(s-\tfrac54)(s-\tfrac32)$$ and also $$\hat\psi'(1)=\tfrac13$$, so $$a=-1$$. Its extra zero at $$\tfrac54$$ removes the term of order $$\ell^{-1}$$, proportional to the volume of the timelike boundary, that the Benincasa–Dowker action has on the regions of [boundary and corner terms](/quantum-gravity/boundary-terms/). We use it to test how the fluctuation depends on the weights.
 
 The test field is a Gaussian packet,
 
@@ -40,7 +40,7 @@ $$
 
 where $$\lvert x\rvert_{\rm E}^2=t^2+\lvert\vec x\rvert^2$$, with the carrier along the time axis (timelike, $$\cos pt$$) or along $$x_1$$ (spacelike, $$\cos px_1$$). Lengths are in units of $$\ell=1$$. Then $$\Box\phi(0)=2/L^2-p^2=-7/L^2$$ (timelike) or $$2/L^2+p^2=11/L^2$$ (spacelike).
 
-The mean of (1) at a point of a Poisson sprinkling, computed by quadrature in hyperbolic coordinates and divided by $$\Box\phi(0)$$ (the sign of $$\nu$$ is chosen so that the ratio tends to $$+1$$), is, for $$L=3,5,10,20,40$$:
+The mean of (1) at a point of a Poisson sprinkling, computed by quadrature in hyperbolic coordinates and divided by $$\Box\phi(0)$$ is, for $$L=3,5,10,20,40$$:
 
 | kernel and carrier | $$L=3$$ | $$L=5$$ | $$L=10$$ | $$L=20$$ | $$L=40$$ |
 |---|---|---|---|---|---|
@@ -59,7 +59,7 @@ $$
 \mathrm{Var}\,F\ \ge\ \int\big\lvert \mathbb E\,D_zF\big\rvert ^2\lambda(dz). \tag{4}
 $$
 
-The terms with $$n\ge2$$ are discarded in (4); the first term is the only one we compute. The functional $$X$$ is square integrable for the packet (3), since its first and second absolute moments are bounded by integrals of $$\lvert\phi\rvert$$ and $$\phi^2$$ against $$\mathbb P(m(y,0)\le M)$$, which converge by the Gaussian decay of $$\phi$$.
+In words, the variance is at least the mean square response of $$F$$ to the addition of one point. The terms with $$n\ge2$$ are discarded in (4); the first term is the only one we compute. The functional $$X$$ is square integrable for the packet (3), since its first and second absolute moments are bounded by integrals of $$\lvert\phi\rvert$$ and $$\phi^2$$ against $$\mathbb P(m(y,0)\le M)$$, which converge by the Gaussian decay of $$\phi$$.
 
 <div class="proposition" markdown="1">
 
@@ -91,24 +91,30 @@ $$
 
 </div>
 
-Inequality (6) holds for every $$L$$ and every weight set; it is (4) with $$\lambda$$ the Lebesgue measure of the past cone and (5) inserted. Its size is a numerical question.
+Inequality (6) holds for every $$L$$ and every weight set; it is (4) with $$\lambda$$ the Lebesgue measure of the past cone and (5) inserted.
 
-*Evaluation of the bound.* For the timelike packet, write $$z=-\tau_zu$$ and $$y=-\tau_yu'$$ with $$u,u'$$ unit future vectors, that is, points of the hyperbolic space $$H^3$$. Then $$y\prec z$$ holds exactly when $$\tau_y>\tau_z$$ and the hyperbolic distance of $$u$$ and $$u'$$ is smaller than $$\ln(\tau_y/\tau_z)$$. The packet depends on $$u'$$ only through its rapidity, and the integral over the angle at $$u$$ is that of a Gaussian times a cosine, which is a difference of complex error functions. What remains is a four-dimensional quadrature, which we carried out on two grids that agree to $$0.6\%$$. The table gives $$\lvert\nu\rvert\sqrt{\Sigma}/\lvert\Box\phi(0)\rvert$$, which by (6) is a lower bound for the standard deviation of $$B\phi(0)$$ in units of the signal, and the same divided by $$L^3$$.
+### Size of the bound for a timelike packet
+
+For the timelike packet, write $$z=-\tau_zu$$ and $$y=-\tau_yu'$$ with $$u,u'$$ unit future vectors, that is, points of the hyperbolic space $$H^3$$. Then $$y\prec z$$ holds exactly when $$\tau_y>\tau_z$$ and the hyperbolic distance of $$u$$ and $$u'$$ is smaller than $$\ln(\tau_y/\tau_z)$$. The packet depends on $$u'$$ only through its rapidity, and the integral over the angle at $$u$$ is that of a Gaussian times a cosine, which is a difference of complex error functions. What remains is a four-dimensional quadrature, accurate to about $$1\%$$. The table gives $$\lvert\nu\rvert\sqrt{\Sigma}/\lvert\Box\phi(0)\rvert$$, which by (6) is a lower bound for the standard deviation of $$B\phi(0)$$ in units of the signal, and the same divided by $$L^3$$.
 
 | $$L$$ | Benincasa–Dowker | divided by $$L^3$$ | five-layer | divided by $$L^3$$ |
 |---|---|---|---|---|
 | 2 | 2.69 | 0.34 | 16.3 | 2.0 |
 | 3 | 8.95 | 0.33 | 62.5 | 2.3 |
-| 4 | 21.8 | 0.34 | 154 | 2.4 |
-| 5 | 43.7 | 0.35 | 305 | 2.4 |
+| 4 | 21.8 | 0.34 | 153 | 2.4 |
+| 5 | 43.7 | 0.35 | 303 | 2.4 |
 | 7 | 125 | 0.37 | 859 | 2.5 |
-| 12 | 667 | 0.39 | 4570 | 2.6 |
+| 12 | 667 | 0.39 | 4550 | 2.6 |
 | 20 | 3180 | 0.40 | 21700 | 2.7 |
 | 32 | 13200 | 0.40 | | |
 
-The ratio to $$L^3$$ lies between $$0.33$$ and $$0.40$$ for the Benincasa–Dowker weights over $$2\le L\le32$$ and between $$2.0$$ and $$2.7$$ for the five-layer weights over $$2\le L\le20$$, and it increases slowly with $$L$$; the table is not extrapolated. The spacelike carrier was not evaluated. A heuristic for the cube: for fixed $$\tau_z$$ the Gaussian confines $$u$$ to a region of hyperbolic volume proportional to $$L^2/\tau_z^2$$; if the bracket in $$\Sigma$$ stays of order one there, as the zeros of $$\hat\psi$$ at $$\tfrac12$$, $$1$$ and $$\tfrac32$$ arrange by cancelling the growth of the $$y$$-integral, then $$\Sigma\propto L^2$$, and with $$\lvert\Box\phi\rvert\propto L^{-2}$$ the ratio grows like $$L^3$$.
+The ratio to $$L^3$$ lies between $$0.33$$ and $$0.40$$ for the Benincasa–Dowker weights over $$2\le L\le32$$ and between $$2.0$$ and $$2.7$$ for the five-layer weights over $$2\le L\le20$$, and it increases slowly with $$L$$; the table is not extrapolated. The first-chaos term was not evaluated for the spacelike carrier.
 
-*Sampled standard deviations.* We sampled Palm configurations of a unit-density Poisson process in the past cone of $$0$$, keeping the points with interval volume to $$0$$ at most 16 and Euclidean norm at most $$3.3L$$ (the omitted points carry weight $$w_m$$ with $$m$$ large, of total probability of order $$10^{-3}$$ or less), computed the interior counts exactly and evaluated $$B\phi(0)$$ for (3). The table gives $$\mathrm{std}(B\phi(0))/\lvert\Box\phi(0)\rvert$$, with the number of samples; the relative standard error of each entry, from a bootstrap, is 1% to 4% (the laws are heavy tailed, so the Gaussian estimate of the error would be too small).
+A heuristic for the cube: for fixed $$\tau_z$$ the Gaussian confines $$u$$ to a region of hyperbolic volume proportional to $$L^2/\tau_z^2$$. If the bracket in $$\Sigma$$ stays of order one there, which the zeros of $$\hat\psi$$ at $$\tfrac12$$, $$1$$ and $$\tfrac32$$ would arrange by cancelling the growth of the $$y$$-integral, then $$\Sigma\propto L^2$$, and with $$\lvert\Box\phi\rvert\propto L^{-2}$$ the ratio grows like $$L^3$$.
+
+### Standard deviation by sampling
+
+We sampled Palm configurations of a unit-density Poisson process in the past cone of $$0$$, keeping the points with interval volume to $$0$$ at most 16 and Euclidean norm at most $$3.3L$$ (the omitted points have total probability of order $$10^{-3}$$ or less), computed the interior counts exactly and evaluated $$B\phi(0)$$ for (3). The table gives $$\mathrm{std}(B\phi(0))/\lvert\Box\phi(0)\rvert$$ and the number of samples. The relative uncertainty of each entry is about 5%: a bootstrap gives 1% to 4%, and the laws are heavy tailed, so repeated samples scatter somewhat more.
 
 | $$L$$ | samples | Benincasa–Dowker, timelike | Benincasa–Dowker, spacelike | five-layer, timelike | five-layer, spacelike |
 |---|---|---|---|---|---|
@@ -118,11 +124,11 @@ The ratio to $$L^3$$ lies between $$0.33$$ and $$0.40$$ for the Benincasa–Dowk
 | 5 | 1500 | 407 | 294 | 8340 | 6030 |
 | 7 | 600 | 1110 | 906 | 22700 | 18200 |
 
-For the timelike packet the standard deviation exceeds the first-chaos bound of the table above by a factor of 9 to 10 for the Benincasa–Dowker weights and 26 to 28 for the five-layer weights at $$L=3,5,7$$. The first chaos therefore carries about 1% of the variance of the Benincasa–Dowker operator and 0.1% of the five-layer operator; the remainder is in the higher chaoses, which (6) discards. The growth from $$L=3$$ to $$L=7$$ corresponds to exponents $$3.0,\,3.4,\,3.0,\,3.5$$ in the four columns, each with an uncertainty of about $$0.1$$: the timelike columns follow the cube of the bound, the spacelike ones grow slightly faster over this range.
+For the timelike packet the standard deviation exceeds the first-chaos bound of the table above by a factor of 9 to 10 for the Benincasa–Dowker weights and 26 to 28 for the five-layer weights at $$L=3,5,7$$. The first chaos therefore carries about 1% of the variance of the Benincasa–Dowker operator and 0.1% of the five-layer operator, and the remainder is in the higher chaoses that (6) discards. The growth from $$L=3$$ to $$L=7$$ corresponds to exponents $$3.0,\,3.4,\,3.0,\,3.5$$ in the four columns, each uncertain by about $$0.1$$. The timelike columns follow the cube of the bound, and the spacelike ones grow slightly faster over this range.
 
-A large standard deviation does not by itself exclude a heavy-tailed law with a small typical error, we also examine the distribution of the error. The fraction of samples with $$\lvert B\phi(0)/\Box\phi(0)-1\rvert<0.05$$ for the Benincasa–Dowker weights and the timelike packet is $$3\cdot10^{-3}$$ at $$L=2$$, $$3\cdot10^{-4}$$ at $$L=3$$ and zero in all samples at $$L\ge4$$ ($$2000$$, $$1500$$ and $$600$$ samples at $$L=4,5,7$$); the median relative error is 12, 58, 144 and 257 at $$L=2,3,4,5$$. The typical error is of the order of the standard deviation.
+A large standard deviation does not by itself exclude a heavy-tailed law with a small typical error, so we also examine the distribution of the error. For the Benincasa–Dowker weights and the timelike packet, the fraction of samples with $$\lvert B\phi(0)/\Box\phi(0)-1\rvert<0.05$$ is about $$3\cdot10^{-3}$$ at $$L=2$$ and below $$10^{-3}$$ at $$L=3,\dots,7$$. The median relative error is about 12, 58, 140 and 270 at $$L=2,3,4,5$$, uncertain by about 10%, which is 0.6 to 0.7 times the standard deviation.
 
-At kernel scale, then, the single-realisation operator is dominated by fluctuations for any smooth $$\phi$$ of width $$L\gtrsim2\ell$$. Reducing them needs a kernel with a non-locality scale $$\ell_k\gg\ell$$, averaging over many points as in Sorkin's smeared operators [[Sorkin]](#ref-sorkin) [[Aslanbeigi–Saravani–Sorkin]](#ref-ass); the dependence of the bound on $$\ell_k$$ is open.
+On the Gaussian packets examined, with widths from $$2\ell$$ to $$7\ell$$ and both carriers, the single-realisation operator at the kernel scale is therefore dominated by fluctuations. A kernel with a non-locality scale $$\ell_k\gg\ell$$, or an average over many points as in Sorkin's smeared operators [[Sorkin]](#ref-sorkin) [[Aslanbeigi–Saravani–Sorkin]](#ref-ass), may reduce them; the dependence of the bound on $$\ell_k$$ is open.
 
 ## 3. The cocompact orbit lattice
 
@@ -158,13 +164,15 @@ An anisotropic form keeps the lattice away from the light cone in every frame, s
 
 (vi) Work in the rest frame of $$S$$, where $$S$$ is a convex body of diameter $$\sim\tau$$ with $$V\propto\tau^4$$ and boundary area $$\propto\tau^3$$. The Voronoi cells of the lattice points have volume 1 and radius at most $$R_*$$. The cells of points in $$S$$ lie in the parallel body $$S\oplus B_{R_*}$$, and the cells covering the inner parallel body $$S\ominus B_{R_*}$$ belong to points of $$S$$. Hence $$\mathrm{vol}(S\ominus B_{R_*})\le N_S\le\mathrm{vol}(S\oplus B_{R_*})$$. The collar of width $$R_*$$ inside a convex body has volume at most $$R_*\cdot\mathrm{area}(\partial S)$$, and by Steiner's formula $$\mathrm{vol}(S\oplus B_{R_*})-\mathrm{vol}(S)\le C(R_*\tau^3+R_*^2\tau^2+\dots)$$. Both are $$O(\tau^3)=O(V^{3/4})$$ for $$\tau\ge1$$.
 
-(vii) For future timelike $$z,w\in\mathbb Z^4$$, the reverse Cauchy–Schwarz inequality gives $$B_7(z,w)\ge\sqrt{Q_7(z)Q_7(w)}$$, with equality iff $$z,w$$ are proportional. Hence $$\sqrt{Q_7(z+w)}\ge\sqrt{Q_7(z)}+\sqrt{Q_7(w)}$$. If $$z$$ lies in the interval between $$0$$ and $$k$$, then $$w=k-z$$ is also future timelike, and $$Q_7(z),Q_7(w)\ge1$$ by (i). Also $$Q_7(k)=Q_7(z)+Q_7(w)+2B_7(z,w)$$ with $$B_7(z,w)$$ an integer, so $$Q_7(z)+Q_7(w)\equiv Q_7(k)\pmod2$$. For $$n\le3$$ the left side is at least $$2>\sqrt n$$, so no such $$z$$ exists. For $$n=5$$ the parity forces $$Q_7(z)+Q_7(w)$$ to be odd, and the smallest such pair $$(1,2)$$ has $$1+\sqrt2>\sqrt5$$. For $$n=4$$ the only pair with $$\sqrt{Q_7(z)}+\sqrt{Q_7(w)}\le2$$ is $$(1,1)$$, with equality, so $$z=w=k/2$$, which lies in the lattice iff $$k\in2\mathbb Z^4$$. $$\square$$
+(vii) For future timelike $$z,z'\in\mathbb Z^4$$, the reverse Cauchy–Schwarz inequality gives $$B_7(z,z')\ge\sqrt{Q_7(z)Q_7(z')}$$, with equality iff $$z,z'$$ are proportional. Hence $$\sqrt{Q_7(z+z')}\ge\sqrt{Q_7(z)}+\sqrt{Q_7(z')}$$. If $$z$$ lies in the interval between $$0$$ and $$k$$, then $$z'=k-z$$ is also future timelike, and $$Q_7(z),Q_7(z')\ge1$$ by (i). Also $$Q_7(k)=Q_7(z)+Q_7(z')+2B_7(z,z')$$ with $$B_7(z,z')$$ an integer, so $$Q_7(z)+Q_7(z')\equiv Q_7(k)\pmod2$$. For $$n\le3$$ the sum $$\sqrt{Q_7(z)}+\sqrt{Q_7(z')}$$ is at least $$2>\sqrt n$$, so no such $$z$$ exists. For $$n=5$$ the parity forces $$Q_7(z)+Q_7(z')$$ to be odd, and the smallest such pair $$(1,2)$$ has $$1+\sqrt2>\sqrt5$$. For $$n=4$$ the only pair with $$\sqrt{Q_7(z)}+\sqrt{Q_7(z')}\le2$$ is $$(1,1)$$, with equality, so $$z=z'=k/2$$, which lies in the lattice iff $$k\in2\mathbb Z^4$$. $$\square$$
 
 </div>
 
 For a Poisson sprinkling, almost every realisation contains empty intervals of arbitrarily large volume, since disjoint intervals are independent and each of volume $$V$$ is empty with probability $$e^{-V}$$; so no bound like (7) holds. Bound (7) gives $$\mathrm{Var}\,N_S\le C^2V^{3/2}$$, which is weaker than the Poisson value $$V$$.
 
-*Number variance (numerical).* For a causal diamond of volume $$V$$ with a uniformly random centre in a cell of $$\Lambda_7$$ and a random rest-frame velocity $$u$$, the lattice count has the law of the count of the orbit lattice in a fixed diamond. We drew $$u$$ with the hyperbolic density uniform on the ball of radius $$R_b$$ (an approximation to the invariant probability measure on $$\Gamma_7\backslash H^3$$ that improves as $$R_b$$ grows) and counted the points of $$\Lambda_7$$ in the diamond, with $$2\cdot10^6$$ samples per entry. The mean of $$N/V$$ was $$1.000\pm0.001$$ in each case, and $$\mathrm{Var}\,N/V$$ was:
+### Number variance of the orbit lattice
+
+For a causal diamond of volume $$V$$ with a uniformly random centre in a cell of $$\Lambda_7$$ and a random rest-frame velocity $$u$$, the lattice count has the law of the count of the orbit lattice in a fixed diamond. We drew $$u$$ with the hyperbolic density uniform on the ball of radius $$R_b$$ (an approximation to the invariant probability measure on $$\Gamma_7\backslash H^3$$ that improves as $$R_b$$ grows) and counted the points of $$\Lambda_7$$ in the diamond, with $$2\cdot10^6$$ samples per entry. The mean of $$N/V$$ was $$1.000\pm0.001$$ in each case, and $$\mathrm{Var}\,N/V$$ was:
 
 | $$V$$ | $$R_b=3$$ | $$R_b=4$$ | $$R_b=5$$ | $$R_b=6$$ |
 |---|---|---|---|---|
@@ -172,52 +180,70 @@ For a Poisson sprinkling, almost every realisation contains empty intervals of a
 | 16 | 0.358 | 0.325 | 0.331 | 0.328 |
 | 64 | 0.218 | 0.203 | 0.205 | 0.203 |
 
-The ratio is below the Poisson value 1 and falls roughly like $$V^{-0.34}$$ between $$V=16$$ and $$64$$ (variance growing like $$V^{0.66}$$). The dependence on $$R_b$$ is the bias of the ball average, of about 8% between $$R_b=3$$ and $$4$$, 1% to 2% between $$R_b=4$$ and $$5$$, and below 1% between $$R_b=5$$ and $$6$$. The largest value of $$\lvert N-V\rvert/V^{3/4}$$ among the samples was $$3.9$$ to $$4.2$$ at $$V=4$$, $$2.9$$ to $$3.1$$ at $$V=16$$ and $$2.0$$ to $$2.3$$ at $$V=64$$. These values reach $$V=64$$ only. Saravani and Aslanbeigi conjecture that no process has $$\mathrm{Var}\,N_S\le\alpha V$$ with $$\alpha<1$$ for all large intervals [[Saravani–Aslanbeigi]](#ref-sa); the conjecture is asymptotic, the orbit lattice is an admissible test of it, and data up to $$V=64$$ do not decide it.
+The ratio is below the Poisson value 1 and falls roughly like $$V^{-0.34}$$ between $$V=16$$ and $$64$$ (variance growing like $$V^{0.66}$$). The dependence on $$R_b$$ is the bias of the ball average, of about 8% between $$R_b=3$$ and $$4$$, 1% to 2% between $$R_b=4$$ and $$5$$, and below 1% between $$R_b=5$$ and $$6$$. The largest value of $$\lvert N-V\rvert/V^{3/4}$$ among the samples was $$3.9$$ to $$4.2$$ at $$V=4$$, $$2.9$$ to $$3.1$$ at $$V=16$$ and $$2.0$$ to $$2.3$$ at $$V=64$$. Saravani and Aslanbeigi conjecture that no process has $$\mathrm{Var}\,N_S\le\alpha V$$ with $$\alpha<1$$ for all large intervals [[Saravani–Aslanbeigi]](#ref-sa). The conjecture is asymptotic, the orbit lattice is an admissible test of it, and data up to $$V=64$$ do not decide it. The same data bear on the question left open in [quantum sprinklings](/quantum-gravity/quantum-sprinklings/), whether a point process invariant in law under translations and boosts can have a number variance that grows more slowly than the volume: the orbit lattice is such a process, and the proved bound (7) gives only $$\mathrm{Var}\,N_S\le C^2V^{3/2}$$.
 
 ## 4. The mean dictionary on the orbit lattice
 
 Take a realisation through $$0$$, $$\Lambda=g\Lambda_7$$. Its future vectors are $$v=g\,e(k)$$ with $$k\in\mathbb Z^4$$ on a shell $$n$$, of proper time $$\tau_n$$ with $$\tau_n^2=7^{-1/4}n$$ and interval volume $$V_n=\pi\tau_n^4/24=\pi n^2/(24\sqrt7)$$. The interior count $$m(v)$$ depends on $$k$$ alone, since $$g$$ maps the lattice and the interval together. Let $$\rho_n$$ be the density, per unit hyperbolic measure (the volume element of the unit hyperboloid $$H^3$$, in which a ball of radius $$\eta$$ has volume $$\pi(\sinh2\eta-2\eta)$$), of vectors on shell $$n$$; by invariance it does not depend on $$g$$. Let $$P_n(m)$$ be the fraction of those vectors with interior count $$m$$. Since $$d^4y=\tau^3d\tau\,d\mu(u)=\tfrac6\pi\,dV\,d\mu(u)$$, unit density of the point set requires $$\sum_{n\le n_{\max}}\rho_n\approx\int_0^{\tau_{n_{\max}}}\tau^3d\tau=n_{\max}^2/(4\sqrt7)$$.
 
-*Shell data (numerical, except where Theorem 3(vii) applies).* We enumerated the lattice vectors on the shells $$Q_7=n$$ with $$k_0\le X$$ and computed the interior count of each by exact enumeration of the lattice points of the interval. For $$n=1,\dots,16$$ the densities, counted in hyperbolic balls up to $$X=1000$$ (they converge slowly, because the error in hyperbolic lattice-point counts decays only like a power of the radius), satisfy $$16\rho_n=4.005,\,12.016,\,6.001,\,11.990,\,12.020,\,18.025,\,25.000,\,12.017,\,27.993,\,36.121,\,48.139,\,18.011,\,36.020,\,75.158,\,32.166,\,12.197$$, within $$0.6\%$$ of the integers $$4,12,6,12,12,18,25,12,28,36,48,18,36,75,32,12$$ for $$n\le15$$ and within $$2\%$$ for $$n=16$$. Their sum is $$386/16=24.125$$ against $$16^2/(4\sqrt7)=24.19$$. The interior counts on shells 1 to 10 are as follows; $$16\rho_nP_n(m)$$ is again an integer in every case, and the last column is the measured fraction at the cutoff $$X$$ stated.
+### Shell densities and interior-count laws
 
-| $$n$$ | $$16\rho_n$$ | $$m$$ and $$16\rho_nP_n(m)$$ | $$P_n(m)$$ | measured |
+We enumerated the lattice vectors on the shells $$Q_7=n$$ with $$k_0\le k_{\max}$$ and computed the interior count of each by exact enumeration of the lattice points of the interval. For $$n=1,\dots,16$$ the densities $$\rho_n$$, counted in hyperbolic balls up to $$k_{\max}=1000$$, satisfy
+$$16\rho_n=4.005,\,12.016,\,6.001,\,11.990,\,12.020,\,18.025,\,25.000,\,12.017,\,27.993,\,36.031,\,48.096,\,18.011,\,35.932,\,75.084,\,32.053,\,12.060.$$
+These lie within $$0.2\%$$ of the integers $$4,12,6,12,12,18,25,12,28,36,48,18,36,75,32$$ for $$n\le15$$ and within $$0.5\%$$ for $$n=16$$ (the counts converge slowly, because the error in hyperbolic lattice-point counts decays only like a power of the radius). Their sum is $$386/16=24.125$$, against $$16^2/(4\sqrt7)=24.19$$ from the unit-density requirement.
+
+A $$\Gamma_7$$-orbit of vectors with stabiliser $$\Gamma_v$$ has hyperbolic density $$1/(\lvert\Gamma_v\rvert\,\mathrm{vol}F)$$, with $$F$$ a fundamental domain of $$\Gamma_7$$ in $$H^3$$, so every density $$\rho_nP_n(m)$$ is a sum of such terms. We have not computed $$\mathrm{vol}F$$ and the stabilisers; the sixteen densities above and the measured class densities in the table are the evidence that $$16\rho_nP_n(m)$$ is an integer for every class $$(n,m)$$, and we use this as an identification rule.
+
+The table gives the classes on shells 1 to 10. For shells 1, 2, 3 and 5 and for the split of shell 4 the laws are proved by Theorem 3(vii). For shells 6, 8, 9 and 10 the laws are the rational values for which every $$16\rho_nP_n(m)$$ is an integer and which agree with the enumeration; shell 7 is treated below. The last column is the measured $$16\rho_nP_n(m)$$ at the cutoff $$k_{\max}=300$$, from $$7.4\cdot10^5$$ to $$9.0\cdot10^5$$ vectors on each of shells 4, 6, 7, 9 and 10 and $$3.7\cdot10^5$$ on shell 8.
+
+| $$n$$ | $$16\rho_n$$ | $$m$$ and $$16\rho_nP_n(m)$$ | $$P_n(m)$$ | measured $$16\rho_nP_n(m)$$ |
 |---|---|---|---|---|
 | 1, 2, 3, 5 | 4, 12, 6, 12 | $$m=0$$: all | 1 | proved, Theorem 3(vii) |
-| 4 | 12 | $$m=0$$: 8; $$m=1$$: 4 | 2/3, 1/3 | $$0.666,\ 0.334$$ ($$X=300$$) |
-| 6 | 18 | $$m=0$$: 6; $$m=2$$: 12 | 1/3, 2/3 | $$0.330,\ 0.670$$ ($$X=150$$) |
-| 7 | 25 | $$m=0$$: 1; $$m=2$$: 24 | 1/25, 24/25 | $$0.0398,\ 0.960$$ ($$X=300$$) |
-| 8 | 12 | $$m=3$$: 12 | 1 | $$1$$ ($$X=150$$) |
-| 9 | 28 | $$m=2$$: 4; $$m=4$$: 24 | 1/7, 6/7 | $$0.142,\ 0.858$$ ($$X=300$$) |
-| 10 | 36 | $$m=4$$: 24; $$m=6$$: 12 | 2/3, 1/3 | $$0.668,\ 0.332$$ ($$X=150$$) |
+| 4 | 12 | $$m=0$$: 8; $$m=1$$: 4 | 2/3, 1/3 | 8.01, 4.02 |
+| 6 | 18 | $$m=0$$: 6; $$m=2$$: 12 | 1/3, 2/3 | 6.03, 12.06 |
+| 7 | 25 | $$m=0$$: 1; $$m=2$$: 24 | 1/25, 24/25 | 1.00, 24.07 |
+| 8 | 12 | $$m=3$$: 12 | 1 | 12.11 |
+| 9 | 28 | $$m=2$$: 4; $$m=4$$: 24 | 1/7, 6/7 | 3.96, 23.92 |
+| 10 | 36 | $$m=4$$: 24; $$m=6$$: 12 | 2/3, 1/3 | 24.22, 12.03 |
 
-Between $$9\cdot10^4$$ and $$2.2\cdot10^5$$ vectors per shell enter the fractions at $$X=150$$ and about $$8\cdot10^5$$ at $$X=300$$, and the fractions fluctuate by about $$1\%$$ between cutoffs. The rational values in the table are those for which every $$16\rho_nP_n(m)$$ is an integer and which lie within this fluctuation of the measured fractions. On shell 4 the counts are proved by Theorem 3(vii), and $$P_4(1)=\rho_1/\rho_4$$, since the vectors with $$m=1$$ are the doubles of the vectors on shell 1. For $$m=0$$ on shell 7 the counts at $$X=300$$ ($$0.0398$$) and the integrality of $$16\rho_7P_7(m)$$ both select $$1/25$$ rather than the neighbouring $$1/24$$. On shells 11 to 60 every vector examined with $$k_0\le24$$ has $$m\ge6$$, and by Theorem 3(iv) $$m$$ grows with $$n$$ uniformly in the realisation; since $$w_m=0$$ for $$m\ge5$$ only shells 1 to 10 enter the sums below.
+On shell 4 the counts are proved by Theorem 3(vii), and $$P_4(1)=\rho_1/\rho_4$$, since the vectors with $$m=1$$ are the doubles of the vectors on shell 1.
 
-*The linear system.* The mean of (1) at $$0$$ is $$\nu[a\phi(0)+\sum_{n,m}\rho_nP_n(m)w_m\int_{H^3}\phi(-\tau_nu)\,d\mu(u)]$$. It has the form of the Poisson mean with the measure $$\psi(V)\,dV$$ replaced by $$\tfrac\pi6\sum_n\rho_n\langle w\rangle_n\delta(V-V_n)$$, where $$\langle w\rangle_n=\sum_mP_n(m)w_m$$. Because the shell laws have compact support in $$m$$ (Theorem 3(iv)), the Mellin transform is a finite Dirichlet polynomial,
+The laws on shell 7 follow from the structure of the interval and two computed inputs. An interior lattice point $$z$$ of a vector $$k$$ on shell 7 has $$Q_7(z)$$ and $$Q_7(z')$$, with $$z'=k-z$$, in $$\{1,2\}$$: both are at most $$(\sqrt7-1)^2<3$$ by the reverse triangle inequality of the proof of Theorem 3(vii), and their sum is odd. So $$m(k)=2N_1(k)$$, where $$N_1(k)$$ is the number of vectors $$z$$ on shell 1 with $$B_7(z,k)=3$$. Two distinct such vectors $$z_1,z_2$$ would give $$Q_7(z_1-z_2)=2-2B_7(z_1,z_2)\le-2$$ (since $$B_7(z_1,z_2)\ge2$$ for distinct vectors of norm 1), with $$z_1-z_2$$ orthogonal to $$k$$; but the components of $$z_1$$ and $$z_2$$ orthogonal to $$k$$ have $$Q_7=1-9/7=-2/7$$ each, which gives $$-Q_7(z_1-z_2)\le8/7$$. Hence $$N_1\le1$$ and $$m\in\{0,2\}$$ on shell 7.
+
+Each vector $$z$$ on shell 1 has exactly six vectors $$z'$$ on shell 2 with $$B_7(z,z')=2$$ (computed for the 680 shell-1 vectors with $$k_0\le8$$ and for 88 more with $$k_0\le20$$), and $$k=z+z'$$ then lies on shell 7 with $$m=2$$. Counting the $$\Gamma_7$$-orbits of these pairs by $$z$$ and by $$k$$ gives $$16\rho_7P_7(2)=6\cdot16\rho_1=24$$, with $$16\rho_1=4$$, and with $$16\rho_7=25$$ this is $$P_7(0)=1/25$$.
+
+The value $$16\rho_7=25$$ rests on the enumeration. The ratio $$\rho_7/\rho_1$$, averaged over the cutoffs $$500\le k_{\max}\le1000$$, is $$6.250$$ (the windows 500 to 700, 700 to 900 and 900 to 1000 give $$6.251$$, $$6.248$$ and $$6.252$$), against $$25/4=6.25$$ for $$P_7(0)=1/25$$ and $$6.261$$ for $$1/24$$. A count of the $$m=0$$ vectors alone does not separate the two: $$16\rho_7P_7(0)$$ is $$1.00$$, $$1.03$$, $$1.00$$, $$1.01$$ at $$k_{\max}=300,400,500,600$$, against $$1$$ and $$1.04$$.
+
+On shells 11 to 60 every vector examined with $$k_0\le24$$ has $$m\ge6$$, and by Theorem 3(iv) $$m$$ grows with $$n$$ uniformly in the realisation; since $$w_m=0$$ for $$m\ge5$$, only shells 1 to 10 enter the sums below.
+
+### Weights that reproduce the mean
+
+The mean of (1) at $$0$$ is $$\nu[a\phi(0)+\sum_{n,m}\rho_nP_n(m)w_m\int_{H^3}\phi(-\tau_nu)\,d\mu(u)]$$. It has the form of the Poisson mean with the measure $$\psi(V)\,dV$$ replaced by $$\tfrac\pi6\sum_n\rho_n\langle w\rangle_n\delta(V-V_n)$$, where $$\langle w\rangle_n=\sum_mP_n(m)w_m$$. Because the shell laws have compact support in $$m$$ (Theorem 3(iv)), the Mellin transform is a finite Dirichlet polynomial,
 
 $$
 \hat\psi_\Lambda(s)=\frac\pi6\sum_{n=1}^{10}\rho_n\sum_mP_n(m)\,w_m\,V_n^{\,s-1}, \tag{8}
 $$
 
-which is entire. On the Haar-random lattice in two dimensions, by contrast, the empty-interval density decays like $$1/V$$ and the zeroth moment diverges logarithmically (see the page on Lorentz-invariant point sets). The derivation of the infrared conditions uses only the Mellin transform of the radial density, and we assume it carries over: the conditions become
+which is entire. On the Haar-random lattice in two dimensions, by contrast, the empty-interval density decays like $$1/V$$ and the zeroth moment diverges logarithmically ([Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/)). The derivation of the infrared conditions uses only the Mellin transform of the radial density, and we assume that it carries over. The conditions become
 
 $$
 \hat\psi_\Lambda(\tfrac12)=\hat\psi_\Lambda(1)=\hat\psi_\Lambda(\tfrac54)=\hat\psi_\Lambda(\tfrac32)=0,\qquad \hat\psi_\Lambda'(\tfrac32)=\frac{\sqrt\pi}3,\qquad a=-3\hat\psi_\Lambda'(1), \tag{9}
 $$
 
-with $$\nu=4/\sqrt6$$. The zero at $$\tfrac54$$ is the one of the five-layer set; with the other four conditions it fixes the five weights $$w_0,\dots,w_4$$ (the system has condition number $$1.8\cdot10^5$$). Its solution, with the table above, is
+with $$\nu=4/\sqrt6$$. The condition at $$\tfrac54$$, the extra zero of the five-layer set, is added so that there are five linear conditions for the five weights $$w_0,\dots,w_4$$; the system has condition number $$1.8\cdot10^5$$. With the laws of the table above, its solution is
 
 $$
 (w_0,\dots,w_4)=(2.93994598436,\,-194.985218449,\,104.163596525,\,-409.986325849,\,28.9411577030),\qquad a=-0.798641063627.
 $$
 
-The mean ratio $$\mathbb E[B\phi(0)]/\Box\phi(0)$$ computed from these data (the same quadrature as in section 1) is, for $$L=5,10,20,40$$:
+The mean ratio $$\mathbb E[B\phi(0)]/\Box\phi(0)$$, computed by the quadrature of section 1, is for $$L=5,10,20,40$$:
 
 | packet | $$L=5$$ | $$L=10$$ | $$L=20$$ | $$L=40$$ |
 |---|---|---|---|---|
 | timelike | 0.971 | 1.256 | 1.127 | 1.047 |
 | spacelike | 0.300 | 0.645 | 0.855 | 0.948 |
 
-The ratio tends to 1, close to the values of the five-layer Poisson kernel in section 1: the mean dictionary holds on the orbit lattice. It is sensitive to the data. Changing $$P_6(0)$$ from $$1/3$$ to $$0.353$$ with the same weights changes the timelike ratio at $$L=10,20,40$$ from $$1.26,\,1.13,\,1.05$$ to $$-3.0\cdot10^3,\,-4.3\cdot10^4,\,-6.6\cdot10^5$$: a shift of $$0.02$$ in one probability breaks the cancellation of the constant mode, and the error is amplified by $$L^4$$. Rounding the weights does the same: at nine significant digits the ratio at $$L=40$$ is $$1.37$$, and twelve digits reproduce $$1.047$$. A working dictionary therefore needs the exact rational laws and weights to twelve digits.
+The ratio tends to 1 and is close to the values of the five-layer Poisson kernel in section 1. This follows from the construction when the laws are those of the lattice, so the table does not test the laws. The weights depend on the laws sensitively. Weights solved for $$P_6(0)=1/3$$ and applied with $$P_6(0)=0.353$$ change the timelike ratio at $$L=10,20,40$$ from $$1.26,\,1.13,\,1.05$$ to $$-3.0\cdot10^3,\,-4.3\cdot10^4,\,-6.6\cdot10^5$$, because a shift of $$0.02$$ in one probability breaks the cancellation of the constant mode and the error is amplified by $$L^4$$. Weights solved for $$P_7(0)=1/24$$ and applied with $$P_7(0)=1/25$$, a shift of $$0.0017$$, give $$3.1\cdot10^2$$, $$4.4\cdot10^3$$ and $$6.7\cdot10^4$$. Rounding the weights does the same: at nine significant digits the ratio at $$L=40$$ is $$1.37$$, and twelve digits reproduce $$1.047$$. A working dictionary therefore needs the exact laws and the weights to twelve digits, and the identification of the laws in the table is its input.
 
 ## 5. A single realisation of the orbit lattice
 
@@ -225,7 +251,7 @@ Take a realisation $$\Lambda$$ through $$0$$ and apply a Lorentz transformation 
 
 <div class="proposition" markdown="1">
 
-**Proposition 4** (a layer operator on the orbit lattice has no symbol). The stabiliser $$\Gamma_g=g\Gamma_7g^{-1}$$ of $$\Lambda$$ in $$SO^+(1,3)$$ is Zariski dense, and the kernel $$\kappa$$ is bounded, $$\Gamma_g$$-invariant, supported on finitely many shells, and non-zero at the vectors of shell 1 if $$w_0\ne0$$. Therefore, by Proposition 1 of [the page on exact discrete Lorentz symmetry](/quantum-gravity/discrete-lorentz-group/), the Fourier series $$\hat\kappa$$ of the kernel coincides with an integrable function on no open set of the Brillouin torus; and for every finitely supported $$\phi\ne0$$ on $$\Lambda$$, the function $$B\phi-\nu a\phi$$ is not square summable. Moreover every bounded operator on $$\ell^2(\Lambda)$$ that commutes with the translations of $$\Lambda$$ and with $$\Gamma_g$$ is a multiple of the identity, so it cannot have the symbol of $$\Box$$ on any open set of momenta.
+**Proposition 4** (a layer operator on the orbit lattice has no symbol). The stabiliser $$\Gamma_g=g\Gamma_7g^{-1}$$ of $$\Lambda$$ in $$SO^+(1,3)$$ is Zariski dense, and the kernel $$\kappa$$ is bounded, $$\Gamma_g$$-invariant, supported on finitely many shells, and non-zero at the vectors of shell 1 if $$w_0\ne0$$. Therefore, by Proposition 1 of [lattice translations with a discrete Lorentz group](/quantum-gravity/discrete-lorentz-group/), the Fourier series $$\hat\kappa$$ of the kernel coincides with an integrable function on no open set of the Brillouin torus; and for every finitely supported $$\phi\ne0$$ on $$\Lambda$$, the function $$B\phi-\nu a\phi$$ is not square summable. Moreover every bounded operator on $$\ell^2(\Lambda)$$ that commutes with the translations of $$\Lambda$$ and with $$\Gamma_g$$ is a multiple of the identity, so it cannot have the symbol of $$\Box$$ on any open set of momenta.
 
 </div>
 
@@ -237,7 +263,9 @@ Take a realisation $$\Lambda$$ through $$0$$ and apply a Lorentz transformation 
 
 So the response to a localised field is not a localised field: a retarded layer sum with weights tuned to give the correct mean maps any compactly supported test field to a function of infinite $$\ell^2$$ norm. A Gaussian packet is not finitely supported and the sums converge, so Proposition 4 does not give the size of the error for it; that depends on cancellations among the shell sums, which we evaluate.
 
-*Single-realisation errors (numerical).* We took the unboosted realisation ($$g=1$$, $$\xi=0$$) with the weights, $$a$$ and $$\nu$$ of section 4, computed the interior count of every vector $$v$$ with $$1\le Q_7(v)\le10$$ in the packet's window by exact enumeration, and evaluated $$B\phi(0)$$ for the packet (3) at rest and boosted to speed $$\beta=0.6$$ along $$(1,2,3)/\sqrt{14}$$. The relative error $$\lvert B\phi(0)/\Box\phi(0)-1\rvert$$ is:
+### Errors on four packets
+
+We took the unboosted realisation ($$g=1$$, $$\xi=0$$) with the weights, $$a$$ and $$\nu$$ of section 4, computed the interior count of every vector $$v$$ with $$1\le Q_7(v)\le10$$ in the packet's window by exact enumeration, and evaluated $$B\phi(0)$$ for the packet (3) at rest and boosted to speed $$\beta=0.6$$ along $$(1,2,3)/\sqrt{14}$$. The relative error $$\lvert B\phi(0)/\Box\phi(0)-1\rvert$$ is:
 
 | packet | $$L=5$$ | $$L=10$$ | $$L=20$$ | $$L=40$$ |
 |---|---|---|---|---|
@@ -246,11 +274,11 @@ So the response to a localised field is not a localised field: a retarded layer 
 | timelike, $$\beta=0.6$$ | $$3.8\cdot10^2$$ | $$3.9\cdot10^4$$ | $$3.4\cdot10^5$$ | not computed |
 | spacelike, $$\beta=0.6$$ | $$2.9\cdot10^3$$ | $$1.8\cdot10^4$$ | $$1.3\cdot10^4$$ | not computed |
 
-The windows used ($$k_0\le100$$ and $$150$$) give the same values to the digits shown. One realisation, one lattice frame and four packets (two carriers, two velocities) give no estimate of the typical error or of its growth exponent: the values range over four orders of magnitude. The error is not small at any $$L$$ tried; at rest it is larger at $$L=40$$ than at $$L=5$$ by factors of $$7\cdot10^2$$ and $$5\cdot10^2$$. At $$L=5$$ the errors lie in the range of the Poisson standard deviations of section 2 ($$3\cdot10^2$$ to $$8\cdot10^3$$); at $$L=20$$ they lie between $$10^4$$ and $$4\cdot10^5$$, against the first-chaos bounds $$3\cdot10^3$$ and $$2\cdot10^4$$ of the two Poisson kernels.
+The windows $$k_0\le100$$ and $$150$$ give the same values to the digits shown. One realisation, one lattice frame and four packets (two carriers, two velocities) give no estimate of the typical error or of its growth exponent, and the values range over four orders of magnitude. The error is not small at any $$L$$ tried, and at rest it is larger at $$L=40$$ than at $$L=5$$ by factors of $$7\cdot10^2$$ and $$5\cdot10^2$$. At $$L=5$$ the errors lie in the range of the Poisson standard deviations of section 2 ($$3\cdot10^2$$ to $$8\cdot10^3$$). At $$L=20$$ they lie between $$10^4$$ and $$4\cdot10^5$$, against the first-chaos bounds $$3\cdot10^3$$ and $$2\cdot10^4$$ of the two Poisson kernels.
 
 ## 6. Superposed lattices
 
-Independent randomness can be added to the lattice by superposition. Let $$\Lambda_K$$ be the union of $$K$$ independent copies of the random orbit lattice, each of density $$1/K$$ (a copy is the density-one random lattice scaled by $$K^{1/4}$$), so that the density is 1.
+Does adding independent randomness to the lattice change the picture? Superposition gives an answer for the number statistics only. Let $$\Lambda_K$$ be the union of $$K$$ independent copies of the random orbit lattice, each of density $$1/K$$ (a copy is the density-one random lattice scaled by $$K^{1/4}$$), so that the density is 1.
 
 <div class="proposition" markdown="1">
 
@@ -264,22 +292,20 @@ Independent randomness can be added to the lattice by superposition. Let $$\Lamb
 
 </div>
 
-As $$K\to\infty$$ at fixed $$V$$ the number statistics approach the Poisson ones. The failure of section 2 is already present for the Poisson sprinkling, so the number statistics do not determine the operator error, and the operator on $$\Lambda_K$$ for $$K\ge2$$ is not computed.
+As $$K\to\infty$$ at fixed $$V$$ the number statistics approach the Poisson ones. The operator error already fails for the Poisson sprinkling (section 2), so the number statistics do not determine it, and the operator on $$\Lambda_K$$ for $$K\ge2$$ is not computed.
 
-## 7. What is not excluded, and open points
+## 7. Larger kernel scales, frames and the lattice error
 
-1. Smeared kernels on a Poisson sprinkling, with a non-locality scale $$\ell_k\gg\ell$$ [[Aslanbeigi–Saravani–Sorkin]](#ref-ass). The evaluation in section 2 is for $$\ell_k=\ell$$.
-2. Orbit lattices with a smearing that uses a frame, for instance a time direction. It breaks the invariance of the operator under $$\Gamma_g$$, and Proposition 4 does not apply to it; it brings back the preferred-frame questions of [the page on leakage of a preferred frame](/quantum-gravity/lorentz-violation-leakage/).
-3. Superpositions of $$K\ge2$$ orbit lattices with a mesoscale.
-4. Lattices that are not arithmetic orbits. The proofs use cocompactness (anisotropy) and the Zariski density of the stabiliser.
-5. Observables other than the d'Alembertian on a Gaussian packet at one point, for example averages of $$B\phi$$ over many points of the realisation.
+Whether a kernel with a non-locality scale $$\ell_k\gg\ell$$ reduces the fluctuation of section 2 is open [[Aslanbeigi–Saravani–Sorkin]](#ref-ass); the evaluation there is for $$\ell_k=\ell$$, and the same holds for averages of $$B\phi$$ over many points of one realisation.
 
-Open points. The first-chaos bound (6) was evaluated for the timelike carrier only; the first chaos carries about 1% of the variance of the Benincasa–Dowker operator, so (6) is far from sharp, and the standard deviation itself is known only from sampling. The growth exponent of the single-realisation error on the orbit lattice, and whether it differs from that of the Poisson sprinkling, is not determined by four packets in one frame. The asymptotic law of $$\mathrm{Var}\,N_S$$ on the orbit lattice, between the observed growth $$V^{0.66}$$ up to $$V=64$$ and the proved bound $$V^{3/2}$$, is open. The shell densities and the interior-count laws of section 4 are identified numerically from enumeration, and their exactness is an observation, not a theorem, beyond the cases of Theorem 3(vii).
+A smearing on the orbit lattice that uses a frame, for instance a time direction, breaks the invariance of the operator under $$\Gamma_g$$, and Proposition 4 does not apply to it. It brings back the questions of [frame leakage](/quantum-gravity/lorentz-violation-leakage/). Lattices that are not arithmetic orbits are outside Theorem 3 and Proposition 4, whose proofs use cocompactness (anisotropy) and the Zariski density of the stabiliser.
+
+Three quantities are undetermined. The first is the growth exponent of the single-realisation error on the orbit lattice, and whether it differs from that of the Poisson sprinkling; four packets in one frame do not fix it. The second is the asymptotic law of $$\mathrm{Var}\,N_S$$ on the orbit lattice, between the observed growth $$V^{0.66}$$ up to $$V=64$$ and the proved bound $$V^{3/2}$$. The third is the standard deviation of the Poisson operator itself, of which (6) captures about 1% for the Benincasa–Dowker weights and the timelike carrier; the spacelike carrier is not evaluated even for (6).
 
 ## References
 
-1. <a id="ref-bd"></a>Benincasa, Dowker, "The scalar curvature of a causal set," Phys. Rev. Lett. 104 (2010) 181301, [arXiv:1001.2725](https://arxiv.org/abs/1001.2725).
-2. <a id="ref-ass"></a>Aslanbeigi, Saravani, Sorkin, "Generalized causal set d'Alembertians," JHEP 06 (2014) 024, [arXiv:1403.1622](https://arxiv.org/abs/1403.1622).
-3. <a id="ref-sorkin"></a>Sorkin, "Does locality fail at intermediate length-scales," [arXiv:gr-qc/0703099](https://arxiv.org/abs/gr-qc/0703099).
-4. <a id="ref-sa"></a>Saravani, Aslanbeigi, "On the causal set-continuum correspondence," [arXiv:1403.6429](https://arxiv.org/abs/1403.6429).
-5. <a id="ref-lp"></a>Last, Penrose, "Poisson process Fock space representation, chaos expansion and covariance inequalities," [arXiv:0909.3205](https://arxiv.org/abs/0909.3205).
+1. <a id="ref-bd"></a>Benincasa, Dowker, "The scalar curvature of a causal set," Phys. Rev. Lett. 104 (2010) 181301, [arXiv:1001.2725](https://arxiv.org/abs/1001.2725). Used for: the layer weights $$(1,-9,16,-8)$$.
+2. <a id="ref-ass"></a>Aslanbeigi, Saravani, Sorkin, "Generalized causal set d'Alembertians," JHEP 06 (2014) 024, [arXiv:1403.1622](https://arxiv.org/abs/1403.1622). Used for: the conditions on the weights in section 1 and the smeared operators with a non-locality scale.
+3. <a id="ref-sorkin"></a>Sorkin, "Does Locality Fail at Intermediate Length-Scales," [arXiv:gr-qc/0703099](https://arxiv.org/abs/gr-qc/0703099). Used for: the non-locality scale $$\ell_k$$ and smeared operators.
+4. <a id="ref-sa"></a>Saravani, Aslanbeigi, "On the causal set-continuum correspondence," [arXiv:1403.6429](https://arxiv.org/abs/1403.6429). Used for: the number-variance conjecture of section 3.
+5. <a id="ref-lp"></a>Last, Penrose, "Poisson process Fock space representation, chaos expansion and covariance inequalities," [arXiv:0909.3205](https://arxiv.org/abs/0909.3205). Used for: the chaos expansion of the variance, inequality (4).

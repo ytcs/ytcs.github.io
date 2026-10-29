@@ -20,11 +20,11 @@
   <text x="236" y="268" fill="#222">P</text>
   <!-- F(p): future of p below Sigma -->
   <polygon points="302,234 218,150 386,150" fill="none" stroke="#222" stroke-width="1" stroke-dasharray="6 3"/>
-  <text x="281" y="206" fill="#222">F(p)</text>
+  <text x="281" y="206" fill="#222">F(x)</text>
   <circle cx="302" cy="234" r="3.5" fill="#222"/>
-  <text x="310" y="240" fill="#222">p</text>
+  <text x="310" y="240" fill="#222">x</text>
   <circle cx="358" cy="164" r="3.5" fill="#222"/>
-  <text x="365" y="182" fill="#222">q</text>
+  <text x="365" y="182" fill="#222">y</text>
   <!-- depth marker -->
   <line x1="18" y1="150" x2="18" y2="234" stroke="#222" stroke-width="0.8"/>
   <line x1="14" y1="150" x2="22" y2="150" stroke="#222" stroke-width="0.8"/>
