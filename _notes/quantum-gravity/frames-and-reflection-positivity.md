@@ -270,7 +270,7 @@ $$
 
 In the crossed region $$\tilde s\ge(m+M)^2$$ the same amplitude describes the elastic process $$\psi(p)+\phi(-K')\to\psi(p')+\phi(-K)$$ with total momentum $$Q$$. With cluster frames, the amplitude in the direct region is computed with $$u_P=P/\sqrt s$$ and in the crossed region with $$u_Q=Q/\sqrt{\tilde s}$$.
 
-The coefficient of Proposition 4(b) is the input. It is a statement about the Euclidean self-energy of a line, and it is used here at the off-shell momenta of the internal lines, in Minkowski signature. We state what is assumed.
+The coefficient of Proposition 4(b) is the input. It is a statement about the Euclidean self-energy of a line, and it is used here at the off-shell momenta of the internal lines, in Minkowski signature.
 
 <div class="remark" markdown="1">
 **Hypothesis (L)** (locality of the frame dependence). For momenta $$q$$, $$m$$, $$M$$ much smaller than $$\Lambda$$, the part of the one-loop self-energy of a fermion line that depends on the frame $$u$$ is the insertion
