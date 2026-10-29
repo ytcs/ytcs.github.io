@@ -1,5 +1,5 @@
 ---
-title: Exact discrete Lorentz symmetry cannot carry propagation
+title: "Exact lattice translations and a discrete Lorentz group leave no dispersion relation"
 date: 2026-10-29
 category: substrate
 order: 4
