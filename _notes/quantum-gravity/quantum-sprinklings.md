@@ -344,7 +344,7 @@ Without finite density, a bounded Lorentz-invariant multiplier, for example the 
 
 Counts other than $$d\Gamma(1_D)$$, for example a positive operator-valued measure on the one-particle space, are outside the setting; [Integer counts of a positive-energy field](/quantum-gravity/count-algebras/) shows what integer additive counts of a positive-energy field can be. A state that is not locally normal has no single-mode reduction, and Proposition 3 does not apply to it. Complex processes of unbounded total variation are excluded neither by Theorem 10 nor by any other result here. Their use as a substrate for the causal-set d'Alembertian is treated on [Mixed-Poisson and signed substrates and the four-dimensional d'Alembertian](/quantum-gravity/signed-substrates/) and the non-Poisson classical lattices on [Lorentz-invariant point sets and the structures they cannot carry](/quantum-gravity/invariant-point-sets/).
 
-The proofs use the non-compactness of the boosts, and the same mechanism works for another symmetry group when it acts on another space. On de Sitter space $$dS_4=G/H$$ with $$G=SO_0(4,1)$$ and $$H=SO_0(3,1)$$ the one-body density of an invariant state is a positive-definite $$G$$-invariant kernel, and the analogue of Theorem 2 is the following.
+The proofs use the non-compactness of the boosts, and non-compact subgroups play the same role for other symmetry groups. On de Sitter space $$dS_4=G/H$$ with $$G=SO_0(4,1)$$ and $$H=SO_0(3,1)$$ the one-body density of an invariant state is a positive-definite $$G$$-invariant kernel, and the analogue of Theorem 2 is the following.
 
 <div class="proposition" markdown="1">
 
