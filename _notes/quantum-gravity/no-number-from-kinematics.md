@@ -94,7 +94,7 @@ This extends the homogeneity of section 2 to any finite number of functionals. I
 
 ## 4. The variance ratio
 
-The mean of $$H_w$$ is linear in $$w$$ and the variance is quadratic, so the ratio of the squared mean to the variance is invariant under $$w\to\mu w$$ and is a pure number attached to each exact weighting. This section shows that it has no upper bound.
+The mean of $$H_w$$ is linear in $$w$$ and the variance is quadratic, so the ratio of the squared mean to the variance is invariant under $$w\to\mu w$$ and is a pure number attached to each exact weighting. Thinning shows that it has no upper bound.
 
 **The planar horizon.** For the second moment we use the flat geometry that a large ball presents near its boundary: the horizon $$t+z=0$$ in Minkowski space of dimension $$d$$, with $$\Sigma=\{t=0\}$$, $$P=\{t<0,\ t+z<0\}$$, transverse coordinates $$y\in\mathbb R^{d-2}$$, and $$\rho=1$$ (for $$\rho\neq1$$ lengths are measured in $$\ell_\rho$$). For a box $$\Lambda$$ of transverse area $$\mathcal A$$ let $$H_w^{\Lambda}$$ be the weighted count of the molecules whose lower point has $$y\in\Lambda$$; in $$d=2$$ there is no transverse direction and $$\mathcal A=1$$. The mean is $$\langle H_w^\Lambda\rangle=a_dQ_w(\alpha_A)\mathcal A$$ for any weighting, being the planar limit of the leading term in (2). We write $$v(w)=\limsup_{\mathcal A\to\infty}{\rm Var}\,H_w^\Lambda/\mathcal A$$ and
 
@@ -238,7 +238,7 @@ By Lemma 1, $${\rm Var}\,H_w\le c_w\mathcal A\rho^{(d-2)/d}$$ (with the $$\rho$$
 
 ## 7. Open points
 
-Selection rules among exact weightings supply numbers only once a rule is specified. For finite-degree weightings the minimal variance at fixed degree $$K$$ is non-increasing in $$K$$, since the families are nested; Proposition 3 shows that the infimum over weightings of infinite support has no positive lower bound on $$v$$, and whether the minimal variance of finite degree tends to zero or to a positive limit is not known. The degree bound of Theorem 1 is proved for conformally static backgrounds and only argued for general radial perturbations. Higher cumulants, and counts that are not molecule counts or layer actions, are not covered by any statement above. Terms of order $$A^{-4}$$ and beyond in the perturbative degree bound are covered by Theorem 1 as formal series, and finite-size effects outside the formal expansion are not. The comparison with the observed vacuum energy density depends on the rule (H3).
+Selection rules among exact weightings supply numbers only once a rule is specified. For finite-degree weightings the minimal variance at fixed degree $$K$$ is non-increasing in $$K$$, since the families are nested; Proposition 3 shows that the infimum over weightings of infinite support has no positive lower bound on $$v$$, and whether the minimal variance of finite degree tends to zero or to a positive limit is not known. The degree bound of Theorem 1 is proved for conformally static backgrounds and only argued for general radial perturbations. Higher cumulants, and counts that are not molecule counts or layer actions, are not covered by any statement above. Theorem 1 concerns the formal expansion in the curvature; the behaviour of the full function of $$A$$ for balls comparable to the curvature radius is not covered. The comparison with the observed vacuum energy density depends on the rule (H3).
 
 ## References
 

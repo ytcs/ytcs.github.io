@@ -42,7 +42,11 @@ the sum running over the links incident on an element in the interior of the reg
 
 <div class="lemma" markdown="1">
 **Lemma 1** (non-negative weights; any dimension $$d$$). Let $$\Delta_1,\dots,\Delta_N$$ be non-zero future-causal vectors in $$\mathbb R^{1,d-1}$$ and $$w_n\ge0$$ not all zero. The matrix $$M^{\mu\nu}=\sum_nw_n\Delta_n^\mu\Delta_n^\nu$$ is positive semidefinite and non-zero, hence not proportional to the Minkowski metric $$\eta$$. Suppose the links are distributed isotropically about the time axis of some frame, so that $$\sum_nw_n\Delta_n^0\vec\Delta_n=0$$ and $$\sum_nw_n\Delta_n^i\Delta_n^j=b'\delta^{ij}$$. Then the leading term of $$F$$ is
-$$-2\,(a\,p^0-b\,\vec\sigma\cdot\vec p),\qquad a=\sum_nw_n(\Delta_n^0)^2,\quad b=\sum_nw_n\lvert\vec\Delta_n\rvert^2/(d-1)\ \ (=b'),$$
+
+$$
+-2\,(a\,p^0-b\,\vec\sigma\cdot\vec p),\qquad a=\sum_nw_n(\Delta_n^0)^2,\quad b=\sum_nw_n\lvert\vec\Delta_n\rvert^2/(d-1)\ \ (=b'),
+$$
+
 which has the helicity opposite to $$\bar\sigma\cdot p$$ (or no spatial term, if $$b=0$$) and speed $$b/a\le1/(d-1)$$, with equality only if every $$\Delta_n$$ is null.
 </div>
 
@@ -207,9 +211,11 @@ Whether the disorder averages $$\mathbb E\langle\Theta(\mathcal A)\mathcal A\ran
 The [page on frame leakage](/quantum-gravity/lorentz-violation-leakage/) shows that a frame cannot be averaged away, because there is no Lorentz-invariant probability measure on unit timelike vectors, and that a frame in a matter regulator at the discreteness scale produces a dimension-four Lorentz-violating coefficient of order $$g^2/16\pi^2$$ for a Yukawa coupling $$g$$ and a regulator depending on the loop momentum orthogonal to the frame. A frame can instead be the velocity $$u=P_C/\sqrt{P_C^2}$$ of a cluster $$C$$ of particles with total momentum $$P_C$$, so that $$u$$ is a function of the state and not a field. In the construction of Bakamjian and Thomas the mass operator of a system is a function of the internal variables in its rest frame, and interactions depend on the total momentum only through this velocity [[BT]](#ref-bt). Cluster separability, the requirement that distant clusters do not influence each other, then needs Sokolov's packing operators [[SRK]](#ref-srk), which are constructed for a fixed number of particles; models with particle production exist for a finite number of bare degrees of freedom [[P]](#ref-p), and the case with infinitely many is open.
 
 The one-loop consequences are examined in the Euclidean Yukawa model $$g\bar\psi\psi\phi$$ with a massless fermion, a scalar of mass $$M$$ and the regulator $$D(q)=f(\lvert q_\perp\rvert/\Lambda)/(q^2+M^2)$$ on the scalar line, with $$f(x)=e^{-x^2}$$ and $$q_\perp$$ the part of $$q$$ orthogonal to $$u$$. The inverse propagator of the fermion is $$\Gamma(p)=i\gamma\cdot(p+\Sigma(p))$$ with
+
 $$
 \Sigma_\mu(p)=g^2\!\int\!\frac{d^4k}{(2\pi)^4}\,\frac{k_\mu}{k^2}\,D(p-k),
 $$
+
 as on the linked page. Everything in this section is a four-dimensional one-loop statement.
 
 <div class="proposition" markdown="1">
@@ -234,9 +240,11 @@ A regulator whose frame is the line's own momentum thus gives no Lorentz violati
 
 <div class="proposition" markdown="1">
 **Proposition 5** (non-local term of a transverse cutoff). Let a Dirac fermion of mass $$m$$ and charge $$e$$ run in a loop with two vector vertices in Euclidean signature, and multiply the loop integrand by $$f(\lvert k_\perp\rvert/\Lambda)$$ with $$f\ge0$$, $$k_\perp$$ orthogonal to $$u=\hat q$$, where $$q$$ is the external momentum. As $$q\to0$$ along a fixed direction, $$\Pi^{\mu\nu}\to\alpha\,(\delta^{\mu\nu}-\hat q^\mu\hat q^\nu)$$ with $$q_\mu\Pi^{\mu\nu}=0$$, and as $$m\to0$$
+
 $$
 \alpha=\frac{2e^2}{3\pi^2}\,\Lambda^2\!\int_0^\infty x\,f(x)\,dx\ \neq0, \tag{2}
 $$
+
 up to the sign convention for $$\Pi$$. The limit $$q\to0$$ depends on the direction of $$q$$: $$\Pi^{\mu\nu}$$ contains the non-local term $$-\alpha\,q^\mu q^\nu/q^2$$.
 </div>
 
@@ -264,13 +272,17 @@ In the crossed region $$\tilde s\ge(m+M)^2$$ the same amplitude describes the el
 
 The coefficient of Proposition 4(b) is the input. It is a statement about the Euclidean self-energy of a line, and it is used here at the off-shell momenta of the internal lines, in Minkowski signature. We state what is assumed.
 
+<div class="remark" markdown="1">
 **Hypothesis (L)** (locality of the frame dependence). For momenta $$q$$, $$m$$, $$M$$ much smaller than $$\Lambda$$, the part of the one-loop self-energy of a fermion line that depends on the frame $$u$$ is the insertion
+
 $$
 \Sigma_u(q)=B\,\frac{(q\cdot u)\not u}{u^2},\qquad B=\frac{g^2}{48\pi^2},
 $$
-into the inverse propagator $$\not q-m-\Sigma_u$$, up to corrections suppressed by $$q^2/\Lambda^2$$; the expression is the part of $$\not q$$ along $$u$$, has the same form in both signatures, and is continued from Euclidean to Minkowski momenta as a local operator. The frame dependence of the vertex and box subgraphs of the $$\psi\phi\to\psi\phi$$ amplitude is $$O(q/\Lambda)$$. Frame-dependent corrections on the external legs are not included in $$\Delta$$ below.
 
-Proposition 4(b) fixes $$B=a_\perp-a_\parallel$$ at $$\lvert p\rvert<M$$: removing the frame-independent factor $$1+a_\perp$$ from $$\Gamma/i=(1+a_\perp)\not p-(a_\perp-a_\parallel)(p\cdot u)\not u$$ leaves $$\not p-B(p\cdot u)\not u$$. The finite-momentum values above support the extension to $$M\ll\lvert q\rvert\ll\Lambda$$ in the Euclidean model; the angular dependence is produced by loop momenta of order $$\Lambda$$ (it comes from the $$-\ln\sin\chi$$ term of the radial integral on the linked page), which is why a local form is plausible. The statement about vertex and box subgraphs rests on power counting (their frame-dependent parts are ultraviolet convergent, and the logarithmic part of the vertex is a frame-independent scalar because $$\not u\not u=1$$); those graphs were not computed.
+into the inverse propagator $$\not q-m-\Sigma_u$$, up to corrections suppressed by $$q^2/\Lambda^2$$; the expression is the part of $$\not q$$ along $$u$$, has the same form in both signatures, and is continued from Euclidean to Minkowski momenta as a local operator. The frame dependence of the vertex and box subgraphs of the $$\psi\phi\to\psi\phi$$ amplitude is $$O(q/\Lambda)$$. Frame-dependent corrections on the external legs are not included in $$\Delta$$ below.
+</div>
+
+Proposition 4(b) fixes $$B=a_\perp-a_\parallel$$ at $$\lvert p\rvert<M$$: removing the frame-independent factor $$1+a_\perp$$ from $$\Gamma/i=(1+a_\perp)\not p-(a_\perp-a_\parallel)(p\cdot u)\not u$$ leaves $$\not p-B(p\cdot u)\not u$$. The finite-momentum values above support the extension to $$M\ll\lvert q\rvert\ll\Lambda$$ in the Euclidean model; the angular dependence is produced by loop momenta of order $$\Lambda$$ (it comes from the $$-\ln\sin\chi$$ term of the radial integral on the linked page), so that for external momenta well below $$\Lambda$$ it is carried by a local operator. This is the content of (L); beyond the Euclidean check it is not proved. The statement about vertex and box subgraphs rests on power counting (their frame-dependent parts are ultraviolet convergent, and the logarithmic part of the vertex is a frame-independent scalar because $$\not u\not u=1$$); those graphs were not computed.
 
 <div class="remark" markdown="1">
 **Derivation 1** (crossing defect at one loop, under (L)). Under (L) the frame-dependent part of the one-loop amplitude is the sum of the two tree diagrams with $$S_q\to S_q\Sigma_uS_q$$ on the internal line. Let $$\Delta$$ be the difference between the amplitude computed with the frame $$u_P$$ in both diagrams and the amplitude computed with $$u_Q$$ in both diagrams, at the same momenta. Then
