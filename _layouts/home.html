@@ -14,7 +14,7 @@ layout: default
   <div class="projects">
     {%- for project in site.data.projects -%}
     {%- assign prefix = "/" | append: project.id | append: "/" -%}
-    {%- assign notes = site.notes | where_exp: "n", "n.url contains prefix" | sort: "order" -%}
+    {%- assign notes = site.notes | where_exp: "n", "n.url contains prefix" | where_exp: "n", "n.parent == nil" | sort: "order" -%}
     <section class="project" id="{{ project.id }}" aria-labelledby="{{ project.id }}-title">
       <h2 id="{{ project.id }}-title">{{ project.title | escape }}</h2>
       {%- if project.summary -%}

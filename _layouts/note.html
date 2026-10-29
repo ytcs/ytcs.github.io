@@ -4,11 +4,16 @@ layout: default
 {%- assign project_id = page.path | split: "/" | slice: 1 | first -%}
 {%- assign project = site.data.projects | where: "id", project_id | first -%}
 {%- assign prefix = "/" | append: project_id | append: "/" -%}
-{%- assign siblings = site.notes | where_exp: "n", "n.url contains prefix" | sort: "order" -%}
+{%- assign siblings = site.notes | where_exp: "n", "n.url contains prefix" | where_exp: "n", "n.parent == page.parent" | sort: "order" -%}
+{%- if page.parent -%}
+{%- assign parent_note = site.notes | where: "url", page.parent | first -%}
+{%- endif -%}
 <article class="post note h-entry">
   <header class="post-header">
     {%- if project %}
-    <p class="note-project"><a href="{{ '/' | relative_url }}#{{ project.id }}">{{ project.title | escape }}</a></p>
+    <p class="note-project"><a href="{{ '/' | relative_url }}#{{ project.id }}">{{ project.title | escape }}</a>
+      {%- if parent_note %} / <a href="{{ parent_note.url | relative_url }}">{{ parent_note.short_title | default: parent_note.title | escape }}</a>{% endif -%}
+    </p>
     {%- endif %}
     <h1 class="p-name">{{ page.title | escape }}</h1>
     <p class="post-meta">
@@ -33,10 +38,10 @@ layout: default
   {%- if siblings.size > 1 %}
   <nav class="post-nav" aria-label="More in {{ project.title | escape }}">
     {%- if prev_i >= 0 %}
-    <a class="prev" href="{{ siblings[prev_i].url | relative_url }}"><span>Previous note</span>{{ siblings[prev_i].title | escape }}</a>
+    <a class="prev" href="{{ siblings[prev_i].url | relative_url }}"><span>{% if page.parent %}Previous entry{% else %}Previous note{% endif %}</span>{{ siblings[prev_i].title | escape }}</a>
     {%- endif -%}
     {%- if next_i < siblings.size %}
-    <a class="next" href="{{ siblings[next_i].url | relative_url }}"><span>Next note</span>{{ siblings[next_i].title | escape }}</a>
+    <a class="next" href="{{ siblings[next_i].url | relative_url }}"><span>{% if page.parent %}Next entry{% else %}Next note{% endif %}</span>{{ siblings[next_i].title | escape }}</a>
     {%- endif %}
   </nav>
   {%- endif %}
