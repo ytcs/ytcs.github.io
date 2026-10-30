@@ -321,7 +321,10 @@ a:hover { text-decoration-thickness: 0.12em; }
 
 // Math: display equations scroll sideways on narrow screens instead of overflowing.
 .katex { font-size: 1em; }
+// Inline math may break between its parts instead of widening the page.
+body .katex, body .katex .base { white-space: normal; }  // loaded before katex.css, so the selector must be more specific
 .katex-display {
+  position: relative;  // contains KaTeX's absolutely positioned MathML, so the scroll box clips it
   margin: 1.4em 0;
   overflow-x: auto;
   overflow-y: hidden;

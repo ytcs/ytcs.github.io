@@ -221,7 +221,7 @@ In the continuum, the Dirac operator on a Lorentzian region between two Cauchy s
 
 (a) $$\mathrm{ind}_{\rm APS}=-\nu_-(\Theta_0)-\nu_+(\Theta_1)$$, independent of $$D$$.
 
-(b) $$\mathrm{ind}_{\rm APS}+\tfrac12(\lvert B_0\rvert+\lvert B_1\rvert)=\tfrac12[\eta(\Theta_0)-\eta(\Theta_1)]+\tfrac12[\nu_0(\Theta_0)+\nu_0(\Theta_1)]$.
+(b) $$\mathrm{ind}_{\rm APS}+\tfrac12(\lvert B_0\rvert+\lvert B_1\rvert)=\tfrac12[\eta(\Theta_0)-\eta(\Theta_1)]+\tfrac12[\nu_0(\Theta_0)+\nu_0(\Theta_1)]$$.
 
 (c) Exchanging the roles of $$B_0$$ and $$B_1$$ (order reversal) changes the sign of the $$\eta$$ terms.
 
