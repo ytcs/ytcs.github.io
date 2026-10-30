@@ -12,7 +12,7 @@ Several approaches to quantum gravity report a spectral dimension, the dimension
 
 Positive weight is a property of the Euclidean propagator; whether it coincides with unitarity depends on how a ghost pole is quantised (section 4). A spectral dimension below $$D$$ therefore needs one of four things: negative weight, for which Proposition 4 gives a sum rule when the weight has finite total variation; a generator that is not rotation invariant, as in Hořava gravity; a measure on momentum space other than the flat one; or a diffusion time rescaled by the scale. For asymptotic safety the consequence is that the inverse of a fluctuation propagator of this form cannot give the value two (section 5).
 
-Sotiriou, Visser and Weinfurtner [[SVW]](#ref-svw) show how a dispersion relation determines the spectral dimension and how to invert the relation. The value two in asymptotic safety was obtained by Lauscher and Reuter [[LR]](#ref-lr) from a generator built from the running cosmological constant. Calcagni, Eichhorn and Saueressig [[CES]](#ref-ces) replaced the identification of the scale in that construction by one with the diffusion time, and observed that heat kernels of such operators need not be positive. Hořava [[Hořava]](#ref-horava-ds) found $$d_s=1+(D-1)/z$$ for anisotropic scaling with exponent $$z$$ in $$D-1$$ space dimensions. The new result here is the inequality of Theorem 2 at every scale, proved from a virial identity (Proposition 1) that holds for any symbol.
+Sotiriou, Visser and Weinfurtner [[SVW]](#ref-svw) show how a dispersion relation determines the spectral dimension and how to invert the relation. The value two in asymptotic safety was obtained by Lauscher and Reuter [[LR]](#ref-lr) from a generator built from the running cosmological constant. Calcagni, Eichhorn and Saueressig [[CES]](#ref-ces) replaced the identification of the scale in that construction by one with the diffusion time, and observed that heat kernels of such operators need not be positive. Hořava [[Hořava, spectral dimension]](#ref-horava-ds) found $$d_s=1+(D-1)/z$$ for anisotropic scaling with exponent $$z$$ in $$D-1$$ space dimensions. The new result here is the inequality of Theorem 2 at every scale, proved from a virial identity (Proposition 1) that holds for any symbol.
 
 ## 1. The spectral dimension
 
@@ -95,7 +95,7 @@ The table below gives $$d_s(\sigma)$$ in $$D=4$$, computed from $$d_s=2\sigma\la
 | $$1/x-1/(x+1)$$ | 2.0001 | 2.0088 | 2.0865 | 2.7009 | 3.4290 | 3.8941 | 3.9988 |
 | $$e^{-x}/x$$ | 0.2464 | 0.5037 | 0.9282 | 2.2596 | 3.3375 | 3.8905 | 3.9988 |
 
-The second row has positive weight, and $$d_s\ge4$$ everywhere with a maximum of $$4.736$$ at $$\sigma\approx5.7$$, so a positive massive pole raises the dimension above $$D$$ at intermediate scales. The third row has a ghost of weight $$-1$$ and goes from $$2$$ at short distances to $$4$$. The fourth row, a massless pole times an entire form factor, has no Stieltjes representation and goes to values below one without a plateau at two.
+The second row has positive weight, and $$d_s\ge4$$ everywhere with a maximum of $$4.737$$ at $$\sigma\approx5.9$$, so a positive massive pole raises the dimension above $$D$$ at intermediate scales. The third row has a ghost of weight $$-1$$ and goes from $$2$$ at short distances to $$4$$. The fourth row, a massless pole times an entire form factor, has no Stieltjes representation and goes to values below one without a plateau at two.
 
 ### Limits
 
@@ -117,7 +117,7 @@ Giving up rotation invariance (H3), positivity in (H4), the flat measure (H1) or
 
 ### Anisotropic symbols
 
-If the symbol is not rotation invariant, (3) allows $$d_s<D$$ whenever the symbol grows faster than quadratically in some direction. Hořava's gravity at a Lifshitz point [[Hořava 2009]](#ref-horava) has $$D=4$$ Euclidean dimensions $$(\omega,\vec q)$$ and, in the ultraviolet, the dispersion $$\psi=\omega^2+q^2+q^6$$ with anisotropic scaling $$z=3$$. Then $$\psi-\frac12\xi\cdot\nabla\psi=-2q^6<0$$, and (3) reads $$d_s=4-4\sigma\langle q^6\rangle_\sigma$$. The values, computed by quadrature, are
+If the symbol is not rotation invariant, (3) allows $$d_s<D$$ only if the symbol grows faster than quadratically along some ray, and gives it when that growth dominates the average, as in the following example. Hořava's gravity at a Lifshitz point [[Hořava, Lifshitz point]](#ref-horava) has $$D=4$$ Euclidean dimensions $$(\omega,\vec q)$$ and, in the ultraviolet, the dispersion $$\psi=\omega^2+q^2+q^6$$ with anisotropic scaling $$z=3$$. Then $$\psi-\frac12\xi\cdot\nabla\psi=-2q^6<0$$, and (3) reads $$d_s=4-4\sigma\langle q^6\rangle_\sigma$$. The values, computed by quadrature, are
 
 | $$\sigma$$ | $$10^{-8}$$ | $$10^{-4}$$ | $$10^{-2}$$ | $$1$$ | $$10$$ | $$10^{2}$$ | $$10^{4}$$ |
 |---|---|---|---|---|---|---|---|
