@@ -3,16 +3,16 @@ title: "Dispersion relations on lattices with an arithmetic Lorentz group"
 date: 2026-10-29
 category: substrate
 order: 4
-description: For a lattice with exact translations and an exactly preserved Zariski-dense discrete Lorentz group, such as the integer Lorentz group, a translation-invariant operator on finitely many field components that commutes with the group has flat bands, and a positive invariant scalar state has a uniform spectrum plus periodic parts; broken symmetry, infinitely many fields and states centred on one point are treated separately.
-status: The theorems and propositions are proved; the literature inputs (Borel density, Benoist–Quint, Di Scala–Leistner–Neukirchner, Howe–Moore) are stated in section 2. Proposition 7 assumes a clustering condition, and case 3 of Theorem 3(b) is open. The packet-response values of section 6 are computed numerically.
+description: On a lattice with exact translations and an exactly preserved Zariski-dense discrete Lorentz group, such as the integer Lorentz group, translation-invariant operators on finitely many field components that commute with the group have flat bands, and positive invariant scalar states have a uniform spectrum plus periodic parts.
+status: Proved from the results of section 2 (Borel density, Benoist–Quint, Di Scala–Leistner–Neukirchner, Howe–Moore). Proposition 7 assumes a clustering condition, case 3 of Theorem 3(b) is open, and the packet-response values of section 6 are computed numerically. Broken symmetry, infinitely many fields and states centred on one point carry their own hypotheses (sections 7 and 10).
 excludes: Under exact lattice translations and an exactly preserved Zariski-dense arithmetic Lorentz group such as O(1,3;Z), a dispersion relation for translation-invariant operators on finitely many field components that commute with the group, and any momentum dependence of the two-point function of a positive scalar state other than periodic terms.
 ---
 
-We ask whether a lattice theory with exact lattice translations and an exactly preserved discrete group $$\Gamma$$ of Lorentz transformations, such as the integer Lorentz group $$O(1,3;\mathbb Z)$$ acting on $$\mathbb Z^4$$, can have a dispersion relation. The proposal behind the question is that such a group protects Lorentz invariance at low energy. The answer is no when $$\Gamma$$ is Zariski dense in the Lorentz group, that is, contained in no proper subgroup cut out by polynomial equations, as $$O(1,3;\mathbb Z)$$ and its finite-index subgroups are. A translation-invariant operator on finitely many field components that commutes with $$\Gamma$$ has the same characteristic polynomial at every momentum, so its bands are flat (Theorem 1). The two-point function of a positive translation- and $$\Gamma$$-invariant state of a scalar field is uniform in momentum apart from periodic terms (Theorem 2), which covers interacting states because only the two-point function enters.
+We ask whether a lattice theory with exact lattice translations and an exactly preserved discrete group $$\Gamma$$ of Lorentz transformations, such as the integer Lorentz group $$O(1,3;\mathbb Z)$$ acting on $$\mathbb Z^4$$, can have a dispersion relation. The answer is no when $$\Gamma$$ is Zariski dense in the Lorentz group, that is, contained in no proper subgroup cut out by polynomial equations, as $$O(1,3;\mathbb Z)$$ and its finite-index subgroups are. A translation-invariant operator on finitely many field components that commutes with $$\Gamma$$ has the same characteristic polynomial at every momentum, so its bands are flat (Theorem 1). The two-point function of a positive translation- and $$\Gamma$$-invariant state of a scalar field is uniform in momentum apart from periodic terms (Theorem 2), which covers interacting states because only the two-point function enters.
 
-If $$\Gamma$$ is a symmetry of the action and the state breaks it, the conclusion persists as long as the unbroken translations have finite index in the lattice and the linear parts of the unbroken symmetries stay Zariski dense (Theorem 3(a)). When the linear parts are not Zariski dense and the unbroken translations have finite index, the remaining symmetry allows a Lorentz-violating quadratic term, in all but one case left open (Theorem 3(b)). A family of infinitely many fields permuted by $$\Gamma$$ propagates in a $$\Gamma$$-invariant state (Example 1). With translations broken to infinite index, a Lorentz-invariant field has a state with correlations inside the light cone of a centre, while under a clustering hypothesis correlations outside the cone vanish (section 10). Section 8 shows that the Lorentz action on a non-linear function of the lattice momentum, used in the literature to obtain covariant lattice wave equations, is not induced by any map of the lattice points, and section 9 shows that exact equivariance excludes spectral triples with compact resolvent on the Brillouin quotient.
+If $$\Gamma$$ is a symmetry of the action and the state breaks it, the conclusion persists as long as the unbroken translations have finite index in the lattice and the linear parts of the unbroken symmetries stay Zariski dense (Theorem 3(a)). When the linear parts are not Zariski dense and the unbroken translations have finite index, the remaining symmetry allows a Lorentz-violating quadratic term, in all but one case left open (Theorem 3(b)). A family of infinitely many fields permuted by $$\Gamma$$ propagates in a $$\Gamma$$-invariant state (Example 1). With translations broken to infinite index, section 10 shows that under a clustering hypothesis the correlations of the centre, of spacelike points and of null points with most other points vanish, while pairs inside the cone are not constrained and a Lorentz-invariant field has a state with correlations there. Section 8 shows that the Lorentz action on a non-linear function of the lattice momentum, used in the literature to obtain covariant lattice wave equations, is not induced by any map of the lattice points, and section 9 shows that exact equivariance excludes spectral triples with compact resolvent on the Brillouin quotient.
 
-Integral Lorentz transformations of $$\mathbb Z^4$$ and the covariance of lattice wave equations under them were studied by Lorente [[Lorente]](#ref-lorente), who obtains covariance by letting the group act on non-linear functions of the lattice momentum. The proofs rest on the Borel density theorem for arithmetic groups, the Benoist–Quint classification of invariant measures and closed invariant sets on the torus [[Benoist–Quint]](#ref-bq) (the proximal case is due to Bourgain, Furman, Lindenstrauss and Mozes [[BFLM]](#ref-bflm)), and the classification of irreducible connected groups preserving a Lorentzian form [[Di Scala–Leistner–Neukirchner]](#ref-dln), all stated in section 2. What is proved here is their consequence for lattice dynamics, Theorems 1 and 2. Theorem 1 follows from the fact that every non-zero lattice vector has an infinite $$\Gamma$$-orbit; Theorem 2 needs in addition the classification of $$\Gamma$$-invariant measures on the Brillouin torus.
+Integral Lorentz transformations of $$\mathbb Z^4$$ and the covariance of lattice wave equations under them were studied by Lorente [[Lorente]](#ref-lorente), who obtains covariance by letting the group act on non-linear functions of the lattice momentum. The proofs rest on the Borel density theorem for arithmetic groups, the Benoist–Quint classification of invariant measures and closed invariant sets on the torus [[Benoist–Quint]](#ref-bq) (the proximal case is due to Bourgain, Furman, Lindenstrauss and Mozes [[BFLM]](#ref-bflm)), and the classification of irreducible connected groups preserving a Lorentzian form [[Di Scala–Leistner–Neukirchner]](#ref-dln), all stated in section 2. Theorem 1 follows from the fact that every non-zero lattice vector has an infinite $$\Gamma$$-orbit; Theorem 2 needs in addition the classification of $$\Gamma$$-invariant measures on the Brillouin torus.
 
 Random point sets with a Lorentz-invariant law are the subject of [quantum sprinklings](/quantum-gravity/quantum-sprinklings/) (quantum states whose counts are Poisson with a random intensity) and [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/) (Haar-random lattices). On [kernel-scale kinematics of a single realisation](/quantum-gravity/per-realisation-kinematics/), one realisation of a cocompact orbit lattice is shown to be a lattice with its own translations whose Lorentz stabiliser is a Zariski-dense lattice in $$SO^+(1,3)$$, so Theorem 1 and Proposition 1 below apply to the bounded operators on it and the kernels supported on finitely many shells, with the hypotheses stated there.
 
@@ -46,7 +46,7 @@ Lemma 1 below shows that (H1) implies (F). Condition (F) alone is used in Lemma 
 
 ## 2. The cited theorems
 
-Four results are used without proof, in the form in which they are applied. The first three are used in sections 3 to 9, the fourth only in section 10.
+The following results are used without proof, in the form in which they are applied.
 
 <div class="theorem" markdown="1">
 
@@ -178,7 +178,7 @@ The proposition applies to the kernels of causal-set-inspired lattice operators 
 
 ## 5. Invariant states
 
-An operator is a special case of what a quantum theory provides. The two-point function of a state is more general, because it covers interacting and non-perturbative states.
+Section 4 concerns operators. A state, free or interacting, gives a two-point function, and the next theorem applies to that function directly; it covers interacting and non-perturbative states.
 
 <div class="theorem" markdown="1">
 
@@ -271,6 +271,8 @@ H=\{g\in\Gamma:\ (g,a)\in S\ \text{for some }a\in\Lambda\}
 $$
 
 the group of linear parts of the unbroken symmetries. An unbroken symmetry can be a linear map composed with a translation that is not itself a symmetry, so $$H$$ can be larger than $$S\cap\Gamma$$.
+
+The statement of Theorem 3 uses $$\Lambda'$$, $$H$$, $$S\cap\Gamma$$ and the identity component $$H_0$$ of the Zariski closure of $$H$$ (defined below). The action of $$H$$ on $$\Lambda/\Lambda'$$ serves only to compare $$S\cap\Gamma$$ with $$H$$.
 
 The group $$H$$ preserves $$\Lambda'$$, because $$(g,a)\,t_b\,(g,a)^{-1}=t_{gb}$$. For $$h\in H$$ choose $$a_h$$ with $$(h,a_h)\in S$$; it is determined modulo $$\Lambda'$$, and $$a_{hk}\equiv ha_k+a_h$$. So $$H$$ acts on the quotient $$\Lambda/\Lambda'$$ by $$h\cdot[x]=[hx+a_h]$$, and $$S\cap\Gamma=\{h:(h,0)\in S\}$$ is the stabiliser of the class $$[0]$$. If $$\Lambda'$$ has finite index in $$\Lambda$$, $$S\cap\Gamma$$ therefore has finite index in $$H$$, at most $$[\Lambda:\Lambda']$$. If $$\Lambda'$$ has infinite index the two can differ completely: for a state centred at a lattice point $$p$$, $$S=t_p\Gamma t_p^{-1}$$, so $$H=\Gamma$$ while $$S\cap\Gamma=\mathrm{Stab}_\Gamma(p)$$ is finite when $$p$$ is timelike.
 
@@ -486,7 +488,7 @@ Two facts about stabilisers in $$\Gamma$$, a finite-index subgroup of $$O^+(1,3;
 
 <div class="proposition" markdown="1">
 
-**Proposition 7** (correlations of points outside the cone of the centre). Let $$\Gamma$$ be a finite-index subgroup of $$O^+(1,3;\mathbb Z)$$, $$\Lambda=\mathbb Z^4$$, and let $$W(x,y)=\omega(\phi(x)^\ast\phi(y))$$ for a positive state $$\omega$$ on a $$\ast$$-algebra containing the fields $$\phi(x)$$, $$x\in\Lambda$$, with $$W(gx,gy)=W(x,y)$$, $$g\in\Gamma$$. Assume
+**Proposition 7** (clustering forces vanishing correlations of the centre, spacelike points and null points). Let $$\Gamma$$ be a finite-index subgroup of $$O^+(1,3;\mathbb Z)$$, $$\Lambda=\mathbb Z^4$$, and let $$W(x,y)=\omega(\phi(x)^\ast\phi(y))$$ for a positive state $$\omega$$ on a $$\ast$$-algebra containing the fields $$\phi(x)$$, $$x\in\Lambda$$, with $$W(gx,gy)=W(x,y)$$, $$g\in\Gamma$$. Assume
 
 (WC) if $$y\in\Lambda$$ and $$\gamma_n\in\Gamma$$ satisfy $$\lvert B(y,\gamma_ny)\rvert \to\infty$$, then $$W(y,\gamma_ny)\to0$$.
 
@@ -530,19 +532,19 @@ Under (WC), a $$\Gamma$$-invariant state has no correlation between the centre a
 
 This state is defined on the open cone only, not on all of $$\Lambda$$, so it does not meet the hypothesis of Proposition 7; it shows that the inside of the cone can carry correlations of a Lorentz-invariant field.
 
-In the Milne frame $$u(x)$$ the symmetry fixing the point $$x$$ is the compact $$O(3)_{u(x)}$$ only, so a separate $$(u\cdot\partial\phi)^2$$ term is allowed for each field species without breaking the symmetry. The unit timelike field $$u(x)=x/\sqrt{Q(x)}$$ then plays the role of the aether of Einstein–aether theories. Whether the low-energy dynamics inside the cone is Lorentz invariant depends on the couplings, which the symmetry leaves free.
+In the Milne frame $$u(x)$$ the symmetry fixing the point $$x$$ is the compact $$O(3)_{u(x)}$$ only, so a separate $$(u\cdot\partial\phi)^2$$ term is allowed for each field species without breaking the symmetry. The unit timelike field $$u(x)=x/\sqrt{Q(x)}$$ then plays the role of the aether of Einstein–aether theories.
 
 ## 11. Point sets without a fixed translation lattice and open cases
 
-Point sets with a $$\Gamma$$-symmetry and no fixed translation lattice are outside the statements as written. A single realisation of an orbit lattice is covered, as noted in the introduction. Not covered are an ensemble whose realisations have different translation groups, and a generic lattice $$g\mathbb Z^4$$ with $$g\in SL(4,\mathbb R)$$, whose Lorentz stabiliser is finite, so that (F) fails. Random lattices are treated in [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/).
+The theorems of sections 3 to 5 do not cover an ensemble whose realisations have different translation groups, nor a generic lattice $$g\mathbb Z^4$$ with $$g\in SL(4,\mathbb R)$$, whose Lorentz stabiliser is finite, so that (F) fails. Random lattices are treated in [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/).
 
-### Couplings that the symmetry leaves free
+### Radiative stability of the allowed tensor
 
-The tensor $$\Theta^{\mu\nu}$$ allowed by cases 1 and 2 of Theorem 3(b) is not fixed by the unbroken symmetry. Whether a value of $$\Theta$$ that makes the low-energy dispersion Lorentz invariant is stable under radiative corrections is a question about the couplings.
+The tensor $$\Theta^{\mu\nu}$$ allowed by cases 1 and 2 of Theorem 3(b) is left free by the unbroken symmetry. Whether a value of $$\Theta$$ that makes the low-energy dispersion Lorentz invariant is stable under radiative corrections would be settled by the running of the coefficients of the invariant tensors in an explicit model; no such computation is given here.
 
 ### Correlations of states centred on one point
 
-Condition (WC) is assumed in Proposition 7 and not derived from the state axioms, and parts (a) to (c) say nothing for states that do not cluster, including superselected and indefinite-metric ones. Whether a null-rotation argument also controls the pairs $$(v,y)$$ with $$B(v,y)=0$$ in (c) is unsettled. So is whether a state on all of $$\Lambda$$ can combine the correlations inside the cone of Proposition 8 with the vanishing correlations of Proposition 7.
+Proposition 8 gives a state on the open cone with correlations inside it, and Proposition 7 constrains states on all of $$\Lambda$$ that cluster. Whether a state on all of $$\Lambda$$ can combine the correlations of Proposition 8 with the vanishing correlations of Proposition 7 is unsettled, as is whether a null-rotation argument controls the pairs $$(v,y)$$ with $$B(v,y)=0$$ in (c).
 
 ### Distortion of translations in other arithmetic groups
 

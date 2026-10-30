@@ -8,11 +8,11 @@ status: "Proved: the cone statement (Theorem 1), conditional on two properties o
 excludes: "Under the hypotheses of section 2, the numerical properties of section 4 and the proxy inner products of section 1: positive equilateral amplitude from tree-level exchange of a unitary principal-series hidden sector with a de Sitter-invariant vertex and inflaton sound speed 1. Nothing is excluded for the CMB Fisher inner product, sound speed below 1, or a failed hypothesis."
 ---
 
-Heavy states of a hidden sector that couple to the inflaton make the primordial bispectrum non-Gaussian when they are exchanged between inflaton lines. If the hidden sector is unitary, which pairs $$(\fe,\fo)$$ of equilateral and orthogonal template amplitudes can the exchange produce? Suppose the coupling is de Sitter invariant, the hidden spectrum consists of principal-series states, no added contact terms are needed, the hidden three-point function is negligible and the inflaton sound speed is 1 (hypotheses (H1)–(H6) of section 2). Then the reachable pairs form a convex cone whose edges come from single-state exchanges (Theorem 1). Computed with the Fergusson–Shellard weight of section 1 in place of the CMB bispectrum Fisher metric, the edges of $$\fe+i\fo$$ lie at $$164.05^\circ$$ and $$176.50^\circ$$ anticlockwise from the positive $$\fe$$ axis. Hence $$\fe<0<\fo$$ and $$0.061\,\lvert\fe\rvert\le\fo\le0.286\,\lvert\fe\rvert$$ for that weight.
+Heavy states of a hidden sector that couple to the inflaton make the primordial bispectrum non-Gaussian when they are exchanged between inflaton lines, and unitarity of the hidden sector limits the pairs $$(\fe,\fo)$$ of equilateral and orthogonal template amplitudes that result. Suppose the coupling is de Sitter invariant, the hidden spectrum consists of principal-series states, no added contact terms are needed, the hidden three-point function is negligible and the inflaton sound speed is 1 (hypotheses (H1)–(H6) of section 2). Then the reachable pairs form a convex cone whose edges come from single-state exchanges (Theorem 1). Computed with the Fergusson–Shellard weight of section 1 in place of the CMB bispectrum Fisher metric, the edges of $$\fe+i\fo$$ lie at $$164.05^\circ$$ and $$176.50^\circ$$ anticlockwise from the positive $$\fe$$ axis. Hence $$\fe<0<\fo$$ and $$0.061\,\lvert\fe\rvert\le\fo\le0.286\,\lvert\fe\rvert$$ for that weight.
 
 Theorem 1 also uses two properties of the single-exchange shapes that are verified numerically and not proved. Three other weightings move the edges by at most $$0.6^\circ$$ relative to the Fergusson–Shellard weight, whereas projecting each template separately instead of jointly moves them by $$5^\circ$$ to $$6^\circ$$ and across $$\fo=0$$ (section 4). The CMB Fisher metric is not computed. Section 5 gives the effect of relaxing the hypotheses: light hidden states lower the lower edge to $$140.8^\circ$$ under an analytic continuation, a subtraction in the spectral integral removes the wedge, and a coupling to the inflaton's own kinetic function fixes the sign of the boost-breaking admixture (Proposition 1).
 
-de Rham, Jazayeri and Tolley [[DJT]](#ref-djt) showed that the spectral decomposition of a unitary hidden sector confines the shape of the exchange bispectrum to a limited part of shape space, and they raised the question for template amplitudes. Cabass et al. [[Cabass24]](#ref-cabass24) constrained the exchange of spin-zero particles during inflation with BOSS and Planck data. Ghosh, Maity and Ullah [[GMU]](#ref-gmu) showed that further operators of the effective field theory of inflation make the sign of the equilateral bispectrum depend on the operator coefficients. The addition here is the reduction of the template question to the two extreme directions of one curve of single-exchange shapes, with those directions computed.
+de Rham, Jazayeri and Tolley [[DJT]](#ref-djt) showed that the spectral decomposition of a unitary hidden sector confines the shape of the exchange bispectrum to a limited part of shape space, and they raised the question for template amplitudes. Cabass et al. [[Cabass24]](#ref-cabass24) constrained the exchange of spin-zero particles during inflation with BOSS and Planck data. Ghosh, Maity and Ullah [[GMU]](#ref-gmu) showed that further operators of the effective field theory of inflation make the sign of the equilateral bispectrum depend on the operator coefficients. Here the template question is reduced to the two extreme directions of one curve of single-exchange shapes, and those directions are computed.
 
 The primordial bispectrum and its shape function, the mass parameter of a field in de Sitter space and the in-in formalism for correlators are assumed known.
 
@@ -45,7 +45,7 @@ $$
 
 with $$V$$ the tetrapyd, the set of $$(k_1,k_2,k_3)$$ that satisfy the triangle inequalities and $$k_i\le k_{\max}$$. Write $$k_i=Kx_i$$ with $$K=k_1+k_2+k_3$$ and $$\sum x_i=1$$. The integral over $$K$$ runs up to $$k_{\max}/\max_ix_i$$, so (3) becomes $$\int d^2x\,AB\,(\max_ix_i)^{-2}$$ up to a constant. To test the sensitivity to the weight we also use the weights $$K^{-2}$$ and $$K^0$$ in place of $$K^{-1}$$ in (3), which give $$(\max x_i)^{-1}$$ and $$(\max x_i)^{-3}$$ (the second is the flat three-dimensional measure), and, as a weight that emphasises nearly degenerate triangles more strongly, $$\int d^2x\,AB/\mathrm{Area}(x)$$ on the simplex $$\sum x_i=1$$, with $$\mathrm{Area}(x)$$ the area of the triangle with sides $$x_i$$. For (3) the cosine of the angle between the two templates is $$N_{\rm eo}/\sqrt{N_{\rm ee}N_{\rm oo}}=+0.142$$, so the templates are not orthogonal and joint and separate projections differ.
 
-As an example of (1)–(3), the equilateral-normalised shape $$27e_3/e_1^3$$ of the operator $$\dot\pi^3$$ of the effective field theory of inflation ($$e_1=\sum k_i$$, $$e_3=k_1k_2k_3$$) projects to $$(\fe,\fo)=(1.28,-0.27)$$ for (3).
+As an example of (1)–(3), the equilateral-normalised shape $$27e_3/e_1^3$$ of the operator $$\dot\pi^3$$ of the effective field theory of inflation, where $$\pi=\delta\phi/\dot{\bar\phi}$$ is the time shift of the inflaton ($$e_1=\sum k_i$$, $$e_3=k_1k_2k_3$$) projects to $$(\fe,\fo)=(1.28,-0.27)$$ for (3).
 
 ## 2. Exchange of a hidden sector
 
@@ -95,13 +95,13 @@ $$
 Equation (7) has a two-parameter family of solutions, and the Bunch–Davies solution is
 
 $$
-\mathcal F(u)=\frac{1}{\mu^2+\frac14}\,\frac{u}{1+u}\;{}_3F_2\Big(1,1,1;\tfrac32+i\mu,\tfrac32-i\mu;\tfrac{2u}{1+u}\Big)+C(\mu)\,\psi_{\mu}(u)+C(-\mu)\,\psi_{-\mu}(u), \tag{8}
+\mathcal F(u)=\frac{1}{\mu^2+\frac14}\,\frac{u}{1+u}\;{}_3F_2\Big(1,1,1;\tfrac32+i\mu,\tfrac32-i\mu;\tfrac{2u}{1+u}\Big)+\xi(\mu)\,\psi_{\mu}(u)+\xi(-\mu)\,\psi_{-\mu}(u), \tag{8}
 $$
 
 with
 
 $$
-\psi_{\pm\mu}(u)=u^{\frac12\pm i\mu}\,{}_2F_1\Big(\tfrac14\pm\tfrac{i\mu}2,\tfrac34\pm\tfrac{i\mu}2;1\pm i\mu;u^2\Big),\qquad C(\mu)=-\frac{\pi^2\,\Gamma(1-i\mu)}{2\mu\,(\sinh\pi\mu+i)\,\Gamma(\tfrac14-\tfrac{i\mu}2)\,\Gamma(\tfrac34-\tfrac{i\mu}2)}.
+\psi_{\pm\mu}(u)=u^{\frac12\pm i\mu}\,{}_2F_1\Big(\tfrac14\pm\tfrac{i\mu}2,\tfrac34\pm\tfrac{i\mu}2;1\pm i\mu;u^2\Big),\qquad \xi(\mu)=-\frac{\pi^2\,\Gamma(1-i\mu)}{2\mu\,(\sinh\pi\mu+i)\,\Gamma(\tfrac14-\tfrac{i\mu}2)\,\Gamma(\tfrac34-\tfrac{i\mu}2)}.
 $$
 
 This is the closed form of [[DJT]](#ref-djt), eqs. (28)–(30) (following Qin and Xianyu), with the coefficients simplified. The first term of (8) satisfies (7) and the two $$\psi$$ terms satisfy the homogeneous equation. The $$\psi$$ terms are the non-analytic part, which behaves as $$u^{1/2\pm i\mu}$$ at small $$u$$. For real $$\mu$$ the last two terms are complex conjugates, so $$\mathcal F$$ is real. Each of the three terms has a logarithmic singularity at the folded configuration $$u=1$$, and the singularities cancel. The cancellation fixes one real combination of the homogeneous solutions, and the Bunch–Davies condition fixes the other. As $$\mu\to\infty$$, $$\mu^2\mathcal F\to u/(1+u)$$.
@@ -110,7 +110,7 @@ Numerical evaluation of the definition (6) with the contours rotated onto the im
 
 ### From the seed to the bispectrum of massless inflaton lines
 
-Consider the channel in which $$\cO$$ carries $$k_c$$ and the two other legs carry $$k_a,k_b$$; write $$k_{ab}=k_a+k_b$$ and $$u=k_c/k_{ab}$$. The bulk-to-boundary propagator of $$\delta\phi$$ is $$\mathcal K(k,\eta)=(1-ik\eta)e^{ik\eta}/(2k^3)$$, and the scale factor is $$-1/\eta$$. The mixing vertex has the time dependence $$(-\eta)^{-3}\mathcal K'(k_c,\eta)=-\eta^{-2}e^{ik_c\eta}/(2k_c)$$, which is the right-hand vertex of (6) with $$s=k_c$$ and an extra factor $$1/(2k_c)$$. The cubic vertex $$-\eta^{-2}[-\mathcal K'_a\mathcal K'_b-(\mathbf k_a\cdot\mathbf k_b)\mathcal K_a\mathcal K_b]$$, with $$\mathbf k_a\cdot\mathbf k_b=(k_c^2-k_a^2-k_b^2)/2$$, equals $$[k_a^2k_b^2\eta^2+(\mathbf k_a\cdot\mathbf k_b)(1-ik_{ab}\eta-k_ak_b\eta^2)]\,\eta^{-2}e^{ik_{ab}\eta}/(4k_a^3k_b^3)$$.
+Consider the channel in which $$\cO$$ carries $$k_c$$ and the two other legs carry $$k_a,k_b$$; write $$k_{ab}=k_a+k_b$$ and $$u=k_c/k_{ab}$$. The bulk-to-boundary propagator of $$\delta\phi$$ is $$J(k,\eta)=(1-ik\eta)e^{ik\eta}/(2k^3)$$, and the scale factor is $$-1/\eta$$. The mixing vertex has the time dependence $$(-\eta)^{-3}J'(k_c,\eta)=-\eta^{-2}e^{ik_c\eta}/(2k_c)$$, which is the right-hand vertex of (6) with $$s=k_c$$ and an extra factor $$1/(2k_c)$$. The cubic vertex $$-\eta^{-2}[-J'_aJ'_b-(\mathbf k_a\cdot\mathbf k_b)J_aJ_b]$$, with $$\mathbf k_a\cdot\mathbf k_b=(k_c^2-k_a^2-k_b^2)/2$$, equals $$[k_a^2k_b^2\eta^2+(\mathbf k_a\cdot\mathbf k_b)(1-ik_{ab}\eta-k_ak_b\eta^2)]\,\eta^{-2}e^{ik_{ab}\eta}/(4k_a^3k_b^3)$$.
 
 The left-hand vertex of (6) is $$\eta^{-2}e^{ik_{ab}\eta}$$ for $$p=+$$, with $$K=k_{ab}$$. Relative to it, each power of $$\eta$$ is a derivative with respect to $$K$$, since $$\eta\,e^{iK\eta}=-i\partial_Ke^{iK\eta}$$. For $$p=-$$ the exponential is $$e^{-iK\eta}$$ and the polynomial is conjugated, and the same replacement gives the same operator. The vertex therefore acts on $$T(s,K)=\mathcal F(s/K)/s$$ as the real operator
 
@@ -126,7 +126,7 @@ $$
 
 and the bispectrum of one exchange is $$B(k;\mu)=B_1+B_2+B_3$$, summed over the three channels. This is the weight-shifting operator of [[DJT]](#ref-djt), eq. (27). The first term in braces comes from the $$\delta\dot\phi^2\cO$$ part of the cubic vertex (the time vertex) and the second from the $$(\partial_i\delta\phi)^2\cO$$ part (the space vertex).
 
-The sign of $$\kappa$$ is fixed by the heavy-mass limit. Integrating out $$\cO$$ at tree level gives $$\mathcal L_{\rm eff}=(\alpha^2/2\Lambda^2m^2)\,((\partial\phi)^2)^2$$ with a positive coefficient, and the bispectrum of this operator is negative [[DJT]](#ref-djt), eq. (7). Hence $$\kappa>0$$. Four results bear on the shape (9).
+The sign of $$\kappa$$ is fixed by the heavy-mass limit. Integrating out $$\cO$$ at tree level gives $$\mathcal L_{\rm eff}=(\alpha^2/2\Lambda^2m^2)\,((\partial\phi)^2)^2$$ with a positive coefficient, and the bispectrum of this operator is negative [[DJT]](#ref-djt), eq. (7). Hence $$\kappa>0$$.
 
 (i) As $$\mu\to\infty$$, $$\mu^2\mathcal F\to u/(1+u)$$, and (9) summed over the channels becomes exactly one half of the contact shape $$(e_1^5-3e_1^3e_2-4e_1e_2^2+11e_1^2e_3-4e_2e_3)/(e_3^3e_1^2)$$ of [[DJT]](#ref-djt), eq. (7), where $$e_2=\sum_{i<j}k_ik_j$$. A direct in-in integral of $$\delta\dot\phi(\partial\delta\phi)^2$$ with the vertex signs of (H2) gives the same shape.
 
@@ -148,7 +148,7 @@ $$
 
 where $$S(\cdot\,;\mu)=(k_1k_2k_3)^2B(\cdot\,;\mu)$$. Theorem 1 uses two properties of the family of single-exchange shapes. They are properties of the function (8) with (9), verified numerically at sampled values of $$\mu$$ for the proxy inner products and not proved.
 
-- (N1) The map $$\mu\mapsto S(\cdot\,;\mu)$$ is continuous from $$[0,\infty)$$ into the Hilbert space of shapes of finite norm for the inner product, with $$\lVert S(\cdot\,;\mu)\rVert\le C_0(1+\mu^2)^{-1}$$, and $$\mu^2S(\cdot\,;\mu)$$ converges in that space, as $$\mu\to\infty$$, to the contact shape $$S_c$$ of check (i) of section 3. We write $$v_c$$ for the projection of $$S_c$$ and assume $$v_c\ne0$$.
+- (N1) The map $$\mu\mapsto S(\cdot\,;\mu)$$ is continuous from $$[0,\infty)$$ into the Hilbert space of shapes of finite norm for the inner product, with $$\lVert S(\cdot\,;\mu)\rVert$$ bounded by a constant multiple of $$(1+\mu^2)^{-1}$$, and $$\mu^2S(\cdot\,;\mu)$$ converges in that space, as $$\mu\to\infty$$, to the contact shape $$S_c$$ of check (i) of section 3. We write $$v_c$$ for the projection of $$S_c$$ and assume $$v_c\ne0$$.
 - (N2) The directions of $$v(\mu)$$ for $$\mu\in[0,\infty)$$ and of $$v_c$$ lie in a closed arc of opening less than $$\pi$$.
 
 For (3), the ratio of the largest to the smallest value of $$\lVert S(\cdot\,;\mu)\rVert(1+\mu^2)$$ at the sampled $$\mu$$ is about $$2.1$$ (the values themselves depend on the normalisation of (3) and of $$\kappa$$), and the arc has opening $$12.46^\circ$$ (see the table below). Since $$\mu^2v(\mu)\to v_c$$, the cone generated by the $$v(\mu)$$ has the same closure as the cone generated by them together with $$v_c$$.
@@ -162,24 +162,24 @@ For (3), the ratio of the largest to the smallest value of $$\lVert S(\cdot\,;\m
 </div>
 
 <div class="theorem" markdown="1">
-**Theorem 1** (cone). Assume (H1)–(H6) and (N1), and let $$\mathcal C$$ be the set of pairs $$(\fe,\fo)[\rho]$$ obtained from all measures $$\rho$$ admitted by (H1), (H4) and (H5), with $$B$$ given by (5). Then:
+**Theorem 1** (cone). Assume (H1)–(H6) and (N1), and let $$\mathcal R$$ be the set of pairs $$(\fe,\fo)[\rho]$$ obtained from all measures $$\rho$$ admitted by (H1), (H4) and (H5), with $$B$$ given by (5). Then:
 
 (a) for each such $$\rho$$ the integral (5) converges in the Hilbert space of the inner product, and $$(\fe,\fo)[\rho]=\int d\rho\,v$$;
 
-(b) $$\mathcal C$$ is a convex cone, it contains every positive combination of vectors $$v(\mu)$$, $$\mu\ge0$$, and it is contained in the closed convex cone generated by $$\{v(\mu)\}_{\mu\ge0}$$ and $$v_c$$;
+(b) $$\mathcal R$$ is a convex cone, it contains every positive combination of vectors $$v(\mu)$$, $$\mu\ge0$$, and it is contained in the closed convex cone generated by $$\{v(\mu)\}_{\mu\ge0}$$ and $$v_c$$;
 
-(c) if (N2) also holds, $$\mathcal C$$ is the sector between the extreme directions of $$v(\mu)$$, $$\mu\in[0,\infty)$$, up to its two edge rays: an edge ray belongs to $$\mathcal C$$ if and only if its direction is that of $$v(\mu)$$ for some finite $$\mu$$. The extreme directions are the same if $$v_c$$ is included.
+(c) if (N2) also holds, $$\mathcal R$$ is the sector between the extreme directions of $$v(\mu)$$, $$\mu\in[0,\infty)$$, up to its two edge rays: an edge ray belongs to $$\mathcal R$$ if and only if its direction is that of $$v(\mu)$$ for some finite $$\mu$$. The extreme directions are the same if $$v_c$$ is included.
 </div>
 
 <div class="proof" markdown="1">
-*Proof.* By (H4) and the norm bound in (N1), $$\int d\rho\,\lVert S_\mu\rVert<\infty$$, so (5) converges in the Hilbert space as a Bochner integral (the integral of a continuous Hilbert-space-valued function of integrable norm), and the continuous linear map $$S\mapsto N^{-1}b(S)$$ commutes with it. This is (a). A finite sum of point masses $$\rho=\sum c_i\delta(\mu-\mu_i)$$ with $$c_i\ge0$$ is admitted by (H1), (H4) and (H5) and gives every positive combination of the $$v(\mu_i)$$. Conversely, $$\int d\rho\,v$$ is a limit of positive combinations of values of $$v$$, so it lies in the closed convex cone they generate, and $$\mathcal C$$ is a cone because the admitted measures form a cone. This is (b). For (c), apply the Lemma to the family $$\{v(\mu)\}_{\mu\ge0}$$ of vectors in the arc of (N2). The direction of $$v_c$$ is the limit of the directions of $$v(\mu)$$, since $$\mu^2v(\mu)\to v_c\ne0$$, so including $$v_c$$ does not change the extreme angles. Finally, $$\int d\rho\,v$$ is non-zero and lies on an edge ray only if $$v(\mu)$$ points along that edge for $$\rho$$-almost every $$\mu$$, because the component of $$v(\mu)$$ orthogonal to the edge has one sign and vanishes only along it. An edge direction that no finite $$\mu$$ attains is therefore not reached.
+*Proof.* By (H4) and the norm bound in (N1), $$\int d\rho\,\lVert S_\mu\rVert<\infty$$, so (5) converges in the Hilbert space as a Bochner integral (the integral of a continuous Hilbert-space-valued function of integrable norm), and the continuous linear map $$S\mapsto N^{-1}b(S)$$ commutes with it. This is (a). A finite sum of point masses $$\rho=\sum c_i\delta(\mu-\mu_i)$$ with $$c_i\ge0$$ is admitted by (H1), (H4) and (H5) and gives every positive combination of the $$v(\mu_i)$$. Conversely, $$\int d\rho\,v$$ is a limit of positive combinations of values of $$v$$, so it lies in the closed convex cone they generate, and $$\mathcal R$$ is a cone because the admitted measures form a cone. This is (b). For (c), apply the Lemma to the family $$\{v(\mu)\}_{\mu\ge0}$$ of vectors in the arc of (N2). The direction of $$v_c$$ is the limit of the directions of $$v(\mu)$$, since $$\mu^2v(\mu)\to v_c\ne0$$, so including $$v_c$$ does not change the extreme angles. Finally, $$\int d\rho\,v$$ is non-zero and lies on an edge ray only if $$v(\mu)$$ points along that edge for $$\rho$$-almost every $$\mu$$, because the component of $$v(\mu)$$ orthogonal to the edge has one sign and vanishes only along it. An edge direction that no finite $$\mu$$ attains is therefore not reached.
 </div>
 
 The question of [[DJT]](#ref-djt), which values of the template amplitudes positivity allows, is thereby reduced to the two extreme angles of one curve. The reachable set fixes the direction of $$(\fe,\fo)$$ only, since a cone contains all positive multiples.
 
 ### Edges for the proxy inner products
 
-We computed $$v(\mu)$$ for $$\mu$$ between $$10^{-3}$$ and 40 and for $$\mu\to\infty$$. The angle $$\theta(\mu)=\arg v(\mu)$$ for the proxy (3) is:
+The angle $$\theta(\mu)=\arg v(\mu)$$ for the proxy (3), for $$\mu$$ between $$10^{-3}$$ and 40 and for $$\mu\to\infty$$, is:
 
 | $$\mu$$ | $$10^{-3}$$ | 0.1 | 0.3 | 0.5 | 1 | 1.5 | 2 | 2.4 | 3 | 4 | 10 | $$\infty$$ |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -195,7 +195,7 @@ The angle increases from its value as $$\mu\to0$$ ($$164.047^\circ$$, a quadrati
 | inverse triangle area | 164.63° | 176.76° | 175.66° |
 | proxy (3), separate projections $$f_X=b_X/N_{XX}$$ | 168.91° | 182.32° | 180.73° |
 
-Refining the numerical integration changes the inverse-area row by up to $$0.05^\circ$$; the other rows are stable in the last digit. With separate projections the wedge would extend across the $$\fo=0$$ axis, so the joint definition (2) matters for the sign statement. The four joint-projection weightings differ by $$0.6^\circ$$ in the lower edge and $$0.3^\circ$$ in the upper edge, and all give $$\fe<0<\fo$$ with the upper edge between $$176.4^\circ$$ and $$176.8^\circ$$.
+The inverse-area row is accurate to $$0.05^\circ$$ and the other rows to the last digit shown. With separate projections the wedge would extend across the $$\fo=0$$ axis, so the joint definition (2) matters for the sign statement. The four joint-projection weightings differ by $$0.6^\circ$$ in the lower edge and $$0.3^\circ$$ in the upper edge, and all give $$\fe<0<\fo$$ with the upper edge between $$176.4^\circ$$ and $$176.8^\circ$$.
 
 ## 5. Relaxing the hypotheses
 
@@ -210,7 +210,7 @@ With the continuation, the angle of a point mass at $$\nu$$, for the proxy (3), 
 | $$m^2/H^2$$ | 2.16 | 2.00 | 1.25 | 0.56 | 0.03 |
 | lower edge | 163.39° | 162.17° | 155.38° | 147.58° | 140.82° |
 
-Individual terms of (8) have poles at $$\nu=1/2$$ and $$\nu=1$$, so the entries for these two values were computed at $$\nu=0.5001$$ and $$0.999$$. Near the light end the exchange shapes grow in the squeezed limit $$k_3\to0$$ as $$S\propto(k_3/k_1)^{1/2-\nu}$$ (the ratio $$B/(P(k_1)P(k_3))$$ of the bispectrum to the power spectra grows as $$(k_3/k_1)^{3/2-\nu}$$), which diverges for $$\nu>1/2$$. The edge therefore depends strongly on the weight in that corner. At $$\nu=1.49$$ the weights $$(\max x)^{-1}$$ and $$(\max x)^{-3}$$ give $$140.0^\circ$$ and $$141.6^\circ$$, and the inverse-area weight is dominated by the squeezed cutoff and is not quoted. For the proxy the quadrant $$\fe<0<\fo$$ is preserved. The lower edge $$164.05^\circ$$ depends on the gap $$m\ge3H/2$$ of (H5); with unitarity alone, and under the analytic continuation, the lower edge reaches the values in the table.
+Individual terms of (8) have poles at $$\nu=1/2$$ and $$\nu=1$$, so the entries for these two values are evaluated just off the poles, at $$\nu=0.5001$$ and $$0.999$$. Near the light end the exchange shapes grow in the squeezed limit $$k_3\to0$$ as $$S\propto(k_3/k_1)^{1/2-\nu}$$ (the ratio $$B/(P(k_1)P(k_3))$$ of the bispectrum to the power spectra grows as $$(k_3/k_1)^{3/2-\nu}$$), which diverges for $$\nu>1/2$$. The edge therefore depends strongly on the weight in that corner. At $$\nu=1.49$$ the weights $$(\max x)^{-1}$$ and $$(\max x)^{-3}$$ give $$140.0^\circ$$ and $$141.6^\circ$$, and the inverse-area weight is dominated by the squeezed cutoff and is not quoted. For the proxy the quadrant $$\fe<0<\fo$$ is preserved. The lower edge $$164.05^\circ$$ depends on the gap $$m\ge3H/2$$ of (H5); with unitarity alone, and under the analytic continuation, the lower edge reaches the values in the table.
 
 ### A subtraction in the spectral integral (H4)
 
@@ -222,7 +222,7 @@ The diagram with one $$\langle\cO\cO\cO\rangle$$ insertion scales as $$\alpha^3$
 
 ### Boost breaking in the vertex (H2)
 
-In the effective field theory of inflation with $$\phi\to\phi(t+\pi)$$, write $$\delta g^{00}\equiv g^{00}+1=-2\dot\pi-\dot\pi^2+(\partial_i\pi)^2/a^2$$. The two lowest-order couplings to $$\cO$$ built from $$\delta g^{00}$$ are $$c_1\,\delta g^{00}\cO$$ and $$c_2(\delta g^{00})^2\cO$$. The de Sitter-invariant coupling of (H2) is linear in $$\delta g^{00}$$, since $$(\partial\phi)^2=\dot{\bar\phi}^2g^{00}$$ in unitary gauge, and has $$c_2=0$$. For general $$c_2$$ the quadratic vertex is $$c_1[-(1+\varepsilon)\dot\pi^2+(\partial_i\pi)^2]\cO$$ and the linear vertex is $$-2c_1\dot\pi\cO$$, where
+In the effective field theory of inflation with $$\phi\to\phi(t+\pi)$$, so that $$\pi=\delta\phi/\dot{\bar\phi}=-\zeta/H$$, write $$\delta g^{00}\equiv g^{00}+1=-2\dot\pi-\dot\pi^2+(\partial_i\pi)^2/a^2$$. The two lowest-order couplings to $$\cO$$ built from $$\delta g^{00}$$ are $$c_1\,\delta g^{00}\cO$$ and $$c_2(\delta g^{00})^2\cO$$. The de Sitter-invariant coupling of (H2) is linear in $$\delta g^{00}$$, since $$(\partial\phi)^2=\dot{\bar\phi}^2g^{00}$$ in unitary gauge, and has $$c_2=0$$. For general $$c_2$$ the quadratic vertex is $$c_1[-(1+\varepsilon)\dot\pi^2+(\partial_i\pi)^2]\cO$$ and the linear vertex is $$-2c_1\dot\pi\cO$$, where
 
 $$
 \varepsilon\equiv-\frac{4c_2}{c_1} \tag{11}
@@ -237,7 +237,7 @@ measures the boost-breaking admixture (it is unrelated to a slow-roll parameter)
 
 The quadrant $$\fe<0<\fo$$ is preserved for $$-1.28<\varepsilon<19.75$$ (thresholds $$-1.278$$ and $$19.751$$; at the ends the upper edge reaches $$180^\circ$$ and the lower edge $$90^\circ$$). The union over $$\lvert\varepsilon\rvert\le0.35$$ is $$163.90^\circ$$ to $$177.20^\circ$$, and over $$\lvert\varepsilon\rvert\le1.25$$ it is $$163.50^\circ$$ to $$179.88^\circ$$. As $$\varepsilon\to\infty$$ the cone tends to the cone of the time vertex alone, whose directions $$\arg v^{(t)}(\mu)$$ range over $$[-7.6^\circ,169.7^\circ]$$, an opening of $$177.3^\circ$$, which contains directions with $$\fe>0$$. At the equilateral point the computed bispectrum is negative at all $$\mu$$ if and only if $$-4.47\lesssim\varepsilon\lesssim16.8$$. The thresholds are $$\varepsilon_c=-1-S^{(s)}/S^{(t)}$$ evaluated at the equilateral configuration; its smallest positive value is $$16.8$$, at $$\mu\to0$$, and its largest negative value is $$-4.47$$, at $$\mu\simeq2.6$$ (the critical ratio of [[GMU]](#ref-gmu)).
 
-The sign of $$\varepsilon$$ is not fixed by the positivity conditions that involve the vertices only through diagonal products. The mixing correction to the power spectrum is proportional to $$c_1^2\rho$$ and the exchange trispectrum of the $$\dot\pi^2\cO$$ vertex to $$c_1^2(1+\varepsilon)^2\rho$$. Both are unchanged under $$1+\varepsilon\to-(1+\varepsilon)$$, whereas the time part of the bispectrum is proportional to $$c_1^2(1+\varepsilon)$$ and is odd. Positivity of the Källén–Lehmann density, positivity of its matrix form for several operators (which bounds $$\lvert\rho_{12}\rvert\le\sqrt{\rho_{11}\rho_{22}}$$ and leaves the sign of a cross density free), and the propagator positivity conditions of Lee and Melville [[LM]](#ref-lm), which are conditions on the hidden-sector propagator, all have this property: they hold for real $$c_1,c_2$$ of either sign. A principle acting on the vertex coefficients directly could fix the sign. Positivity of $$2\to2$$ amplitudes without boosts [[GM]](#ref-gm) applies to the quartic interaction of $$\pi$$ generated by the exchange, whose $$\dot\pi^2(\partial_i\pi)^2$$ term is odd in $$1+\varepsilon$$; its consequence for $$\varepsilon$$ is not evaluated.
+The sign of $$\varepsilon$$ is not fixed by positivity conditions that involve the vertices only through diagonal products. The mixing correction to the power spectrum is proportional to $$c_1^2\rho$$ and the exchange trispectrum of the $$\dot\pi^2\cO$$ vertex to $$c_1^2(1+\varepsilon)^2\rho$$. Both are unchanged under $$1+\varepsilon\to-(1+\varepsilon)$$, whereas the time part of the bispectrum is proportional to $$c_1^2(1+\varepsilon)$$ and is odd. Positivity of the Källén–Lehmann density, positivity of its matrix form for several operators (which bounds $$\lvert\rho_{12}\rvert\le\sqrt{\rho_{11}\rho_{22}}$$ and leaves the sign of a cross density free), and the propagator positivity conditions of Lee and Melville [[LM]](#ref-lm), which are conditions on the hidden-sector propagator, are of this kind: they hold for real $$c_1,c_2$$ of either sign. A principle acting on the vertex coefficients directly could fix the sign. Positivity of $$2\to2$$ amplitudes without boosts [[GM]](#ref-gm) applies to the quartic interaction of $$\pi$$ generated by the exchange, whose $$\dot\pi^2(\partial_i\pi)^2$$ term is odd in $$1+\varepsilon$$; its consequence for $$\varepsilon$$ is not evaluated.
 
 The sign is fixed for one class of couplings.
 
@@ -255,7 +255,7 @@ For fixed $$\varepsilon$$ outside $$(-1.28,19.75)$$ the quadrant is lost on one 
 
 ## 6. Comparison with data
 
-The comparison uses the Planck 2018 amplitudes from temperature and polarisation, $$\fe=-26\pm47$$ and $$\fo=-38\pm24$$ (68%, statistical) [[Planck18]](#ref-planck18), which lie at direction $$235.6^\circ$$, outside the wedge. The correlation $$r$$ between the two amplitudes is not quoted in the abstract, so we take Gaussian errors with $$r$$ as a free input:
+The wedge is computed with a proxy inner product, the Planck amplitudes are defined by the Planck bispectrum estimator, and the comparison assumes that the wedge does not move between the two. It uses the Planck 2018 amplitudes from temperature and polarisation, $$\fe=-26\pm47$$ and $$\fo=-38\pm24$$ (68%, statistical) [[Planck18]](#ref-planck18), which lie at direction $$235.6^\circ$$, outside the wedge. The correlation $$r$$ between the two amplitudes is not given with the quoted values, so we take Gaussian errors with $$r$$ as a free input:
 
 | $$r$$ | $$\chi^2$$ at the origin | minimum of $$\chi^2$$ over the wedge of the proxy (3) |
 |---|---|---|
@@ -270,13 +270,11 @@ If the Planck central value persisted with smaller errors, the minimum $$\chi^2$
 
 ## 7. Cases without a computed wedge
 
-The edges depend on the inner product, and none was computed with the transfer functions and noise of the CMB. Replacing the joint by the separate projection moves the wedge by about $$5^\circ$$ to $$6^\circ$$ and across $$\fo=0$$, so the sign of $$\fo$$ depends on the estimator. The shift for the Planck Fisher matrix is unknown.
+The edges depend on the inner product, and a computation with the transfer functions and noise of the CMB would settle where the wedge lies for Planck. Replacing the joint by the separate projection moves the wedge by about $$5^\circ$$ to $$6^\circ$$ and across $$\fo=0$$, so the sign of $$\fo$$ depends on the estimator; the shift for the Planck Fisher matrix is unknown.
 
-For inflaton sound speed $$c_s<1$$ the exchange shapes are not computed, which includes the $$P(X)\cdot\cO$$ class of Proposition 1 with $$\varepsilon>0$$. Loops and hidden sectors whose two-point function lacks the Källén–Lehmann form are likewise outside the result.
+Shapes for inflaton sound speed $$c_s<1$$ would settle the wedge for the $$P(X)\cdot\cO$$ class of Proposition 1 with $$\varepsilon>0$$. They need the changed inflaton mode functions and the inflaton's own contact bispectrum. Loops and hidden sectors whose two-point function lacks the Källén–Lehmann form lie outside the result.
 
-The shapes that a unitary hidden sector can give to $$\langle\cO\cO\cO\rangle$$ determine the correction to the wedge from (H3). Whether a principle constrains the vertex coefficients, and with them the sign of $$\varepsilon$$, outside the class of Proposition 1 is unknown.
-
-Properties (N1) and (N2) are verified numerically and not proved. The exchange shapes for $$1/2<\nu<3/2$$ rest on analytic continuation, and whether they equal the in-in correlator at finite final time is open.
+The shapes that a unitary hidden sector can give to $$\langle\cO\cO\cO\rangle$$ would determine the correction to the wedge from (H3). The sign of $$\varepsilon$$ outside the class of Proposition 1 depends on a principle acting on the vertex coefficients; none is known.
 
 ## References
 

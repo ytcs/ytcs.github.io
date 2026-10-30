@@ -3,16 +3,16 @@ title: Mixed-Poisson and signed substrates and the four-dimensional d'Alembertia
 date: 2026-10-29
 category: substrate
 order: 3
-description: On exponential test fields, with the coefficient fixed by the mean density, the mean, at an element of a mixed Poisson sprinkling with a positive mixing law, of the four-dimensional causal-set d'Alembertian is the continuum operator times a factor below one unless the random density is constant, and a compactly supported signed mixing law that restores the factor in a non-Poisson process gives count probabilities outside [0,1].
+description: On exponential test fields, the mean of the four-dimensional causal-set d'Alembertian at an element of a positive, non-degenerate mixed Poisson sprinkling is the continuum operator times a factor below one, and a compactly supported signed mixing law that restores the factor in a non-Poisson process gives count probabilities outside [0,1].
 status: The Poisson limit on exponential fields, the scaling of the mean under a change of density, its limit on mixed Poisson processes, the Born-reading statement for compactly supported mixing laws, the pair and finite-order results for bounded amplitudes, and the spectral statement under (Q1)-(Q3) are proved. Tables are computed from closed forms. The mean on a Haar-random lattice is open.
-excludes: Positive mixed Poisson processes as carriers of the four-dimensional causal-set d'Alembertian normalised by the mean density, evaluated at an element of the process, on exponential fields; non-positive compactly supported mixing laws with all count probabilities in [0,1]; finite-order perturbations with non-zero asymptotic type average, under condition (V2) of section 5.3; interval-local matrix kernels with (Q1)-(Q3) as sources of a Stieltjes propagator.
+excludes: Positive non-degenerate mixed Poisson processes as carriers of the four-dimensional causal-set d'Alembertian normalised by the mean density, at an element of the process on exponential fields; compactly supported non-positive mixing laws with the normalisation restored and all count probabilities in [0,1]; finite-order perturbations with non-zero type average under (V2); interval-local matrix kernels with (Q1)-(Q3) as sources of a Stieltjes propagator.
 ---
 
 A sprinkling is a random point set in Minkowski space whose causal order is kept, and the Benincasa–Dowker operator is a retarded sum over it whose weights make its mean over a Poisson sprinkling of density $$\rho$$ tend to the continuum d'Alembertian $$\Box$$ as $$\rho\to\infty$$. What is the mean when the Poisson process is replaced by a mixed Poisson process, whose density $$\rho\theta$$ is drawn once from a law with $$\mathbb E\theta=1$$ and is the same everywhere? In four dimensions, with the coefficient of the operator fixed by the mean density, the mean at a point of the process on the test fields $$e^{Et}$$ tends to $$C\,\Box$$ with $$C=\mathbb E[\theta^{1/2}]$$, which is below 1 unless $$\theta$$ is constant (Theorem 3, Corollary 4); in two dimensions $$C=1$$ for every law without an atom at zero density, and $$C=1-m_1(\{0\})$$ otherwise. A signed or complex mixing law can restore $$C=1$$ in four dimensions (Example 1), but when its support is compact, requiring every count probability to lie in $$[0,1]$$ forces the process to be a positive mixture (Proposition 5).
 
 The operator is due to Sorkin in two dimensions [[Sorkin 2007]](#ref-sorkin07) and to Benincasa and Dowker in four [[BD]](#ref-bd); Dowker and Glaser give it in every dimension [[DG]](#ref-dg), and Aslanbeigi, Saravani and Sorkin derive its action on plane waves and the conditions on the weights for the continuum d'Alembertian to be recovered in the infrared limit [[ASS]](#ref-ass). Belenchia, Benincasa and Liberati study the non-local field theory it defines [[BBL]](#ref-bbl). Mixed Poisson processes are the Cox processes of point-process theory [[Last–Penrose]](#ref-lp), and the invariant complex point processes used below, together with the classification of those of bounded total variation, are in [quantum sprinklings](/quantum-gravity/quantum-sprinklings/). The new result is the factor $$C$$, which follows from an exact scaling of the mean under a change of density (Theorem 2).
 
-Section 5 leaves the mixed Poisson class for finite-order perturbations of a Poisson process, which change the correlation functions of at most a fixed number of points. Such a process is exactly Poisson on configurations with more points (Theorem 11), a pair perturbation reaches the operator only through its part on causally related pairs (Proposition 10), and requiring the large-scale statistics of causal order to behave like random variables, in the joint-variance form (V2) of section 5.3, forces the asymptotic order content of the perturbation to vanish (Proposition 12). Section 6 proves that a matrix-valued mean kernel of interval-local form, with the infrared normalisation of $$\Box$$, has no Stieltjes propagator, that is, no positive spectral weight (Theorem 17). Decorating the points with quantum-poset data is the intended source of such kernels.
+Section 5 turns to finite-order perturbations of a Poisson process, which change the correlation functions of at most a fixed number of points. If the large-scale order statistics are required to have non-negative joint variances (the model assumption (V2) of section 5.3), the asymptotic order content of the perturbation must vanish (Proposition 12). Section 6 shows that a matrix-valued mean kernel of interval-local form with the infrared normalisation of $$\Box$$, such as arises when the points of a sprinkling carry matrix algebras (quantum posets, defined there), has no Stieltjes propagator, that is, no positive spectral weight (Theorem 17).
 
 ## 1. The operator, its mean, and where it is evaluated
 
@@ -24,7 +24,7 @@ $$
 (B_\rho\varphi)(x)=\kappa_d\,\rho^{2/d}\Big[\alpha_0\,\varphi(x)+\sum_{n\ge0}c_n\sum_{y\prec x,\ N(y,x)=n}\varphi(y)\Big], \tag{1}
 $$
 
-with $$\kappa_2=4$$, $$\alpha_0=-\tfrac12$$, $$(c_0,c_1,c_2)=(1,-2,1)$$ in two dimensions, and $$\kappa_4=4/\sqrt6$$, $$\alpha_0=-1$$, $$(c_0,\dots,c_3)=(1,-9,16,-8)$$ in four [[BD]](#ref-bd), [[Sorkin 2007]](#ref-sorkin07), [[DG]](#ref-dg). The set of elements $$y\prec x$$ with $$N(y,x)=n$$ is the $$n$$th layer of $$x$$: the layer $$n=0$$ consists of the nearest neighbours of $$x$$ (links), the layer $$n=1$$ of the elements with exactly one point between, and so on. The operator is retarded, Lorentz invariant and non-local: it couples $$x$$ to elements arbitrarily far from $$x$$ along the light cone. The layer coefficients are those of [[BD]](#ref-bd), and the overall sign and the factor $$\kappa_d$$ are fixed by requiring $$B_\rho\to\Box$$ in the signature above. The weights, the factor $$\kappa_4$$ and the signature are those of the Remark on the causal-set d'Alembertian in [horizon counts and the area law](/quantum-gravity/area-projector/), where the layer is indexed from 1 and not from 0. Other pages of this wiki use other signatures and overall signs, and the formulas below are used only within this page.
+with $$\kappa_2=4$$, $$\alpha_0=-\tfrac12$$, $$(c_0,c_1,c_2)=(1,-2,1)$$ in two dimensions, and $$\kappa_4=4/\sqrt6$$, $$\alpha_0=-1$$, $$(c_0,\dots,c_3)=(1,-9,16,-8)$$ in four [[BD]](#ref-bd), [[Sorkin 2007]](#ref-sorkin07), [[DG]](#ref-dg). The set of elements $$y\prec x$$ with $$N(y,x)=n$$ is the $$n$$th layer of $$x$$: the layer $$n=0$$ consists of the nearest neighbours of $$x$$ (links), the layer $$n=1$$ of the elements with exactly one point between, and so on. The operator is retarded, Lorentz invariant and non-local: it couples $$x$$ to elements arbitrarily far from $$x$$ along the light cone. The layer coefficients are those of [[BD]](#ref-bd), and the overall sign and the factor $$\kappa_d$$ are fixed by requiring $$B_\rho\to\Box$$ in the signature above. The weights, the factor $$\kappa_4$$ and the signature are those of the Remark on the causal-set d'Alembertian in [horizon counts and the area law](/quantum-gravity/area-projector/), where the layer is indexed from 1 and not from 0.
 
 For a Poisson process the average of the weights produces the function $$f(V)=e^{-V}\sum_nc_nV^n/n!$$, whose Mellin transform $$\mathcal Mf(s)=\int_0^\infty f(V)V^{s-1}dV$$ follows from $$\int_0^\infty e^{-V}V^{n+s-1}dV=\Gamma(s)(s)_n$$:
 
@@ -44,13 +44,13 @@ where $$J^-(x)$$ is the causal past. The Benincasa–Dowker theorem is that (3) 
 
 ## 2. The Poisson limit on exponential fields
 
-To fix the normalisation, and to have a field class on which every limit below is a computation, we prove the Benincasa–Dowker limit for $$\varphi_E(y)=e^{E(t_y-t_x)}$$ with $$E>0$$, which satisfies $$\Box\varphi_E=-E^2\varphi_E$$. By Lorentz invariance of the sprinkling and of (1) the same holds for $$e^{-\xi\cdot(y-x)}$$ with $$\xi$$ any future timelike vector and $$-\xi\cdot\xi=E^2$$. For $$\varphi_E$$ the integral in (3) converges absolutely. Write $$z=x-y$$, $$d^4z=\tau^3d\tau\,dA$$ with $$dA$$ the area element on the unit hyperboloid $$\mathbb H^3$$, and use $$\int_{\mathbb H^3}e^{-E\tau\cosh\eta}dA=4\pi K_1(E\tau)/(E\tau)$$ with $$K_1$$ the modified Bessel function. With $$V=\pi\tau^4/24$$ this gives
+To fix the normalisation, and to have a field class on which every limit below is a computation, we prove the Benincasa–Dowker limit for $$\varphi_E(y)=e^{E(t_y-t_x)}$$ with $$E>0$$, which satisfies $$\Box\varphi_E=-E^2\varphi_E$$. By Lorentz invariance of the sprinkling and of (1) the same holds for $$e^{-\xi\cdot(y-x)}$$ with $$\xi$$ any future timelike vector and $$-\xi\cdot\xi=E^2$$. For $$\varphi_E$$ the integral in (3) converges absolutely. Write $$z=x-y$$, $$d^4z=\tau^3d\tau\,dA$$ with $$dA$$ the area element on the unit hyperboloid $$\mathbb H^3$$, and use $$\int_{\mathbb H^3}e^{-E\tau\cosh\chi}dA=4\pi K_1(E\tau)/(E\tau)$$, in which $$\chi$$ is the rapidity of $$z$$ on $$\mathbb H^3$$ and $$K_1$$ the modified Bessel function. With $$V=\pi\tau^4/24$$ this gives
 
 $$
-G_\lambda[\varphi_E](x)=\Psi(\eta),\qquad \Psi(\eta)=96\,\eta\int_0^\infty x^2f(\eta x^4)K_1(x)\,dx,\qquad \eta=\frac{\pi\lambda}{24E^4}. \tag{4}
+G_\lambda[\varphi_E](x)=\Psi(\eta),\qquad \Psi(\eta)=96\,\eta\int_0^\infty u^2f(\eta u^4)K_1(u)\,du,\qquad \eta=\frac{\pi\lambda}{24E^4}. \tag{4}
 $$
 
-The function $$\Psi$$ is analytic in $$\mathrm{Re}\,\eta>0$$ because $$f(\eta x^4)$$ decays like $$e^{-\eta x^4}$$, and $$\Psi(\eta)\to0$$ as $$\eta\to0$$ (for small $$\lambda$$, $$G\approx\lambda\int_{J^+}e^{-Ez^0}=8\pi\lambda/E^4$$). In two dimensions the same computation, with $$\int_{\mathbb H^1}e^{-E\tau\cosh\eta}dA=2K_0(E\tau)$$, gives $$G_\lambda[\varphi_E]=\Psi_2(\eta)$$ with $$\eta=\lambda/(2E^2)$$ and $$\Psi_2(\eta)=4\eta\int_0^\infty x\,f(\eta x^2)K_0(x)dx$$.
+The function $$\Psi$$ is analytic in $$\mathrm{Re}\,\eta>0$$ because $$f(\eta u^4)$$ decays like $$e^{-\eta u^4}$$, and $$\Psi(\eta)\to0$$ as $$\eta\to0$$ (for small $$\lambda$$, $$G\approx\lambda\int_{J^+}e^{-Ez^0}=8\pi\lambda/E^4$$). In two dimensions the same computation, with $$\int_{\mathbb H^1}e^{-E\tau\cosh\chi}dA=2K_0(E\tau)$$, gives $$G_\lambda[\varphi_E]=\Psi_2(\eta)$$ with $$\eta=\lambda/(2E^2)$$ and $$\Psi_2(\eta)=4\eta\int_0^\infty u\,f(\eta u^2)K_0(u)\,du$$.
 
 <div class="proposition" markdown="1">
 
@@ -64,29 +64,29 @@ uniformly in the sector. Consequently, for $$\lambda=\rho$$ real, $$\mathbb E[B_
 
 </div>
 
-For large $$\eta$$ the factor $$f(\eta x^4)$$ confines the integral to $$x\lesssim\eta^{-1/4}$$, where $$K_1$$ can be replaced by its small-argument expansion. Each power of $$x$$ then integrates against $$f$$ to a value of its Mellin transform, and the zeros in (2) remove every term except two.
+For large $$\eta$$ the factor $$f(\eta u^4)$$ confines the integral to $$u\lesssim\eta^{-1/4}$$, where $$K_1$$ can be replaced by its small-argument expansion. Each power of $$u$$ then integrates against $$f$$ to a value of its Mellin transform, and the zeros in (2) remove every term except two.
 
 <div class="proof" markdown="1">
 
 *Proof.* The expansion of the Bessel function is
 
 $$
-K_1(x)=\frac1x+\frac x2\Big(\ln\frac x2+\gamma-\frac12\Big)+\frac{x^3}{16}\Big(\ln\frac x2+\gamma-\frac54\Big)+R(x),\qquad \lvert R(x)\rvert\le c\,x^5(1+\lvert\ln x\rvert)\ \ (0<x\le1),
+K_1(u)=\frac1u+\frac u2\Big(\ln\frac u2+\gamma-\frac12\Big)+\frac{u^3}{16}\Big(\ln\frac u2+\gamma-\frac54\Big)+R(u),\qquad \lvert R(u)\rvert\le c\,u^5(1+\lvert\ln u\rvert)\ \ (0<u\le1),
 $$
 
-with $$\gamma$$ Euler's constant and $$c$$ a constant. The substitution $$V=\eta x^4$$ gives, for real $$\eta>0$$, $$\int_0^\infty x^{a}f(\eta x^4)\,dx=\frac14\eta^{-(a+1)/4}\mathcal Mf(\tfrac{a+1}4)$$ and, differentiating in the exponent, $$\int_0^\infty x^a\ln x\,f(\eta x^4)\,dx=\frac1{16}\eta^{-(a+1)/4}\big[\mathcal M'f(\tfrac{a+1}4)-\ln\eta\,\mathcal Mf(\tfrac{a+1}4)\big]$$. Both sides are analytic in $$\eta$$, so the identities hold in the right half plane. Applied to the three terms of the expansion multiplied by $$x^2$$:
+with $$\gamma$$ Euler's constant and $$c$$ a constant. The substitution $$V=\eta u^4$$ gives, for real $$\eta>0$$, $$\int_0^\infty u^{a}f(\eta u^4)\,du=\frac14\eta^{-(a+1)/4}\mathcal Mf(\tfrac{a+1}4)$$ and, differentiating in the exponent, $$\int_0^\infty u^a\ln u\,f(\eta u^4)\,du=\frac1{16}\eta^{-(a+1)/4}\big[\mathcal M'f(\tfrac{a+1}4)-\ln\eta\,\mathcal Mf(\tfrac{a+1}4)\big]$$. Both sides are analytic in $$\eta$$, so the identities hold in the right half plane. Applied to the three terms of the expansion multiplied by $$u^2$$:
 
-- the term $$1/x$$ gives $$\frac14\eta^{-1/2}\mathcal Mf(\frac12)=0$$;
-- the term in $$x$$ gives $$\frac12\cdot\frac1{16}\eta^{-1}\mathcal M'f(1)$$, the part containing $$\ln\eta$$ being proportional to $$\mathcal Mf(1)=0$$; $$96\eta$$ times it is $$3\mathcal M'f(1)=1$$, because $$\mathcal M'f(1)=\frac13$$ by (2);
-- the term in $$x^3$$ gives $$\frac1{16}\cdot\frac1{16}\eta^{-3/2}\mathcal M'f(\frac32)$$, and $$96\eta$$ times it is $$\frac38\mathcal M'f(\frac32)\eta^{-1/2}=-\frac{\sqrt\pi}8\eta^{-1/2}$$, because $$\mathcal M'f(\frac32)=-\frac43\Gamma(\frac32)\cdot1\cdot\frac12=-\frac{\sqrt\pi}3$$.
+- the term $$1/u$$ gives $$\frac14\eta^{-1/2}\mathcal Mf(\frac12)=0$$;
+- the term in $$u$$ gives $$\frac12\cdot\frac1{16}\eta^{-1}\mathcal M'f(1)$$, the part containing $$\ln\eta$$ being proportional to $$\mathcal Mf(1)=0$$; $$96\eta$$ times it is $$3\mathcal M'f(1)=1$$, because $$\mathcal M'f(1)=\frac13$$ by (2);
+- the term in $$u^3$$ gives $$\frac1{16}\cdot\frac1{16}\eta^{-3/2}\mathcal M'f(\frac32)$$, and $$96\eta$$ times it is $$\frac38\mathcal M'f(\frac32)\eta^{-1/2}=-\frac{\sqrt\pi}8\eta^{-1/2}$$, because $$\mathcal M'f(\frac32)=-\frac43\Gamma(\frac32)\cdot1\cdot\frac12=-\frac{\sqrt\pi}3$$.
 
-In the sector $$\lvert f(\eta x^4)\rvert\le c\,(1+\lvert\eta\rvert x^4)^3e^{-\sin\delta\,\lvert\eta\rvert x^4}$$, so the remainder contributes at most a constant times $$\int x^7(1+\lvert\ln x\rvert)\lvert f(\eta x^4)\rvert dx=O(\eta^{-2}\ln\lvert\eta\rvert)$$, and the part of the integral over $$x>1$$ is $$O(e^{-c'\lvert\eta\rvert})$$. This is (5). With $$\eta=\pi\rho/(24E^4)$$,
+In the sector $$\lvert f(\eta u^4)\rvert\le c\,(1+\lvert\eta\rvert u^4)^3e^{-\sin\delta\,\lvert\eta\rvert u^4}$$, so the remainder contributes at most a constant times $$\int u^7(1+\lvert\ln u\rvert)\lvert f(\eta u^4)\rvert du=O(\eta^{-2}\ln\lvert\eta\rvert)$$, and the part of the integral over $$u>1$$ is $$O(e^{-c'\lvert\eta\rvert})$$. This is (5). With $$\eta=\pi\rho/(24E^4)$$,
 
 $$
 \kappa_4\rho^{1/2}\big(-1+\Psi(\eta)\big)=-\frac4{\sqrt6}\,\rho^{1/2}\frac{\sqrt\pi}8\Big(\frac{24E^4}{\pi\rho}\Big)^{1/2}+o(1)=-E^2+o(1).
 $$
 
-In two dimensions $$K_0(x)=-(\ln\frac x2+\gamma)+\frac{x^2}4(1-\gamma-\ln\frac x2)+O(x^4\ln x)$$, $$\mathcal Mf(1)=\mathcal Mf(2)=0$$, $$\mathcal M'f(1)=-\frac12$$ and $$\mathcal M'f(2)=\frac12$$, and the same steps give $$\Psi_2=\frac12-\frac1{8\eta}+O(\eta^{-2}\ln\eta)$$, so that $$4\rho(-\frac12+\Psi_2)=-\rho/(2\eta)=-E^2$$ with $$\eta=\rho/2E^2$$. $$\square$$
+In two dimensions $$K_0(u)=-(\ln\frac u2+\gamma)+\frac{u^2}4(1-\gamma-\ln\frac u2)+O(u^4\ln u)$$, $$\mathcal Mf(1)=\mathcal Mf(2)=0$$, $$\mathcal M'f(1)=-\frac12$$ and $$\mathcal M'f(2)=\frac12$$, and the same steps give $$\Psi_2=\frac12-\frac1{8\eta}+O(\eta^{-2}\ln\eta)$$, so that $$4\rho(-\frac12+\Psi_2)=-\rho/(2\eta)=-E^2$$ with $$\eta=\rho/2E^2$$. $$\square$$
 
 </div>
 
@@ -210,7 +210,7 @@ The table gives the computed ratio of the exact mean to $$\Box\varphi_E$$ at fin
 | $$10^8$$ | $$0.91107$$ | $$1.37715$$ | $$0.99962$$ | $$1.08283$$ |
 | limit | $$0.91144$$ | $$1.37796$$ | $$1$$ | $$1.08333$$ |
 
-The weights of Example 1 are not those of a probability measure, and the process has no probabilistic reading. The next statement shows that this holds for every non-Poisson mixed Poisson process with compactly supported mixing law and $$C_A=1$$.
+The weights of Example 1 are not those of a probability measure, and the process has no Born reading. The next statement shows that this holds for every non-Poisson mixed Poisson process with compactly supported mixing law and $$C_A=1$$.
 
 <div class="proposition" markdown="1">
 
@@ -258,7 +258,7 @@ $$
 
 </div>
 
-The formula is a derivation in the limit $$\rho\ell^4\to\infty$$. For $$g=1$$ it gives $$C_A=0.9378-0.0666i$$, and the real part of the mean (6) for (8) is 0.003 below this value at $$\rho=10^6$$. Since $$C_A-1$$ is complex, the mean operator is a complex multiple of $$\Box$$, and no real rescaling of its coefficient restores $$C_A=1$$. The probability of an empty region of expected count $$\bar N=\rho V$$ is $$\Pr(N=0)=e^{-\bar N}e^{ig\bar N}(1-ig\bar N)$$, whose imaginary part $$e^{-\bar N}(\sin g\bar N-g\bar N\cos g\bar N)$$ is positive for $$0<g\bar N<4.4934$$ (the first positive root of $$\tan x=x$$), and $$\mathrm{Re}\Pr(N=3)=-0.3282$$ at $$g=1$$, $$\bar N=2$$. No Born reading is possible there either.
+The formula holds in the limit $$\rho\ell^4\to\infty$$, and only for separations with $$\lvert s^2\rvert\ll\ell^2$$: the process has correlation functions of every order modified, so the classification of finite-order perturbations in section 5 does not apply to it. For $$g=1$$ the formula gives $$C_A=0.9378-0.0666i$$. Since $$C_A-1$$ is complex, the mean operator is a complex multiple of $$\Box$$, and no real rescaling of its coefficient restores $$C_A=1$$. The probability of an empty region of expected count $$\bar N=\rho V$$ is $$\Pr(N=0)=e^{-\bar N}e^{ig\bar N}(1-ig\bar N)$$, whose imaginary part $$e^{-\bar N}(\sin g\bar N-g\bar N\cos g\bar N)$$ is positive for $$0<g\bar N<4.4934$$ (the first positive root of $$\tan x=x$$). No Born reading is possible there either.
 
 ## 4. Signed and complex invariant processes
 
@@ -282,7 +282,7 @@ and whose correlation functions are $$\rho_n$$. If the $$\rho_n$$ are Poincaré 
 
 </div>
 
-Non-positive invariant correlations therefore exist for any invariant correlation functions of moderate growth, for example $$\rho_1=\rho$$, $$\rho_2=\rho^2(1+h(s^2))$$ and $$\rho_n=\rho^n$$ for $$n\ge3$$ with any bounded $$h$$. The obstruction of the classification of quantum sprinklings (Bochner positivity forcing a point measure) has no analogue at the level of correlation functions.
+Non-positive invariant correlations therefore exist for any invariant correlation functions of moderate growth, for example $$\rho_1=\rho$$, $$\rho_2=\rho^2(1+h(s^2))$$ and $$\rho_n=\rho^n$$ for $$n\ge3$$ with any bounded $$h$$. The obstruction of the classification of quantum sprinklings (boost invariance forcing the one-body density to a constant, and positivity forcing a mixture of coherent amplitudes) has no analogue at the level of correlation functions.
 
 The simplest observable of such a process is the number variance of a causal diamond $$D_T$$ of height $$T$$ and volume $$V=\pi T^4/24$$. Poincaré invariance makes $$\rho_2(x,y)-\rho^2$$ a function $$\chi(s^2(x-y))$$ of the squared interval, and the symmetry of $$\rho_2$$ makes it independent of which point of the pair is earlier. Assume $$\chi\in L^1(\mathbb R)$$. Let $$\omega$$ be the density of $$s^2$$ over ordered pairs of the unit diamond $$D_1$$, defined by $$\int\!\!\int_{D_1^2}F(s^2)dx\,dy=\int F(\sigma)\omega(\sigma)d\sigma$$.
 
@@ -324,7 +324,7 @@ The simplest invariant complex process that is not a mixture is the *pair family
 
 (a) $$j_n=\rho^ne^{-\bar N}$$ for $$n\ge3$$, $$j_2=\rho^2(e^{-\bar N}+h)$$, $$j_1(x)=\rho e^{-\bar N}-\rho^2\int_Dh(x,y)dy$$, $$j_0=e^{-\bar N}+\frac12\rho^2\int\!\!\int_{D^2}h$$.
 
-(b) With $$\mathcal H_D=\rho^2\int\!\!\int_{D^2}\lvert h\rvert$$: $$\frac12\mathcal H_D-1\le\lVert\mathsf P_D\rVert\le1+2\mathcal H_D$$. For diamonds and $$h\in L^1(\mathbb R,dw)$$ with $$w=s^2/\ell^2$$, $$\mathcal H_D=\rho^2\ell^2T^6\int\lvert h(w)\rvert\,\omega(w\ell^2/T^2)dw\to\omega(0)\rho^2\ell^2\lVert h\rVert_1T^6$$, so $$\lVert\mathsf P_D\rVert\asymp T^6\asymp V^{3/2}$$ for every $$h\not\equiv0$$.
+(b) With $$\mathcal W_D=\rho^2\int\!\!\int_{D^2}\lvert h\rvert$$: $$\frac12\mathcal W_D-1\le\lVert\mathsf P_D\rVert\le1+2\mathcal W_D$$. For diamonds and $$h\in L^1(\mathbb R,dw)$$ with $$w=s^2/\ell^2$$, $$\mathcal W_D=\rho^2\ell^2T^6\int\lvert h(w)\rvert\,\omega(w\ell^2/T^2)dw\to\omega(0)\rho^2\ell^2\lVert h\rVert_1T^6$$, so $$\lVert\mathsf P_D\rVert\asymp T^6\asymp V^{3/2}$$ for every $$h\not\equiv0$$.
 
 (c) If $$h\not\equiv0$$, $$\mathsf P_D$$ is not a positive measure for all large $$D$$: no Born reading exists.
 
@@ -332,7 +332,7 @@ The simplest invariant complex process that is not a mixture is the *pair family
 
 <div class="proof" markdown="1">
 
-*Proof.* (a) is Theorem 7: only terms with $$n+l=2$$ differ from the Poisson ones. (b) For the upper bound, the Poisson parts have total variation 1 and the perturbations contribute at most $$\frac12\rho^2\!\int\!\!\int\lvert h\rvert+\rho^2\!\int\!\!\int\lvert h\rvert+\frac12\rho^2\!\int\!\!\int\lvert h\rvert=2\mathcal H_D$$. For the lower bound, $$\frac12\int\!\!\int\lvert j_2\rvert\ge\frac12(\mathcal H_D-\rho^2\lvert D\rvert^2e^{-\bar N})\ge\frac12\mathcal H_D-\frac12$$, using $$\bar N^2e^{-\bar N}\le4e^{-2}<1$$. The asymptotics follow by dominated convergence as in Proposition 8. (c) Positivity of $$\mathsf P_D$$ would need $$j_2\ge0$$ almost everywhere, hence $$h\ge-e^{-\bar N}$$, and for $$D$$ large $$h\ge0$$ almost everywhere. Then $$j_1(x)\ge0$$ needs $$\rho\int_Dh(x,y)dy\le e^{-\bar N}$$ for almost every $$x\in D$$. But $$\int_Dh(x,y)dy$$ increases with $$D$$ to $$\int_{\mathbb M}h>0$$ while $$e^{-\bar N}\to0$$. $$\square$$
+*Proof.* (a) is Theorem 7: only terms with $$n+l=2$$ differ from the Poisson ones. (b) For the upper bound, the Poisson parts have total variation 1 and the perturbations contribute at most $$\frac12\rho^2\!\int\!\!\int\lvert h\rvert+\rho^2\!\int\!\!\int\lvert h\rvert+\frac12\rho^2\!\int\!\!\int\lvert h\rvert=2\mathcal W_D$$. For the lower bound, $$\frac12\int\!\!\int\lvert j_2\rvert\ge\frac12(\mathcal W_D-\rho^2\lvert D\rvert^2e^{-\bar N})\ge\frac12\mathcal W_D-\frac12$$, using $$\bar N^2e^{-\bar N}\le4e^{-2}<1$$. The asymptotics follow by dominated convergence as in Proposition 8. (c) Positivity of $$\mathsf P_D$$ would need $$j_2\ge0$$ almost everywhere, hence $$h\ge-e^{-\bar N}$$, and for $$D$$ large $$h\ge0$$ almost everywhere. Then $$j_1(x)\ge0$$ needs $$\rho\int_Dh(x,y)dy\le e^{-\bar N}$$ for almost every $$x\in D$$. But $$\int_Dh(x,y)dy$$ increases with $$D$$ to $$\int_{\mathbb M}h>0$$ while $$e^{-\bar N}\to0$$. $$\square$$
 
 </div>
 
@@ -448,7 +448,7 @@ Then $$\det=\mathrm{Var}\,u_{\mathfrak o}\,\mathrm{Var}\,u_p-\mathrm{Cov}^2\to-\
 
 </div>
 
-The content of Proposition 12 lies in amplitudes that do not decay with separation. For the pair family with $$h\in L^1$$ in $$w=s^2/\ell^2$$ and $$D_0$$ a diamond, $$\lvert H_2^{\mathfrak o}(LD_0)\rvert\le\int\!\!\int\lvert h\rvert=O(L^6)$$ by the scaling in Proposition 8, while $$\mathbb E_{\rm Poi}U_{\mathfrak o}\asymp L^8$$, so $$\zeta^{\mathfrak o}=O(L^{-2})$$ and the hypothesis of the proposition is not met. A constant amplitude on an order type, such as $$h_2=\epsilon\,\mathbb 1[\text{spacelike}]$$, has $$\zeta\ne0$$ at every volume.
+Proposition 12 applies to amplitudes that do not decay with separation. For the pair family with $$h\in L^1$$ in $$w=s^2/\ell^2$$ and $$D_0$$ a diamond, $$\lvert H_2^{\mathfrak o}(LD_0)\rvert\le\int\!\!\int\lvert h\rvert=O(L^6)$$ by the scaling in Proposition 8, while $$\mathbb E_{\rm Poi}U_{\mathfrak o}\asymp L^8$$, so $$\zeta^{\mathfrak o}=O(L^{-2})$$ and the hypothesis of the proposition is not met. A constant amplitude on an order type, such as $$h_2=\epsilon\,\mathbb 1[\text{spacelike}]$$, has $$\zeta\ne0$$ at every volume.
 
 That example also separates (V1) from (V2). Take $$\bar n=2$$ and $$h_2=\epsilon\,\mathbb 1[\text{spacelike}]$$. The density $$u_{A_2}$$ of antichain pairs has $$\mathbb E_Pu_{A_2}=1+\epsilon$$. By (12) with $$\Upsilon=U_{A_2}^2$$, whose $$\Upsilon^\sharp(z)$$ for $$\lvert z\rvert=2$$ is the indicator of an antichain, the second moment shifts by $$\epsilon\,\mathbb E_{\rm Poi}U_{A_2}$$, which is $$o((\mathbb E_{\rm Poi}U_{A_2})^2)$$. Hence $$\mathrm{Var}(u_{A_2})\to-2\epsilon-\epsilon^2$$, which is positive for $$-2<\epsilon<0$$ and negative otherwise. For such $$\epsilon$$ (V1) holds, while (V2) fails because $$\det\mathrm{Cov}(u_{A_2},u_3)\to-\epsilon^2$$.
 
@@ -500,11 +500,11 @@ The moment forms (V1)-(V3) are not shown for $$P_\epsilon$$: the variance of $$u
 
 A quantum poset replaces the points of a poset by matrix algebras and the order by a quantum relation. In the version of Weaver [[Weaver 2012]](#ref-weaver12) and Kornell, Lindenhovius and Mislove [[KLM]](#ref-klm), restricted to the finite-dimensional case, the algebra is $$\bigoplus_xM_{n_x}$$ acting on $$\bigoplus_x\mathbb C^{n_x}$$, and a relation is a family of subspaces $$\mathcal V_{xy}\subset\mathrm{Hom}(\mathbb C^{n_y},\mathbb C^{n_x})$$ that contains the identities, is closed under composition and satisfies an antisymmetry condition; Weaver [[Weaver 2021]](#ref-weaver21) studies the hereditarily antisymmetric case. A sprinkled quantum causal set assigns to each element of a Poisson sprinkling a random matrix size $$n_x\le n_{\max}$$ and to each related pair a relation space. A d'Alembertian on it acts on fields valued in $$\bigoplus_xM_{n_x}$$, and its mean over the sprinkling and the marks is a matrix-valued, Lorentz-invariant, retarded kernel. The argument below uses nothing about quantum posets beyond three properties of that kernel, stated as hypotheses; whether a given construction of the interval operator satisfies them is a separate verification, and the case of bounded sizes and interval-local link data is discussed on [the causal-set d'Alembertian has no positive spectral representation](/quantum-gravity/causal-box-spectrum/).
 
-Let the mean operator act on $$\mathbb R^r$$-valued fields as $$(\bar B\phi)(x)=a\,\phi(x)+\int_{J^-(x)}F(V(x,y))\phi(y)\,dy$$ in $$\mathbb R^{1,3}$$, with $$a$$ a real number and $$F$$ an $$r\times r$$ matrix function of the expected interval count $$V=\rho v_4\tau^4$$. On an exponential field $$\bar B$$ acts as multiplication by the matrix $$b(E)=a\mathbb 1+\hat F(E)$$ of $$Z=E^2$$, where $$\hat F(E)=4\pi\int_0^\infty F(V(\tau))\tau^3K_1(E\tau)/(E\tau)\,d\tau$$ by the computation of section 2. Put $$\mathcal G(Z)=-b(E)^{-1}$$, assuming $$b(E)$$ invertible for $$E>0$$. We say $$\mathcal G$$ is *Stieltjes* if $$\mathcal G(Z)=R_0/Z+C_0+\int\Pi(d\mu)/(Z+\mu)$$ with $$R_0,C_0\ge0$$ and $$\Pi$$ a positive-matrix-valued measure with $$\int(1+\mu)^{-1}\mathrm{tr}\,\Pi<\infty$$. For a scalar function this says that the Euclidean propagator is a superposition of free propagators with non-negative weights; identifying that with the absence of ghosts for a retarded non-local operator is a convention, discussed on the page just cited.
+Let the mean operator act on $$\mathbb R^r$$-valued fields as $$(\bar B\phi)(x)=a\,\phi(x)+\int_{J^-(x)}F(V(x,y))\phi(y)\,dy$$ in $$\mathbb R^{1,3}$$, with $$a$$ a real number and $$F$$ an $$r\times r$$ matrix function of the expected interval count $$V=\rho v_4\tau^4$$. On an exponential field $$\bar B$$ acts as multiplication by the matrix $$b(E)=a\mathbb 1+\hat F(E)$$ of $$Z=E^2$$, where $$\hat F(E)=4\pi\int_0^\infty F(V(\tau))\tau^3K_1(E\tau)/(E\tau)\,d\tau$$ by the computation of section 2. Put $$\mathcal S(Z)=-b(E)^{-1}$$, assuming $$b(E)$$ invertible for $$E>0$$. We say $$\mathcal S$$ is *Stieltjes* if $$\mathcal S(Z)=R_0/Z+C_0+\int\Pi(d\mu)/(Z+\mu)$$ with $$R_0,C_0\ge0$$ and $$\Pi$$ a positive-matrix-valued measure with $$\int(1+\mu)^{-1}\mathrm{tr}\,\Pi<\infty$$. For a scalar function this says that the Euclidean propagator is a superposition of free propagators with non-negative weights; identifying that with the absence of ghosts for a retarded non-local operator is a convention, discussed on the page just cited.
 
 <div class="lemma" markdown="1">
 
-**Lemma 16** (a Stieltjes propagator with a massless pole does not decay fast). Let $$\mathcal G$$ be Stieltjes with $$R_0$$ positive definite and let $$v\ne0$$. Then $$R_v(Z)=Z\langle v,(\mathcal G(Z)-C_0)v\rangle$$ satisfies $$R_v(Z)\ge\langle v,R_0v\rangle>0$$ for all $$Z>0$$, and $$R_v$$ is non-decreasing.
+**Lemma 16** (a Stieltjes propagator with a massless pole does not decay fast). Let $$\mathcal S$$ be Stieltjes with $$R_0$$ positive definite and let $$v\ne0$$. Then $$R_v(Z)=Z\langle v,(\mathcal S(Z)-C_0)v\rangle$$ satisfies $$R_v(Z)\ge\langle v,R_0v\rangle>0$$ for all $$Z>0$$, and $$R_v$$ is non-decreasing.
 
 </div>
 
@@ -524,31 +524,31 @@ Let the mean operator act on $$\mathbb R^r$$-valued fields as $$(\bar B\phi)(x)=
 
 (Q3) *Infrared normalisation.* $$a<0$$ and $$b(E)=-WZ+o(Z)$$ as $$Z\to0$$ with $$W$$ positive definite.
 
-Then $$\mathcal G=-b^{-1}$$ is not Stieltjes.
+Then $$\mathcal S=-b^{-1}$$ is not Stieltjes.
 
 </div>
 
-The contact term and the infrared normalisation fix the constant and the residue of $$\mathcal G$$, while the boundedness of the kernel at the apex ($$V\to0$$) makes $$\mathcal G-C_0$$ decay faster than $$1/Z$$, which Lemma 16 forbids.
+The contact term and the infrared normalisation fix the constant and the residue of $$\mathcal S$$, while the boundedness of the kernel at the apex ($$V\to0$$) makes $$\mathcal S-C_0$$ decay faster than $$1/Z$$, which Lemma 16 forbids.
 
 <div class="proof" markdown="1">
 
-*Proof.* We have $$E^2\hat F(E)=4\pi\int F\,\tau\,[(E\tau)K_1(E\tau)]\,d\tau$$. The function $$zK_1(z)$$ decreases from 1 to 0 on $$(0,\infty)$$, and by (Q1)-(Q2) $$F$$ is bounded, with $$F(0)=g_0$$, so dominated convergence gives $$E^2\hat F(E)\to0$$, that is, $$\hat F=o(1/Z)$$ entrywise. No term concentrated on the light cone is present. With $$a<0$$, $$\mathcal G=-(a+\hat F)^{-1}$$ tends to $$C_0:=-a^{-1}\mathbb 1\ge0$$ as $$Z\to\infty$$, and $$\mathcal G-C_0=a^{-2}\hat F(1+\hat F/a)^{-1}=o(1/Z)$$. If $$\mathcal G$$ were Stieltjes, the residue at $$Z=0$$ would be $$R_0=W^{-1}$$ by (Q3) and $$\mathcal G(\infty)=C_0$$ would be its constant. Lemma 16 gives $$R_v(Z)\ge\langle v,W^{-1}v\rangle>0$$, whereas $$R_v(Z)=Z\langle v,(\mathcal G-C_0)v\rangle\to0$$. $$\square$$
+*Proof.* We have $$E^2\hat F(E)=4\pi\int F\,\tau\,[(E\tau)K_1(E\tau)]\,d\tau$$. The function $$zK_1(z)$$ decreases from 1 to 0 on $$(0,\infty)$$, and by (Q1)-(Q2) $$F$$ is bounded, with $$F(0)=g_0$$, so dominated convergence gives $$E^2\hat F(E)\to0$$, that is, $$\hat F=o(1/Z)$$ entrywise. No term concentrated on the light cone is present. With $$a<0$$, $$\mathcal S=-(a+\hat F)^{-1}$$ tends to $$C_0:=-a^{-1}\mathbb 1\ge0$$ as $$Z\to\infty$$, and $$\mathcal S-C_0=a^{-2}\hat F(1+\hat F/a)^{-1}=o(1/Z)$$. If $$\mathcal S$$ were Stieltjes, the residue at $$Z=0$$ would be $$R_0=W^{-1}$$ by (Q3) and $$\mathcal S(\infty)=C_0$$ would be its constant. Lemma 16 gives $$R_v(Z)\ge\langle v,W^{-1}v\rangle>0$$, whereas $$R_v(Z)=Z\langle v,(\mathcal S-C_0)v\rangle\to0$$. $$\square$$
 
 </div>
 
-For the scalar four-dimensional weights (1), (Q1)-(Q3) hold with $$a=-\kappa_4\rho^{1/2}$$ and $$W=1$$, so $$Z[\mathcal G(Z)-\mathcal G(\infty)]\to0$$ as $$Z\to\infty$$, against the lower bound of Lemma 16. Theorem 11 of [the causal-set d'Alembertian has no positive spectral representation](/quantum-gravity/causal-box-spectrum/) gives the same conclusion for matrix kernels bounded by a power of proper time, without the normalisation (Q3), and with the same definition of a Stieltjes function. Theorem 17 is the case of bounded kernels with (Q3), proved here by the residue argument.
+For the scalar four-dimensional weights (1), (Q1)-(Q3) hold with $$a=-\kappa_4\rho^{1/2}$$ and $$W=1$$, so $$Z[\mathcal S(Z)-\mathcal S(\infty)]\to0$$ as $$Z\to\infty$$, against the lower bound of Lemma 16. Theorem 11 of [the causal-set d'Alembertian has no positive spectral representation](/quantum-gravity/causal-box-spectrum/) gives the same conclusion for matrix kernels bounded by a power of proper time, without the normalisation (Q3), and with the same definition of a Stieltjes function. Theorem 17 is the case of bounded kernels with (Q3), proved here by the residue argument.
 
 The conclusion applies to a decoration by quantum-poset data exactly when the mean kernel of that decoration has the form (Q1)-(Q3). A kernel that depends on a pair $$(x,y)$$ only through interval-local data and the volume $$V$$ has the finite value $$g_0$$ at $$V=0$$ and so cannot carry a term $$\nu\,\delta(\tau^2)\mathbb 1_{t>0}$$ concentrated on the light cone, which would give $$\hat F\sim\nu/Z$$ and is excluded from the argument; [the causal-set d'Alembertian has no positive spectral representation](/quantum-gravity/causal-box-spectrum/) treats such terms. The mean over the sprinkling is not the per-realisation operator: if the matrix sizes are random, the sum $$\sum_zn_z^2$$ over the points of a region is a compound Poisson variable with $$\mathrm{Var}/\mathrm{mean}=\mathbb E[n^4]/\mathbb E[n^2]$$, which exceeds 1 as soon as the sizes are not all 1.
 
-## 7. Means on random lattices, operational readings and the correlation length
+## 7. Open cases: the Haar lattice, Hilbert-space readings and global decorations
 
-The mean of the four-dimensional operator on the Haar-random lattice is not known, and with it the mean on $$P_\epsilon$$ of Proposition 15. [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/) shows (Proposition 2 there) that in two dimensions the zeroth moment of the first four layers diverges logarithmically on this lattice when $$c_0\ne0$$. In four dimensions it is open whether the mean is finite, and whether $$C_A=1$$ can be reached by adding Poisson components while keeping the in-law positivity condition.
+On the Haar-random lattice in two dimensions the zeroth moment of the first four layers diverges logarithmically when $$c_0\ne0$$ (Proposition 2 of [Lorentz-invariant point sets](/quantum-gravity/invariant-point-sets/)). The four-dimensional mean on this lattice, and with it the mean on $$P_\epsilon$$ of Proposition 15, is not computed, and its finiteness is undecided. It is also undecided whether $$C_A=1$$ can be reached by adding Poisson components to the lattice while the in-law positivity condition is kept.
 
-Proposition 5 concerns mixed Poisson processes whose counts are probabilities. Whether a signed mixing law with $$C_A=1$$ can be realised as a state on a Hilbert space with a positive-operator-valued measure for the counts, in which the counts are not the diagonal observables of the mixing parameter, is open. Section 3.3 considers the weak-value representation and states its post-selection cost.
+The weak-value representation of section 3.3 realises a signed mixing law at the post-selection cost computed there. Whether a signed mixing law with $$C_A=1$$ can instead be realised as a state on a Hilbert space with a positive-operator-valued measure for the counts, in which the counts are not the diagonal observables of the mixing parameter, is undecided.
 
-Proposition 10 is proved for a correlation length $$\ell$$ fixed as $$\rho\to\infty$$. If $$\ell$$ scales with the discreteness length ($$\rho\ell^4$$ fixed), the extra term in (10) is of order $$\rho^{3/2}\ell^2\sim\rho$$, which exceeds the $$O(1)$$ Poisson mean unless the integral of $$h_+$$ over $$w=\tau^2/\ell^2$$ vanishes, and this regime is not analysed. The classification of finite-order perturbations does not reach processes with correlation functions of all orders modified, such as the Feynman determinantal kernel, for which only the local form of Proposition 6 is derived.
+Proposition 10 is proved for a correlation length $$\ell$$ fixed as $$\rho\to\infty$$. If $$\ell$$ scales with the discreteness length ($$\rho\ell^4$$ fixed), the extra term in (10) is of order $$\rho^{3/2}\ell^2\sim\rho$$, which exceeds the $$O(1)$$ Poisson mean unless the integral of $$h_+$$ over $$w=\tau^2/\ell^2$$ vanishes; this regime is not analysed.
 
-Theorem 17 covers interval-local quantum-poset data. Decorations that depend on global data, for example a relation angle fixed by the Wightman function of a state built from the whole order, lie outside it. Whether such a dressing produces a term concentrated on the light cone, and whether the resulting operator can have a Stieltjes propagator, is open.
+Decorations that depend on global data, for example a relation angle fixed by the Wightman function of a state built from the whole order, are outside Theorem 17. A term concentrated on the light cone in their mean kernel would give $$\hat F\sim\nu/Z$$, which the argument of Theorem 17 excludes. Whether such a term arises, and whether the resulting operator has a Stieltjes propagator, is not decided here.
 
 ## References
 
