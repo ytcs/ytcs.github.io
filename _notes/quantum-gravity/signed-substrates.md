@@ -376,13 +376,13 @@ A pair amplitude supported on spacelike separations is therefore invisible to th
 
 <div class="theorem" markdown="1">
 
-**Theorem 11** (order pushforward). Let $$P$$ be a finite-order family of order $$\bar n$$. (a) On every bounded $$D$$, the signed measure $$\mathsf P_D$$ and the Poisson measure $$\mathrm{Poi}_D$$ coincide on the configurations with more than $$\bar n$$ points. (b) Let $$F$$ be a function of finite configurations in $$D$$ with $$\lvert F(Y)\rvert\le c_Fa^{\lvert Y\rvert}$$ for some $$c_F,a$$, and put $$F^\sharp(Z)=\sum_{Y\subseteq Z}(-1)^{\lvert Z\setminus Y\rvert}F(Y)$$. Then
+**Theorem 11** (order pushforward). Let $$P$$ be a finite-order family of order $$\bar n$$. (a) On every bounded $$D$$, the signed measure $$\mathsf P_D$$ and the Poisson measure $$\mathrm{Poi}_D$$ coincide on the configurations with more than $$\bar n$$ points. (b) Let $$\Upsilon$$ be a function of finite configurations in $$D$$ with $$\lvert \Upsilon(Y)\rvert\le c_\Upsilon a^{\lvert Y\rvert}$$ for some $$c_\Upsilon,a$$, and put $$\Upsilon^\sharp(z)=\sum_{Y\subseteq z}(-1)^{\lvert z\setminus Y\rvert}\Upsilon(Y)$$. Then
 
 $$
-\mathbb E_PF-\mathbb E_{\rm Poi}F=\sum_{k=2}^{\bar n}\frac{\rho^k}{k!}\int_{D^k}h_k(z)\,F^\sharp(z)\,dz. \tag{12}
+\mathbb E_P\Upsilon-\mathbb E_{\rm Poi}\Upsilon=\sum_{k=2}^{\bar n}\frac{\rho^k}{k!}\int_{D^k}h_k(z)\,\Upsilon^\sharp(z)\,dz. \tag{12}
 $$
 
-If $$F$$ depends only on the causal order of the configuration, $$F^\sharp(z)$$ depends only on the order type of $$z$$, and the right side is a finite signed combination of expectations over posets with at most $$\bar n$$ elements.
+If $$\Upsilon$$ depends only on the causal order of the configuration, $$\Upsilon^\sharp(z)$$ depends only on the order type of $$z$$, and the right side is a finite signed combination of expectations over posets with at most $$\bar n$$ elements.
 
 </div>
 
@@ -390,13 +390,13 @@ Here the *order type* of a $$k$$-point configuration is the isomorphism class of
 
 <div class="proof" markdown="1">
 
-*Proof.* (a) For $$n>\bar n$$ all $$\rho_{n+m}$$ are Poisson, so $$j_n$$ equals the Poisson Janossy density. (b) Absolute convergence: $$\lvert j_n\rvert\le c\,\rho^ne^{\rho\lvert D\rvert}$$ for a constant $$c$$, so $$\sum_n\frac1{n!}\int\lvert j_nF\rvert\le c'\sum_n(a\rho\lvert D\rvert)^n/n!<\infty$$, which allows rearrangement. Inserting the formula for $$j_n$$ and grouping $$z=(x,y)$$ by $$k=n+l$$,
+*Proof.* (a) For $$n>\bar n$$ all $$\rho_{n+m}$$ are Poisson, so $$j_n$$ equals the Poisson Janossy density. (b) Absolute convergence: $$\lvert j_n\rvert\le c\,\rho^ne^{\rho\lvert D\rvert}$$ for a constant $$c$$, so $$\sum_n\frac1{n!}\int\lvert j_n\Upsilon\rvert\le c'\sum_n(a\rho\lvert D\rvert)^n/n!<\infty$$, which allows rearrangement. Inserting the formula for $$j_n$$ and grouping $$z=(x,y)$$ by $$k=n+l$$,
 
 $$
-\mathbb E_PF=\sum_n\frac1{n!}\int j_nF=\sum_k\frac1{k!}\int\rho_k(z)\sum_{Y\subseteq z}(-1)^{\lvert z\setminus Y\rvert}F(Y)\,dz,
+\mathbb E_P\Upsilon=\sum_n\frac1{n!}\int j_n\Upsilon=\sum_k\frac1{k!}\int\rho_k(z)\sum_{Y\subseteq z}(-1)^{\lvert z\setminus Y\rvert}\Upsilon(Y)\,dz,
 $$
 
-by the symmetry of $$\rho_k$$ and $$F$$ (the binomial counts the choices of the subset $$Y$$ of size $$n$$). Subtracting the same identity for $$\rho_k=\rho^k$$ leaves only $$k\le\bar n$$. If $$F$$ depends on the order only, the order on $$Y\subseteq z$$ is the restriction of that on $$z$$. $$\square$$
+by the symmetry of $$\rho_k$$ and $$\Upsilon$$ (the binomial counts the choices of the subset $$Y$$ of size $$n$$). Subtracting the same identity for $$\rho_k=\rho^k$$ leaves only $$k\le\bar n$$. If $$\Upsilon$$ depends on the order only, the order on $$Y\subseteq z$$ is the restriction of that on $$z$$. $$\square$$
 
 </div>
 
@@ -406,7 +406,7 @@ $$
 \mathbb E_PU_{\mathfrak o}=\mathbb E_{\rm Poi}U_{\mathfrak o}+\frac{\rho^k}{k!}H_k^{\mathfrak o}(D),\qquad H_k^{\mathfrak o}(D)=\int_{D^k}h_k\mathbb 1_{\mathfrak o}, \tag{13}
 $$
 
-and the normalised statistic $$u_{\mathfrak o}=U_{\mathfrak o}/\mathbb E_{\rm Poi}U_{\mathfrak o}$$ has $$\mathbb E_Pu_{\mathfrak o}=1+\zeta_D^{\mathfrak o}$$ with $$\zeta_D^{\mathfrak o}=\rho^kH_k^{\mathfrak o}(D)/(k!\,\mathbb E_{\rm Poi}U_{\mathfrak o})$$. Second, for $$p>\bar n$$ let $$u_p=(N)_p/(\rho\lvert D\rvert)^p$$, where $$(N)_p$$ is the falling factorial. The statistics $$u_p$$, $$u_p^2$$ and $$u_{\mathfrak o} u_p$$ vanish on configurations with fewer than $$p$$ points, hence have $$F^\sharp(z)=0$$ for $$\lvert z\rvert\le\bar n$$, and their expectations under $$P$$ and under the Poisson process are identical; in particular $$\mathbb E_Pu_p=1$$ exactly.
+and the normalised statistic $$u_{\mathfrak o}=U_{\mathfrak o}/\mathbb E_{\rm Poi}U_{\mathfrak o}$$ has $$\mathbb E_Pu_{\mathfrak o}=1+\zeta_D^{\mathfrak o}$$ with $$\zeta_D^{\mathfrak o}=\rho^kH_k^{\mathfrak o}(D)/(k!\,\mathbb E_{\rm Poi}U_{\mathfrak o})$$. Second, for $$p>\bar n$$ let $$u_p=(N)_p/(\rho\lvert D\rvert)^p$$, where $$(N)_p$$ is the falling factorial. The statistics $$u_p$$, $$u_p^2$$ and $$u_{\mathfrak o} u_p$$ vanish on configurations with fewer than $$p$$ points, hence have $$\Upsilon^\sharp(z)=0$$ for $$\lvert z\rvert\le\bar n$$, and their expectations under $$P$$ and under the Poisson process are identical; in particular $$\mathbb E_Pu_p=1$$ exactly.
 
 ### 5.3 Positivity conditions on the order statistics
 
@@ -442,7 +442,7 @@ By Theorem 11 the perturbation does not affect $$u_p$$, which keeps mean 1 and a
 
 For the Poisson process on $$LD_0$$ the densities $$u_{\mathfrak o}$$ and $$u_p$$ converge in $$L^2$$ to 1: the variance of a $$U$$-statistic with bounded kernel on $$\rho\lvert D\rvert$$ points is $$O((\rho\lvert D\rvert)^{2k-1})$$ against a squared mean of order $$(\rho\lvert D\rvert)^{2k}$$, the kernel being the indicator of a scale-invariant set of positive measure. Hence $$\mathrm{Var}_{\rm Poi}(u_p)\to0$$, $$\mathbb E_{\rm Poi}[u_{\mathfrak o} u_p]\to1$$, and $$\mathrm{Cov}_P(u_{\mathfrak o},u_p)=\mathbb E_{\rm Poi}[u_{\mathfrak o} u_p]-(1+\zeta_D^{\mathfrak o})=-\zeta_D^{\mathfrak o}+o(1)$$.
 
-The variance of $$u_{\mathfrak o}$$ is the step that needs an estimate. Put $$F=U_{\mathfrak o}^2$$, the number of ordered pairs $$(S,S')$$ of $$k$$-subsets of type $$\mathfrak o$$ of the configuration; $$\lvert F(Y)\rvert\le\lvert Y\rvert^{2k}$$, so (12) applies. Each pair contributes $$\mathbb 1[S\cup S'\subseteq Y]$$, and the sum defining $$F^\sharp(z)$$ over $$S\cup S'\subseteq Y\subseteq z$$ equals $$\mathbb 1[z=S\cup S']$$. Thus $$F^\sharp(z)$$ counts the pairs with $$S\cup S'=z$$: it vanishes unless $$k\le\lvert z\rvert\le2k$$ and is at most $$\binom{\lvert z\rvert}k^2$$. By (12), $$\mathbb E_PF-\mathbb E_{\rm Poi}F$$ is at most a constant times $$\sum_{j\le\min(\bar n,2k)}(\rho\lvert D\rvert)^j\lVert h_j\rVert_\infty$$, which is $$O((\rho\lvert D\rvert)^{2k})$$, and $$(\mathbb E_{\rm Poi}U_{\mathfrak o})^2\asymp(\rho\lvert D\rvert)^{2k}$$. So $$\mathbb E_Pu_{\mathfrak o}^2-\mathbb E_{\rm Poi}u_{\mathfrak o}^2$$ is bounded, $$\mathbb E_{\rm Poi}u_{\mathfrak o}^2\to1$$, $$\zeta_D^{\mathfrak o}$$ is bounded because $$\lvert H_k^{\mathfrak o}(D)\rvert\le\lVert h_k\rVert_\infty\lvert D\rvert^k$$, and therefore $$\mathrm{Var}_P(u_{\mathfrak o})=O(1)$$.
+The variance of $$u_{\mathfrak o}$$ is the step that needs an estimate. Put $$\Upsilon=U_{\mathfrak o}^2$$, the number of ordered pairs $$(S,S')$$ of $$k$$-subsets of type $$\mathfrak o$$ of the configuration; $$\lvert \Upsilon(Y)\rvert\le\lvert Y\rvert^{2k}$$, so (12) applies. Each pair contributes $$\mathbb 1[S\cup S'\subseteq Y]$$, and the sum defining $$\Upsilon^\sharp(z)$$ over $$S\cup S'\subseteq Y\subseteq z$$ equals $$\mathbb 1[z=S\cup S']$$. Thus $$\Upsilon^\sharp(z)$$ counts the pairs with $$S\cup S'=z$$: it vanishes unless $$k\le\lvert z\rvert\le2k$$ and is at most $$\binom{\lvert z\rvert}k^2$$. By (12), $$\mathbb E_P\Upsilon-\mathbb E_{\rm Poi}\Upsilon$$ is at most a constant times $$\sum_{j\le\min(\bar n,2k)}(\rho\lvert D\rvert)^j\lVert h_j\rVert_\infty$$, which is $$O((\rho\lvert D\rvert)^{2k})$$, and $$(\mathbb E_{\rm Poi}U_{\mathfrak o})^2\asymp(\rho\lvert D\rvert)^{2k}$$. So $$\mathbb E_Pu_{\mathfrak o}^2-\mathbb E_{\rm Poi}u_{\mathfrak o}^2$$ is bounded, $$\mathbb E_{\rm Poi}u_{\mathfrak o}^2\to1$$, $$\zeta_D^{\mathfrak o}$$ is bounded because $$\lvert H_k^{\mathfrak o}(D)\rvert\le\lVert h_k\rVert_\infty\lvert D\rvert^k$$, and therefore $$\mathrm{Var}_P(u_{\mathfrak o})=O(1)$$.
 
 Then $$\det=\mathrm{Var}\,u_{\mathfrak o}\,\mathrm{Var}\,u_p-\mathrm{Cov}^2\to-\zeta^2$$ along a subsequence with $$\lvert\zeta_D^{\mathfrak o}\rvert$$ bounded away from zero. For $$t=\mathrm{sign}(\zeta)T$$, $$\mathrm{Var}(u_{\mathfrak o}+tu_p)=\mathrm{Var}\,u_{\mathfrak o}+2t\,\mathrm{Cov}+t^2\mathrm{Var}\,u_p\le c-2T\lvert\zeta\rvert+o(1)$$ for a constant $$c$$, which is negative for large $$T$$ when the regions are large. $$\square$$
 
@@ -450,7 +450,7 @@ Then $$\det=\mathrm{Var}\,u_{\mathfrak o}\,\mathrm{Var}\,u_p-\mathrm{Cov}^2\to-\
 
 The content of Proposition 12 lies in amplitudes that do not decay with separation. For the pair family with $$h\in L^1$$ in $$w=s^2/\ell^2$$ and $$D_0$$ a diamond, $$\lvert H_2^{\mathfrak o}(LD_0)\rvert\le\int\!\!\int\lvert h\rvert=O(L^6)$$ by the scaling in Proposition 8, while $$\mathbb E_{\rm Poi}U_{\mathfrak o}\asymp L^8$$, so $$\zeta^{\mathfrak o}=O(L^{-2})$$ and the hypothesis of the proposition is not met. A constant amplitude on an order type, such as $$h_2=\epsilon\,\mathbb 1[\text{spacelike}]$$, has $$\zeta\ne0$$ at every volume.
 
-That example also separates (V1) from (V2). Take $$\bar n=2$$ and $$h_2=\epsilon\,\mathbb 1[\text{spacelike}]$$. The density $$u_{A_2}$$ of antichain pairs has $$\mathbb E_Pu_{A_2}=1+\epsilon$$. By (12) with $$F=U_{A_2}^2$$, whose $$F^\sharp(z)$$ for $$\lvert z\rvert=2$$ is the indicator of an antichain, the second moment shifts by $$\epsilon\,\mathbb E_{\rm Poi}U_{A_2}$$, which is $$o((\mathbb E_{\rm Poi}U_{A_2})^2)$$. Hence $$\mathrm{Var}(u_{A_2})\to-2\epsilon-\epsilon^2$$, which is positive for $$-2<\epsilon<0$$ and negative otherwise. For such $$\epsilon$$ (V1) holds, while (V2) fails because $$\det\mathrm{Cov}(u_{A_2},u_3)\to-\epsilon^2$$.
+That example also separates (V1) from (V2). Take $$\bar n=2$$ and $$h_2=\epsilon\,\mathbb 1[\text{spacelike}]$$. The density $$u_{A_2}$$ of antichain pairs has $$\mathbb E_Pu_{A_2}=1+\epsilon$$. By (12) with $$\Upsilon=U_{A_2}^2$$, whose $$\Upsilon^\sharp(z)$$ for $$\lvert z\rvert=2$$ is the indicator of an antichain, the second moment shifts by $$\epsilon\,\mathbb E_{\rm Poi}U_{A_2}$$, which is $$o((\mathbb E_{\rm Poi}U_{A_2})^2)$$. Hence $$\mathrm{Var}(u_{A_2})\to-2\epsilon-\epsilon^2$$, which is positive for $$-2<\epsilon<0$$ and negative otherwise. For such $$\epsilon$$ (V1) holds, while (V2) fails because $$\det\mathrm{Cov}(u_{A_2},u_3)\to-\epsilon^2$$.
 
 ### 5.4 Ergodic components are order-blind, and a lattice outside these classes
 

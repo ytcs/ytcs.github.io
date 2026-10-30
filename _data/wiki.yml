@@ -4,8 +4,8 @@ sections:
   - id: landscape
     title: The landscape
     blurb: >-
-      A map of the approaches to quantum gravity that have been tested against
-      the same requirements, and where each stands.
+      A map of the discrete, lattice and modified-continuum families examined
+      here against six requirements, with an index of the results.
   - id: substrate
     title: Discrete Lorentz-invariant substrates
     blurb: >-
