@@ -294,6 +294,12 @@ a:hover { text-decoration-thickness: 0.12em; }
     vertical-align: top;
   }
   th { font-weight: 700; }
+  // In a table that scrolls sideways the row label stays in view.
+  td:first-child, th:first-child {
+    position: sticky;
+    left: 0;
+    background: var(--bg);
+  }
 
   // Theorem-like environments, as in amsthm: italic statement, upright label;
   // proofs and definitions upright, proofs closed with a tombstone.
