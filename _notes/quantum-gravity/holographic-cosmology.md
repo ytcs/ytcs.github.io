@@ -165,7 +165,11 @@ $$
 
 where $$J_0$$ and $$J_2$$ are the coefficients of $$q^0$$ and $$q^2$$ in the expansion of $$J$$ about $$q=0$$. As $$q_c\to0$$, $$\rho$$ tends to a delta function at $$m=0$$ and $$\mathcal F\to1$$. The first subtraction implements $$\mathcal B(0)=0$$; the second removes a local term $$\propto q_cq^2$$, whose coefficient is a logarithmically divergent renormalisation constant. The subtracted integrand is $$O(q^4)$$ at small $$q$$ and $$O(1/m)$$ at large masses, and the integral converges absolutely.
 
-We evaluated (8) by quadrature and, independently, in position space. In the latter, with $$q_c=1$$, the exact propagator is $$G(r)=[\mathrm{Ci}(r)\sin r-(\mathrm{Si}(r)-\pi/2)\cos r]/(2\pi^2r)$$, the correlator is (7), and $$\mathcal F=(256\pi/q^3)\int_0^\infty r^2\langle\Theta_A\Theta_A\rangle(r)\,[\sin(qr)/(qr)-1+(qr)^2/6]\,dr$$, where the last two terms in the bracket are the same two subtractions. The two evaluations agree for $$0.1\le x\le100$$.
+We evaluated (8) by quadrature and, independently, in position space. In the latter, with $$q_c=1$$, the exact propagator is $$G(r)=[\mathrm{Ci}(r)\sin r-(\mathrm{Si}(r)-\pi/2)\cos r]/(2\pi^2r)$$, the correlator is (7), and
+
+$$\mathcal F=(256\pi/q^3)\int_0^\infty r^2\langle\Theta_A\Theta_A\rangle(r)\,[\sin(qr)/(qr)-1+(qr)^2/6]\,dr,$$
+
+where the last two terms in the bracket are the same two subtractions. The two evaluations agree for $$0.1\le x\le100$$.
 
 | $$x$$ | $$10^{-3}$$ | $$10^{-2}$$ | $$0.1$$ | $$1$$ | $$10$$ | $$10^2$$ | $$10^4$$ |
 |---|---|---|---|---|---|---|---|
@@ -252,7 +256,11 @@ For $$\ell\le29$$ the likelihood is the full-sky form for a single multipole, sc
 
 The $$N_B=2$$ row requires one non-conformally coupled scalar with $$(1-8\xi)^2=1$$, for which the resummation is incomplete, and is shown for comparison only. Using instead the published $$\ell\ge30$$ values of $$g$$ and $$\ln\beta$$ and fitting only the amplitude, the two-loop form worsens the $$\ell<30$$ fit by $$+23.6$$ with $$C_2/C_2^{\Lambda\rm CDM}=0.32$$, and the resummed form by $$+4.6$$ with $$0.51$$. The two forms differ by more than 10% of the two-loop spectrum below $$\ell\approx33$$, so the $$\ell\ge30$$ fit has to be redone with the resummed spectrum, as in the last row.
 
-For $$N_B=1$$ the refit has $$q_c=\kappa\lvert g\rvert q_*=2.11\times10^{-4}\,{\rm Mpc}^{-1}$$, that is $$\ell_c=2.9$$, and the predicted temperature spectrum relative to $$\Lambda$$CDM at $$\ell=2,\dots,8$$ is $$0.565,\ 0.623,\ 0.681,\ 0.734,\ 0.781,\ 0.821,\ 0.855$$. The observed quadrupole is $$0.22$$ of the $$\Lambda$$CDM value and $$0.39$$ of the resummed prediction, so the model moves towards the data without reaching it. The cost, $$\delta\chi^2\approx5$$, is shared between low and high multipoles ($$+2.1$$ and $$+2.9$$). The resummed model has one more free parameter than $$\Lambda$$CDM and is nevertheless worse by about 5. It is not nested in $$\Lambda$$CDM, so $$\delta\chi^2$$ measures the relative quality of two fits and is not a significance of preference.
+For $$N_B=1$$ the refit has $$q_c=\kappa\lvert g\rvert q_*=2.11\times10^{-4}\,{\rm Mpc}^{-1}$$, that is $$\ell_c=2.9$$, and the predicted temperature spectrum relative to $$\Lambda$$CDM at $$\ell=2,\dots,8$$ is
+
+$$0.565,\ 0.623,\ 0.681,\ 0.734,\ 0.781,\ 0.821,\ 0.855.$$
+
+The observed quadrupole is $$0.22$$ of the $$\Lambda$$CDM value and $$0.39$$ of the resummed prediction, so the model moves towards the data without reaching it. The cost, $$\delta\chi^2\approx5$$, is shared between low and high multipoles ($$+2.1$$ and $$+2.9$$). The resummed model has one more free parameter than $$\Lambda$$CDM and is nevertheless worse by about 5. It is not nested in $$\Lambda$$CDM, so $$\delta\chi^2$$ measures the relative quality of two fits and is not a significance of preference.
 
 The last row of the table tests whether the parameters fitted to the high multipoles, inserted in the resummed spectrum of section 4, also give the low-$$\ell$$ spectrum. They do not: parameters fitted to $$\ell\ge30$$ alone cost only $$+1.3$$ on $$\ell\ge30$$, but give a quadrupole ratio $$0.36$$ and worsen the fit at $$\ell<30$$ by $$18.5$$, so the suppression is overshot. The values fitted to $$\ell\ge30$$ are not those that fit all multipoles.
 

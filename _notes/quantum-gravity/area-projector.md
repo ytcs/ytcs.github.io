@@ -262,7 +262,15 @@ Part (a) holds in every dimension $$d\ge3$$ because it needs only the range of $
 | 5 | $$\tfrac85,\ \tfrac95,\ 2,\ \tfrac{11}5,\ \tfrac{12}5$$ | $$792,\ -5396,\ 14750,\ -19500,\ 12500,\ -3125$$ | $$0.148656$$ |
 | 6 | $$\tfrac32,\dots,\tfrac73$$ | $$3003,\ -35757,\ 155713,\ -328779,\ 365256,\ -206064,\ 46656$$ | $$0.133258$$ |
 
-For $$d=7$$ and $$8$$ the weights are $$(11440,-233717,1556926,-4912103,8384292,-7983325,4000066,-823543)$$ and $$(43758,-1518517,15075412,-68204640,167489792,-238911488,198377472,-89128960,16777216)$$. For $$K>d$$ there is a family of dimension $$K-d$$, and "unique" means unique at minimal degree. For example in $$d=4$$ with $$K=5$$ the solutions are the minimal one plus a multiple of $$Q_4(\alpha)(\alpha-\tfrac32)$$.
+For $$d=7$$ and $$8$$ the weights are
+
+$$(11440,-233717,1556926,-4912103,8384292,-7983325,4000066,-823543)$$
+
+and
+
+$$(43758,-1518517,15075412,-68204640,167489792,-238911488,198377472,-89128960,16777216).$$
+
+For $$K>d$$ there is a family of dimension $$K-d$$, and "unique" means unique at minimal degree. For example in $$d=4$$ with $$K=5$$ the solutions are the minimal one plus a multiple of $$Q_4(\alpha)(\alpha-\tfrac32)$$.
 
 A weighting that keeps one of the non-area exponents fails. In four dimensions, keeping $$\alpha=2$$ with $$Q(2)=q\neq0$$ and the other three zeros gives $$h_0=\tfrac{256}{175}q\,\ell^2\neq0$$.
 
@@ -371,7 +379,11 @@ The horizon count is a functional of marked posets: $$H_w(X,D)=\sum_{x\in D}n_O(
 
 ## 9. Gradients of the curvature, the other null sheet and the non-linear equation
 
-Theorem 2 concerns curvature that is uniform over the ball. In the conformally static class with $$W=\exp(d\,\varepsilon_3t^3)$$ the slice $$t=0$$ is flat with vanishing extrinsic curvature, and the scalar curvature vanishes on it while its time derivative does not. At first order in $$\varepsilon_3$$ the area of $$\partial B$$ does not change, and the $$Q_d$$-weighted count does not vanish. Computed in the same way as Proposition 2, its coefficient is $$2511/(175\pi)\approx4.567$$ for $$d=3$$ and $$-3377\cdot3^{3/4}\Gamma(\tfrac34)/(700\,\pi^{3/4})\approx-5.711$$ for $$d=4$$, and it sits at the exponent $$\alpha_A+(d+1)/d$$. The weights $$Q=\binom{2d+4-d\alpha}{d+2}$$ remove the exponents up to $$\alpha_A+(d+2)/d$$. They are $$(252,-1035,2046,-2133,1134,-243)$$ for $$d=3$$ and $$(924,-7084,23668,-41416,39808,-19968,4096)$$ for $$d=4$$, and with them this response vanishes in both dimensions. The first gradient order therefore needs new weights. Whether every further order does is the subject of [heavy-tailed horizon-count kernels](/quantum-gravity/nonlocal-weights/), where the nonzero coefficient found here is the evidence for the hypothesis (H) at $$j=d+1$$ in $$d=3$$ and $$d=4$$.
+Theorem 2 concerns curvature that is uniform over the ball. In the conformally static class with $$W=\exp(d\,\varepsilon_3t^3)$$ the slice $$t=0$$ is flat with vanishing extrinsic curvature, and the scalar curvature vanishes on it while its time derivative does not. At first order in $$\varepsilon_3$$ the area of $$\partial B$$ does not change, and the $$Q_d$$-weighted count does not vanish. Computed in the same way as Proposition 2, its coefficient is $$2511/(175\pi)\approx4.567$$ for $$d=3$$ and $$-3377\cdot3^{3/4}\Gamma(\tfrac34)/(700\,\pi^{3/4})\approx-5.711$$ for $$d=4$$, and it sits at the exponent $$\alpha_A+(d+1)/d$$. The weights $$Q=\binom{2d+4-d\alpha}{d+2}$$ remove the exponents up to $$\alpha_A+(d+2)/d$$. They are $$(252,-1035,2046,-2133,1134,-243)$$ for $$d=3$$ and
+
+$$(924,-7084,23668,-41416,39808,-19968,4096)$$
+
+for $$d=4$$, and with them this response vanishes in both dimensions. The first gradient order therefore needs new weights. Whether every further order does is the subject of [heavy-tailed horizon-count kernels](/quantum-gravity/nonlocal-weights/), where the nonzero coefficient found here is the evidence for the hypothesis (H) at $$j=d+1$$ in $$d=3$$ and $$d=4$$.
 
 The second null sheet through $$\partial B$$ below $$\Sigma$$ is the lower boundary of the domain of dependence. It contracts into the past and has a caustic, so a count on it needs a reduction different from the one of section 2.
 

@@ -188,7 +188,11 @@ Take a realisation through $$0$$, $$\Lambda=g\Lambda_7$$. Its future vectors are
 
 ### Shell densities and interior-count laws
 
-We enumerated the lattice vectors on the shells $$Q_7=n$$ with $$k_0\le k_{\max}$$ and computed the interior count of each by exact enumeration of the lattice points of the interval. For $$n=1,\dots,16$$ the densities $$\rho_n$$, counted in hyperbolic balls up to $$k_{\max}=1000$$, are $$1/16$$ times the integers $$4,12,6,12,12,18,25,12,28,36,48,18,36,75,32,12$$ to within $$0.3\%$$ for $$n\le15$$ and $$0.5\%$$ for $$n=16$$ (the counts converge slowly, because the error in hyperbolic lattice-point counts decays only like a power of the radius). The sum of the first sixteen is $$386/16=24.125$$, against $$16^2/(4\sqrt7)=24.19$$ from the unit-density requirement.
+We enumerated the lattice vectors on the shells $$Q_7=n$$ with $$k_0\le k_{\max}$$ and computed the interior count of each by exact enumeration of the lattice points of the interval. For $$n=1,\dots,16$$ the densities $$\rho_n$$, counted in hyperbolic balls up to $$k_{\max}=1000$$, are $$1/16$$ times the integers
+
+$$4,12,6,12,12,18,25,12,28,36,48,18,36,75,32,12$$
+
+to within $$0.3\%$$ for $$n\le15$$ and $$0.5\%$$ for $$n=16$$ (the counts converge slowly, because the error in hyperbolic lattice-point counts decays only like a power of the radius). The sum of the first sixteen is $$386/16=24.125$$, against $$16^2/(4\sqrt7)=24.19$$ from the unit-density requirement.
 
 A $$\Gamma_7$$-orbit of vectors with stabiliser $$\Gamma_v$$ has hyperbolic density $$1/(\lvert\Gamma_v\rvert\,\mathrm{vol}\,\mathcal F)$$, with $$\mathcal F$$ a fundamental domain of $$\Gamma_7$$ in $$H^3$$, so every density $$\rho_nP_n(m)$$ is a sum of such terms. We have not computed $$\mathrm{vol}\,\mathcal F$$ and the stabilisers. The sixteen densities and the measured class densities in the table are the evidence that $$16\rho_nP_n(m)$$ is an integer for every class $$(n,m)$$, and we use this as an identification rule; the factor 16 is the smallest integer multiplier that makes the sixteen measured densities integral, and it is not derived.
 

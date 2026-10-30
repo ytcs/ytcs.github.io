@@ -30,7 +30,9 @@ The link from the kernel to the area law is derived on [horizon counts and the a
 
 Under (H) the expected count follows the area law at every size and at every gradient order exactly when $$\phi$$ is exact to all orders. The coefficients are nonzero, by computation on that page, for $$1\le j\le d$$ in the dimensions $$3\le d\le12$$, and for $$j=d+1$$ on a time-dependent background in $$d=3$$ and $$d=4$$. No argument for general $$j$$ is available. Every statement below about the count depends on (H); the theorems about kernels do not.
 
-As an example take $$d=4$$. The weights of lowest degree $$N$$ that are exact to the first $$N$$ orders are the coefficients of $$Q_N(\alpha)=\binom{N+6-4\alpha}{N}$$, whose zeros are $$7/4,2,\dots,(N+6)/4$$ and with $$Q_N(3/2)=1$$. For $$N=4$$ they are $$(210,-791,1268,-928,256)$$ and for $$N=6$$ they are $$(924,-7084,23668,-41416,39808,-19968,4096)$$.
+As an example take $$d=4$$. The weights of lowest degree $$N$$ that are exact to the first $$N$$ orders are the coefficients of $$Q_N(\alpha)=\binom{N+6-4\alpha}{N}$$, whose zeros are $$7/4,2,\dots,(N+6)/4$$ and with $$Q_N(3/2)=1$$. For $$N=4$$ they are $$(210,-791,1268,-928,256)$$ and for $$N=6$$ they are
+
+$$(924,-7084,23668,-41416,39808,-19968,4096).$$
 
 For a kernel with $$Q(3/2)=1$$ the ratio $$\int\lvert\phi\rvert v^{1/2}dv/\Gamma(3/2)$$ equals $$\int\lvert\phi\rvert v^{\alpha_A-1}dv/\lvert M[\phi](\alpha_A)\rvert$$. It is $$1$$ for a positive kernel, and otherwise it measures how far the area term is a small remainder of larger positive and negative contributions. For $$N=4,6,8,12$$ direct evaluation gives $$115$$, $$929$$, $$7.2\times10^{3}$$ and $$4.0\times10^{5}$$, a factor of about $$2.8$$ per extra zero. Since $$\binom{N+z}{N}\sim N^{z}/\Gamma(z+1)$$, the rescaled symbols $$N^{4\alpha-6}Q_N(\alpha)$$ tend to $$1/\Gamma(7-4\alpha)$$. This vanishes at every $$\alpha=7/4+j/4$$, and by Theorem 1 below it is not the symbol of a kernel, integrable near zero, with decay $$\exp(-c\,v^{1/8})$$.
 

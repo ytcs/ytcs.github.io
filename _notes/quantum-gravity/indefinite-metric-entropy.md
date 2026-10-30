@@ -143,7 +143,11 @@ $$
 \tilde G_a(k_0,\vec k)=\mathrm{p.v.}\,\frac{1}{\kappa^2-k_0^2}+(1-2a)\,i\pi\,\mathrm{sgn}(k_0)\,\delta\big(\kappa^2-k_0^2\big).\tag{5}
 $$
 
-All members of the family share the principal-value part, and the parameter $$a$$ multiplies a term concentrated on the shell. For a source $$\hat j(k_0)$$ the response at distance $$r$$ is obtained by the radial Fourier transform. For $$\lvert k_0\rvert>M$$ the radial kernel of $$G_{\rm ret}-G_{\rm adv}$$ is $$2i\,\mathrm{sgn}(k_0)\sin(qr)/(4\pi r)$$ with $$q=\sqrt{k_0^2-M^2}$$, and for $$\lvert k_0\rvert<M$$ it vanishes. This kernel is the Fourier transform in $$t$$ of the time-domain function $$[\delta(t-r)-\delta(t+r)]/(4\pi r)-(M/4\pi)\,\mathrm{sgn}(t)\,\mathbf 1_{\{t^2>r^2\}}J_1(M\sqrt{t^2-r^2})/\sqrt{t^2-r^2}$$, with $$J_1$$ the Bessel function.
+All members of the family share the principal-value part, and the parameter $$a$$ multiplies a term concentrated on the shell. For a source $$\hat j(k_0)$$ the response at distance $$r$$ is obtained by the radial Fourier transform. For $$\lvert k_0\rvert>M$$ the radial kernel of $$G_{\rm ret}-G_{\rm adv}$$ is $$2i\,\mathrm{sgn}(k_0)\sin(qr)/(4\pi r)$$ with $$q=\sqrt{k_0^2-M^2}$$, and for $$\lvert k_0\rvert<M$$ it vanishes. This kernel is the Fourier transform in $$t$$ of the time-domain function
+
+$$[\delta(t-r)-\delta(t+r)]/(4\pi r)-(M/4\pi)\,\mathrm{sgn}(t)\,\mathbf 1_{\{t^2>r^2\}}J_1(M\sqrt{t^2-r^2})/\sqrt{t^2-r^2},$$
+
+with $$J_1$$ the Bessel function.
 
 <div class="proposition" markdown="1">
 **Proposition 5** (Prescription independence). For every $$a\in\mathbb R$$:
