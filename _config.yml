@@ -8,8 +8,8 @@ url: "https://ytcs.github.io"
 baseurl: ""
 
 
-# Pages live in _notes/<topic>/<slug>.md and are served at /<topic>/<slug>/.
-# Sections of the home page are listed in _data/wiki.yml.
+# Pages live in _notes/<project>/<slug>.md and are served at /<project>/<slug>/.
+# Projects (the tabs on the home page) and their sections are listed in _data/wiki.yml.
 collections:
   notes:
     output: true

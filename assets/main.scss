@@ -161,10 +161,53 @@ a:hover { text-decoration-thickness: 0.12em; }
   margin: 0 0 2.5rem;
 }
 
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.75rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.75rem;
+}
+
+.tab {
+  font: inherit;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0.4rem 0;
+  cursor: pointer;
+  &:hover { color: var(--ink); }
+  &[aria-selected="true"] {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+}
+
+.project > h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+}
+
+// The tab already names the project.
+.tabbed .project > h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.project-summary {
+  margin: 0 0 2.5rem;
+}
+
 .home-section {
   margin: 0 0 3rem;
-  h2 {
-    font-size: 1.35rem;
+  h3 {
+    font-size: 1.2rem;
     margin: 0 0 0.5rem;
   }
   > p { margin: 0 0 1.25rem; }

@@ -1,12 +1,15 @@
 ---
 layout: default
 ---
-{%- assign section = site.data.wiki.sections | where: "id", page.category | first -%}
+{%- assign project_id = page.path | split: "/" | slice: 1 | first -%}
+{%- assign project = site.data.wiki | where: "id", project_id | first -%}
+{%- assign section = project.sections | where: "id", page.category | first -%}
 {%- assign here = page.url -%}
 {%- assign linking = site.notes | where_exp: "n", "n.url != here" | where_exp: "n", "n.content contains here" | sort: "title" -%}
 <article class="post note">
   <header class="post-header">
     <p class="note-project"><a href="{{ '/' | relative_url }}">Home</a>
+      {%- if project %} / <a href="{{ '/' | relative_url }}#{{ project.id }}">{{ project.title | escape }}</a>{% endif -%}
       {%- if section %} / <a href="{{ '/' | relative_url }}#{{ section.id }}">{{ section.title | escape }}</a>{% endif -%}
     </p>
     <h1>{{ page.title | escape }}</h1>

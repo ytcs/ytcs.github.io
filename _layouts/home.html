@@ -7,25 +7,40 @@ layout: default
   {%- endif -%}
   {{ content }}
 
-  {%- for section in site.data.wiki.sections -%}
-  {%- assign pages = site.notes | where: "category", section.id | sort: "order" -%}
-  {%- if pages.size > 0 %}
-  <section class="home-section" id="{{ section.id }}">
-    <h2>{{ section.title | escape }}</h2>
-    {%- if section.blurb %}
-    <p>{{ section.blurb }}</p>
-    {%- endif %}
-    <ul class="page-list">
-      {%- for entry in pages %}
-      <li>
-        <a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a>
-        {%- if entry.description %}
-        <p>{{ entry.description }}</p>
+  {%- comment -%}
+    One panel per project. site.js turns the panels into tabs; without
+    JavaScript they are simply stacked.
+  {%- endcomment -%}
+  <div class="projects">
+    {%- for project in site.data.wiki -%}
+    <section class="project" id="{{ project.id }}" aria-labelledby="{{ project.id }}-title">
+      <h2 id="{{ project.id }}-title">{{ project.title | escape }}</h2>
+      {%- if project.summary %}
+      <p class="project-summary">{{ project.summary }}</p>
+      {%- endif -%}
+
+      {%- for section in project.sections -%}
+      {%- assign pages = site.notes | where: "category", section.id | sort: "order" -%}
+      {%- if pages.size > 0 %}
+      <section class="home-section" id="{{ section.id }}">
+        <h3>{{ section.title | escape }}</h3>
+        {%- if section.blurb %}
+        <p>{{ section.blurb }}</p>
         {%- endif %}
-      </li>
+        <ul class="page-list">
+          {%- for entry in pages %}
+          <li>
+            <a href="{{ entry.url | relative_url }}">{{ entry.title | escape }}</a>
+            {%- if entry.description %}
+            <p>{{ entry.description }}</p>
+            {%- endif %}
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+      {%- endif -%}
       {%- endfor %}
-    </ul>
-  </section>
-  {%- endif -%}
-  {%- endfor -%}
+    </section>
+    {%- endfor -%}
+  </div>
 </div>

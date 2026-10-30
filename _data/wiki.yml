@@ -1,37 +1,46 @@
-# Sections of the wiki. A page belongs to a section through its `category`
-# front-matter field; pages in a section are listed on the home page by `order`.
-sections:
-  - id: landscape
-    title: The landscape
-    blurb: >-
-      A map of the discrete, lattice and modified-continuum families examined
-      here against six requirements, with an index of the results.
-  - id: substrate
-    title: Discrete Lorentz-invariant substrates
-    blurb: >-
-      Theorems about point sets, random lattices and quantum counts that are
-      invariant under the Lorentz group.
-  - id: gravity
-    title: Locality, lattices and gravity
-    blurb: >-
-      Theorems about gravitons on lattices, about non-locality, and about where
-      a preferred frame shows up at low energy.
-  - id: matter
-    title: Matter on discrete substrates
-    blurb: >-
-      Theorems about fermions and chirality on causal orders and random points.
-  - id: entropy
-    title: Entropy, action and dynamics
-    blurb: >-
-      Theorems about horizon counts, the causal-set action, and laws of change.
-  - id: continuum
-    title: Continuum and indefinite-metric theories
-    blurb: >-
-      Theorems about theories whose spacetime is emergent or whose propagators
-      are not positive.
-  - id: dark-sector
-    title: Cosmology and the dark sector
-    blurb: >-
-      Theorems that exclude routes to the cosmological constant, the dark
-      matter density and the neutrino mass, and model classes fitted to
-      cosmological data.
+# Projects, shown as tabs on the home page. A page belongs to a project through
+# its folder (_notes/<id>/<slug>.md) and to one of the project's sections
+# through its `category` front-matter field; pages in a section are listed on
+# the home page by `order`.
+- id: quantum-gravity
+  title: Quantum Gravity
+  summary: >-
+    Which discrete, lattice and modified-continuum approaches to quantum
+    gravity are excluded by theorem, and under which hypotheses. The first page
+    maps the families against six requirements; the others prove the results
+    that fill the map.
+  sections:
+    - id: landscape
+      title: The landscape
+      blurb: >-
+        A map of the discrete, lattice and modified-continuum families examined
+        here against six requirements, with an index of the results.
+    - id: substrate
+      title: Discrete Lorentz-invariant substrates
+      blurb: >-
+        Theorems about point sets, random lattices and quantum counts that are
+        invariant under the Lorentz group.
+    - id: gravity
+      title: Locality, lattices and gravity
+      blurb: >-
+        Theorems about gravitons on lattices, about non-locality, and about where
+        a preferred frame shows up at low energy.
+    - id: matter
+      title: Matter on discrete substrates
+      blurb: >-
+        Theorems about fermions and chirality on causal orders and random points.
+    - id: entropy
+      title: Entropy, action and dynamics
+      blurb: >-
+        Theorems about horizon counts, the causal-set action, and laws of change.
+    - id: continuum
+      title: Continuum and indefinite-metric theories
+      blurb: >-
+        Theorems about theories whose spacetime is emergent or whose propagators
+        are not positive.
+    - id: dark-sector
+      title: Cosmology and the dark sector
+      blurb: >-
+        Theorems that exclude routes to the cosmological constant, the dark
+        matter density and the neutrino mass, and model classes fitted to
+        cosmological data.

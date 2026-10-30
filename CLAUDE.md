@@ -6,10 +6,11 @@ jektex (server-side; macros in `_config.yml` under `jektex.macros`).
 
 Structure: a wiki, not a blog. Pages are reference articles that are revised in
 place and link to each other; none is a dated entry.
-- `_data/wiki.yml` lists the sections of the home page. A page joins a section
+- `_data/wiki.yml` lists the projects (each a tab on the home page, with a
+  summary) and, inside each project, its sections. A page joins a section
   through its `category` front-matter field.
-- Pages are `_notes/<topic>/<slug>.md`, served at `/<topic>/<slug>/`, ordered
-  within a section by the `order` front-matter field. Front matter: `title`,
+- Pages are `_notes/<project-id>/<slug>.md`, served at `/<project-id>/<slug>/`,
+  ordered within a section by the `order` front-matter field. Front matter: `title`,
   `date` (creation; shown only as the revision date), `category`, `order`,
   `description` (plain text, no math: shown on the home page and used as the
   meta description; without it the first paragraph, with its math, ends up in
@@ -70,9 +71,10 @@ Do this instead:
 - Table of contents only on long posts: in the right margin on wide screens,
   a `<details>` at the top on narrow screens. Never overlapping text.
 - Footnotes as real footnotes (kramdown `[^1]`), references as a plain list.
-- Home page: a first-person line or two about the author, then the wiki's
-  sections, each with its pages (title + one-sentence summary). No tabs, no
-  dates, no previous/next links.
+- Home page: a first-person line or two about the author, then one tab per
+  project with its summary, its sections and their pages (title + one-sentence
+  summary). Without JS the projects are stacked. No dates, no previous/next
+  links.
 - Visible keyboard focus, `prefers-reduced-motion` respected, readable with
   JS off, contrast ≥ 4.5:1. Check at 390px wide before calling anything done.
 
